@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -167,39 +168,10 @@ select {
     margin-bottom: 5px;
 }
 
-/* =========================
-   NAME + DETAIL BUTTON
-========================= */
-
-.name-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-}
-
 .name {
-    flex: 1;
     font-size: 18px;
     font-weight: 700;
     line-height: 1.3;
-}
-
-.detail-button {
-    flex-shrink: 0;
-    border: none;
-    background: #111;
-    color: white;
-    padding: 7px 9px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.detail-button:hover {
-    background: #333;
 }
 
 .price {
@@ -311,6 +283,48 @@ select {
     font-size: 14px;
     color: #777;
     margin-bottom: 6px;
+}
+
+/* =========================
+   DETAIL GALLERY
+========================= */
+
+.detail-gallery {
+    max-width: 1000px;
+    margin: 35px auto 0;
+}
+
+.detail-gallery-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.detail-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.detail-gallery-item {
+    width: 100%;
+    height: 300px;
+    background: #fafafa;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.detail-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: 0.2s ease;
+}
+
+.detail-gallery-item:hover img {
+    transform: scale(1.03);
 }
 
 /* =========================
@@ -426,6 +440,10 @@ select {
     .image-box {
         height: 220px;
     }
+
+    .detail-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 650px) {
@@ -459,17 +477,8 @@ select {
         padding: 11px;
     }
 
-    .name-row {
-        align-items: flex-start;
-    }
-
     .name {
         font-size: 16px;
-    }
-
-    .detail-button {
-        font-size: 11px;
-        padding: 6px 7px;
     }
 
     .price {
@@ -498,6 +507,19 @@ select {
 
     .info-row {
         font-size: 17px;
+    }
+
+    .detail-gallery {
+        margin-top: 25px;
+    }
+
+    .detail-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .detail-gallery-item {
+        height: 330px;
     }
 
     .modal-prev,
@@ -529,9 +551,8 @@ select {
         height: 170px;
     }
 
-    .detail-button {
-        font-size: 10px;
-        padding: 5px 6px;
+    .detail-gallery-item {
+        height: 280px;
     }
 }
 </style>
@@ -901,11 +922,6 @@ async function loadProducts() {
         products =
             parseCSV(text);
 
-        /*
-         * Cho phép Google Sheet đang trống.
-         * Không làm web chết.
-         */
-
         createFilters();
 
         displayProducts(products);
@@ -1105,10 +1121,9 @@ function displayProducts(list) {
 
         }
 
-        const hasGallery =
-            Boolean(
-                product["Ảnh chi tiết"]
-            );
+        /*
+         * Đã xóa hoàn toàn nút "Xem ảnh".
+         */
 
         card.innerHTML = `
 
@@ -1124,29 +1139,10 @@ function displayProducts(list) {
                     )}
                 </div>
 
-                <div class="name-row">
-
-                    <div class="name">
-                        ${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}
-                    </div>
-
-                    ${
-                        hasGallery
-                        ?
-                        `
-                        <button
-                            class="detail-button"
-                            type="button"
-                        >
-                            🖼️ Xem ảnh
-                        </button>
-                        `
-                        :
-                        ""
-                    }
-
+                <div class="name">
+                    ${escapeHTML(
+                        product["Tên vợt"] || ""
+                    )}
                 </div>
 
                 <div class="price">
@@ -1189,51 +1185,16 @@ function displayProducts(list) {
         `;
 
 
-        /* CARD */
+        /* CARD CLICK */
 
         card.addEventListener(
             "click",
-            function(event) {
-
-                if (
-                    event.target.closest(
-                        ".detail-button"
-                    )
-                ) {
-                    return;
-                }
+            function() {
 
                 showDetail(product);
 
             }
         );
-
-
-        /* DETAIL BUTTON */
-
-        const button =
-            card.querySelector(
-                ".detail-button"
-            );
-
-        if (button) {
-
-            button.addEventListener(
-                "click",
-                function(event) {
-
-                    event.preventDefault();
-
-                    event.stopPropagation();
-
-                    openProductGallery(
-                        product
-                    );
-
-                }
-            );
-
-        }
 
 
         container.appendChild(card);
@@ -1348,45 +1309,6 @@ async function loadGalleryImages(folder) {
 
 
 /* =====================================================
-   OPEN PRODUCT GALLERY
-===================================================== */
-
-async function openProductGallery(product) {
-
-    const folder =
-        getFolderFromProduct(product);
-
-    if (!folder) {
-
-        alert(
-            "Sản phẩm này chưa có ảnh chi tiết."
-        );
-
-        return;
-    }
-
-    const urls =
-        await loadGalleryImages(folder);
-
-    if (!urls.length) {
-
-        alert(
-            "Không tìm thấy ảnh chi tiết."
-        );
-
-        return;
-    }
-
-    currentGallery = urls;
-
-    currentImageIndex = 0;
-
-    showModalImage();
-
-}
-
-
-/* =====================================================
    SHOW MODAL
 ===================================================== */
 
@@ -1438,6 +1360,25 @@ function showModalImage() {
 
     document.body.style.overflow =
         "hidden";
+
+}
+
+
+/* =====================================================
+   OPEN GALLERY IMAGE
+===================================================== */
+
+function openGalleryImage(index) {
+
+    if (
+        !currentGallery.length
+    ) {
+        return;
+    }
+
+    currentImageIndex = index;
+
+    showModalImage();
 
 }
 
@@ -1516,7 +1457,7 @@ function closeImageModal() {
    DETAIL
 ===================================================== */
 
-function showDetail(product) {
+async function showDetail(product) {
 
     document.getElementById(
         "products"
@@ -1564,6 +1505,11 @@ function showDetail(product) {
             Không có ảnh
         </div>
         `;
+
+    /*
+     * Hiện phần thông tin trước.
+     * Ảnh chi tiết sẽ được tải ngay sau đó.
+     */
 
     detail.innerHTML = `
 
@@ -1638,6 +1584,21 @@ function showDetail(product) {
 
             </div>
 
+            <div
+                id="detailGallery"
+                class="detail-gallery"
+            >
+
+                <div class="detail-gallery-title">
+                    Ảnh chi tiết
+                </div>
+
+                <div class="loading">
+                    Đang tải ảnh chi tiết...
+                </div>
+
+            </div>
+
         </div>
     `;
 
@@ -1645,6 +1606,127 @@ function showDetail(product) {
         top: 0,
         behavior: "smooth"
     });
+
+
+    /* =================================================
+       TỰ ĐỘNG LOAD ẢNH CHI TIẾT
+    ================================================= */
+
+    const galleryContainer =
+        document.getElementById(
+            "detailGallery"
+        );
+
+    const folder =
+        getFolderFromProduct(product);
+
+    if (!folder) {
+
+        galleryContainer.innerHTML = `
+            <div class="detail-gallery-title">
+                Ảnh chi tiết
+            </div>
+
+            <div class="loading">
+                Sản phẩm chưa có ảnh chi tiết.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const urls =
+        await loadGalleryImages(
+            folder
+        );
+
+
+    if (!urls.length) {
+
+        galleryContainer.innerHTML = `
+            <div class="detail-gallery-title">
+                Ảnh chi tiết
+            </div>
+
+            <div class="loading">
+                Không tìm thấy ảnh chi tiết.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    /*
+     * Lưu gallery hiện tại để khi bấm
+     * vào ảnh có thể mở modal.
+     */
+
+    currentGallery = urls;
+
+    currentImageIndex = 0;
+
+
+    /*
+     * Hiện toàn bộ ảnh bên dưới.
+     */
+
+    galleryContainer.innerHTML = `
+
+        <div class="detail-gallery-title">
+            Ảnh chi tiết
+        </div>
+
+        <div
+            id="detailGalleryGrid"
+            class="detail-gallery-grid"
+        ></div>
+
+    `;
+
+    const galleryGrid =
+        document.getElementById(
+            "detailGalleryGrid"
+        );
+
+
+    urls.forEach(
+        (url, index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "detail-gallery-item";
+
+            item.innerHTML = `
+                <img
+                    src="${escapeHTML(url)}"
+                    alt="Ảnh chi tiết ${index + 1}"
+                    loading="lazy"
+                >
+            `;
+
+            item.addEventListener(
+                "click",
+                function() {
+
+                    openGalleryImage(
+                        index
+                    );
+
+                }
+            );
+
+            galleryGrid.appendChild(
+                item
+            );
+
+        }
+    );
 
 }
 
@@ -1956,3 +2038,4 @@ loadProducts();
 
 </body>
 </html>
+```
