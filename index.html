@@ -23,8 +23,6 @@ body {
     color: #171717;
 }
 
-/* ================= HEADER ================= */
-
 header {
     background: #111;
     color: white;
@@ -44,16 +42,12 @@ header {
     font-size: 15px;
 }
 
-/* ================= CONTAINER ================= */
-
 .container {
     width: 100%;
     max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
-
-/* ================= SEARCH ================= */
 
 .search-box {
     position: relative;
@@ -74,8 +68,6 @@ header {
     border-color: #888;
 }
 
-/* ================= FILTER ================= */
-
 .filters {
     display: flex;
     gap: 10px;
@@ -92,23 +84,17 @@ select {
     outline: none;
 }
 
-/* ================= COUNT ================= */
-
 .count {
     color: #777;
     font-size: 14px;
     margin-bottom: 15px;
 }
 
-/* ================= PRODUCTS ================= */
-
 .products {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
 }
-
-/* ================= CARD ================= */
 
 .card {
     background: white;
@@ -174,8 +160,6 @@ select {
     line-height: 1.6;
 }
 
-/* ================= DETAIL ================= */
-
 .detail {
     display: none;
     background: white;
@@ -194,126 +178,24 @@ select {
     margin-bottom: 20px;
 }
 
-/* ================= DETAIL GALLERY ================= */
-
-.gallery {
+.detail-image-box {
     width: 100%;
-    max-width: 850px;
+    max-width: 700px;
+    height: 500px;
     margin: auto;
-}
-
-.gallery-main {
-    position: relative;
-    width: 100%;
-    height: 520px;
     background: #fafafa;
     border-radius: 14px;
-    overflow: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.gallery-main img {
+.detail-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
 }
-
-.gallery-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.65);
-    color: white;
-    font-size: 25px;
-    cursor: pointer;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.gallery-arrow:hover {
-    background: rgba(0,0,0,0.85);
-}
-
-.gallery-prev {
-    left: 15px;
-}
-
-.gallery-next {
-    right: 15px;
-}
-
-.gallery-counter {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.65);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    z-index: 5;
-}
-
-.gallery-thumbs {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 12px 2px 5px;
-    scroll-behavior: smooth;
-}
-
-.gallery-thumbs::-webkit-scrollbar {
-    height: 5px;
-}
-
-.gallery-thumbs::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-}
-
-.gallery-thumb {
-    flex: 0 0 78px;
-    height: 78px;
-    border-radius: 10px;
-    overflow: hidden;
-    background: #fafafa;
-    border: 2px solid transparent;
-    cursor: pointer;
-}
-
-.gallery-thumb.active {
-    border-color: #111;
-}
-
-.gallery-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.gallery-loading {
-    height: 520px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    background: #fafafa;
-    border-radius: 14px;
-}
-
-/* ================= DETAIL CONTENT ================= */
 
 .detail-content {
     max-width: 700px;
@@ -348,7 +230,15 @@ select {
     width: 150px;
 }
 
-/* ================= LOADING ================= */
+.detail-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 13px 18px;
+    background: #111;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
 
 .loading {
     grid-column: 1 / -1;
@@ -357,10 +247,7 @@ select {
     color: #777;
 }
 
-/* ================= MOBILE ================= */
-
 @media (max-width: 900px) {
-
     .products {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -409,31 +296,8 @@ select {
         padding: 12px;
     }
 
-    .gallery-main {
+    .detail-image-box {
         height: 350px;
-    }
-
-    .gallery-loading {
-        height: 350px;
-    }
-
-    .gallery-arrow {
-        width: 38px;
-        height: 38px;
-        font-size: 21px;
-    }
-
-    .gallery-prev {
-        left: 8px;
-    }
-
-    .gallery-next {
-        right: 8px;
-    }
-
-    .gallery-thumb {
-        flex-basis: 65px;
-        height: 65px;
     }
 
     .detail-name {
@@ -456,71 +320,39 @@ select {
 <body>
 
 <header>
-
-    <div class="logo">
-        TSPORT
-    </div>
+    <div class="logo">TSPORT</div>
 
     <div class="subtitle">
         List vợt cầu lông lướt
     </div>
-
 </header>
-
 
 <div class="container">
 
-    <!-- SEARCH -->
-
     <div class="search-box">
-
         <input
             id="search"
             class="search"
             type="text"
             placeholder="🔎 Tìm vợt, mã, hãng..."
         >
-
     </div>
-
-
-    <!-- FILTER -->
 
     <div class="filters">
 
         <select id="brandFilter">
-
-            <option value="">
-                Tất cả hãng
-            </option>
-
+            <option value="">Tất cả hãng</option>
         </select>
-
 
         <select id="styleFilter">
-
-            <option value="">
-                Tất cả lối đánh
-            </option>
-
+            <option value="">Tất cả lối đánh</option>
         </select>
 
     </div>
 
+    <div id="count" class="count"></div>
 
-    <!-- COUNT -->
-
-    <div
-        id="count"
-        class="count">
-    </div>
-
-
-    <!-- PRODUCTS -->
-
-    <div
-        id="products"
-        class="products">
+    <div id="products" class="products">
 
         <div class="loading">
             Đang tải sản phẩm...
@@ -528,16 +360,9 @@ select {
 
     </div>
 
-
-    <!-- DETAIL -->
-
-    <div
-        id="detail"
-        class="detail">
-    </div>
+    <div id="detail" class="detail"></div>
 
 </div>
-
 
 <script>
 
@@ -548,20 +373,7 @@ select {
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
-
-/* =====================================================
-   CLOUDFLARE WORKER
-===================================================== */
-
-const IMAGE_API =
-"https://tsport-image-api.ntr9766.workers.dev/";
-
-
 let products = [];
-
-let galleryImages = [];
-
-let galleryIndex = 0;
 
 
 /* =====================================================
@@ -576,40 +388,27 @@ function getImageUrl(url) {
 
     let id = "";
 
-    let match =
-        url.match(
-            /\/file\/d\/([^/]+)/
-        );
+    let match = url.match(/\/file\/d\/([^/]+)/);
 
     if (match) {
-
         id = match[1];
-
     }
-
 
     if (!id) {
 
-        match =
-            url.match(
-                /[?&]id=([^&]+)/
-            );
+        match = url.match(/[?&]id=([^&]+)/);
 
         if (match) {
-
             id = match[1];
-
         }
 
     }
-
 
     if (id) {
 
         return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
 
     }
-
 
     return url;
 }
@@ -629,17 +428,11 @@ function parseCSV(text) {
 
     let insideQuotes = false;
 
-
-    for (
-        let i = 0;
-        i < text.length;
-        i++
-    ) {
+    for (let i = 0; i < text.length; i++) {
 
         const char = text[i];
 
         const next = text[i + 1];
-
 
         if (
             char === '"' &&
@@ -652,19 +445,14 @@ function parseCSV(text) {
             i++;
 
             continue;
-
         }
-
 
         if (char === '"') {
 
-            insideQuotes =
-                !insideQuotes;
+            insideQuotes = !insideQuotes;
 
             continue;
-
         }
-
 
         if (
             char === "," &&
@@ -676,15 +464,10 @@ function parseCSV(text) {
             value = "";
 
             continue;
-
         }
 
-
         if (
-            (
-                char === "\n" ||
-                char === "\r"
-            ) &&
+            (char === "\n" || char === "\r") &&
             !insideQuotes
         ) {
 
@@ -694,12 +477,9 @@ function parseCSV(text) {
             ) {
 
                 i++;
-
             }
 
-
             row.push(value);
-
 
             if (
                 row.some(
@@ -708,23 +488,17 @@ function parseCSV(text) {
             ) {
 
                 rows.push(row);
-
             }
-
 
             row = [];
 
             value = "";
 
             continue;
-
         }
 
-
         value += char;
-
     }
-
 
     if (
         value ||
@@ -733,7 +507,6 @@ function parseCSV(text) {
 
         row.push(value);
 
-
         if (
             row.some(
                 x => x.trim() !== ""
@@ -741,30 +514,18 @@ function parseCSV(text) {
         ) {
 
             rows.push(row);
-
         }
-
     }
-
 
     if (rows.length < 2) {
 
         return [];
-
     }
-
 
     const headers =
         rows[0].map(
-            x =>
-                x
-                    .trim()
-                    .replace(
-                        /^\uFEFF/,
-                        ""
-                    )
+            x => x.trim().replace(/^\uFEFF/, "")
         );
-
 
     return rows
         .slice(1)
@@ -772,27 +533,17 @@ function parseCSV(text) {
 
             const item = {};
 
-
             headers.forEach(
-                (
-                    header,
-                    index
-                ) => {
+                (header, index) => {
 
                     item[header] =
-                        (
-                            row[index] ||
-                            ""
-                        ).trim();
+                        (row[index] || "").trim();
 
                 }
             );
 
-
             return item;
-
         });
-
 }
 
 
@@ -811,44 +562,33 @@ async function loadProducts() {
                 Date.now()
             );
 
-
         if (!response.ok) {
 
             throw new Error(
                 "Không thể tải Google Sheet"
             );
-
         }
-
 
         const text =
             await response.text();
 
-
         products =
             parseCSV(text);
-
 
         if (!products.length) {
 
             throw new Error(
                 "Không có dữ liệu"
             );
-
         }
-
 
         createFilters();
 
-        displayProducts(
-            products
-        );
-
+        displayProducts(products);
 
     } catch (error) {
 
         console.error(error);
-
 
         document.getElementById(
             "products"
@@ -863,11 +603,8 @@ async function loadProducts() {
                 Vui lòng thử tải lại trang.
 
             </div>
-
         `;
-
     }
-
 }
 
 
@@ -882,54 +619,42 @@ function createFilters() {
             "brandFilter"
         );
 
-
     const styleFilter =
         document.getElementById(
             "styleFilter"
         );
 
-
     brandFilter.innerHTML =
-        `
-        <option value="">
+        `<option value="">
             Tất cả hãng
-        </option>
-        `;
-
+        </option>`;
 
     styleFilter.innerHTML =
-        `
-        <option value="">
+        `<option value="">
             Tất cả lối đánh
-        </option>
-        `;
-
+        </option>`;
 
     const brands =
         [
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Hãng"]
+                        p => p["Hãng"]
                     )
                     .filter(Boolean)
             )
         ];
-
 
     const styles =
         [
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Lối đánh"]
+                        p => p["Lối đánh"]
                     )
                     .filter(Boolean)
             )
         ];
-
 
     brands.forEach(
         brand => {
@@ -939,22 +664,15 @@ function createFilters() {
                     "option"
                 );
 
+            option.value = brand;
 
-            option.value =
-                brand;
-
-
-            option.textContent =
-                brand;
-
+            option.textContent = brand;
 
             brandFilter.appendChild(
                 option
             );
-
         }
     );
-
 
     styles.forEach(
         style => {
@@ -964,22 +682,15 @@ function createFilters() {
                     "option"
                 );
 
+            option.value = style;
 
-            option.value =
-                style;
-
-
-            option.textContent =
-                style;
-
+            option.textContent = style;
 
             styleFilter.appendChild(
                 option
             );
-
         }
     );
-
 }
 
 
@@ -991,28 +702,20 @@ function formatPrice(price) {
 
     if (!price) return "";
 
-
     const number =
         Number(
             String(price)
-                .replace(
-                    /[^\d]/g,
-                    ""
-                )
+                .replace(/[^\d]/g, "")
         );
-
 
     if (!number) {
 
         return price;
-
     }
-
 
     return number.toLocaleString(
         "vi-VN"
     ) + " ₫";
-
 }
 
 
@@ -1027,19 +730,15 @@ function displayProducts(list) {
             "products"
         );
 
-
     const count =
         document.getElementById(
             "count"
         );
 
-
     container.innerHTML = "";
-
 
     count.textContent =
         `${list.length} sản phẩm`;
-
 
     if (!list.length) {
 
@@ -1050,13 +749,10 @@ function displayProducts(list) {
                 Không tìm thấy vợt.
 
             </div>
-
         `;
 
         return;
-
     }
-
 
     list.forEach(
         product => {
@@ -1066,19 +762,15 @@ function displayProducts(list) {
                     "div"
                 );
 
-
             card.className =
                 "card";
-
 
             const image =
                 getImageUrl(
                     product["Ảnh"]
                 );
 
-
             let imageHTML = "";
-
 
             if (image) {
 
@@ -1096,7 +788,6 @@ function displayProducts(list) {
                             '<div class=\\'no-image\\'>Không có ảnh</div>';
                         "
                     >
-
                 `;
 
             } else {
@@ -1106,11 +797,8 @@ function displayProducts(list) {
                     <div class="no-image">
                         Không có ảnh
                     </div>
-
                 `;
-
             }
-
 
             card.innerHTML = `
 
@@ -1119,7 +807,6 @@ function displayProducts(list) {
                     ${imageHTML}
 
                 </div>
-
 
                 <div class="card-info">
 
@@ -1131,7 +818,6 @@ function displayProducts(list) {
 
                     </div>
 
-
                     <div class="name">
 
                         ${escapeHTML(
@@ -1140,7 +826,6 @@ function displayProducts(list) {
 
                     </div>
 
-
                     <div class="price">
 
                         ${formatPrice(
@@ -1148,7 +833,6 @@ function displayProducts(list) {
                         )}
 
                     </div>
-
 
                     <div class="meta">
 
@@ -1171,518 +855,122 @@ function displayProducts(list) {
                     </div>
 
                 </div>
-
             `;
-
 
             card.onclick =
-                () => showDetail(
-                    product
-                );
+                () => showDetail(product);
 
-
-            container.appendChild(
-                card
-            );
-
+            container.appendChild(card);
         }
     );
-
 }
-
-
-/* =====================================================
-   LOAD DETAIL IMAGES
-===================================================== */
-
-async function loadDetailImages(
-    folder
-) {
-
-    if (!folder) {
-
-        return [];
-
-    }
-
-
-    try {
-
-        const url =
-            IMAGE_API +
-            "?folder=" +
-            encodeURIComponent(
-                folder
-            );
-
-
-        const response =
-            await fetch(url);
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Không thể tải ảnh chi tiết"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            !data.success ||
-            !Array.isArray(
-                data.images
-            )
-        ) {
-
-            return [];
-
-        }
-
-
-        return data.images
-            .map(
-                item =>
-                    item.url
-            )
-            .filter(Boolean);
-
-
-    } catch (error) {
-
-        console.error(
-            "Gallery error:",
-            error
-        );
-
-
-        return [];
-
-    }
-
-}
-
-
-/* =====================================================
-   CREATE GALLERY
-===================================================== */
-
-function createGallery(
-    images
-) {
-
-    galleryImages =
-        images || [];
-
-    galleryIndex = 0;
-
-
-    const gallery =
-        document.getElementById(
-            "gallery"
-        );
-
-
-    if (!gallery) return;
-
-
-    if (!galleryImages.length) {
-
-        gallery.innerHTML = `
-
-            <div class="gallery-loading">
-
-                Không có ảnh chi tiết
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    gallery.innerHTML = `
-
-        <div class="gallery-main">
-
-            <button
-                class="gallery-arrow gallery-prev"
-                onclick="previousImage(event)"
-                aria-label="Ảnh trước"
-            >
-                ‹
-            </button>
-
-
-            <img
-                id="galleryMainImage"
-                src="${galleryImages[0]}"
-                alt="Ảnh chi tiết"
-            >
-
-
-            <button
-                class="gallery-arrow gallery-next"
-                onclick="nextImage(event)"
-                aria-label="Ảnh tiếp theo"
-            >
-                ›
-            </button>
-
-
-            <div
-                id="galleryCounter"
-                class="gallery-counter"
-            >
-                1 / ${galleryImages.length}
-            </div>
-
-        </div>
-
-
-        <div
-            id="galleryThumbs"
-            class="gallery-thumbs"
-        >
-
-        </div>
-
-    `;
-
-
-    const thumbs =
-        document.getElementById(
-            "galleryThumbs"
-        );
-
-
-    galleryImages.forEach(
-        (
-            image,
-            index
-        ) => {
-
-            const thumb =
-                document.createElement(
-                    "div"
-                );
-
-
-            thumb.className =
-                "gallery-thumb" +
-                (
-                    index === 0
-                        ? " active"
-                        : ""
-                );
-
-
-            thumb.innerHTML = `
-
-                <img
-                    src="${image}"
-                    alt=""
-                    loading="lazy"
-                >
-
-            `;
-
-
-            thumb.onclick =
-                () => {
-
-                    setGalleryImage(
-                        index
-                    );
-
-                };
-
-
-            thumbs.appendChild(
-                thumb
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   SET GALLERY IMAGE
-===================================================== */
-
-function setGalleryImage(
-    index
-) {
-
-    if (
-        !galleryImages.length
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        index < 0
-    ) {
-
-        index =
-            galleryImages.length - 1;
-
-    }
-
-
-    if (
-        index >=
-        galleryImages.length
-    ) {
-
-        index = 0;
-
-    }
-
-
-    galleryIndex =
-        index;
-
-
-    const mainImage =
-        document.getElementById(
-            "galleryMainImage"
-        );
-
-
-    const counter =
-        document.getElementById(
-            "galleryCounter"
-        );
-
-
-    if (mainImage) {
-
-        mainImage.src =
-            galleryImages[
-                galleryIndex
-            ];
-
-    }
-
-
-    if (counter) {
-
-        counter.textContent =
-            `${galleryIndex + 1} / ${galleryImages.length}`;
-
-    }
-
-
-    const thumbs =
-        document.querySelectorAll(
-            ".gallery-thumb"
-        );
-
-
-    thumbs.forEach(
-        (
-            thumb,
-            i
-        ) => {
-
-            thumb.classList.toggle(
-                "active",
-                i === galleryIndex
-            );
-
-        }
-    );
-
-
-    const activeThumb =
-        thumbs[
-            galleryIndex
-        ];
-
-
-    if (activeThumb) {
-
-        activeThumb.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "center"
-        });
-
-    }
-
-}
-
-
-/* =====================================================
-   NEXT IMAGE
-===================================================== */
-
-function nextImage(
-    event
-) {
-
-    if (event) {
-
-        event.stopPropagation();
-
-    }
-
-
-    setGalleryImage(
-        galleryIndex + 1
-    );
-
-}
-
-
-/* =====================================================
-   PREVIOUS IMAGE
-===================================================== */
-
-function previousImage(
-    event
-) {
-
-    if (event) {
-
-        event.stopPropagation();
-
-    }
-
-
-    setGalleryImage(
-        galleryIndex - 1
-    );
-
-}
-
-
-/* =====================================================
-   KEYBOARD
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        const detail =
-            document.getElementById(
-                "detail"
-            );
-
-
-        if (
-            !detail ||
-            detail.style.display !== "block"
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            nextImage();
-
-        }
-
-
-        if (
-            event.key === "ArrowLeft"
-        ) {
-
-            previousImage();
-
-        }
-
-    }
-);
 
 
 /* =====================================================
    DETAIL
 ===================================================== */
 
-async function showDetail(
-    product
-) {
+function showDetail(product) {
 
     document.getElementById(
         "products"
     ).style.display = "none";
 
-
     document.getElementById(
         "count"
     ).style.display = "none";
-
 
     document.querySelector(
         ".filters"
     ).style.display = "none";
 
-
     document.querySelector(
         ".search-box"
     ).style.display = "none";
-
 
     const detail =
         document.getElementById(
             "detail"
         );
 
-
     detail.style.display =
         "block";
-
 
     const image =
         getImageUrl(
             product["Ảnh"]
         );
 
-
-    let mainImageHTML = "";
-
+    let imageHTML = "";
 
     if (image) {
 
-        mainImageHTML = `
+        imageHTML = `
 
             <img
+                class="detail-image"
                 src="${image}"
                 alt=""
+                onerror="
+                    this.style.display='none';
+                "
             >
-
         `;
 
     } else {
 
-        mainImageHTML = `
+        imageHTML = `
 
             <div class="no-image">
                 Không có ảnh
             </div>
+        `;
+    }
 
+
+    /* =================================================
+       ẢNH CHI TIẾT
+    ================================================= */
+
+    let detailLink = "";
+
+    if (
+        product["Ảnh chi tiết"] &&
+        product["Ảnh chi tiết"].trim() !== ""
+    ) {
+
+        detailLink = `
+
+            <a
+                class="detail-link"
+                href="${escapeAttribute(
+                    product["Ảnh chi tiết"]
+                )}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                🖼️ Xem ảnh chi tiết
+
+            </a>
         `;
 
+    } else {
+
+        detailLink = `
+
+            <div
+                style="
+                    margin-top:20px;
+                    color:#999;
+                    font-size:14px;
+                "
+            >
+
+                Chưa có ảnh chi tiết
+
+            </div>
+        `;
     }
 
 
@@ -1698,16 +986,9 @@ async function showDetail(
         </button>
 
 
-        <div
-            id="gallery"
-            class="gallery"
-        >
+        <div class="detail-image-box">
 
-            <div class="gallery-loading">
-
-                Đang tải ảnh chi tiết...
-
-            </div>
+            ${imageHTML}
 
         </div>
 
@@ -1795,35 +1076,17 @@ async function showDetail(
 
             </div>
 
+
+            ${detailLink}
+
         </div>
 
     `;
-
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
-
-    /*
-       Lấy ảnh chi tiết từ ImageKit
-    */
-
-    const folder =
-        product["Ảnh chi tiết"];
-
-
-    const images =
-        await loadDetailImages(
-            folder
-        );
-
-
-    createGallery(
-        images
-    );
-
 }
 
 
@@ -1838,41 +1101,25 @@ function closeDetail() {
     ).style.display =
         "grid";
 
-
     document.getElementById(
         "count"
     ).style.display =
         "block";
-
 
     document.querySelector(
         ".filters"
     ).style.display =
         "flex";
 
-
     document.querySelector(
         ".search-box"
     ).style.display =
         "block";
 
-
     document.getElementById(
         "detail"
     ).style.display =
         "none";
-
-
-    galleryImages = [];
-
-    galleryIndex = 0;
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
 }
 
 
@@ -1890,36 +1137,28 @@ function filterProducts() {
         .toLowerCase()
         .trim();
 
-
     const brand =
         document.getElementById(
             "brandFilter"
         ).value;
-
 
     const style =
         document.getElementById(
             "styleFilter"
         ).value;
 
-
     const filtered =
         products.filter(
             product => {
 
                 const text =
-                    Object.values(
-                        product
-                    )
-                    .join(" ")
-                    .toLowerCase();
-
+                    Object.values(product)
+                        .join(" ")
+                        .toLowerCase();
 
                 return (
 
-                    text.includes(
-                        search
-                    )
+                    text.includes(search)
 
                     &&
 
@@ -1934,17 +1173,13 @@ function filterProducts() {
                         !style ||
                         product["Lối đánh"] === style
                     )
-
                 );
-
             }
         );
-
 
     displayProducts(
         filtered
     );
-
 }
 
 
@@ -1952,32 +1187,28 @@ function filterProducts() {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(
-    value
-) {
+function escapeHTML(value) {
 
     return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
+
+/* =====================================================
+   ESCAPE ATTRIBUTE
+===================================================== */
+
+function escapeAttribute(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
 }
 
 
@@ -1986,29 +1217,21 @@ function escapeHTML(
 ===================================================== */
 
 document
-    .getElementById(
-        "search"
-    )
+    .getElementById("search")
     .addEventListener(
         "input",
         filterProducts
     );
 
-
 document
-    .getElementById(
-        "brandFilter"
-    )
+    .getElementById("brandFilter")
     .addEventListener(
         "change",
         filterProducts
     );
 
-
 document
-    .getElementById(
-        "styleFilter"
-    )
+    .getElementById("styleFilter")
     .addEventListener(
         "change",
         filterProducts
