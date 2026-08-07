@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -23,7 +23,7 @@ body {
     color: #171717;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header {
     background: #111;
@@ -44,7 +44,7 @@ header {
     font-size: 15px;
 }
 
-/* ================= CONTAINER ================= */
+/* CONTAINER */
 
 .container {
     width: 100%;
@@ -53,7 +53,7 @@ header {
     padding: 20px;
 }
 
-/* ================= SEARCH ================= */
+/* SEARCH */
 
 .search-box {
     position: relative;
@@ -74,7 +74,7 @@ header {
     border-color: #888;
 }
 
-/* ================= FILTER ================= */
+/* FILTERS */
 
 .filters {
     display: flex;
@@ -92,7 +92,7 @@ select {
     outline: none;
 }
 
-/* ================= COUNT ================= */
+/* COUNT */
 
 .count {
     color: #777;
@@ -100,7 +100,7 @@ select {
     margin-bottom: 15px;
 }
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 
 .products {
     display: grid;
@@ -108,7 +108,7 @@ select {
     gap: 18px;
 }
 
-/* ================= CARD ================= */
+/* CARD */
 
 .card {
     background: white;
@@ -174,7 +174,7 @@ select {
     line-height: 1.6;
 }
 
-/* ================= DETAIL ================= */
+/* DETAIL */
 
 .detail {
     display: none;
@@ -194,45 +194,51 @@ select {
     margin-bottom: 20px;
 }
 
-/* ================= DETAIL GALLERY ================= */
+/* MAIN IMAGE */
 
-.gallery {
+.detail-image-box {
     width: 100%;
-    max-width: 850px;
+    max-width: 700px;
+    height: 500px;
     margin: auto;
-}
-
-.gallery-main {
-    position: relative;
-    width: 100%;
-    height: 520px;
     background: #fafafa;
     border-radius: 14px;
-    overflow: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
-.gallery-main img {
+.detail-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
 }
 
-.gallery-arrow {
+/* CAROUSEL */
+
+.detail-carousel {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+
+.carousel-main {
+    position: relative;
+}
+
+.carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border: none;
     border-radius: 50%;
     background: rgba(0,0,0,0.65);
     color: white;
-    font-size: 25px;
+    font-size: 24px;
     cursor: pointer;
     z-index: 5;
     display: flex;
@@ -240,80 +246,74 @@ select {
     justify-content: center;
 }
 
-.gallery-arrow:hover {
+.carousel-button:hover {
     background: rgba(0,0,0,0.85);
 }
 
-.gallery-prev {
-    left: 15px;
+.carousel-prev {
+    left: 12px;
 }
 
-.gallery-next {
-    right: 15px;
+.carousel-next {
+    right: 12px;
 }
 
-.gallery-counter {
+.carousel-counter {
     position: absolute;
     bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.65);
     color: white;
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 20px;
     font-size: 13px;
     z-index: 5;
 }
 
-.gallery-thumbs {
+.carousel-thumbnails {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     overflow-x: auto;
-    padding: 12px 2px 5px;
-    scroll-behavior: smooth;
+    padding: 12px 2px 4px;
+    scrollbar-width: thin;
 }
 
-.gallery-thumbs::-webkit-scrollbar {
-    height: 5px;
-}
-
-.gallery-thumbs::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-}
-
-.gallery-thumb {
-    flex: 0 0 78px;
-    height: 78px;
-    border-radius: 10px;
+.carousel-thumb {
+    width: 75px;
+    height: 75px;
+    flex: 0 0 75px;
+    border-radius: 9px;
     overflow: hidden;
-    background: #fafafa;
     border: 2px solid transparent;
+    background: #f5f5f5;
     cursor: pointer;
 }
 
-.gallery-thumb.active {
+.carousel-thumb.active {
     border-color: #111;
 }
 
-.gallery-thumb img {
+.carousel-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.gallery-loading {
-    height: 520px;
+.carousel-loading {
     width: 100%;
+    max-width: 700px;
+    height: 500px;
+    margin: auto;
+    background: #fafafa;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #888;
-    background: #fafafa;
-    border-radius: 14px;
 }
 
-/* ================= DETAIL CONTENT ================= */
+/* DETAIL CONTENT */
 
 .detail-content {
     max-width: 700px;
@@ -348,7 +348,7 @@ select {
     width: 150px;
 }
 
-/* ================= LOADING ================= */
+/* LOADING */
 
 .loading {
     grid-column: 1 / -1;
@@ -357,7 +357,7 @@ select {
     color: #777;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media (max-width: 900px) {
 
@@ -409,31 +409,9 @@ select {
         padding: 12px;
     }
 
-    .gallery-main {
+    .detail-image-box,
+    .carousel-loading {
         height: 350px;
-    }
-
-    .gallery-loading {
-        height: 350px;
-    }
-
-    .gallery-arrow {
-        width: 38px;
-        height: 38px;
-        font-size: 21px;
-    }
-
-    .gallery-prev {
-        left: 8px;
-    }
-
-    .gallery-next {
-        right: 8px;
-    }
-
-    .gallery-thumb {
-        flex-basis: 65px;
-        height: 65px;
     }
 
     .detail-name {
@@ -449,95 +427,88 @@ select {
         width: auto;
         margin-bottom: 3px;
     }
+
+    .carousel-thumb {
+        width: 65px;
+        height: 65px;
+        flex-basis: 65px;
+    }
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-    <div class="logo">
-        TSPORT
-    </div>
+```
+<div class="logo">
+    TSPORT
+</div>
 
-    <div class="subtitle">
-        List vợt cầu lông lướt
-    </div>
+<div class="subtitle">
+    List vợt cầu lông lướt
+</div>
+```
 
 </header>
 
-
 <div class="container">
 
-    <!-- SEARCH -->
+```
+<!-- SEARCH -->
 
-    <div class="search-box">
+<div class="search-box">
 
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="🔎 Tìm vợt, mã, hãng..."
-        >
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 Tìm vợt, mã, hãng..."
+    >
 
-    </div>
+</div>
 
+<!-- FILTER -->
 
-    <!-- FILTER -->
+<div class="filters">
 
-    <div class="filters">
+    <select id="brandFilter">
+        <option value="">
+            Tất cả hãng
+        </option>
+    </select>
 
-        <select id="brandFilter">
+    <select id="styleFilter">
+        <option value="">
+            Tất cả lối đánh
+        </option>
+    </select>
 
-            <option value="">
-                Tất cả hãng
-            </option>
+</div>
 
-        </select>
+<!-- COUNT -->
 
+<div id="count" class="count"></div>
 
-        <select id="styleFilter">
+<!-- PRODUCTS -->
 
-            <option value="">
-                Tất cả lối đánh
-            </option>
+<div id="products" class="products">
 
-        </select>
-
-    </div>
-
-
-    <!-- COUNT -->
-
-    <div
-        id="count"
-        class="count">
-    </div>
-
-
-    <!-- PRODUCTS -->
-
-    <div
-        id="products"
-        class="products">
-
-        <div class="loading">
-            Đang tải sản phẩm...
-        </div>
-
-    </div>
-
-
-    <!-- DETAIL -->
-
-    <div
-        id="detail"
-        class="detail">
+    <div class="loading">
+        Đang tải sản phẩm...
     </div>
 
 </div>
 
+<!-- DETAIL -->
+
+<div id="detail" class="detail"></div>
+```
+
+</div>
 
 <script>
 
@@ -550,18 +521,18 @@ const SHEET_URL =
 
 
 /* =====================================================
-   CLOUDFLARE WORKER
+   IMAGE API
 ===================================================== */
 
 const IMAGE_API =
-"https://tsport-image-api.ntr9766.workers.dev/";
+"https://tsport-image-api.ntr9766.workers.dev";
 
 
 let products = [];
 
-let galleryImages = [];
+let currentImages = [];
 
-let galleryIndex = 0;
+let currentImageIndex = 0;
 
 
 /* =====================================================
@@ -577,32 +548,22 @@ function getImageUrl(url) {
     let id = "";
 
     let match =
-        url.match(
-            /\/file\/d\/([^/]+)/
-        );
+        url.match(/\/file\/d\/([^/]+)/);
 
     if (match) {
-
         id = match[1];
-
     }
-
 
     if (!id) {
 
         match =
-            url.match(
-                /[?&]id=([^&]+)/
-            );
+            url.match(/[?&]id=([^&]+)/);
 
         if (match) {
-
             id = match[1];
-
         }
 
     }
-
 
     if (id) {
 
@@ -610,8 +571,67 @@ function getImageUrl(url) {
 
     }
 
-
     return url;
+}
+
+
+/* =====================================================
+   GET DETAIL IMAGES
+===================================================== */
+
+async function getDetailImages(folder) {
+
+    if (!folder) {
+        return [];
+    }
+
+    try {
+
+        let url = folder.trim();
+
+        /*
+         Nếu bạn lưu trực tiếp URL API
+         thì dùng luôn.
+
+         Nếu sau này muốn lưu tên folder
+         thì có thể mở rộng thêm.
+        */
+
+        let response =
+            await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Không tải được ảnh");
+        }
+
+        let data =
+            await response.json();
+
+        if (
+            !data ||
+            !data.images ||
+            !Array.isArray(data.images)
+        ) {
+
+            return [];
+
+        }
+
+        return data.images
+            .map(image => image.url)
+            .filter(Boolean);
+
+    } catch (error) {
+
+        console.error(
+            "Lỗi tải ảnh chi tiết:",
+            error
+        );
+
+        return [];
+
+    }
+
 }
 
 
@@ -629,17 +649,11 @@ function parseCSV(text) {
 
     let insideQuotes = false;
 
-
-    for (
-        let i = 0;
-        i < text.length;
-        i++
-    ) {
+    for (let i = 0; i < text.length; i++) {
 
         const char = text[i];
 
         const next = text[i + 1];
-
 
         if (
             char === '"' &&
@@ -655,7 +669,6 @@ function parseCSV(text) {
 
         }
 
-
         if (char === '"') {
 
             insideQuotes =
@@ -664,7 +677,6 @@ function parseCSV(text) {
             continue;
 
         }
-
 
         if (
             char === "," &&
@@ -679,12 +691,8 @@ function parseCSV(text) {
 
         }
 
-
         if (
-            (
-                char === "\n" ||
-                char === "\r"
-            ) &&
+            (char === "\n" || char === "\r") &&
             !insideQuotes
         ) {
 
@@ -697,9 +705,7 @@ function parseCSV(text) {
 
             }
 
-
             row.push(value);
-
 
             if (
                 row.some(
@@ -711,7 +717,6 @@ function parseCSV(text) {
 
             }
 
-
             row = [];
 
             value = "";
@@ -720,11 +725,9 @@ function parseCSV(text) {
 
         }
 
-
         value += char;
 
     }
-
 
     if (
         value ||
@@ -732,7 +735,6 @@ function parseCSV(text) {
     ) {
 
         row.push(value);
-
 
         if (
             row.some(
@@ -746,25 +748,19 @@ function parseCSV(text) {
 
     }
 
-
     if (rows.length < 2) {
 
         return [];
 
     }
 
-
     const headers =
         rows[0].map(
             x =>
                 x
-                    .trim()
-                    .replace(
-                        /^\uFEFF/,
-                        ""
-                    )
+                .trim()
+                .replace(/^\uFEFF/, "")
         );
-
 
     return rows
         .slice(1)
@@ -772,22 +768,15 @@ function parseCSV(text) {
 
             const item = {};
 
-
             headers.forEach(
-                (
-                    header,
-                    index
-                ) => {
+                (header, index) => {
 
                     item[header] =
-                        (
-                            row[index] ||
-                            ""
-                        ).trim();
+                        (row[index] || "")
+                        .trim();
 
                 }
             );
-
 
             return item;
 
@@ -811,7 +800,6 @@ async function loadProducts() {
                 Date.now()
             );
 
-
         if (!response.ok) {
 
             throw new Error(
@@ -820,14 +808,11 @@ async function loadProducts() {
 
         }
 
-
         const text =
             await response.text();
 
-
         products =
             parseCSV(text);
-
 
         if (!products.length) {
 
@@ -837,18 +822,13 @@ async function loadProducts() {
 
         }
 
-
         createFilters();
 
-        displayProducts(
-            products
-        );
-
+        displayProducts(products);
 
     } catch (error) {
 
         console.error(error);
-
 
         document.getElementById(
             "products"
@@ -882,54 +862,42 @@ function createFilters() {
             "brandFilter"
         );
 
-
     const styleFilter =
         document.getElementById(
             "styleFilter"
         );
 
-
     brandFilter.innerHTML =
-        `
-        <option value="">
+        `<option value="">
             Tất cả hãng
-        </option>
-        `;
-
+        </option>`;
 
     styleFilter.innerHTML =
-        `
-        <option value="">
+        `<option value="">
             Tất cả lối đánh
-        </option>
-        `;
-
+        </option>`;
 
     const brands =
         [
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Hãng"]
+                        p => p["Hãng"]
                     )
                     .filter(Boolean)
             )
         ];
-
 
     const styles =
         [
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Lối đánh"]
+                        p => p["Lối đánh"]
                     )
                     .filter(Boolean)
             )
         ];
-
 
     brands.forEach(
         brand => {
@@ -939,14 +907,10 @@ function createFilters() {
                     "option"
                 );
 
-
-            option.value =
-                brand;
-
+            option.value = brand;
 
             option.textContent =
                 brand;
-
 
             brandFilter.appendChild(
                 option
@@ -954,7 +918,6 @@ function createFilters() {
 
         }
     );
-
 
     styles.forEach(
         style => {
@@ -964,14 +927,10 @@ function createFilters() {
                     "option"
                 );
 
-
-            option.value =
-                style;
-
+            option.value = style;
 
             option.textContent =
                 style;
-
 
             styleFilter.appendChild(
                 option
@@ -991,23 +950,17 @@ function formatPrice(price) {
 
     if (!price) return "";
 
-
     const number =
         Number(
             String(price)
-                .replace(
-                    /[^\d]/g,
-                    ""
-                )
+                .replace(/[^\d]/g, "")
         );
-
 
     if (!number) {
 
         return price;
 
     }
-
 
     return number.toLocaleString(
         "vi-VN"
@@ -1027,19 +980,15 @@ function displayProducts(list) {
             "products"
         );
 
-
     const count =
         document.getElementById(
             "count"
         );
 
-
     container.innerHTML = "";
-
 
     count.textContent =
         `${list.length} sản phẩm`;
-
 
     if (!list.length) {
 
@@ -1057,7 +1006,6 @@ function displayProducts(list) {
 
     }
 
-
     list.forEach(
         product => {
 
@@ -1066,19 +1014,15 @@ function displayProducts(list) {
                     "div"
                 );
 
-
             card.className =
                 "card";
-
 
             const image =
                 getImageUrl(
                     product["Ảnh"]
                 );
 
-
             let imageHTML = "";
-
 
             if (image) {
 
@@ -1111,7 +1055,6 @@ function displayProducts(list) {
 
             }
 
-
             card.innerHTML = `
 
                 <div class="image-box">
@@ -1119,7 +1062,6 @@ function displayProducts(list) {
                     ${imageHTML}
 
                 </div>
-
 
                 <div class="card-info">
 
@@ -1131,7 +1073,6 @@ function displayProducts(list) {
 
                     </div>
 
-
                     <div class="name">
 
                         ${escapeHTML(
@@ -1140,7 +1081,6 @@ function displayProducts(list) {
 
                     </div>
 
-
                     <div class="price">
 
                         ${formatPrice(
@@ -1148,7 +1088,6 @@ function displayProducts(list) {
                         )}
 
                     </div>
-
 
                     <div class="meta">
 
@@ -1174,517 +1113,46 @@ function displayProducts(list) {
 
             `;
 
-
             card.onclick =
-                () => showDetail(
-                    product
-                );
+                () => showDetail(product);
 
-
-            container.appendChild(
-                card
-            );
+            container.appendChild(card);
 
         }
     );
 
 }
-
-
-/* =====================================================
-   LOAD DETAIL IMAGES
-===================================================== */
-
-async function loadDetailImages(
-    folder
-) {
-
-    if (!folder) {
-
-        return [];
-
-    }
-
-
-    try {
-
-        const url =
-            IMAGE_API +
-            "?folder=" +
-            encodeURIComponent(
-                folder
-            );
-
-
-        const response =
-            await fetch(url);
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Không thể tải ảnh chi tiết"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            !data.success ||
-            !Array.isArray(
-                data.images
-            )
-        ) {
-
-            return [];
-
-        }
-
-
-        return data.images
-            .map(
-                item =>
-                    item.url
-            )
-            .filter(Boolean);
-
-
-    } catch (error) {
-
-        console.error(
-            "Gallery error:",
-            error
-        );
-
-
-        return [];
-
-    }
-
-}
-
-
-/* =====================================================
-   CREATE GALLERY
-===================================================== */
-
-function createGallery(
-    images
-) {
-
-    galleryImages =
-        images || [];
-
-    galleryIndex = 0;
-
-
-    const gallery =
-        document.getElementById(
-            "gallery"
-        );
-
-
-    if (!gallery) return;
-
-
-    if (!galleryImages.length) {
-
-        gallery.innerHTML = `
-
-            <div class="gallery-loading">
-
-                Không có ảnh chi tiết
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    gallery.innerHTML = `
-
-        <div class="gallery-main">
-
-            <button
-                class="gallery-arrow gallery-prev"
-                onclick="previousImage(event)"
-                aria-label="Ảnh trước"
-            >
-                ‹
-            </button>
-
-
-            <img
-                id="galleryMainImage"
-                src="${galleryImages[0]}"
-                alt="Ảnh chi tiết"
-            >
-
-
-            <button
-                class="gallery-arrow gallery-next"
-                onclick="nextImage(event)"
-                aria-label="Ảnh tiếp theo"
-            >
-                ›
-            </button>
-
-
-            <div
-                id="galleryCounter"
-                class="gallery-counter"
-            >
-                1 / ${galleryImages.length}
-            </div>
-
-        </div>
-
-
-        <div
-            id="galleryThumbs"
-            class="gallery-thumbs"
-        >
-
-        </div>
-
-    `;
-
-
-    const thumbs =
-        document.getElementById(
-            "galleryThumbs"
-        );
-
-
-    galleryImages.forEach(
-        (
-            image,
-            index
-        ) => {
-
-            const thumb =
-                document.createElement(
-                    "div"
-                );
-
-
-            thumb.className =
-                "gallery-thumb" +
-                (
-                    index === 0
-                        ? " active"
-                        : ""
-                );
-
-
-            thumb.innerHTML = `
-
-                <img
-                    src="${image}"
-                    alt=""
-                    loading="lazy"
-                >
-
-            `;
-
-
-            thumb.onclick =
-                () => {
-
-                    setGalleryImage(
-                        index
-                    );
-
-                };
-
-
-            thumbs.appendChild(
-                thumb
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   SET GALLERY IMAGE
-===================================================== */
-
-function setGalleryImage(
-    index
-) {
-
-    if (
-        !galleryImages.length
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        index < 0
-    ) {
-
-        index =
-            galleryImages.length - 1;
-
-    }
-
-
-    if (
-        index >=
-        galleryImages.length
-    ) {
-
-        index = 0;
-
-    }
-
-
-    galleryIndex =
-        index;
-
-
-    const mainImage =
-        document.getElementById(
-            "galleryMainImage"
-        );
-
-
-    const counter =
-        document.getElementById(
-            "galleryCounter"
-        );
-
-
-    if (mainImage) {
-
-        mainImage.src =
-            galleryImages[
-                galleryIndex
-            ];
-
-    }
-
-
-    if (counter) {
-
-        counter.textContent =
-            `${galleryIndex + 1} / ${galleryImages.length}`;
-
-    }
-
-
-    const thumbs =
-        document.querySelectorAll(
-            ".gallery-thumb"
-        );
-
-
-    thumbs.forEach(
-        (
-            thumb,
-            i
-        ) => {
-
-            thumb.classList.toggle(
-                "active",
-                i === galleryIndex
-            );
-
-        }
-    );
-
-
-    const activeThumb =
-        thumbs[
-            galleryIndex
-        ];
-
-
-    if (activeThumb) {
-
-        activeThumb.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "center"
-        });
-
-    }
-
-}
-
-
-/* =====================================================
-   NEXT IMAGE
-===================================================== */
-
-function nextImage(
-    event
-) {
-
-    if (event) {
-
-        event.stopPropagation();
-
-    }
-
-
-    setGalleryImage(
-        galleryIndex + 1
-    );
-
-}
-
-
-/* =====================================================
-   PREVIOUS IMAGE
-===================================================== */
-
-function previousImage(
-    event
-) {
-
-    if (event) {
-
-        event.stopPropagation();
-
-    }
-
-
-    setGalleryImage(
-        galleryIndex - 1
-    );
-
-}
-
-
-/* =====================================================
-   KEYBOARD
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        const detail =
-            document.getElementById(
-                "detail"
-            );
-
-
-        if (
-            !detail ||
-            detail.style.display !== "block"
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            nextImage();
-
-        }
-
-
-        if (
-            event.key === "ArrowLeft"
-        ) {
-
-            previousImage();
-
-        }
-
-    }
-);
 
 
 /* =====================================================
    DETAIL
 ===================================================== */
 
-async function showDetail(
-    product
-) {
+async function showDetail(product) {
 
     document.getElementById(
         "products"
     ).style.display = "none";
 
-
     document.getElementById(
         "count"
     ).style.display = "none";
-
 
     document.querySelector(
         ".filters"
     ).style.display = "none";
 
-
     document.querySelector(
         ".search-box"
     ).style.display = "none";
-
 
     const detail =
         document.getElementById(
             "detail"
         );
 
-
     detail.style.display =
         "block";
-
-
-    const image =
-        getImageUrl(
-            product["Ảnh"]
-        );
-
-
-    let mainImageHTML = "";
-
-
-    if (image) {
-
-        mainImageHTML = `
-
-            <img
-                src="${image}"
-                alt=""
-            >
-
-        `;
-
-    } else {
-
-        mainImageHTML = `
-
-            <div class="no-image">
-                Không có ảnh
-            </div>
-
-        `;
-
-    }
-
 
     detail.innerHTML = `
 
@@ -1692,25 +1160,22 @@ async function showDetail(
             class="back"
             onclick="closeDetail()"
         >
-
             ← Quay lại
-
         </button>
 
+        <div class="detail-carousel">
 
-        <div
-            id="gallery"
-            class="gallery"
-        >
+            <div class="carousel-main">
 
-            <div class="gallery-loading">
+                <div class="carousel-loading">
 
-                Đang tải ảnh chi tiết...
+                    Đang tải ảnh chi tiết...
+
+                </div>
 
             </div>
 
         </div>
-
 
         <div class="detail-content">
 
@@ -1722,7 +1187,6 @@ async function showDetail(
 
             </div>
 
-
             <div class="detail-name">
 
                 ${escapeHTML(
@@ -1731,7 +1195,6 @@ async function showDetail(
 
             </div>
 
-
             <div class="detail-price">
 
                 ${formatPrice(
@@ -1739,7 +1202,6 @@ async function showDetail(
                 )}
 
             </div>
-
 
             <div class="info-row">
 
@@ -1751,7 +1213,6 @@ async function showDetail(
 
             </div>
 
-
             <div class="info-row">
 
                 <strong>Tình trạng cước:</strong>
@@ -1761,7 +1222,6 @@ async function showDetail(
                 )}
 
             </div>
-
 
             <div class="info-row">
 
@@ -1773,7 +1233,6 @@ async function showDetail(
 
             </div>
 
-
             <div class="info-row">
 
                 <strong>Lối đánh:</strong>
@@ -1783,7 +1242,6 @@ async function showDetail(
                 )}
 
             </div>
-
 
             <div class="info-row">
 
@@ -1799,32 +1257,275 @@ async function showDetail(
 
     `;
 
-
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 
-
     /*
-       Lấy ảnh chi tiết từ ImageKit
+       Lấy toàn bộ ảnh từ API
     */
 
-    const folder =
-        product["Ảnh chi tiết"];
-
-
     const images =
-        await loadDetailImages(
-            folder
+        await getDetailImages(
+            product["Ảnh chi tiết"]
         );
 
+    currentImages =
+        images;
 
-    createGallery(
-        images
-    );
+    currentImageIndex = 0;
+
+    renderCarousel();
 
 }
+
+
+/* =====================================================
+   RENDER CAROUSEL
+===================================================== */
+
+function renderCarousel() {
+
+    const carousel =
+        document.querySelector(
+            ".detail-carousel"
+        );
+
+    if (!carousel) return;
+
+    if (!currentImages.length) {
+
+        carousel.innerHTML = `
+
+            <div class="carousel-loading">
+
+                Không có ảnh chi tiết
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    const image =
+        currentImages[
+            currentImageIndex
+        ];
+
+    let thumbnails = "";
+
+    currentImages.forEach(
+        (url, index) => {
+
+            thumbnails += `
+
+                <div
+                    class="carousel-thumb ${
+                        index === currentImageIndex
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="goToImage(${index})"
+                >
+
+                    <img
+                        src="${url}"
+                        loading="lazy"
+                        alt=""
+                    >
+
+                </div>
+
+            `;
+
+        }
+    );
+
+    carousel.innerHTML = `
+
+        <div class="carousel-main">
+
+            <div class="detail-image-box">
+
+                <img
+                    class="detail-image"
+                    src="${image}"
+                    alt="Ảnh chi tiết"
+                >
+
+            </div>
+
+            ${
+                currentImages.length > 1
+                    ? `
+
+                        <button
+                            class="carousel-button carousel-prev"
+                            onclick="previousImage()"
+                        >
+                            ‹
+                        </button>
+
+                        <button
+                            class="carousel-button carousel-next"
+                            onclick="nextImage()"
+                        >
+                            ›
+                        </button>
+
+                        <div class="carousel-counter">
+
+                            ${
+                                currentImageIndex + 1
+                            }
+                            /
+                            ${
+                                currentImages.length
+                            }
+
+                        </div>
+
+                    `
+                    : ""
+            }
+
+        </div>
+
+        ${
+            currentImages.length > 1
+                ? `
+
+                    <div class="carousel-thumbnails">
+
+                        ${thumbnails}
+
+                    </div>
+
+                `
+                : ""
+        }
+
+    `;
+
+}
+
+
+/* =====================================================
+   CAROUSEL CONTROLS
+===================================================== */
+
+function nextImage() {
+
+    if (!currentImages.length)
+        return;
+
+    currentImageIndex++;
+
+    if (
+        currentImageIndex >=
+        currentImages.length
+    ) {
+
+        currentImageIndex = 0;
+
+    }
+
+    renderCarousel();
+
+}
+
+
+function previousImage() {
+
+    if (!currentImages.length)
+        return;
+
+    currentImageIndex--;
+
+    if (
+        currentImageIndex < 0
+    ) {
+
+        currentImageIndex =
+            currentImages.length - 1;
+
+    }
+
+    renderCarousel();
+
+}
+
+
+function goToImage(index) {
+
+    if (
+        index < 0 ||
+        index >= currentImages.length
+    ) {
+
+        return;
+
+    }
+
+    currentImageIndex =
+        index;
+
+    renderCarousel();
+
+}
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const detail =
+            document.getElementById(
+                "detail"
+            );
+
+        if (
+            detail.style.display !==
+            "block"
+        ) {
+
+            return;
+
+        }
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            nextImage();
+
+        }
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousImage();
+
+        }
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeDetail();
+
+        }
+
+    }
+);
 
 
 /* =====================================================
@@ -1838,40 +1539,29 @@ function closeDetail() {
     ).style.display =
         "grid";
 
-
     document.getElementById(
         "count"
     ).style.display =
         "block";
-
 
     document.querySelector(
         ".filters"
     ).style.display =
         "flex";
 
-
     document.querySelector(
         ".search-box"
     ).style.display =
         "block";
-
 
     document.getElementById(
         "detail"
     ).style.display =
         "none";
 
+    currentImages = [];
 
-    galleryImages = [];
-
-    galleryIndex = 0;
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    currentImageIndex = 0;
 
 }
 
@@ -1890,36 +1580,28 @@ function filterProducts() {
         .toLowerCase()
         .trim();
 
-
     const brand =
         document.getElementById(
             "brandFilter"
         ).value;
-
 
     const style =
         document.getElementById(
             "styleFilter"
         ).value;
 
-
     const filtered =
         products.filter(
             product => {
 
                 const text =
-                    Object.values(
-                        product
-                    )
-                    .join(" ")
-                    .toLowerCase();
-
+                    Object.values(product)
+                        .join(" ")
+                        .toLowerCase();
 
                 return (
 
-                    text.includes(
-                        search
-                    )
+                    text.includes(search)
 
                     &&
 
@@ -1940,7 +1622,6 @@ function filterProducts() {
             }
         );
 
-
     displayProducts(
         filtered
     );
@@ -1952,31 +1633,14 @@ function filterProducts() {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(
-    value
-) {
+function escapeHTML(value) {
 
     return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -1986,29 +1650,21 @@ function escapeHTML(
 ===================================================== */
 
 document
-    .getElementById(
-        "search"
-    )
+    .getElementById("search")
     .addEventListener(
         "input",
         filterProducts
     );
 
-
 document
-    .getElementById(
-        "brandFilter"
-    )
+    .getElementById("brandFilter")
     .addEventListener(
         "change",
         filterProducts
     );
 
-
 document
-    .getElementById(
-        "styleFilter"
-    )
+    .getElementById("styleFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -2025,4 +1681,3 @@ loadProducts();
 
 </body>
 </html>
-```
