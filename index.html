@@ -1209,36 +1209,48 @@ function displayProducts(list) {
 
 function getFolderFromProduct(product) {
 
-    if (
-        !product ||
-        !product["Ảnh chi tiết"]
-    ) {
+    if (!product || !product["Ảnh chi tiết"]) {
         return "";
     }
 
-    try {
+    const value = String(product["Ảnh chi tiết"]).trim();
 
-        const url =
-            new URL(
-                product["Ảnh chi tiết"]
+    // Nếu đã là folder trực tiếp
+    if (value.startsWith("/")) {
+        return value;
+    }
+
+    // Link ImageKit dạng:
+    // https://imagekit.io/dashboard/media-library/L1RTUE9SVC9ZTjAwMiAtIDcwMGdhbWU
+
+    const match = value.match(
+        /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
+    );
+
+    if (match) {
+
+        try {
+
+            return decodeURIComponent(
+                atob(
+                    match[1]
+                        .replace(/-/g, "+")
+                        .replace(/_/g, "/")
+                )
             );
 
-        return (
-            url.searchParams.get(
-                "folder"
-            ) || ""
-        );
+        } catch (error) {
 
-    } catch (error) {
+            console.error(
+                "Không decode được folder ImageKit:",
+                error
+            );
 
-        console.error(
-            "FOLDER ERROR:",
-            error
-        );
-
-        return "";
+            return "";
+        }
     }
 
+    return "";
 }
 
 
