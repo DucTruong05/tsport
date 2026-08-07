@@ -921,6 +921,16 @@ async function loadProducts() {
         products =
             parseCSV(text);
 
+        console.log(
+            "TSPORT - Số sản phẩm:",
+            products.length
+        );
+
+        console.log(
+            "TSPORT - Ví dụ sản phẩm đầu tiên:",
+            products[0]
+        );
+
         createFilters();
 
         displayProducts(products);
@@ -1120,10 +1130,6 @@ function displayProducts(list) {
 
         }
 
-        /*
-         * Đã xóa hoàn toàn nút "Xem ảnh".
-         */
-
         card.innerHTML = `
 
             <div class="image-box">
@@ -1183,9 +1189,6 @@ function displayProducts(list) {
             </div>
         `;
 
-
-        /* CARD CLICK */
-
         card.addEventListener(
             "click",
             function() {
@@ -1195,7 +1198,6 @@ function displayProducts(list) {
             }
         );
 
-
         container.appendChild(card);
 
     });
@@ -1204,28 +1206,167 @@ function displayProducts(list) {
 
 
 /* =====================================================
-   GET FOLDER
+   GET FOLDER FROM PRODUCT
 ===================================================== */
+
+/*
+    HỖ TRỢ 3 KIỂU DỮ LIỆU TRONG GOOGLE SHEETS:
+
+    1. YN002 - 700game
+
+    2. /TSPORT/YN002 - 700game
+
+    3. https://imagekit.io/dashboard/media-library/...
+
+    Với dữ liệu hiện tại của bạn:
+        YN002 - 700game
+
+    sẽ trở thành:
+        /TSPORT/YN002 - 700game
+
+    Đây chính xác là folder mà API của bạn đã trả về.
+*/
 
 function getFolderFromProduct(product) {
 
-    if (!product || !product["Ảnh chi tiết"]) {
+    if (!product) {
+        console.error(
+            "getFolderFromProduct: product không tồn tại"
+        );
+
         return "";
     }
 
-    const value =
-        String(product["Ảnh chi tiết"]).trim();
+    const rawValue =
+        product["Ảnh chi tiết"];
 
-    // Nếu Sheet ghi:
-    // /TSPORT/YN002 - 700game
-    if (value.startsWith("/")) {
+    if (
+        rawValue === undefined ||
+        rawValue === null
+    ) {
+
+        console.warn(
+            "Sản phẩm không có cột 'Ảnh chi tiết':",
+            product
+        );
+
+        return "";
+    }
+
+    let value =
+        String(rawValue).trim();
+
+    if (!value) {
+        return "";
+    }
+
+
+    /* ---------------------------------------------
+       TRƯỜNG HỢP 1:
+       Sheet đã ghi full folder
+       
+       /TSPORT/YN002 - 700game
+    --------------------------------------------- */
+
+    if (
+        value.startsWith("/")
+    ) {
+
+        console.log(
+            "Folder lấy trực tiếp:",
+            value
+        );
+
         return value;
     }
 
-    // Nếu Sheet chỉ ghi:
-    // YN002 - 700game
-    // thì tự thêm /TSPORT/
-    return "/TSPORT/" + value;
+
+    /* ---------------------------------------------
+       TRƯỜNG HỢP 2:
+       Sheet ghi URL ImageKit Dashboard
+
+       https://imagekit.io/dashboard/media-library/...
+    --------------------------------------------- */
+
+    const imageKitMatch =
+        value.match(
+            /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
+        );
+
+    if (imageKitMatch) {
+
+        try {
+
+            let encoded =
+                imageKitMatch[1]
+                    .replace(/-/g, "+")
+                    .replace(/_/g, "/");
+
+            while (
+                encoded.length % 4 !== 0
+            ) {
+                encoded += "=";
+            }
+
+            const decoded =
+                decodeURIComponent(
+                    atob(encoded)
+                );
+
+            if (
+                decoded.startsWith("/")
+            ) {
+
+                console.log(
+                    "Folder decode từ ImageKit:",
+                    decoded
+                );
+
+                return decoded;
+            }
+
+            const folder =
+                "/" + decoded;
+
+            console.log(
+                "Folder decode từ ImageKit:",
+                folder
+            );
+
+            return folder;
+
+        } catch (error) {
+
+            console.error(
+                "Không decode được link ImageKit:",
+                value,
+                error
+            );
+
+            return "";
+        }
+    }
+
+
+    /* ---------------------------------------------
+       TRƯỜNG HỢP 3:
+       Sheet chỉ ghi tên folder
+
+       YN002 - 700game
+
+       => /TSPORT/YN002 - 700game
+    --------------------------------------------- */
+
+    const folder =
+        "/TSPORT/" +
+        value.replace(/^\/+/, "");
+
+    console.log(
+        "Folder tự tạo:",
+        folder
+    );
+
+    return folder;
 }
 
 
@@ -1236,15 +1377,42 @@ function getFolderFromProduct(product) {
 async function loadGalleryImages(folder) {
 
     if (!folder) {
+
+        console.warn(
+            "loadGalleryImages: folder rỗng"
+        );
+
         return [];
     }
 
-    try {
+    const url =
+        IMAGE_API +
+        "?folder=" +
+        encodeURIComponent(folder);
 
-        const url =
-            IMAGE_API +
-            "?folder=" +
-            encodeURIComponent(folder);
+    console.log(
+        "===================================="
+    );
+
+    console.log(
+        "TSPORT GALLERY"
+    );
+
+    console.log(
+        "Folder:",
+        folder
+    );
+
+    console.log(
+        "API URL:",
+        url
+    );
+
+    console.log(
+        "===================================="
+    );
+
+    try {
 
         const response =
             await fetch(
@@ -1265,21 +1433,50 @@ async function loadGalleryImages(folder) {
         const data =
             await response.json();
 
+        console.log(
+            "Image API response:",
+            data
+        );
+
+
         if (
             !data ||
             !data.success ||
             !Array.isArray(data.images)
         ) {
+
+            console.warn(
+                "Image API không trả về images hợp lệ:",
+                data
+            );
+
             return [];
         }
 
-        return data.images
-            .map(
-                image =>
-                    image &&
-                    image.url
-            )
-            .filter(Boolean);
+
+        const urls =
+            data.images
+                .map(
+                    image =>
+                        image &&
+                        image.url
+                )
+                .filter(Boolean);
+
+
+        console.log(
+            "Tìm thấy:",
+            urls.length,
+            "ảnh"
+        );
+
+        console.log(
+            "Danh sách ảnh:",
+            urls
+        );
+
+
+        return urls;
 
     } catch (error) {
 
@@ -1492,10 +1689,6 @@ async function showDetail(product) {
         </div>
         `;
 
-    /*
-     * Hiện phần thông tin trước.
-     * Ảnh chi tiết sẽ được tải ngay sau đó.
-     */
 
     detail.innerHTML = `
 
@@ -1588,6 +1781,7 @@ async function showDetail(product) {
         </div>
     `;
 
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -1595,7 +1789,7 @@ async function showDetail(product) {
 
 
     /* =================================================
-       TỰ ĐỘNG LOAD ẢNH CHI TIẾT
+       LOAD ẢNH CHI TIẾT
     ================================================= */
 
     const galleryContainer =
@@ -1603,8 +1797,36 @@ async function showDetail(product) {
             "detailGallery"
         );
 
+
+    /*
+       QUAN TRỌNG:
+       Lấy folder từ đúng cột "Ảnh chi tiết".
+    */
+
     const folder =
         getFolderFromProduct(product);
+
+
+    console.log(
+        "Sản phẩm đang mở:",
+        product["Tên vợt"]
+    );
+
+    console.log(
+        "Mã sản phẩm:",
+        product["Mã"]
+    );
+
+    console.log(
+        "Giá trị Ảnh chi tiết trong Sheet:",
+        product["Ảnh chi tiết"]
+    );
+
+    console.log(
+        "Folder cuối cùng gửi API:",
+        folder
+    );
+
 
     if (!folder) {
 
@@ -1637,6 +1859,9 @@ async function showDetail(product) {
 
             <div class="loading">
                 Không tìm thấy ảnh chi tiết.
+                <br><br>
+                Folder:
+                ${escapeHTML(folder)}
             </div>
         `;
 
@@ -1644,19 +1869,10 @@ async function showDetail(product) {
     }
 
 
-    /*
-     * Lưu gallery hiện tại để khi bấm
-     * vào ảnh có thể mở modal.
-     */
-
     currentGallery = urls;
 
     currentImageIndex = 0;
 
-
-    /*
-     * Hiện toàn bộ ảnh bên dưới.
-     */
 
     galleryContainer.innerHTML = `
 
@@ -1670,6 +1886,7 @@ async function showDetail(product) {
         ></div>
 
     `;
+
 
     const galleryGrid =
         document.getElementById(
@@ -1693,6 +1910,12 @@ async function showDetail(product) {
                     src="${escapeHTML(url)}"
                     alt="Ảnh chi tiết ${index + 1}"
                     loading="lazy"
+                    onerror="
+                        console.error(
+                            'Không tải được ảnh:',
+                            '${escapeHTML(url)}'
+                        );
+                    "
                 >
             `;
 
@@ -1742,6 +1965,10 @@ function closeDetail() {
     document.getElementById(
         "detail"
     ).style.display = "none";
+
+    currentGallery = [];
+
+    currentImageIndex = 0;
 
     window.scrollTo({
         top: 0,
@@ -2016,7 +2243,9 @@ document
    START
 ===================================================== */
 
-console.log("TSPORT: JavaScript OK");
+console.log(
+    "TSPORT: JavaScript OK"
+);
 
 loadProducts();
 
@@ -2024,4 +2253,3 @@ loadProducts();
 
 </body>
 </html>
-```
