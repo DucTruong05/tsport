@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -22,7 +23,7 @@ body {
     color: #171717;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header {
     background: #111;
@@ -43,7 +44,7 @@ header {
     font-size: 15px;
 }
 
-/* CONTAINER */
+/* ================= CONTAINER ================= */
 
 .container {
     width: 100%;
@@ -52,7 +53,7 @@ header {
     padding: 20px;
 }
 
-/* SEARCH */
+/* ================= SEARCH ================= */
 
 .search-box {
     position: relative;
@@ -73,7 +74,7 @@ header {
     border-color: #888;
 }
 
-/* FILTERS */
+/* ================= FILTER ================= */
 
 .filters {
     display: flex;
@@ -91,7 +92,7 @@ select {
     outline: none;
 }
 
-/* COUNT */
+/* ================= COUNT ================= */
 
 .count {
     color: #777;
@@ -99,7 +100,7 @@ select {
     margin-bottom: 15px;
 }
 
-/* PRODUCTS */
+/* ================= PRODUCTS ================= */
 
 .products {
     display: grid;
@@ -107,7 +108,7 @@ select {
     gap: 18px;
 }
 
-/* CARD */
+/* ================= CARD ================= */
 
 .card {
     background: white;
@@ -173,7 +174,7 @@ select {
     line-height: 1.6;
 }
 
-/* DETAIL */
+/* ================= DETAIL ================= */
 
 .detail {
     display: none;
@@ -193,24 +194,126 @@ select {
     margin-bottom: 20px;
 }
 
-.detail-image-box {
+/* ================= DETAIL GALLERY ================= */
+
+.gallery {
     width: 100%;
-    max-width: 700px;
-    height: 500px;
+    max-width: 850px;
     margin: auto;
-    background: #fafafa;
-    border-radius: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
 }
 
-.detail-image {
+.gallery-main {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: #fafafa;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-main img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
 }
+
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.65);
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-arrow:hover {
+    background: rgba(0,0,0,0.85);
+}
+
+.gallery-prev {
+    left: 15px;
+}
+
+.gallery-next {
+    right: 15px;
+}
+
+.gallery-counter {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.65);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    z-index: 5;
+}
+
+.gallery-thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 2px 5px;
+    scroll-behavior: smooth;
+}
+
+.gallery-thumbs::-webkit-scrollbar {
+    height: 5px;
+}
+
+.gallery-thumbs::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.gallery-thumb {
+    flex: 0 0 78px;
+    height: 78px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fafafa;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.gallery-thumb.active {
+    border-color: #111;
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-loading {
+    height: 520px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    background: #fafafa;
+    border-radius: 14px;
+}
+
+/* ================= DETAIL CONTENT ================= */
 
 .detail-content {
     max-width: 700px;
@@ -245,17 +348,7 @@ select {
     width: 150px;
 }
 
-.detail-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 13px 18px;
-    background: #111;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-}
-
-/* LOADING */
+/* ================= LOADING ================= */
 
 .loading {
     grid-column: 1 / -1;
@@ -264,7 +357,7 @@ select {
     color: #777;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media (max-width: 900px) {
 
@@ -316,8 +409,31 @@ select {
         padding: 12px;
     }
 
-    .detail-image-box {
+    .gallery-main {
         height: 350px;
+    }
+
+    .gallery-loading {
+        height: 350px;
+    }
+
+    .gallery-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 21px;
+    }
+
+    .gallery-prev {
+        left: 8px;
+    }
+
+    .gallery-next {
+        right: 8px;
+    }
+
+    .gallery-thumb {
+        flex-basis: 65px;
+        height: 65px;
     }
 
     .detail-name {
@@ -334,7 +450,6 @@ select {
         margin-bottom: 3px;
     }
 }
-
 </style>
 </head>
 
@@ -434,7 +549,19 @@ const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
 
+/* =====================================================
+   CLOUDFLARE WORKER
+===================================================== */
+
+const IMAGE_API =
+"https://tsport-image-api.ntr9766.workers.dev/";
+
+
 let products = [];
+
+let galleryImages = [];
+
+let galleryIndex = 0;
 
 
 /* =====================================================
@@ -447,40 +574,40 @@ function getImageUrl(url) {
 
     url = url.trim();
 
-    /*
-       Google Drive dạng:
-
-       https://drive.google.com/file/d/FILE_ID/view
-
-       hoặc
-
-       https://drive.google.com/uc?export=view&id=FILE_ID
-    */
-
     let id = "";
 
-    let match = url.match(/\/file\/d\/([^/]+)/);
+    let match =
+        url.match(
+            /\/file\/d\/([^/]+)/
+        );
 
     if (match) {
+
         id = match[1];
+
     }
 
 
     if (!id) {
 
-        match = url.match(/[?&]id=([^&]+)/);
+        match =
+            url.match(
+                /[?&]id=([^&]+)/
+            );
 
         if (match) {
+
             id = match[1];
+
         }
 
     }
 
 
     if (id) {
-        
-    return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-        
+
+        return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+
     }
 
 
@@ -503,7 +630,11 @@ function parseCSV(text) {
     let insideQuotes = false;
 
 
-    for (let i = 0; i < text.length; i++) {
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
 
         const char = text[i];
 
@@ -527,7 +658,8 @@ function parseCSV(text) {
 
         if (char === '"') {
 
-            insideQuotes = !insideQuotes;
+            insideQuotes =
+                !insideQuotes;
 
             continue;
 
@@ -549,7 +681,10 @@ function parseCSV(text) {
 
 
         if (
-            (char === "\n" || char === "\r") &&
+            (
+                char === "\n" ||
+                char === "\r"
+            ) &&
             !insideQuotes
         ) {
 
@@ -621,7 +756,13 @@ function parseCSV(text) {
 
     const headers =
         rows[0].map(
-            x => x.trim().replace(/^\uFEFF/, "")
+            x =>
+                x
+                    .trim()
+                    .replace(
+                        /^\uFEFF/,
+                        ""
+                    )
         );
 
 
@@ -633,10 +774,16 @@ function parseCSV(text) {
 
 
             headers.forEach(
-                (header, index) => {
+                (
+                    header,
+                    index
+                ) => {
 
                     item[header] =
-                        (row[index] || "").trim();
+                        (
+                            row[index] ||
+                            ""
+                        ).trim();
 
                 }
             );
@@ -693,7 +840,9 @@ async function loadProducts() {
 
         createFilters();
 
-        displayProducts(products);
+        displayProducts(
+            products
+        );
 
 
     } catch (error) {
@@ -741,15 +890,19 @@ function createFilters() {
 
 
     brandFilter.innerHTML =
-        `<option value="">
+        `
+        <option value="">
             Tất cả hãng
-        </option>`;
+        </option>
+        `;
 
 
     styleFilter.innerHTML =
-        `<option value="">
+        `
+        <option value="">
             Tất cả lối đánh
-        </option>`;
+        </option>
+        `;
 
 
     const brands =
@@ -757,7 +910,8 @@ function createFilters() {
             ...new Set(
                 products
                     .map(
-                        p => p["Hãng"]
+                        p =>
+                            p["Hãng"]
                     )
                     .filter(Boolean)
             )
@@ -769,7 +923,8 @@ function createFilters() {
             ...new Set(
                 products
                     .map(
-                        p => p["Lối đánh"]
+                        p =>
+                            p["Lối đánh"]
                     )
                     .filter(Boolean)
             )
@@ -785,9 +940,12 @@ function createFilters() {
                 );
 
 
-            option.value = brand;
+            option.value =
+                brand;
 
-            option.textContent = brand;
+
+            option.textContent =
+                brand;
 
 
             brandFilter.appendChild(
@@ -807,9 +965,12 @@ function createFilters() {
                 );
 
 
-            option.value = style;
+            option.value =
+                style;
 
-            option.textContent = style;
+
+            option.textContent =
+                style;
 
 
             styleFilter.appendChild(
@@ -830,10 +991,14 @@ function formatPrice(price) {
 
     if (!price) return "";
 
+
     const number =
         Number(
             String(price)
-                .replace(/[^\d]/g, "")
+                .replace(
+                    /[^\d]/g,
+                    ""
+                )
         );
 
 
@@ -1011,10 +1176,14 @@ function displayProducts(list) {
 
 
             card.onclick =
-                () => showDetail(product);
+                () => showDetail(
+                    product
+                );
 
 
-            container.appendChild(card);
+            container.appendChild(
+                card
+            );
 
         }
     );
@@ -1023,10 +1192,436 @@ function displayProducts(list) {
 
 
 /* =====================================================
+   LOAD DETAIL IMAGES
+===================================================== */
+
+async function loadDetailImages(
+    folder
+) {
+
+    if (!folder) {
+
+        return [];
+
+    }
+
+
+    try {
+
+        const url =
+            IMAGE_API +
+            "?folder=" +
+            encodeURIComponent(
+                folder
+            );
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Không thể tải ảnh chi tiết"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data.success ||
+            !Array.isArray(
+                data.images
+            )
+        ) {
+
+            return [];
+
+        }
+
+
+        return data.images
+            .map(
+                item =>
+                    item.url
+            )
+            .filter(Boolean);
+
+
+    } catch (error) {
+
+        console.error(
+            "Gallery error:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE GALLERY
+===================================================== */
+
+function createGallery(
+    images
+) {
+
+    galleryImages =
+        images || [];
+
+    galleryIndex = 0;
+
+
+    const gallery =
+        document.getElementById(
+            "gallery"
+        );
+
+
+    if (!gallery) return;
+
+
+    if (!galleryImages.length) {
+
+        gallery.innerHTML = `
+
+            <div class="gallery-loading">
+
+                Không có ảnh chi tiết
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    gallery.innerHTML = `
+
+        <div class="gallery-main">
+
+            <button
+                class="gallery-arrow gallery-prev"
+                onclick="previousImage(event)"
+                aria-label="Ảnh trước"
+            >
+                ‹
+            </button>
+
+
+            <img
+                id="galleryMainImage"
+                src="${galleryImages[0]}"
+                alt="Ảnh chi tiết"
+            >
+
+
+            <button
+                class="gallery-arrow gallery-next"
+                onclick="nextImage(event)"
+                aria-label="Ảnh tiếp theo"
+            >
+                ›
+            </button>
+
+
+            <div
+                id="galleryCounter"
+                class="gallery-counter"
+            >
+                1 / ${galleryImages.length}
+            </div>
+
+        </div>
+
+
+        <div
+            id="galleryThumbs"
+            class="gallery-thumbs"
+        >
+
+        </div>
+
+    `;
+
+
+    const thumbs =
+        document.getElementById(
+            "galleryThumbs"
+        );
+
+
+    galleryImages.forEach(
+        (
+            image,
+            index
+        ) => {
+
+            const thumb =
+                document.createElement(
+                    "div"
+                );
+
+
+            thumb.className =
+                "gallery-thumb" +
+                (
+                    index === 0
+                        ? " active"
+                        : ""
+                );
+
+
+            thumb.innerHTML = `
+
+                <img
+                    src="${image}"
+                    alt=""
+                    loading="lazy"
+                >
+
+            `;
+
+
+            thumb.onclick =
+                () => {
+
+                    setGalleryImage(
+                        index
+                    );
+
+                };
+
+
+            thumbs.appendChild(
+                thumb
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SET GALLERY IMAGE
+===================================================== */
+
+function setGalleryImage(
+    index
+) {
+
+    if (
+        !galleryImages.length
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        index < 0
+    ) {
+
+        index =
+            galleryImages.length - 1;
+
+    }
+
+
+    if (
+        index >=
+        galleryImages.length
+    ) {
+
+        index = 0;
+
+    }
+
+
+    galleryIndex =
+        index;
+
+
+    const mainImage =
+        document.getElementById(
+            "galleryMainImage"
+        );
+
+
+    const counter =
+        document.getElementById(
+            "galleryCounter"
+        );
+
+
+    if (mainImage) {
+
+        mainImage.src =
+            galleryImages[
+                galleryIndex
+            ];
+
+    }
+
+
+    if (counter) {
+
+        counter.textContent =
+            `${galleryIndex + 1} / ${galleryImages.length}`;
+
+    }
+
+
+    const thumbs =
+        document.querySelectorAll(
+            ".gallery-thumb"
+        );
+
+
+    thumbs.forEach(
+        (
+            thumb,
+            i
+        ) => {
+
+            thumb.classList.toggle(
+                "active",
+                i === galleryIndex
+            );
+
+        }
+    );
+
+
+    const activeThumb =
+        thumbs[
+            galleryIndex
+        ];
+
+
+    if (activeThumb) {
+
+        activeThumb.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   NEXT IMAGE
+===================================================== */
+
+function nextImage(
+    event
+) {
+
+    if (event) {
+
+        event.stopPropagation();
+
+    }
+
+
+    setGalleryImage(
+        galleryIndex + 1
+    );
+
+}
+
+
+/* =====================================================
+   PREVIOUS IMAGE
+===================================================== */
+
+function previousImage(
+    event
+) {
+
+    if (event) {
+
+        event.stopPropagation();
+
+    }
+
+
+    setGalleryImage(
+        galleryIndex - 1
+    );
+
+}
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const detail =
+            document.getElementById(
+                "detail"
+            );
+
+
+        if (
+            !detail ||
+            detail.style.display !== "block"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            nextImage();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousImage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
    DETAIL
 ===================================================== */
 
-function showDetail(product) {
+async function showDetail(
+    product
+) {
 
     document.getElementById(
         "products"
@@ -1064,55 +1659,27 @@ function showDetail(product) {
         );
 
 
-    let imageHTML = "";
+    let mainImageHTML = "";
 
 
     if (image) {
 
-        imageHTML = `
+        mainImageHTML = `
 
             <img
-                class="detail-image"
                 src="${image}"
                 alt=""
-                onerror="
-                    this.style.display='none';
-                "
             >
 
         `;
 
     } else {
 
-        imageHTML = `
+        mainImageHTML = `
 
             <div class="no-image">
                 Không có ảnh
             </div>
-
-        `;
-
-    }
-
-
-    let detailLink = "";
-
-
-    if (
-        product["Ảnh chi tiết"]
-    ) {
-
-        detailLink = `
-
-            <a
-                class="detail-link"
-                href="${product["Ảnh chi tiết"]}"
-                target="_blank"
-            >
-
-                🖼️ Xem ảnh chi tiết
-
-            </a>
 
         `;
 
@@ -1131,9 +1698,16 @@ function showDetail(product) {
         </button>
 
 
-        <div class="detail-image-box">
+        <div
+            id="gallery"
+            class="gallery"
+        >
 
-            ${imageHTML}
+            <div class="gallery-loading">
+
+                Đang tải ảnh chi tiết...
+
+            </div>
 
         </div>
 
@@ -1221,9 +1795,6 @@ function showDetail(product) {
 
             </div>
 
-
-            ${detailLink}
-
         </div>
 
     `;
@@ -1233,6 +1804,25 @@ function showDetail(product) {
         top: 0,
         behavior: "smooth"
     });
+
+
+    /*
+       Lấy ảnh chi tiết từ ImageKit
+    */
+
+    const folder =
+        product["Ảnh chi tiết"];
+
+
+    const images =
+        await loadDetailImages(
+            folder
+        );
+
+
+    createGallery(
+        images
+    );
 
 }
 
@@ -1272,6 +1862,17 @@ function closeDetail() {
     ).style.display =
         "none";
 
+
+    galleryImages = [];
+
+    galleryIndex = 0;
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
 
@@ -1307,14 +1908,18 @@ function filterProducts() {
             product => {
 
                 const text =
-                    Object.values(product)
-                        .join(" ")
-                        .toLowerCase();
+                    Object.values(
+                        product
+                    )
+                    .join(" ")
+                    .toLowerCase();
 
 
                 return (
 
-                    text.includes(search)
+                    text.includes(
+                        search
+                    )
 
                     &&
 
@@ -1347,14 +1952,31 @@ function filterProducts() {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1364,7 +1986,9 @@ function escapeHTML(value) {
 ===================================================== */
 
 document
-    .getElementById("search")
+    .getElementById(
+        "search"
+    )
     .addEventListener(
         "input",
         filterProducts
@@ -1372,7 +1996,9 @@ document
 
 
 document
-    .getElementById("brandFilter")
+    .getElementById(
+        "brandFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
@@ -1380,7 +2006,9 @@ document
 
 
 document
-    .getElementById("styleFilter")
+    .getElementById(
+        "styleFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
@@ -1397,3 +2025,4 @@ loadProducts();
 
 </body>
 </html>
+```
