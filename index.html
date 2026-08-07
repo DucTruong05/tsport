@@ -1213,44 +1213,19 @@ function getFolderFromProduct(product) {
         return "";
     }
 
-    const value = String(product["Ảnh chi tiết"]).trim();
+    const value =
+        String(product["Ảnh chi tiết"]).trim();
 
-    // Nếu đã là folder trực tiếp
+    // Nếu Sheet ghi:
+    // /TSPORT/YN002 - 700game
     if (value.startsWith("/")) {
         return value;
     }
 
-    // Link ImageKit dạng:
-    // https://imagekit.io/dashboard/media-library/L1RTUE9SVC9ZTjAwMiAtIDcwMGdhbWU
-
-    const match = value.match(
-        /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
-    );
-
-    if (match) {
-
-        try {
-
-            return decodeURIComponent(
-                atob(
-                    match[1]
-                        .replace(/-/g, "+")
-                        .replace(/_/g, "/")
-                )
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Không decode được folder ImageKit:",
-                error
-            );
-
-            return "";
-        }
-    }
-
-    return "";
+    // Nếu Sheet chỉ ghi:
+    // YN002 - 700game
+    // thì tự thêm /TSPORT/
+    return "/TSPORT/" + value;
 }
 
 
