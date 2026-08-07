@@ -1,1 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>TSPORT - Vợt cầu lông lướt</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+    color: #222;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 22px 18px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 7px 0 0;
+    color: #ccc;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 18px;
+}
+
+.search {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 11px 14px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    background: white;
+    font-size: 15px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card img {
+    width: 100%;
+    height: 230px;
+    object-fit: contain;
+    background: #fafafa;
+}
+
+.card-info {
+    padding: 14px;
+}
+
+.brand {
+    color: #777;
+    font-size: 14px;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.meta {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.detail {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.back {
+    border: none;
+    background: #111;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.detail-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    background: #fafafa;
+    border-radius: 12px;
+}
+
+.detail h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.detail-price {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.detail-info {
+    line-height: 1.9;
+}
+
+.detail-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 18px;
+    background: #111;
+    color: white;
+    text-decoration: none;
+    border-radius: 9px;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+}
+
+@media (max-width: 800px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card img {
+        height: 190px;
+    }
+}
+
+@media (max-width: 500px) {
+    .products {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .card img {
+        height: 170px;
+    }
+
+    .name {
+        font-size: 16px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>TSPORT</h1>
+    <p>Vợt cầu lông lướt</p>
+</header>
+
+<div class="container">
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 Tìm vợt, mã, hãng..."
+    >
+
+    <div class="filters">
+        <select id="brandFilter">
+            <option value="">Tất cả hãng</option>
+        </select>
+
+        <select id="styleFilter">
+            <option value="">Tất cả lối đánh</option>
+        </select>
+    </div>
+
+    <div id="products" class="products">
+        <div class="loading">Đang tải sản phẩm...</div>
+    </div>
+
+    <div id="detail" class="detail"></div>
+
+</div>
+
+<script>
+
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
+
+let products = [];
+
+async function loadProducts() {
+
+    try {
+
+        const response = await fetch(SHEET_URL);
+
+        const text = await response.text();
+
+        products = parseCSV(text);
+
+        createFilters();
+
+        displayProducts(products);
+
+    } catch (error) {
+
+        document.getElementById("products").innerHTML =
+        "<div class='loading'>Không thể tải dữ liệu.</div>";
+
+        console.error(error);
+    }
+}
+
+
+function parseCSV(text) {
+
+    const rows = [];
+    let row = [];
+    let value = "";
+    let insideQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"' && insideQuotes && next === '"') {
+
+            value += '"';
+            i++;
+            continue;
+        }
+
+        if (char === '"') {
+
+            insideQuotes = !insideQuotes;
+            continue;
+        }
+
+        if (char === "," && !insideQuotes) {
+
+            row.push(value);
+            value = "";
+            continue;
+        }
+
+        if ((char === "\n" || char === "\r") && !insideQuotes) {
+
+            if (char === "\r" && next === "\n") {
+                i++;
+            }
+
+            row.push(value);
+
+            if (row.some(x => x.trim() !== "")) {
+                rows.push(row);
+            }
+
+            row = [];
+            value = "";
+
+            continue;
+        }
+
+        value += char;
+    }
+
+    if (value || row.length) {
+
+        row.push(value);
+
+        if (row.some(x => x.trim() !== "")) {
+            rows.push(row);
+        }
+    }
+
+    const headers = rows[0].map(x => x.trim());
+
+    return rows.slice(1).map(row => {
+
+        const item = {};
+
+        headers.forEach((header, index) => {
+            item[header] = (row[index] || "").trim();
+        });
+
+        return item;
+    });
+}
+
+
+function createFilters() {
+
+    const brandFilter = document.getElementById("brandFilter");
+    const styleFilter = document.getElementById("styleFilter");
+
+    const brands = [...new Set(
+        products.map(p => p["Hãng"]).filter(Boolean)
+    )];
+
+    const styles = [...new Set(
+        products.map(p => p["Lối đánh"]).filter(Boolean)
+    )];
+
+    brands.forEach(brand => {
+
+        const option = document.createElement("option");
+
+        option.value = brand;
+        option.textContent = brand;
+
+        brandFilter.appendChild(option);
+    });
+
+    styles.forEach(style => {
+
+        const option = document.createElement("option");
+
+        option.value = style;
+        option.textContent = style;
+
+        styleFilter.appendChild(option);
+    });
+}
+
+
+function displayProducts(list) {
+
+    const container = document.getElementById("products");
+
+    container.innerHTML = "";
+
+    if (list.length === 0) {
+
+        container.innerHTML =
+        "<div class='loading'>Không tìm thấy vợt.</div>";
+
+        return;
+    }
+
+    list.forEach((product, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "card";
+
+        const image = product["Ảnh"];
+
+        card.innerHTML = `
+
+            <img
+                src="${image}"
+                alt="${product["Tên vợt"] || ""}"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="card-info">
+
+                <div class="brand">
+                    ${product["Hãng"] || ""}
+                </div>
+
+                <div class="name">
+                    ${product["Tên vợt"] || ""}
+                </div>
+
+                <div class="price">
+                    ${formatPrice(product["Giá"])}
+                </div>
+
+                <div class="meta">
+                    ${product["Tình trạng vợt"] || ""} ·
+                    ${product["Tình trạng cước"] || ""}<br>
+                    ${product["Lối đánh"] || ""}
+                </div>
+
+            </div>
+        `;
+
+        card.onclick = () => showDetail(product);
+
+        container.appendChild(card);
+    });
+}
+
+
+function formatPrice(price) {
+
+    if (!price) return "";
+
+    const number = Number(
+        String(price).replace(/[^\d]/g, "")
+    );
+
+    if (!number) return price;
+
+    return number.toLocaleString("vi-VN") + " ₫";
+}
+
+
+function showDetail(product) {
+
+    document.getElementById("products").style.display = "none";
+    document.querySelector(".filters").style.display = "none";
+    document.getElementById("search").style.display = "none";
+
+    const detail = document.getElementById("detail");
+
+    detail.style.display = "block";
+
+    detail.innerHTML = `
+
+        <button class="back" onclick="closeDetail()">
+            ← Quay lại
+        </button>
+
+        <img
+            class="detail-image"
+            src="${product["Ảnh"] || ""}"
+            onerror="this.style.display='none'"
+        >
+
+        <h2>
+            ${product["Tên vợt"] || ""}
+        </h2>
+
+        <div>
+            ${product["Hãng"] || ""}
+        </div>
+
+        <div class="detail-price">
+            ${formatPrice(product["Giá"])}
+        </div>
+
+        <div class="detail-info">
+
+            <b>Mã:</b>
+            ${product["Mã"] || ""}<br>
+
+            <b>Tình trạng cước:</b>
+            ${product["Tình trạng cước"] || ""}<br>
+
+            <b>Tình trạng vợt:</b>
+            ${product["Tình trạng vợt"] || ""}<br>
+
+            <b>Lối đánh:</b>
+            ${product["Lối đánh"] || ""}<br>
+
+            <b>Ghi chú:</b>
+            ${product["Ghi chú"] || ""}
+
+        </div>
+
+        ${
+            product["Ảnh chi tiết"]
+            ?
+            `<a
+                class="detail-link"
+                href="${product["Ảnh chi tiết"]}"
+                target="_blank"
+            >
+                Xem ảnh chi tiết
+            </a>`
+            :
+            ""
+        }
+    `;
+}
+
+
+function closeDetail() {
+
+    document.getElementById("products").style.display = "grid";
+    document.querySelector(".filters").style.display = "flex";
+    document.getElementById("search").style.display = "block";
+    document.getElementById("detail").style.display = "none";
+}
+
+
+function filterProducts() {
+
+    const search =
+        document.getElementById("search").value.toLowerCase();
+
+    const brand =
+        document.getElementById("brandFilter").value;
+
+    const style =
+        document.getElementById("styleFilter").value;
+
+    const filtered = products.filter(product => {
+
+        const text = Object.values(product)
+            .join(" ")
+            .toLowerCase();
+
+        return (
+            text.includes(search) &&
+            (!brand || product["Hãng"] === brand) &&
+            (!style || product["Lối đánh"] === style)
+        );
+    });
+
+    displayProducts(filtered);
+}
+
+
+document
+.getElementById("search")
+.addEventListener("input", filterProducts);
+
+document
+.getElementById("brandFilter")
+.addEventListener("change", filterProducts);
+
+document
+.getElementById("styleFilter")
+.addEventListener("change", filterProducts);
+
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
