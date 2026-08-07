@@ -8,7 +8,6 @@
 <title>TSPORT - List vợt cầu lông lướt</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -24,7 +23,7 @@ body {
     color: #171717;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header {
     background: #111;
@@ -45,7 +44,7 @@ header {
     font-size: 15px;
 }
 
-/* ================= CONTAINER ================= */
+/* CONTAINER */
 
 .container {
     width: 100%;
@@ -54,7 +53,7 @@ header {
     padding: 20px;
 }
 
-/* ================= SEARCH ================= */
+/* SEARCH */
 
 .search-box {
     position: relative;
@@ -75,7 +74,7 @@ header {
     border-color: #888;
 }
 
-/* ================= FILTER ================= */
+/* FILTERS */
 
 .filters {
     display: flex;
@@ -93,7 +92,7 @@ select {
     outline: none;
 }
 
-/* ================= COUNT ================= */
+/* COUNT */
 
 .count {
     color: #777;
@@ -101,7 +100,7 @@ select {
     margin-bottom: 15px;
 }
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 
 .products {
     display: grid;
@@ -109,7 +108,7 @@ select {
     gap: 18px;
 }
 
-/* ================= CARD ================= */
+/* CARD */
 
 .card {
     background: white;
@@ -175,7 +174,7 @@ select {
     line-height: 1.6;
 }
 
-/* ================= DETAIL ================= */
+/* DETAIL */
 
 .detail {
     display: none;
@@ -195,7 +194,7 @@ select {
     margin-bottom: 20px;
 }
 
-/* ẢNH CHÍNH */
+/* MAIN DETAIL IMAGE */
 
 .detail-image-box {
     width: 100%;
@@ -216,7 +215,7 @@ select {
     object-fit: contain;
 }
 
-/* THÔNG TIN */
+/* DETAIL CONTENT */
 
 .detail-content {
     max-width: 700px;
@@ -251,36 +250,55 @@ select {
     width: 150px;
 }
 
-/* ================= GALLERY ================= */
+/* GALLERY */
+
+.gallery-section {
+    max-width: 900px;
+    margin: 35px auto 0;
+}
 
 .gallery-title {
-    max-width: 1000px;
-    margin: 35px auto 15px;
     font-size: 21px;
     font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.gallery-loading {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    background: #fafafa;
+    border-radius: 12px;
+}
+
+.gallery-error {
+    text-align: center;
+    padding: 25px;
+    color: #888;
+    background: #fafafa;
+    border-radius: 12px;
 }
 
 .gallery {
-    max-width: 1000px;
-    margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 12px;
 }
 
 .gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
     background: #fafafa;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    aspect-ratio: 1 / 1;
+    border: 1px solid #eee;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    display: block;
+    object-fit: cover;
     transition: 0.2s ease;
 }
 
@@ -288,38 +306,20 @@ select {
     transform: scale(1.03);
 }
 
-.gallery-loading {
-    max-width: 1000px;
-    margin: 25px auto;
-    text-align: center;
-    color: #888;
-    padding: 30px;
-}
-
-.gallery-error {
-    max-width: 1000px;
-    margin: 25px auto;
-    text-align: center;
-    color: #999;
-    padding: 30px;
-    background: #fafafa;
-    border-radius: 12px;
-}
-
-/* ================= LIGHTBOX ================= */
+/* LIGHTBOX */
 
 .lightbox {
     display: none;
     position: fixed;
-    inset: 0;
     z-index: 9999;
+    inset: 0;
     background: rgba(0,0,0,0.92);
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
-.lightbox.show {
+.lightbox.active {
     display: flex;
 }
 
@@ -327,6 +327,7 @@ select {
     max-width: 95vw;
     max-height: 90vh;
     object-fit: contain;
+    border-radius: 8px;
 }
 
 .lightbox-close {
@@ -336,10 +337,30 @@ select {
     color: white;
     font-size: 35px;
     cursor: pointer;
-    font-weight: 300;
+    line-height: 1;
 }
 
-/* ================= LOADING ================= */
+.lightbox-prev,
+.lightbox-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 45px;
+    cursor: pointer;
+    user-select: none;
+    padding: 15px;
+}
+
+.lightbox-prev {
+    left: 15px;
+}
+
+.lightbox-next {
+    right: 15px;
+}
+
+/* LOADING */
 
 .loading {
     grid-column: 1 / -1;
@@ -348,7 +369,7 @@ select {
     color: #777;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media (max-width: 900px) {
 
@@ -361,7 +382,7 @@ select {
     }
 
     .gallery {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -429,6 +450,15 @@ select {
 
     .gallery-title {
         font-size: 19px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 32px;
+    }
+
+    .lightbox-close {
+        font-size: 30px;
     }
 }
 
@@ -526,7 +556,7 @@ select {
 <div
     id="lightbox"
     class="lightbox"
-    onclick="closeLightbox()"
+    onclick="closeLightbox(event)"
 >
 
     <div
@@ -536,12 +566,25 @@ select {
         ×
     </div>
 
+    <div
+        class="lightbox-prev"
+        onclick="previousImage(event)"
+    >
+        ‹
+    </div>
+
     <img
         id="lightboxImage"
         src=""
         alt=""
-        onclick="event.stopPropagation()"
     >
+
+    <div
+        class="lightbox-next"
+        onclick="nextImage(event)"
+    >
+        ›
+    </div>
 
 </div>
 
@@ -556,7 +599,19 @@ const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
 
+/* =====================================================
+   CLOUDFLARE IMAGE API
+===================================================== */
+
+const IMAGE_API_BASE =
+"https://tsport-image-api.ntr9766.workers.dev/";
+
+
 let products = [];
+
+let galleryImages = [];
+
+let currentImageIndex = 0;
 
 
 /* =====================================================
@@ -603,6 +658,7 @@ function getImageUrl(url) {
 
 
     return url;
+
 }
 
 
@@ -672,10 +728,8 @@ function parseCSV(text) {
 
 
         if (
-            (
-                char === "\n" ||
-                char === "\r"
-            ) &&
+            (char === "\n" ||
+             char === "\r") &&
             !insideQuotes
         ) {
 
@@ -694,8 +748,7 @@ function parseCSV(text) {
 
             if (
                 row.some(
-                    x =>
-                        x.trim() !== ""
+                    x => x.trim() !== ""
                 )
             ) {
 
@@ -728,8 +781,7 @@ function parseCSV(text) {
 
         if (
             row.some(
-                x =>
-                    x.trim() !== ""
+                x => x.trim() !== ""
             )
         ) {
 
@@ -752,10 +804,7 @@ function parseCSV(text) {
             x =>
                 x
                     .trim()
-                    .replace(
-                        /^\uFEFF/,
-                        ""
-                    )
+                    .replace(/^\uFEFF/, "")
         );
 
 
@@ -767,16 +816,11 @@ function parseCSV(text) {
 
 
             headers.forEach(
-                (
-                    header,
-                    index
-                ) => {
+                (header, index) => {
 
                     item[header] =
-                        (
-                            row[index] ||
-                            ""
-                        ).trim();
+                        (row[index] || "")
+                            .trim();
 
                 }
             );
@@ -833,9 +877,7 @@ async function loadProducts() {
 
         createFilters();
 
-        displayProducts(
-            products
-        );
+        displayProducts(products);
 
 
     } catch (error) {
@@ -899,8 +941,7 @@ function createFilters() {
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Hãng"]
+                        p => p["Hãng"]
                     )
                     .filter(Boolean)
             )
@@ -912,8 +953,7 @@ function createFilters() {
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Lối đánh"]
+                        p => p["Lối đánh"]
                     )
                     .filter(Boolean)
             )
@@ -929,12 +969,9 @@ function createFilters() {
                 );
 
 
-            option.value =
-                brand;
+            option.value = brand;
 
-
-            option.textContent =
-                brand;
+            option.textContent = brand;
 
 
             brandFilter.appendChild(
@@ -954,12 +991,9 @@ function createFilters() {
                 );
 
 
-            option.value =
-                style;
+            option.value = style;
 
-
-            option.textContent =
-                style;
+            option.textContent = style;
 
 
             styleFilter.appendChild(
@@ -984,10 +1018,7 @@ function formatPrice(price) {
     const number =
         Number(
             String(price)
-                .replace(
-                    /[^\d]/g,
-                    ""
-                )
+                .replace(/[^\d]/g, "")
         );
 
 
@@ -1081,6 +1112,8 @@ function displayProducts(list) {
                         loading="lazy"
                         onerror="
                             this.style.display='none';
+                            this.parentElement.innerHTML +=
+                            '<div class=\\'no-image\\'>Không có ảnh</div>';
                         "
                     >
 
@@ -1165,15 +1198,10 @@ function displayProducts(list) {
 
 
             card.onclick =
-                () =>
-                    showDetail(
-                        product
-                    );
+                () => showDetail(product);
 
 
-            container.appendChild(
-                card
-            );
+            container.appendChild(card);
 
         }
     );
@@ -1182,225 +1210,29 @@ function displayProducts(list) {
 
 
 /* =====================================================
-   LOAD DETAIL GALLERY
-===================================================== */
-
-async function loadDetailGallery(
-    apiUrl
-) {
-
-    const gallery =
-        document.getElementById(
-            "detailGallery"
-        );
-
-
-    if (!apiUrl) {
-
-        gallery.innerHTML = `
-
-            <div class="gallery-error">
-
-                Chưa có ảnh chi tiết.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    gallery.innerHTML = `
-
-        <div class="gallery-loading">
-
-            ⏳ Đang tải ảnh chi tiết...
-
-        </div>
-
-    `;
-
-
-    try {
-
-        const response =
-            await fetch(
-                apiUrl +
-                (
-                    apiUrl.includes("?")
-                    ? "&"
-                    : "?"
-                ) +
-                "t=" +
-                Date.now()
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "API lỗi"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            !data.success ||
-            !Array.isArray(
-                data.images
-            ) ||
-            !data.images.length
-        ) {
-
-            throw new Error(
-                "Không có ảnh"
-            );
-
-        }
-
-
-        gallery.innerHTML = "";
-
-
-        data.images.forEach(
-            image => {
-
-                if (!image.url) {
-                    return;
-                }
-
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "gallery-item";
-
-
-                const img =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                img.src =
-                    image.url;
-
-
-                img.alt =
-                    image.name || "";
-
-
-                img.loading =
-                    "lazy";
-
-
-                img.onclick =
-                    event => {
-
-                        event.stopPropagation();
-
-                        openLightbox(
-                            image.url
-                        );
-
-                    };
-
-
-                item.appendChild(
-                    img
-                );
-
-
-                gallery.appendChild(
-                    item
-                );
-
-            }
-        );
-
-
-        if (
-            !gallery.children.length
-        ) {
-
-            gallery.innerHTML = `
-
-                <div class="gallery-error">
-
-                    Không tìm thấy ảnh trong folder.
-
-                </div>
-
-            `;
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Gallery error:",
-            error
-        );
-
-
-        gallery.innerHTML = `
-
-            <div class="gallery-error">
-
-                Không thể tải ảnh chi tiết.
-
-                <br>
-
-                Vui lòng kiểm tra lại link Cloudflare.
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* =====================================================
-   DETAIL
+   SHOW DETAIL
 ===================================================== */
 
 function showDetail(product) {
 
     document.getElementById(
         "products"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.getElementById(
         "count"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.querySelector(
         ".filters"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.querySelector(
         ".search-box"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     const detail =
@@ -1432,6 +1264,9 @@ function showDetail(product) {
                 alt="${escapeHTML(
                     product["Tên vợt"] || ""
                 )}"
+                onerror="
+                    this.style.display='none';
+                "
             >
 
         `;
@@ -1463,16 +1298,12 @@ function showDetail(product) {
         </button>
 
 
-        <!-- ẢNH CHÍNH -->
-
         <div class="detail-image-box">
 
             ${imageHTML}
 
         </div>
 
-
-        <!-- THÔNG TIN -->
 
         <div class="detail-content">
 
@@ -1557,26 +1388,27 @@ function showDetail(product) {
 
             </div>
 
-        </div>
+
+            <div
+                id="gallerySection"
+                class="gallery-section"
+            >
+
+                <div class="gallery-title">
+
+                    🖼️ Ảnh chi tiết
+
+                </div>
 
 
-        <!-- GALLERY -->
+                <div
+                    id="galleryContent"
+                    class="gallery-loading"
+                >
 
-        <div class="gallery-title">
+                    Đang tải ảnh chi tiết...
 
-            🖼️ Ảnh chi tiết
-
-        </div>
-
-
-        <div
-            id="detailGallery"
-            class="gallery"
-        >
-
-            <div class="gallery-loading">
-
-                ⏳ Đang tải ảnh...
+                </div>
 
             </div>
 
@@ -1586,19 +1418,231 @@ function showDetail(product) {
 
 
     window.scrollTo({
-
         top: 0,
-
         behavior: "smooth"
-
     });
 
-
-    /* GỌI CLOUDFLARE */
 
     loadDetailGallery(
         product["Ảnh chi tiết"]
     );
+
+}
+
+
+/* =====================================================
+   LOAD DETAIL GALLERY
+===================================================== */
+
+async function loadDetailGallery(apiUrl) {
+
+    const galleryContent =
+        document.getElementById(
+            "galleryContent"
+        );
+
+
+    if (!galleryContent) {
+
+        return;
+
+    }
+
+
+    if (!apiUrl) {
+
+        galleryContent.innerHTML = `
+
+            <div class="gallery-error">
+
+                Chưa có ảnh chi tiết.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+           API URL trong Google Sheet:
+
+           https://tsport-image-api.ntr9766.workers.dev/
+           ?folder=TSPORT/YZ001%20-%20Astrox%20100ZZ
+        */
+
+        const response =
+            await fetch(
+                apiUrl +
+                (
+                    apiUrl.includes("?")
+                    ? "&"
+                    : "?"
+                ) +
+                "t=" +
+                Date.now()
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "API trả về lỗi " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data ||
+            !data.success
+        ) {
+
+            throw new Error(
+                "API không trả về dữ liệu hợp lệ"
+            );
+
+        }
+
+
+        if (
+            !Array.isArray(data.images) ||
+            data.images.length === 0
+        ) {
+
+            galleryContent.innerHTML = `
+
+                <div class="gallery-error">
+
+                    Folder này chưa có ảnh.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        galleryImages =
+            data.images
+                .map(
+                    item => item.url
+                )
+                .filter(Boolean);
+
+
+        currentImageIndex = 0;
+
+
+        const gallery =
+            document.createElement(
+                "div"
+            );
+
+
+        gallery.className =
+            "gallery";
+
+
+        galleryImages.forEach(
+            (imageUrl, index) => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "gallery-item";
+
+
+                const img =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                img.src =
+                    imageUrl;
+
+
+                img.alt =
+                    "Ảnh chi tiết " +
+                    (index + 1);
+
+
+                img.loading =
+                    "lazy";
+
+
+                img.onerror =
+                    function() {
+
+                        item.style.display =
+                            "none";
+
+                    };
+
+
+                item.appendChild(img);
+
+
+                item.onclick =
+                    () => openLightbox(index);
+
+
+                gallery.appendChild(item);
+
+            }
+        );
+
+
+        galleryContent.innerHTML = "";
+
+        galleryContent.className =
+            "";
+
+
+        galleryContent.appendChild(
+            gallery
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Lỗi gallery:",
+            error
+        );
+
+
+        galleryContent.className =
+            "gallery-error";
+
+
+        galleryContent.innerHTML = `
+
+            Không thể tải ảnh chi tiết.
+
+            <br><br>
+
+            Vui lòng thử lại sau.
+
+        `;
+
+    }
 
 }
 
@@ -1638,6 +1682,17 @@ function closeDetail() {
     ).style.display =
         "none";
 
+
+    galleryImages = [];
+
+    currentImageIndex = 0;
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
 
@@ -1645,15 +1700,34 @@ function closeDetail() {
    LIGHTBOX
 ===================================================== */
 
-function openLightbox(
-    imageUrl
-) {
+function openLightbox(index) {
 
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
+    if (
+        !galleryImages.length
+    ) {
 
+        return;
+
+    }
+
+
+    currentImageIndex =
+        index;
+
+
+    updateLightbox();
+
+
+    document.getElementById(
+        "lightbox"
+    ).classList.add(
+        "active"
+    );
+
+}
+
+
+function updateLightbox() {
 
     const image =
         document.getElementById(
@@ -1662,27 +1736,158 @@ function openLightbox(
 
 
     image.src =
-        imageUrl;
+        galleryImages[
+            currentImageIndex
+        ];
+
+}
 
 
-    lightbox.classList.add(
-        "show"
+function closeLightbox(event) {
+
+    if (
+        event &&
+        event.target &&
+        event.target.id !== "lightbox"
+    ) {
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "lightbox"
+    ).classList.remove(
+        "active"
     );
 
 }
 
 
-function closeLightbox() {
+function previousImage(event) {
 
-    document
-        .getElementById(
-            "lightbox"
-        )
-        .classList.remove(
-            "show"
-        );
+    if (event) {
+
+        event.stopPropagation();
+
+    }
+
+
+    if (!galleryImages.length) {
+
+        return;
+
+    }
+
+
+    currentImageIndex--;
+
+    
+    if (
+        currentImageIndex < 0
+    ) {
+
+        currentImageIndex =
+            galleryImages.length - 1;
+
+    }
+
+
+    updateLightbox();
 
 }
+
+
+function nextImage(event) {
+
+    if (event) {
+
+        event.stopPropagation();
+
+    }
+
+
+    if (!galleryImages.length) {
+
+        return;
+
+    }
+
+
+    currentImageIndex++;
+
+
+    if (
+        currentImageIndex >=
+        galleryImages.length
+    ) {
+
+        currentImageIndex = 0;
+
+    }
+
+
+    updateLightbox();
+
+}
+
+
+/* =====================================================
+   KEYBOARD LIGHTBOX
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+
+        if (
+            !lightbox.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousImage();
+
+        }
+
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            nextImage();
+
+        }
+
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
 
 
 /* =====================================================
@@ -1717,18 +1922,14 @@ function filterProducts() {
             product => {
 
                 const text =
-                    Object.values(
-                        product
-                    )
-                    .join(" ")
-                    .toLowerCase();
+                    Object.values(product)
+                        .join(" ")
+                        .toLowerCase();
 
 
                 return (
 
-                    text.includes(
-                        search
-                    )
+                    text.includes(search)
 
                     &&
 
@@ -1764,27 +1965,22 @@ function filterProducts() {
 function escapeHTML(value) {
 
     return String(value)
-
         .replace(
             /&/g,
             "&amp;"
         )
-
         .replace(
             /</g,
             "&lt;"
         )
-
         .replace(
             />/g,
             "&gt;"
         )
-
         .replace(
             /"/g,
             "&quot;"
         )
-
         .replace(
             /'/g,
             "&#039;"
@@ -1798,9 +1994,7 @@ function escapeHTML(value) {
 ===================================================== */
 
 document
-    .getElementById(
-        "search"
-    )
+    .getElementById("search")
     .addEventListener(
         "input",
         filterProducts
@@ -1808,9 +2002,7 @@ document
 
 
 document
-    .getElementById(
-        "brandFilter"
-    )
+    .getElementById("brandFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -1818,9 +2010,7 @@ document
 
 
 document
-    .getElementById(
-        "styleFilter"
-    )
+    .getElementById("styleFilter")
     .addEventListener(
         "change",
         filterProducts
