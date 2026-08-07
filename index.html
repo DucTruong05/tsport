@@ -1,534 +1,540 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>TSPORT - Vợt Cầu Lông Lướt</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f6f8;
-            color: #171717;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            background: #111;
-            color: white;
-            padding: 20px 15px;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 25px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            margin-top: 5px;
-            color: #eeeeee;
-            font-size: 15px;
-        }
-
-        /* =========================
-           CONTAINER
-        ========================= */
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* =========================
-           SEARCH
-        ========================= */
-
-        .search-box {
-            margin-bottom: 15px;
-        }
-
-        .search {
-            width: 100%;
-            padding: 14px 17px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            background: white;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .search:focus {
-            border-color: #888;
-        }
-
-        /* =========================
-           FILTER
-        ========================= */
-
-        .filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-        }
-
-        select {
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 10px;
-            padding: 11px 13px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        /* =========================
-           COUNT
-        ========================= */
-
-        .count {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-
-        /* =========================
-           PRODUCTS
-        ========================= */
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .image-box {
-            width: 100%;
-            height: 260px;
-            background: #fafafa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .no-image {
-            color: #aaa;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .card-info {
-            padding: 14px;
-        }
-
-        .brand {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 5px;
-        }
-
-        /* =========================
-           NAME + BUTTON
-        ========================= */
-
-        .name-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-        }
-
-        .name {
-            flex: 1;
-            min-width: 0;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .detail-button {
-            flex-shrink: 0;
-            border: none;
-            background: #111;
-            color: white;
-            padding: 7px 9px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .detail-button:hover {
-            background: #333;
-        }
-
-        .price {
-            margin-top: 10px;
-            font-size: 19px;
-            font-weight: 800;
-        }
-
-        .meta {
-            margin-top: 8px;
-            color: #666;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* =========================
-           DETAIL
-        ========================= */
-
-        .detail {
-            display: none;
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .back {
-            border: none;
-            background: #111;
-            color: white;
-            padding: 11px 16px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        .detail-image-box {
-            width: 100%;
-            max-width: 700px;
-            height: 500px;
-            margin: auto;
-            background: #fafafa;
-            border-radius: 14px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .detail-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .detail-content {
-            max-width: 800px;
-            margin: 30px auto 0;
-            text-align: center;
-        }
-
-        .detail-brand {
-            color: #777;
-            font-size: 17px;
-        }
-
-        .detail-name {
-            font-size: 34px;
-            font-weight: 800;
-            margin-top: 7px;
-        }
-
-        .detail-price {
-            font-size: 30px;
-            font-weight: 800;
-            margin: 15px 0 25px;
-        }
-
-        /* =========================
-           INFO
-        ========================= */
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .info-row {
-            background: #f7f7f7;
-            border-radius: 12px;
-            padding: 16px 10px;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .info-row strong {
-            display: block;
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 6px;
-        }
-
-        /* =========================
-           IMAGE MODAL
-        ========================= */
-
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            inset: 0;
-            background: rgba(0,0,0,0.94);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            touch-action: none;
-        }
-
-        .modal-image-wrap {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .image-modal img {
-            max-width: 90%;
-            max-height: 88vh;
-            object-fit: contain;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 22px;
-            color: white;
-            font-size: 38px;
-            line-height: 1;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-prev,
-        .modal-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            border: none;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.16);
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .modal-prev {
-            left: 20px;
-        }
-
-        .modal-next {
-            right: 20px;
-        }
-
-        .modal-counter {
-            position: absolute;
-            bottom: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            background: rgba(0,0,0,0.55);
-            padding: 7px 13px;
-            border-radius: 20px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        /* =========================
-           LOADING / ERROR
-        ========================= */
-
-        .loading {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: #777;
-        }
-
-        .error-box {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-            background: white;
-            border-radius: 14px;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 900px) {
-            .products {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .image-box {
-                height: 220px;
-            }
-        }
-
-        @media (max-width: 650px) {
-
-            header {
-                padding: 20px 12px;
-            }
-
-            .logo {
-                font-size: 26px;
-            }
-
-            .subtitle {
-                font-size: 14px;
-            }
-
-            .container {
-                padding: 12px;
-            }
-
-            .products {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .image-box {
-                height: 190px;
-            }
-
-            .card-info {
-                padding: 11px;
-            }
-
-            .name {
-                font-size: 16px;
-            }
-
-            .detail-button {
-                font-size: 11px;
-                padding: 6px 7px;
-            }
-
-            .price {
-                font-size: 17px;
-            }
-
-            .detail {
-                padding: 12px;
-            }
-
-            .detail-image-box {
-                height: 350px;
-            }
-
-            .detail-name {
-                font-size: 27px;
-            }
-
-            .detail-price {
-                font-size: 24px;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .info-row {
-                font-size: 17px;
-            }
-
-            .modal-prev,
-            .modal-next {
-                display: none !important;
-            }
-
-            .image-modal {
-                padding: 10px;
-            }
-
-            .image-modal img {
-                max-width: 96%;
-                max-height: 85vh;
-            }
-
-            .modal-counter {
-                bottom: 18px;
-            }
-        }
-
-        @media (max-width: 400px) {
-
-            .products {
-                gap: 8px;
-            }
-
-            .image-box {
-                height: 170px;
-            }
-
-            .detail-button {
-                font-size: 10px;
-                padding: 5px 6px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSPORT - Vợt Cầu Lông Lướt</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6f8;
+    color: #171717;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: #111;
+    color: white;
+    padding: 20px 18px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    margin-top: 5px;
+    color: #eeeeee;
+    font-size: 15px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search {
+    width: 100%;
+    padding: 15px 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #888;
+}
+
+/* =========================
+   FILTER
+========================= */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+select {
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+    outline: none;
+}
+
+/* =========================
+   COUNT
+========================= */
+
+.count {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.image-box {
+    width: 100%;
+    height: 260px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.no-image {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.card-info {
+    padding: 15px;
+}
+
+.brand {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+/* =========================
+   NAME + DETAIL BUTTON
+========================= */
+
+.name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.name {
+    flex: 1;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.detail-button {
+    flex-shrink: 0;
+    border: none;
+    background: #111;
+    color: white;
+    padding: 7px 9px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.detail-button:hover {
+    background: #333;
+}
+
+.price {
+    margin-top: 10px;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.meta {
+    margin-top: 8px;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* =========================
+   DETAIL
+========================= */
+
+.detail {
+    display: none;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.back {
+    border: none;
+    background: #111;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   DETAIL IMAGE
+========================= */
+
+.detail-image-box {
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    margin: auto;
+    background: #fafafa;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =========================
+   DETAIL CONTENT
+========================= */
+
+.detail-content {
+    max-width: 800px;
+    margin: 30px auto 0;
+    text-align: center;
+}
+
+.detail-brand {
+    color: #777;
+    font-size: 17px;
+}
+
+.detail-name {
+    font-size: 34px;
+    font-weight: 800;
+    margin-top: 7px;
+}
+
+.detail-price {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 15px 0 25px;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.info-row {
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 15px 10px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.info-row strong {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+/* =========================
+   IMAGE MODAL
+========================= */
+
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.94);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    touch-action: none;
+}
+
+.modal-image-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 88vh;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 22px;
+    color: white;
+    font-size: 38px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-prev,
+.modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.16);
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.modal-prev {
+    left: 20px;
+}
+
+.modal-next {
+    right: 20px;
+}
+
+.modal-prev:hover,
+.modal-next:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.modal-counter {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0,0,0,0.55);
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 10;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #777;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-box {
+        height: 220px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 25px 15px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .image-box {
+        height: 190px;
+    }
+
+    .card-info {
+        padding: 11px;
+    }
+
+    .name-row {
+        align-items: flex-start;
+    }
+
+    .name {
+        font-size: 16px;
+    }
+
+    .detail-button {
+        font-size: 11px;
+        padding: 6px 7px;
+    }
+
+    .price {
+        font-size: 17px;
+    }
+
+    .detail {
+        padding: 12px;
+    }
+
+    .detail-image-box {
+        height: 350px;
+    }
+
+    .detail-name {
+        font-size: 27px;
+    }
+
+    .detail-price {
+        font-size: 24px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-row {
+        font-size: 17px;
+    }
+
+    .modal-prev,
+    .modal-next {
+        display: none !important;
+    }
+
+    .image-modal {
+        padding: 10px;
+    }
+
+    .image-modal img {
+        max-width: 96%;
+        max-height: 85vh;
+    }
+
+    .modal-counter {
+        bottom: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .products {
+        gap: 8px;
+    }
+
+    .image-box {
+        height: 170px;
+    }
+
+    .detail-button {
+        font-size: 10px;
+        padding: 5px 6px;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -561,9 +567,7 @@
 
     </div>
 
-    <div id="count" class="count">
-        Đang tải...
-    </div>
+    <div id="count" class="count"></div>
 
     <div id="products" class="products">
         <div class="loading">
@@ -579,18 +583,15 @@
 
 <div id="imageModal" class="image-modal">
 
-    <div class="modal-image-wrap">
+    <div id="modalImageWrap" class="modal-image-wrap">
 
-        <div
-            class="modal-close"
-            id="modalClose"
-        >
+        <div id="modalClose" class="modal-close">
             ×
         </div>
 
         <button
-            class="modal-prev"
             id="modalPrev"
+            class="modal-prev"
             type="button"
         >
             ‹
@@ -603,17 +604,14 @@
         >
 
         <button
-            class="modal-next"
             id="modalNext"
+            class="modal-next"
             type="button"
         >
             ›
         </button>
 
-        <div
-            class="modal-counter"
-            id="modalCounter"
-        >
+        <div id="modalCounter" class="modal-counter">
             1 / 1
         </div>
 
@@ -623,19 +621,15 @@
 
 <script>
 
-"use strict";
-
 /* =====================================================
    CONFIG
 ===================================================== */
 
 const SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
+"https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
 const IMAGE_API =
-    "https://tsport-image-api.ntr9766.workers.dev/";
-
-const REQUEST_TIMEOUT = 15000;
+"https://tsport-image-api.ntr9766.workers.dev/";
 
 
 /* =====================================================
@@ -647,89 +641,6 @@ let products = [];
 let currentGallery = [];
 
 let currentImageIndex = 0;
-
-
-/* =====================================================
-   DOM
-===================================================== */
-
-const productsElement =
-    document.getElementById("products");
-
-const countElement =
-    document.getElementById("count");
-
-const searchElement =
-    document.getElementById("search");
-
-const brandFilterElement =
-    document.getElementById("brandFilter");
-
-const styleFilterElement =
-    document.getElementById("styleFilter");
-
-const detailElement =
-    document.getElementById("detail");
-
-const imageModal =
-    document.getElementById("imageModal");
-
-const modalImage =
-    document.getElementById("modalImage");
-
-const modalCounter =
-    document.getElementById("modalCounter");
-
-const modalPrev =
-    document.getElementById("modalPrev");
-
-const modalNext =
-    document.getElementById("modalNext");
-
-const modalClose =
-    document.getElementById("modalClose");
-
-
-/* =====================================================
-   SAFE FETCH
-===================================================== */
-
-async function fetchWithTimeout(
-    url,
-    options = {},
-    timeout = REQUEST_TIMEOUT
-) {
-
-    const controller =
-        new AbortController();
-
-    const timer =
-        setTimeout(
-            () => controller.abort(),
-            timeout
-        );
-
-    try {
-
-        const response =
-            await fetch(
-                url,
-                {
-                    ...options,
-                    signal:
-                        controller.signal
-                }
-            );
-
-        return response;
-
-    } finally {
-
-        clearTimeout(timer);
-
-    }
-
-}
 
 
 /* =====================================================
@@ -758,19 +669,13 @@ function getImageUrl(url) {
         return "";
     }
 
-    const cleanUrl =
-        String(url).trim();
-
-    if (!cleanUrl) {
-        return "";
-    }
+    url = String(url).trim();
 
     let id = "";
 
-    let match =
-        cleanUrl.match(
-            /\/file\/d\/([^/]+)/
-        );
+    let match = url.match(
+        /\/file\/d\/([^/]+)/
+    );
 
     if (match) {
         id = match[1];
@@ -778,10 +683,9 @@ function getImageUrl(url) {
 
     if (!id) {
 
-        match =
-            cleanUrl.match(
-                /[?&]id=([^&]+)/
-            );
+        match = url.match(
+            /[?&]id=([^&]+)/
+        );
 
         if (match) {
             id = match[1];
@@ -800,8 +704,7 @@ function getImageUrl(url) {
 
     }
 
-    return cleanUrl;
-
+    return url;
 }
 
 
@@ -827,8 +730,7 @@ function parseCSV(text) {
 
         const char = text[i];
 
-        const next =
-            text[i + 1];
+        const next = text[i + 1];
 
         if (
             char === '"' &&
@@ -841,7 +743,6 @@ function parseCSV(text) {
             i++;
 
             continue;
-
         }
 
         if (char === '"') {
@@ -850,7 +751,6 @@ function parseCSV(text) {
                 !insideQuotes;
 
             continue;
-
         }
 
         if (
@@ -863,7 +763,6 @@ function parseCSV(text) {
             value = "";
 
             continue;
-
         }
 
         if (
@@ -878,22 +777,19 @@ function parseCSV(text) {
                 char === "\r" &&
                 next === "\n"
             ) {
-
                 i++;
-
             }
 
             row.push(value);
 
             if (
                 row.some(
-                    cell =>
-                        cell.trim() !== ""
+                    item =>
+                        item.trim() !== ""
                 )
             ) {
 
                 rows.push(row);
-
             }
 
             row = [];
@@ -901,11 +797,9 @@ function parseCSV(text) {
             value = "";
 
             continue;
-
         }
 
         value += char;
-
     }
 
     if (
@@ -917,15 +811,13 @@ function parseCSV(text) {
 
         if (
             row.some(
-                cell =>
-                    cell.trim() !== ""
+                item =>
+                    item.trim() !== ""
             )
         ) {
 
             rows.push(row);
-
         }
-
     }
 
     if (rows.length < 1) {
@@ -937,10 +829,7 @@ function parseCSV(text) {
             header =>
                 String(header)
                     .trim()
-                    .replace(
-                        /^\uFEFF/,
-                        ""
-                    )
+                    .replace(/^\uFEFF/, "")
         );
 
     return rows
@@ -952,10 +841,6 @@ function parseCSV(text) {
             headers.forEach(
                 (header, index) => {
 
-                    if (!header) {
-                        return;
-                    }
-
                     item[header] =
                         String(
                             rowData[index] ?? ""
@@ -965,7 +850,6 @@ function parseCSV(text) {
             );
 
             return item;
-
         });
 
 }
@@ -977,70 +861,68 @@ function parseCSV(text) {
 
 async function loadProducts() {
 
-    productsElement.innerHTML = `
+    const container =
+        document.getElementById("products");
+
+    container.innerHTML = `
         <div class="loading">
             Đang tải sản phẩm...
         </div>
     `;
 
-    countElement.textContent =
-        "Đang tải...";
-
     try {
 
         const response =
-            await fetchWithTimeout(
+            await fetch(
                 SHEET_URL +
                 "&t=" +
-                Date.now()
+                Date.now(),
+                {
+                    cache: "no-store"
+                }
             );
 
         if (!response.ok) {
 
             throw new Error(
-                "Google Sheets trả về lỗi " +
+                "Google Sheets HTTP " +
                 response.status
             );
-
         }
 
         const text =
             await response.text();
 
-        const data =
+        console.log(
+            "Google Sheets response:",
+            text.substring(0, 300)
+        );
+
+        products =
             parseCSV(text);
 
-        products = data;
+        /*
+         * Cho phép Google Sheet đang trống.
+         * Không làm web chết.
+         */
 
         createFilters();
 
-        displayProducts(
-            products
-        );
-
-        console.log(
-            "Đã tải:",
-            products.length,
-            "sản phẩm"
-        );
+        displayProducts(products);
 
     } catch (error) {
 
         console.error(
-            "Lỗi tải sản phẩm:",
+            "LOAD PRODUCTS ERROR:",
             error
         );
 
-        products = [];
-
-        countElement.textContent =
-            "Không tải được dữ liệu";
-
-        productsElement.innerHTML = `
-            <div class="error-box">
-                <strong>Không thể tải danh sách vợt.</strong>
+        container.innerHTML = `
+            <div class="loading">
+                Không thể tải dữ liệu sản phẩm.
                 <br><br>
-                Kiểm tra Google Sheets hoặc kết nối mạng rồi tải lại trang.
+                Kiểm tra quyền chia sẻ Google Sheet
+                và Console trình duyệt.
             </div>
         `;
 
@@ -1055,10 +937,20 @@ async function loadProducts() {
 
 function createFilters() {
 
-    brandFilterElement.innerHTML =
+    const brandFilter =
+        document.getElementById(
+            "brandFilter"
+        );
+
+    const styleFilter =
+        document.getElementById(
+            "styleFilter"
+        );
+
+    brandFilter.innerHTML =
         `<option value="">Tất cả hãng</option>`;
 
-    styleFilterElement.innerHTML =
+    styleFilter.innerHTML =
         `<option value="">Tất cả lối đánh</option>`;
 
     const brands =
@@ -1071,8 +963,7 @@ function createFilters() {
                     )
                     .filter(Boolean)
             )
-        ]
-        .sort();
+        ];
 
     const styles =
         [
@@ -1084,44 +975,33 @@ function createFilters() {
                     )
                     .filter(Boolean)
             )
-        ]
-        .sort();
+        ];
 
-    brands.forEach(
-        brand => {
+    brands.forEach(brand => {
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        const option =
+            document.createElement("option");
 
-            option.value = brand;
-            option.textContent = brand;
+        option.value = brand;
 
-            brandFilterElement.appendChild(
-                option
-            );
+        option.textContent = brand;
 
-        }
-    );
+        brandFilter.appendChild(option);
 
-    styles.forEach(
-        style => {
+    });
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+    styles.forEach(style => {
 
-            option.value = style;
-            option.textContent = style;
+        const option =
+            document.createElement("option");
 
-            styleFilterElement.appendChild(
-                option
-            );
+        option.value = style;
 
-        }
-    );
+        option.textContent = style;
+
+        styleFilter.appendChild(option);
+
+    });
 
 }
 
@@ -1136,19 +1016,16 @@ function formatPrice(price) {
         return "";
     }
 
-    const raw =
-        String(price).trim();
-
     const number =
         Number(
-            raw.replace(
+            String(price).replace(
                 /[^\d]/g,
                 ""
             )
         );
 
     if (!number) {
-        return escapeHTML(raw);
+        return escapeHTML(price);
     }
 
     return (
@@ -1165,240 +1042,203 @@ function formatPrice(price) {
 
 function displayProducts(list) {
 
-    productsElement.innerHTML = "";
+    const container =
+        document.getElementById(
+            "products"
+        );
 
-    countElement.textContent =
+    const count =
+        document.getElementById(
+            "count"
+        );
+
+    container.innerHTML = "";
+
+    count.textContent =
         `${list.length} sản phẩm`;
 
     if (!list.length) {
 
-        productsElement.innerHTML = `
+        container.innerHTML = `
             <div class="loading">
-                Không tìm thấy vợt.
+                Chưa có sản phẩm.
             </div>
         `;
 
         return;
-
     }
 
-    const fragment =
-        document.createDocumentFragment();
+    list.forEach(product => {
 
-    list.forEach(
-        product => {
+        const card =
+            document.createElement("div");
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        card.className = "card";
 
-            card.className =
-                "card";
+        const image =
+            getImageUrl(
+                product["Ảnh"]
+            );
 
-            const image =
-                getImageUrl(
-                    product["Ảnh"]
-                );
+        let imageHTML = "";
 
-            let imageHTML;
+        if (image) {
 
-            if (image) {
+            imageHTML = `
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(
+                        product["Tên vợt"] || ""
+                    )}"
+                    loading="lazy"
+                    onerror="this.style.display='none';"
+                >
+            `;
 
-                imageHTML = `
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}"
-                        loading="lazy"
-                    >
-                `;
+        } else {
 
-            } else {
-
-                imageHTML = `
-                    <div class="no-image">
-                        Không có ảnh
-                    </div>
-                `;
-
-            }
-
-            const hasGallery =
-                Boolean(
-                    product["Ảnh chi tiết"]
-                );
-
-            card.innerHTML = `
-
-                <div class="image-box">
-                    ${imageHTML}
-                </div>
-
-                <div class="card-info">
-
-                    <div class="brand">
-                        ${escapeHTML(
-                            product["Hãng"] || ""
-                        )}
-                    </div>
-
-                    <div class="name-row">
-
-                        <div class="name">
-                            ${escapeHTML(
-                                product["Tên vợt"] || ""
-                            )}
-                        </div>
-
-                        ${
-                            hasGallery
-                            ?
-                            `
-                            <button
-                                class="detail-button"
-                                type="button"
-                            >
-                                🖼️ Xem ảnh
-                            </button>
-                            `
-                            :
-                            ""
-                        }
-
-                    </div>
-
-                    <div class="price">
-                        ${formatPrice(
-                            product["Giá"]
-                        )}
-                    </div>
-
-                    <div class="meta">
-                        ${escapeHTML(
-                            product["Tình trạng vợt"] || ""
-                        )}
-
-                        ${
-                            product["Tình trạng cước"]
-                            ?
-                            " · " +
-                            escapeHTML(
-                                product["Tình trạng cước"]
-                            )
-                            :
-                            ""
-                        }
-
-                        <br>
-
-                        ${escapeHTML(
-                            product["Lối đánh"] || ""
-                        )}
-                    </div>
-
+            imageHTML = `
+                <div class="no-image">
+                    Không có ảnh
                 </div>
             `;
 
-            const mainImage =
-                card.querySelector(
-                    ".image-box img"
-                );
+        }
 
-            if (mainImage) {
+        const hasGallery =
+            Boolean(
+                product["Ảnh chi tiết"]
+            );
 
-                mainImage.addEventListener(
-                    "error",
-                    function() {
+        card.innerHTML = `
 
-                        this.style.display =
-                            "none";
+            <div class="image-box">
+                ${imageHTML}
+            </div>
 
-                        const parent =
-                            this.parentElement;
+            <div class="card-info">
 
-                        if (
-                            parent &&
-                            !parent.querySelector(
-                                ".no-image"
-                            )
-                        ) {
+                <div class="brand">
+                    ${escapeHTML(
+                        product["Hãng"] || ""
+                    )}
+                </div>
 
-                            const fallback =
-                                document.createElement(
-                                    "div"
-                                );
+                <div class="name-row">
 
-                            fallback.className =
-                                "no-image";
+                    <div class="name">
+                        ${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}
+                    </div>
 
-                            fallback.textContent =
-                                "Không có ảnh";
-
-                            parent.appendChild(
-                                fallback
-                            );
-
-                        }
-
+                    ${
+                        hasGallery
+                        ?
+                        `
+                        <button
+                            class="detail-button"
+                            type="button"
+                        >
+                            🖼️ Xem ảnh
+                        </button>
+                        `
+                        :
+                        ""
                     }
-                );
+
+                </div>
+
+                <div class="price">
+                    ${formatPrice(
+                        product["Giá"]
+                    )}
+                </div>
+
+                <div class="meta">
+
+                    ${escapeHTML(
+                        product["Tình trạng vợt"] || ""
+                    )}
+
+                    ${
+                        product["Tình trạng cước"]
+                        ? " · " +
+                        escapeHTML(
+                            product["Tình trạng cước"]
+                        )
+                        : ""
+                    }
+
+                    ${
+                        product["Lối đánh"]
+                        ?
+                        `
+                        <br>
+                        ${escapeHTML(
+                            product["Lối đánh"]
+                        )}
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+        `;
+
+
+        /* CARD */
+
+        card.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target.closest(
+                        ".detail-button"
+                    )
+                ) {
+                    return;
+                }
+
+                showDetail(product);
 
             }
+        );
 
-            card.addEventListener(
+
+        /* DETAIL BUTTON */
+
+        const button =
+            card.querySelector(
+                ".detail-button"
+            );
+
+        if (button) {
+
+            button.addEventListener(
                 "click",
                 function(event) {
 
-                    const button =
-                        event.target.closest(
-                            ".detail-button"
-                        );
+                    event.preventDefault();
 
-                    if (button) {
-                        return;
-                    }
+                    event.stopPropagation();
 
-                    showDetail(product);
+                    openProductGallery(
+                        product
+                    );
 
                 }
             );
 
-            const button =
-                card.querySelector(
-                    ".detail-button"
-                );
-
-            if (button) {
-
-                button.addEventListener(
-                    "click",
-                    function(event) {
-
-                        event.preventDefault();
-
-                        event.stopPropagation();
-
-                        openProductGallery(
-                            product
-                        );
-
-                    }
-                );
-
-            }
-
-            fragment.appendChild(
-                card
-            );
-
         }
-    );
 
-    productsElement.appendChild(
-        fragment
-    );
+
+        container.appendChild(card);
+
+    });
 
 }
 
@@ -1409,10 +1249,10 @@ function displayProducts(list) {
 
 function getFolderFromProduct(product) {
 
-    const value =
-        product?.["Ảnh chi tiết"];
-
-    if (!value) {
+    if (
+        !product ||
+        !product["Ảnh chi tiết"]
+    ) {
         return "";
     }
 
@@ -1420,7 +1260,7 @@ function getFolderFromProduct(product) {
 
         const url =
             new URL(
-                String(value).trim()
+                product["Ảnh chi tiết"]
             );
 
         return (
@@ -1429,10 +1269,14 @@ function getFolderFromProduct(product) {
             ) || ""
         );
 
-    } catch {
+    } catch (error) {
+
+        console.error(
+            "FOLDER ERROR:",
+            error
+        );
 
         return "";
-
     }
 
 }
@@ -1456,12 +1300,19 @@ async function loadGalleryImages(folder) {
             encodeURIComponent(folder);
 
         const response =
-            await fetchWithTimeout(
-                url
+            await fetch(
+                url,
+                {
+                    cache: "no-store"
+                }
             );
 
         if (!response.ok) {
-            return [];
+
+            throw new Error(
+                "Image API HTTP " +
+                response.status
+            );
         }
 
         const data =
@@ -1472,9 +1323,7 @@ async function loadGalleryImages(folder) {
             !data.success ||
             !Array.isArray(data.images)
         ) {
-
             return [];
-
         }
 
         return data.images
@@ -1488,12 +1337,11 @@ async function loadGalleryImages(folder) {
     } catch (error) {
 
         console.error(
-            "Gallery error:",
+            "GALLERY ERROR:",
             error
         );
 
         return [];
-
     }
 
 }
@@ -1506,9 +1354,7 @@ async function loadGalleryImages(folder) {
 async function openProductGallery(product) {
 
     const folder =
-        getFolderFromProduct(
-            product
-        );
+        getFolderFromProduct(product);
 
     if (!folder) {
 
@@ -1517,84 +1363,78 @@ async function openProductGallery(product) {
         );
 
         return;
-
     }
 
-    const button =
-        event?.currentTarget;
+    const urls =
+        await loadGalleryImages(folder);
 
-    if (button) {
-        button.disabled = true;
+    if (!urls.length) {
+
+        alert(
+            "Không tìm thấy ảnh chi tiết."
+        );
+
+        return;
     }
 
-    try {
+    currentGallery = urls;
 
-        const urls =
-            await loadGalleryImages(
-                folder
-            );
+    currentImageIndex = 0;
 
-        if (!urls.length) {
-
-            alert(
-                "Không tìm thấy ảnh chi tiết."
-            );
-
-            return;
-
-        }
-
-        currentGallery =
-            urls;
-
-        currentImageIndex = 0;
-
-        showModalImage();
-
-    } finally {
-
-        if (button) {
-            button.disabled = false;
-        }
-
-    }
+    showModalImage();
 
 }
 
 
 /* =====================================================
-   SHOW MODAL IMAGE
+   SHOW MODAL
 ===================================================== */
 
 function showModalImage() {
 
-    if (!currentGallery.length) {
+    if (
+        !currentGallery.length
+    ) {
         return;
     }
 
-    modalImage.src =
+    const modal =
+        document.getElementById(
+            "imageModal"
+        );
+
+    const image =
+        document.getElementById(
+            "modalImage"
+        );
+
+    const counter =
+        document.getElementById(
+            "modalCounter"
+        );
+
+    image.src =
         currentGallery[
             currentImageIndex
         ];
 
-    modalCounter.textContent =
+    counter.textContent =
         `${currentImageIndex + 1} / ${currentGallery.length}`;
 
     const hasMultiple =
         currentGallery.length > 1;
 
-    modalPrev.style.display =
-        hasMultiple
-        ? "flex"
-        : "none";
+    document.getElementById(
+        "modalPrev"
+    ).style.display =
+        hasMultiple ? "flex" : "none";
 
-    modalNext.style.display =
-        hasMultiple
-        ? "flex"
-        : "none";
+    document.getElementById(
+        "modalNext"
+    ).style.display =
+        hasMultiple ? "flex" : "none";
 
-    imageModal.style.display =
-        "flex";
+    modal.style.display = "flex";
 
     document.body.style.overflow =
         "hidden";
@@ -1656,41 +1496,50 @@ function previousImage() {
 
 function closeImageModal() {
 
-    imageModal.style.display =
-        "none";
+    const modal =
+        document.getElementById(
+            "imageModal"
+        );
 
-    modalImage.src = "";
+    modal.style.display = "none";
 
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
+
+    document.getElementById(
+        "modalImage"
+    ).src = "";
 
 }
 
 
 /* =====================================================
-   DETAIL PAGE
+   DETAIL
 ===================================================== */
 
 function showDetail(product) {
 
-    productsElement.style.display =
-        "none";
+    document.getElementById(
+        "products"
+    ).style.display = "none";
 
-    countElement.style.display =
-        "none";
+    document.getElementById(
+        "count"
+    ).style.display = "none";
 
     document.querySelector(
         ".filters"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     document.querySelector(
         ".search-box"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
-    detailElement.style.display =
-        "block";
+    const detail =
+        document.getElementById(
+            "detail"
+        );
+
+    detail.style.display = "block";
 
     const image =
         getImageUrl(
@@ -1716,12 +1565,12 @@ function showDetail(product) {
         </div>
         `;
 
-    detailElement.innerHTML = `
+    detail.innerHTML = `
 
         <button
             class="back"
             type="button"
-            id="backButton"
+            onclick="closeDetail()"
         >
             ← Quay lại
         </button>
@@ -1792,13 +1641,6 @@ function showDetail(product) {
         </div>
     `;
 
-    document
-        .getElementById("backButton")
-        .addEventListener(
-            "click",
-            closeDetail
-        );
-
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -1813,24 +1655,25 @@ function showDetail(product) {
 
 function closeDetail() {
 
-    detailElement.style.display =
-        "none";
+    document.getElementById(
+        "products"
+    ).style.display = "grid";
 
-    productsElement.style.display =
-        "grid";
-
-    countElement.style.display =
-        "block";
+    document.getElementById(
+        "count"
+    ).style.display = "block";
 
     document.querySelector(
         ".filters"
-    ).style.display =
-        "flex";
+    ).style.display = "flex";
 
     document.querySelector(
         ".search-box"
-    ).style.display =
-        "block";
+    ).style.display = "block";
+
+    document.getElementById(
+        "detail"
+    ).style.display = "none";
 
     window.scrollTo({
         top: 0,
@@ -1847,45 +1690,46 @@ function closeDetail() {
 function filterProducts() {
 
     const search =
-        searchElement.value
-            .toLowerCase()
-            .trim();
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase()
+        .trim();
 
     const brand =
-        brandFilterElement.value;
+        document.getElementById(
+            "brandFilter"
+        ).value;
 
     const style =
-        styleFilterElement.value;
+        document.getElementById(
+            "styleFilter"
+        ).value;
 
     const filtered =
-        products.filter(
-            product => {
+        products.filter(product => {
 
-                const text =
-                    Object.values(
-                        product
-                    )
+            const text =
+                Object.values(product)
                     .join(" ")
                     .toLowerCase();
 
-                return (
-                    text.includes(search) &&
-                    (
-                        !brand ||
-                        product["Hãng"] === brand
-                    ) &&
-                    (
-                        !style ||
-                        product["Lối đánh"] === style
-                    )
-                );
+            return (
+                text.includes(search) &&
+                (
+                    !brand ||
+                    product["Hãng"] === brand
+                ) &&
+                (
+                    !style ||
+                    product["Lối đánh"] === style
+                )
+            );
 
-            }
-        );
+        });
 
-    displayProducts(
-        filtered
-    );
+    displayProducts(filtered);
 
 }
 
@@ -1894,57 +1738,65 @@ function filterProducts() {
    MODAL EVENTS
 ===================================================== */
 
-modalClose.addEventListener(
-    "click",
-    function(event) {
+document
+    .getElementById("modalClose")
+    .addEventListener(
+        "click",
+        function(event) {
 
-        event.stopPropagation();
-
-        closeImageModal();
-
-    }
-);
-
-
-modalPrev.addEventListener(
-    "click",
-    function(event) {
-
-        event.stopPropagation();
-
-        previousImage();
-
-    }
-);
-
-
-modalNext.addEventListener(
-    "click",
-    function(event) {
-
-        event.stopPropagation();
-
-        nextImage();
-
-    }
-);
-
-
-imageModal.addEventListener(
-    "click",
-    function(event) {
-
-        if (
-            event.target ===
-            imageModal
-        ) {
+            event.stopPropagation();
 
             closeImageModal();
 
         }
+    );
 
-    }
-);
+
+document
+    .getElementById("modalPrev")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            previousImage();
+
+        }
+    );
+
+
+document
+    .getElementById("modalNext")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            nextImage();
+
+        }
+    );
+
+
+document
+    .getElementById("imageModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target ===
+                this
+            ) {
+
+                closeImageModal();
+
+            }
+
+        }
+    );
 
 
 /* =====================================================
@@ -1955,18 +1807,19 @@ document.addEventListener(
     "keydown",
     function(event) {
 
+        const modal =
+            document.getElementById(
+                "imageModal"
+            );
+
         if (
-            imageModal.style.display !==
-            "flex"
+            modal.style.display !== "flex"
         ) {
-
             return;
-
         }
 
         if (
-            event.key ===
-            "ArrowRight"
+            event.key === "ArrowRight"
         ) {
 
             nextImage();
@@ -1974,8 +1827,7 @@ document.addEventListener(
         }
 
         if (
-            event.key ===
-            "ArrowLeft"
+            event.key === "ArrowLeft"
         ) {
 
             previousImage();
@@ -1983,8 +1835,7 @@ document.addEventListener(
         }
 
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             closeImageModal();
@@ -2001,93 +1852,103 @@ document.addEventListener(
 
 let touchStartX = 0;
 
-imageModal.addEventListener(
-    "touchstart",
-    function(event) {
+document
+    .getElementById("imageModal")
+    .addEventListener(
+        "touchstart",
+        function(event) {
 
-        if (
-            event.touches.length
-        ) {
+            if (
+                event.touches.length
+            ) {
 
-            touchStartX =
-                event.touches[0].clientX;
+                touchStartX =
+                    event.touches[0].clientX;
 
+            }
+
+        },
+        {
+            passive: true
         }
-
-    },
-    {
-        passive: true
-    }
-);
+    );
 
 
-imageModal.addEventListener(
-    "touchend",
-    function(event) {
+document
+    .getElementById("imageModal")
+    .addEventListener(
+        "touchend",
+        function(event) {
 
-        if (
-            !event.changedTouches.length
-        ) {
+            if (
+                !event.changedTouches.length
+            ) {
+                return;
+            }
 
-            return;
+            const touchEndX =
+                event.changedTouches[0].clientX;
 
+            const distance =
+                touchEndX -
+                touchStartX;
+
+            if (
+                Math.abs(distance) < 50
+            ) {
+                return;
+            }
+
+            if (distance < 0) {
+
+                nextImage();
+
+            } else {
+
+                previousImage();
+
+            }
+
+        },
+        {
+            passive: true
         }
-
-        const touchEndX =
-            event.changedTouches[0].clientX;
-
-        const distance =
-            touchEndX -
-            touchStartX;
-
-        if (
-            Math.abs(distance) < 50
-        ) {
-
-            return;
-
-        }
-
-        if (distance < 0) {
-
-            nextImage();
-
-        } else {
-
-            previousImage();
-
-        }
-
-    },
-    {
-        passive: true
-    }
-);
+    );
 
 
 /* =====================================================
    SEARCH EVENTS
 ===================================================== */
 
-searchElement.addEventListener(
-    "input",
-    filterProducts
-);
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        filterProducts
+    );
 
-brandFilterElement.addEventListener(
-    "change",
-    filterProducts
-);
 
-styleFilterElement.addEventListener(
-    "change",
-    filterProducts
-);
+document
+    .getElementById("brandFilter")
+    .addEventListener(
+        "change",
+        filterProducts
+    );
+
+
+document
+    .getElementById("styleFilter")
+    .addEventListener(
+        "change",
+        filterProducts
+    );
 
 
 /* =====================================================
    START
 ===================================================== */
+
+console.log("TSPORT: JavaScript OK");
 
 loadProducts();
 
@@ -2095,4 +1956,3 @@ loadProducts();
 
 </body>
 </html>
-```
