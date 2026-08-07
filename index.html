@@ -1,703 +1,642 @@
+```html
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TSPORT - Vợt Cầu Lông Lướt</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f6f8;
-    color: #171717;
-}
-
-/* ================= HEADER ================= */
-
-header {
-    background: #111;
-    color: white;
-    padding: 18px 15px;
-    text-align: center;
-}
-
-.logo {
-    font-size: 27px;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-.subtitle {
-    margin-top: 5px;
-    color: #eeeeee;
-    font-size: 14px;
-}
-
-/* ================= CONTAINER ================= */
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* ================= SEARCH ================= */
-
-.search-box {
-    margin-bottom: 15px;
-}
-
-.search {
-    width: 100%;
-    padding: 15px 18px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background: white;
-    font-size: 16px;
-    outline: none;
-}
-
-.search:focus {
-    border-color: #888;
-}
-
-/* ================= FILTER ================= */
-
-.filters {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-select {
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 15px;
-    outline: none;
-}
-
-/* ================= COUNT ================= */
-
-.count {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-/* ================= PRODUCTS ================= */
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
-
-/* ================= CARD ================= */
-
-.card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.2s ease;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.image-box {
-    width: 100%;
-    height: 260px;
-    background: #fafafa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.no-image {
-    color: #aaa;
-    font-size: 14px;
-}
-
-.card-info {
-    padding: 15px;
-}
-
-.brand {
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 4px;
-}
-
-.name {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.3;
-}
-
-.price {
-    margin-top: 10px;
-    font-size: 19px;
-    font-weight: 800;
-}
-
-.meta {
-    margin-top: 8px;
-    color: #666;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-/* ================= DETAIL ================= */
-
-.detail {
-    display: none;
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-}
-
-.back {
-    border: none;
-    background: #111;
-    color: white;
-    padding: 11px 16px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-bottom: 25px;
-}
-
-/* ================= DETAIL MAIN IMAGE ================= */
-
-.detail-image-box {
-    width: 100%;
-    max-width: 700px;
-    height: 500px;
-    margin: auto;
-    background: #fafafa;
-    border-radius: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.detail-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* ================= DETAIL CONTENT ================= */
-
-.detail-content {
-    max-width: 800px;
-    margin: 30px auto 0;
-    text-align: center;
-}
-
-.detail-brand {
-    color: #777;
-    font-size: 17px;
-}
-
-.detail-name {
-    font-size: 34px;
-    font-weight: 800;
-    margin-top: 7px;
-}
-
-.detail-price {
-    font-size: 30px;
-    font-weight: 800;
-    margin: 15px 0 25px;
-}
-
-/* ================= INFO ================= */
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.info-row {
-    background: #f7f7f7;
-    border-radius: 12px;
-    padding: 18px 10px;
-    font-size: 18px;
-    text-align: center;
-}
-
-.info-row strong {
-    display: block;
-    font-size: 15px;
-    color: #777;
-    margin-bottom: 7px;
-}
-
-/* ================= GALLERY TITLE ================= */
-
-.gallery-title {
-    margin-top: 40px;
-    padding-top: 25px;
-    border-top: 1px solid #eee;
-    text-align: center;
-    font-size: 23px;
-    font-weight: 800;
-}
-
-.gallery-arrow {
-    display: block;
-    font-size: 30px;
-    margin-bottom: 5px;
-    animation: arrowDown 1.2s infinite;
-}
-
-@keyframes arrowDown {
-
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(6px);
-    }
-
-}
-
-.gallery-subtitle {
-    margin-top: 6px;
-    color: #777;
-    font-size: 14px;
-}
-
-/* ================= GALLERY ================= */
-
-.gallery {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.gallery-item {
-    height: 260px;
-    background: #fafafa;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.02);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* ================= IMAGE MODAL ================= */
-
-.image-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
-    background: rgba(0,0,0,0.94);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    touch-action: none;
-}
-
-.modal-image-wrap {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.image-modal img {
-    max-width: 90%;
-    max-height: 88vh;
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 22px;
-    color: white;
-    font-size: 38px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.modal-prev,
-.modal-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.16);
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-.modal-prev {
-    left: 20px;
-}
-
-.modal-next {
-    right: 20px;
-}
-
-.modal-counter {
-    position: absolute;
-    bottom: 22px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    background: rgba(0,0,0,0.55);
-    padding: 7px 13px;
-    border-radius: 20px;
-    font-size: 14px;
-    z-index: 10;
-}
-
-/* ================= LOADING ================= */
-
-.loading {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    color: #777;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 900px) {
-
-    .products {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .image-box {
-        height: 220px;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 650px) {
-
-    header {
-        padding: 18px 15px;
-    }
-
-    .logo {
-        font-size: 25px;
-    }
-
-    .subtitle {
-        font-size: 13px;
-    }
-
-    .container {
-        padding: 12px;
-    }
-
-    .products {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .image-box {
-        height: 190px;
-    }
-
-    .card-info {
-        padding: 11px;
-    }
-
-    .name {
-        font-size: 16px;
-    }
-
-    .price {
-        font-size: 17px;
-    }
-
-    .detail {
-        padding: 12px;
-    }
-
-    .detail-image-box {
-        height: 350px;
-    }
-
-    .detail-name {
-        font-size: 27px;
-    }
-
-    .detail-price {
-        font-size: 24px;
-    }
-
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .info-row {
-        font-size: 18px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
-    .gallery-item {
-        height: 200px;
-    }
-
-    .modal-prev,
-    .modal-next {
-        display: none;
-    }
-
-    .image-modal {
-        padding: 10px;
-    }
-
-    .image-modal img {
-        max-width: 96%;
-        max-height: 85vh;
-    }
-
-}
-
-@media (max-width: 400px) {
-
-    .products {
-        gap: 8px;
-    }
-
-    .image-box {
-        height: 170px;
-    }
-
-    .gallery-item {
-        height: 170px;
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TSPORT - Vợt Cầu Lông Lướt</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f6f8;
+            color: #171717;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            margin-top: 5px;
+            color: #eeeeee;
+            font-size: 15px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            margin-bottom: 15px;
+        }
+
+        .search {
+            width: 100%;
+            padding: 14px 17px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #888;
+        }
+
+        /* =========================
+           FILTER
+        ========================= */
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        select {
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 10px;
+            padding: 11px 13px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        /* =========================
+           COUNT
+        ========================= */
+
+        .count {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .image-box {
+            width: 100%;
+            height: 260px;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .no-image {
+            color: #aaa;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .card-info {
+            padding: 14px;
+        }
+
+        .brand {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           NAME + BUTTON
+        ========================= */
+
+        .name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .name {
+            flex: 1;
+            min-width: 0;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .detail-button {
+            flex-shrink: 0;
+            border: none;
+            background: #111;
+            color: white;
+            padding: 7px 9px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .detail-button:hover {
+            background: #333;
+        }
+
+        .price {
+            margin-top: 10px;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .meta {
+            margin-top: 8px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           DETAIL
+        ========================= */
+
+        .detail {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .back {
+            border: none;
+            background: #111;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .detail-image-box {
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            margin: auto;
+            background: #fafafa;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .detail-content {
+            max-width: 800px;
+            margin: 30px auto 0;
+            text-align: center;
+        }
+
+        .detail-brand {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .detail-name {
+            font-size: 34px;
+            font-weight: 800;
+            margin-top: 7px;
+        }
+
+        .detail-price {
+            font-size: 30px;
+            font-weight: 800;
+            margin: 15px 0 25px;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .info-row {
+            background: #f7f7f7;
+            border-radius: 12px;
+            padding: 16px 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .info-row strong {
+            display: block;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        /* =========================
+           IMAGE MODAL
+        ========================= */
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0,0,0,0.94);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            touch-action: none;
+        }
+
+        .modal-image-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 88vh;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 22px;
+            color: white;
+            font-size: 38px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-prev,
+        .modal-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.16);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-counter {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0,0,0,0.55);
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        /* =========================
+           LOADING / ERROR
+        ========================= */
+
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #777;
+        }
+
+        .error-box {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+            background: white;
+            border-radius: 14px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .image-box {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 20px 12px;
+            }
+
+            .logo {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 12px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .image-box {
+                height: 190px;
+            }
+
+            .card-info {
+                padding: 11px;
+            }
+
+            .name {
+                font-size: 16px;
+            }
+
+            .detail-button {
+                font-size: 11px;
+                padding: 6px 7px;
+            }
+
+            .price {
+                font-size: 17px;
+            }
+
+            .detail {
+                padding: 12px;
+            }
+
+            .detail-image-box {
+                height: 350px;
+            }
+
+            .detail-name {
+                font-size: 27px;
+            }
+
+            .detail-price {
+                font-size: 24px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-row {
+                font-size: 17px;
+            }
+
+            .modal-prev,
+            .modal-next {
+                display: none !important;
+            }
+
+            .image-modal {
+                padding: 10px;
+            }
+
+            .image-modal img {
+                max-width: 96%;
+                max-height: 85vh;
+            }
+
+            .modal-counter {
+                bottom: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .products {
+                gap: 8px;
+            }
+
+            .image-box {
+                height: 170px;
+            }
+
+            .detail-button {
+                font-size: 10px;
+                padding: 5px 6px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-
-```
-<div class="logo">
-    TSPORT
-</div>
-
-<div class="subtitle">
-    Vợt Cầu Lông Lướt
-</div>
-```
-
+    <div class="logo">TSPORT</div>
+    <div class="subtitle">Vợt Cầu Lông Lướt</div>
 </header>
 
 <div class="container">
 
-```
-<!-- SEARCH -->
-
-<div class="search-box">
-
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="🔎 Tìm vợt, mã, hãng..."
-    >
-
-</div>
-
-<!-- FILTER -->
-
-<div class="filters">
-
-    <select id="brandFilter">
-
-        <option value="">
-            Tất cả hãng
-        </option>
-
-    </select>
-
-    <select id="styleFilter">
-
-        <option value="">
-            Tất cả lối đánh
-        </option>
-
-    </select>
-
-</div>
-
-<!-- COUNT -->
-
-<div
-    id="count"
-    class="count">
-</div>
-
-<!-- PRODUCTS -->
-
-<div
-    id="products"
-    class="products">
-
-    <div class="loading">
-        Đang tải sản phẩm...
+    <div class="search-box">
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="🔎 Tìm vợt, mã, hãng..."
+        >
     </div>
 
-</div>
+    <div class="filters">
 
-<!-- DETAIL -->
+        <select id="brandFilter">
+            <option value="">Tất cả hãng</option>
+        </select>
 
-<div
-    id="detail"
-    class="detail">
-</div>
-```
+        <select id="styleFilter">
+            <option value="">Tất cả lối đánh</option>
+        </select>
 
-</div>
-
-<!-- ================= IMAGE MODAL ================= -->
-
-<div
-    id="imageModal"
-    class="image-modal"
->
-
-```
-<div
-    class="modal-image-wrap"
-    id="modalImageWrap"
->
-
-    <div
-        class="modal-close"
-        id="modalClose"
-    >
-        ×
     </div>
 
-    <button
-        class="modal-prev"
-        id="modalPrev"
-        type="button"
-    >
-        ‹
-    </button>
-
-    <img
-        id="modalImage"
-        src=""
-        alt=""
-    >
-
-    <button
-        class="modal-next"
-        id="modalNext"
-        type="button"
-    >
-        ›
-    </button>
-
-    <div
-        class="modal-counter"
-        id="modalCounter"
-    >
-        1 / 1
+    <div id="count" class="count">
+        Đang tải...
     </div>
 
+    <div id="products" class="products">
+        <div class="loading">
+            Đang tải sản phẩm...
+        </div>
+    </div>
+
+    <div id="detail" class="detail"></div>
+
 </div>
-```
+
+<!-- IMAGE MODAL -->
+
+<div id="imageModal" class="image-modal">
+
+    <div class="modal-image-wrap">
+
+        <div
+            class="modal-close"
+            id="modalClose"
+        >
+            ×
+        </div>
+
+        <button
+            class="modal-prev"
+            id="modalPrev"
+            type="button"
+        >
+            ‹
+        </button>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Ảnh chi tiết"
+        >
+
+        <button
+            class="modal-next"
+            id="modalNext"
+            type="button"
+        >
+            ›
+        </button>
+
+        <div
+            class="modal-counter"
+            id="modalCounter"
+        >
+            1 / 1
+        </div>
+
+    </div>
 
 </div>
 
 <script>
 
+"use strict";
+
 /* =====================================================
-   GOOGLE SHEETS
+   CONFIG
 ===================================================== */
 
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
-
-/* =====================================================
-   CLOUDFLARE IMAGE API
-===================================================== */
+    "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
 const IMAGE_API =
-"https://tsport-image-api.ntr9766.workers.dev/";
+    "https://tsport-image-api.ntr9766.workers.dev/";
+
+const REQUEST_TIMEOUT = 15000;
+
 
 /* =====================================================
    DATA
@@ -709,20 +648,129 @@ let currentGallery = [];
 
 let currentImageIndex = 0;
 
+
 /* =====================================================
-   GOOGLE DRIVE IMAGE
+   DOM
+===================================================== */
+
+const productsElement =
+    document.getElementById("products");
+
+const countElement =
+    document.getElementById("count");
+
+const searchElement =
+    document.getElementById("search");
+
+const brandFilterElement =
+    document.getElementById("brandFilter");
+
+const styleFilterElement =
+    document.getElementById("styleFilter");
+
+const detailElement =
+    document.getElementById("detail");
+
+const imageModal =
+    document.getElementById("imageModal");
+
+const modalImage =
+    document.getElementById("modalImage");
+
+const modalCounter =
+    document.getElementById("modalCounter");
+
+const modalPrev =
+    document.getElementById("modalPrev");
+
+const modalNext =
+    document.getElementById("modalNext");
+
+const modalClose =
+    document.getElementById("modalClose");
+
+
+/* =====================================================
+   SAFE FETCH
+===================================================== */
+
+async function fetchWithTimeout(
+    url,
+    options = {},
+    timeout = REQUEST_TIMEOUT
+) {
+
+    const controller =
+        new AbortController();
+
+    const timer =
+        setTimeout(
+            () => controller.abort(),
+            timeout
+        );
+
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    ...options,
+                    signal:
+                        controller.signal
+                }
+            );
+
+        return response;
+
+    } finally {
+
+        clearTimeout(timer);
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   IMAGE URL
 ===================================================== */
 
 function getImageUrl(url) {
 
-    if (!url) return "";
+    if (!url) {
+        return "";
+    }
 
-    url = String(url).trim();
+    const cleanUrl =
+        String(url).trim();
+
+    if (!cleanUrl) {
+        return "";
+    }
 
     let id = "";
 
     let match =
-        url.match(/\/file\/d\/([^/]+)/);
+        cleanUrl.match(
+            /\/file\/d\/([^/]+)/
+        );
 
     if (match) {
         id = match[1];
@@ -731,7 +779,9 @@ function getImageUrl(url) {
     if (!id) {
 
         match =
-            url.match(/[?&]id=([^&]+)/);
+            cleanUrl.match(
+                /[?&]id=([^&]+)/
+            );
 
         if (match) {
             id = match[1];
@@ -750,9 +800,10 @@ function getImageUrl(url) {
 
     }
 
-    return url;
+    return cleanUrl;
 
 }
+
 
 /* =====================================================
    CSV PARSER
@@ -776,7 +827,8 @@ function parseCSV(text) {
 
         const char = text[i];
 
-        const next = text[i + 1];
+        const next =
+            text[i + 1];
 
         if (
             char === '"' &&
@@ -835,8 +887,8 @@ function parseCSV(text) {
 
             if (
                 row.some(
-                    x =>
-                        x.trim() !== ""
+                    cell =>
+                        cell.trim() !== ""
                 )
             ) {
 
@@ -858,15 +910,15 @@ function parseCSV(text) {
 
     if (
         value !== "" ||
-        row.length
+        row.length > 0
     ) {
 
         row.push(value);
 
         if (
             row.some(
-                x =>
-                    x.trim() !== ""
+                cell =>
+                    cell.trim() !== ""
             )
         ) {
 
@@ -877,15 +929,13 @@ function parseCSV(text) {
     }
 
     if (rows.length < 1) {
-
         return [];
-
     }
 
     const headers =
         rows[0].map(
-            x =>
-                x
+            header =>
+                String(header)
                     .trim()
                     .replace(
                         /^\uFEFF/,
@@ -895,20 +945,20 @@ function parseCSV(text) {
 
     return rows
         .slice(1)
-        .map(row => {
+        .map(rowData => {
 
             const item = {};
 
             headers.forEach(
-                (
-                    header,
-                    index
-                ) => {
+                (header, index) => {
+
+                    if (!header) {
+                        return;
+                    }
 
                     item[header] =
-                        (
-                            row[index] ||
-                            ""
+                        String(
+                            rowData[index] ?? ""
                         ).trim();
 
                 }
@@ -920,16 +970,26 @@ function parseCSV(text) {
 
 }
 
+
 /* =====================================================
    LOAD PRODUCTS
 ===================================================== */
 
 async function loadProducts() {
 
+    productsElement.innerHTML = `
+        <div class="loading">
+            Đang tải sản phẩm...
+        </div>
+    `;
+
+    countElement.textContent =
+        "Đang tải...";
+
     try {
 
         const response =
-            await fetch(
+            await fetchWithTimeout(
                 SHEET_URL +
                 "&t=" +
                 Date.now()
@@ -938,7 +998,8 @@ async function loadProducts() {
         if (!response.ok) {
 
             throw new Error(
-                "Không thể tải Google Sheet"
+                "Google Sheets trả về lỗi " +
+                response.status
             );
 
         }
@@ -946,18 +1007,21 @@ async function loadProducts() {
         const text =
             await response.text();
 
-        products =
+        const data =
             parseCSV(text);
 
-        /*
-         * Cho phép Google Sheet chưa có
-         * sản phẩm nào.
-         */
+        products = data;
 
         createFilters();
 
         displayProducts(
             products
+        );
+
+        console.log(
+            "Đã tải:",
+            products.length,
+            "sản phẩm"
         );
 
     } catch (error) {
@@ -967,77 +1031,61 @@ async function loadProducts() {
             error
         );
 
-        document.getElementById(
-            "products"
-        ).innerHTML = `
+        products = [];
 
-            <div class="loading">
+        countElement.textContent =
+            "Không tải được dữ liệu";
 
-                Không thể tải dữ liệu.
-
+        productsElement.innerHTML = `
+            <div class="error-box">
+                <strong>Không thể tải danh sách vợt.</strong>
                 <br><br>
-
-                Kiểm tra lại Google Sheet.
-
+                Kiểm tra Google Sheets hoặc kết nối mạng rồi tải lại trang.
             </div>
-
         `;
 
     }
 
 }
 
+
 /* =====================================================
-   FILTER OPTIONS
+   FILTERS
 ===================================================== */
 
 function createFilters() {
 
-    const brandFilter =
-        document.getElementById(
-            "brandFilter"
-        );
+    brandFilterElement.innerHTML =
+        `<option value="">Tất cả hãng</option>`;
 
-    const styleFilter =
-        document.getElementById(
-            "styleFilter"
-        );
-
-    brandFilter.innerHTML = `
-        <option value="">
-            Tất cả hãng
-        </option>
-    `;
-
-    styleFilter.innerHTML = `
-        <option value="">
-            Tất cả lối đánh
-        </option>
-    `;
+    styleFilterElement.innerHTML =
+        `<option value="">Tất cả lối đánh</option>`;
 
     const brands =
         [
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Hãng"]
+                        product =>
+                            product["Hãng"]
                     )
                     .filter(Boolean)
             )
-        ];
+        ]
+        .sort();
 
     const styles =
         [
             ...new Set(
                 products
                     .map(
-                        p =>
-                            p["Lối đánh"]
+                        product =>
+                            product["Lối đánh"]
                     )
                     .filter(Boolean)
             )
-        ];
+        ]
+        .sort();
 
     brands.forEach(
         brand => {
@@ -1048,10 +1096,9 @@ function createFilters() {
                 );
 
             option.value = brand;
-
             option.textContent = brand;
 
-            brandFilter.appendChild(
+            brandFilterElement.appendChild(
                 option
             );
 
@@ -1067,10 +1114,9 @@ function createFilters() {
                 );
 
             option.value = style;
-
             option.textContent = style;
 
-            styleFilter.appendChild(
+            styleFilterElement.appendChild(
                 option
             );
 
@@ -1079,27 +1125,30 @@ function createFilters() {
 
 }
 
+
 /* =====================================================
    PRICE
 ===================================================== */
 
 function formatPrice(price) {
 
-    if (!price) return "";
+    if (!price) {
+        return "";
+    }
+
+    const raw =
+        String(price).trim();
 
     const number =
         Number(
-            String(price)
-                .replace(
-                    /[^\d]/g,
-                    ""
-                )
+            raw.replace(
+                /[^\d]/g,
+                ""
+            )
         );
 
     if (!number) {
-
-        return escapeHTML(price);
-
+        return escapeHTML(raw);
     }
 
     return (
@@ -1109,42 +1158,32 @@ function formatPrice(price) {
 
 }
 
+
 /* =====================================================
    DISPLAY PRODUCTS
 ===================================================== */
 
 function displayProducts(list) {
 
-    const container =
-        document.getElementById(
-            "products"
-        );
+    productsElement.innerHTML = "";
 
-    const count =
-        document.getElementById(
-            "count"
-        );
-
-    container.innerHTML = "";
-
-    count.textContent =
+    countElement.textContent =
         `${list.length} sản phẩm`;
 
     if (!list.length) {
 
-        container.innerHTML = `
-
+        productsElement.innerHTML = `
             <div class="loading">
-
-                Chưa có sản phẩm.
-
+                Không tìm thấy vợt.
             </div>
-
         `;
 
         return;
 
     }
+
+    const fragment =
+        document.createDocumentFragment();
 
     list.forEach(
         product => {
@@ -1162,12 +1201,11 @@ function displayProducts(list) {
                     product["Ảnh"]
                 );
 
-            let imageHTML = "";
+            let imageHTML;
 
             if (image) {
 
                 imageHTML = `
-
                     <img
                         src="${escapeHTML(image)}"
                         alt="${escapeHTML(
@@ -1175,80 +1213,55 @@ function displayProducts(list) {
                         )}"
                         loading="lazy"
                     >
-
                 `;
 
             } else {
 
                 imageHTML = `
-
                     <div class="no-image">
-
                         Không có ảnh
-
                     </div>
-
                 `;
 
             }
 
+            const hasGallery =
+                Boolean(
+                    product["Ảnh chi tiết"]
+                );
+
             card.innerHTML = `
 
                 <div class="image-box">
-
                     ${imageHTML}
-
                 </div>
 
                 <div class="card-info">
 
                     <div class="brand">
-
                         ${escapeHTML(
                             product["Hãng"] || ""
                         )}
-
                     </div>
 
-                    <div class="name">
+                    <div class="name-row">
 
-                        ${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}
-
-                    </div>
-
-                    <div class="price">
-
-                        ${formatPrice(
-                            product["Giá"]
-                        )}
-
-                    </div>
-
-                    <div class="meta">
-
-                        ${escapeHTML(
-                            product["Tình trạng vợt"] || ""
-                        )}
-
-                        ${(
-                            product["Tình trạng vợt"] &&
-                            product["Tình trạng cước"]
-                        ) ? " · " : ""}
-
-                        ${escapeHTML(
-                            product["Tình trạng cước"] || ""
-                        )}
+                        <div class="name">
+                            ${escapeHTML(
+                                product["Tên vợt"] || ""
+                            )}
+                        </div>
 
                         ${
-                            product["Lối đánh"]
+                            hasGallery
                             ?
                             `
-                            <br>
-                            ${escapeHTML(
-                                product["Lối đánh"]
-                            )}
+                            <button
+                                class="detail-button"
+                                type="button"
+                            >
+                                🖼️ Xem ảnh
+                            </button>
                             `
                             :
                             ""
@@ -1256,29 +1269,139 @@ function displayProducts(list) {
 
                     </div>
 
-                </div>
+                    <div class="price">
+                        ${formatPrice(
+                            product["Giá"]
+                        )}
+                    </div>
 
+                    <div class="meta">
+                        ${escapeHTML(
+                            product["Tình trạng vợt"] || ""
+                        )}
+
+                        ${
+                            product["Tình trạng cước"]
+                            ?
+                            " · " +
+                            escapeHTML(
+                                product["Tình trạng cước"]
+                            )
+                            :
+                            ""
+                        }
+
+                        <br>
+
+                        ${escapeHTML(
+                            product["Lối đánh"] || ""
+                        )}
+                    </div>
+
+                </div>
             `;
+
+            const mainImage =
+                card.querySelector(
+                    ".image-box img"
+                );
+
+            if (mainImage) {
+
+                mainImage.addEventListener(
+                    "error",
+                    function() {
+
+                        this.style.display =
+                            "none";
+
+                        const parent =
+                            this.parentElement;
+
+                        if (
+                            parent &&
+                            !parent.querySelector(
+                                ".no-image"
+                            )
+                        ) {
+
+                            const fallback =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            fallback.className =
+                                "no-image";
+
+                            fallback.textContent =
+                                "Không có ảnh";
+
+                            parent.appendChild(
+                                fallback
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
 
             card.addEventListener(
                 "click",
-                function() {
+                function(event) {
 
-                    showDetail(
-                        product
-                    );
+                    const button =
+                        event.target.closest(
+                            ".detail-button"
+                        );
+
+                    if (button) {
+                        return;
+                    }
+
+                    showDetail(product);
 
                 }
             );
 
-            container.appendChild(
+            const button =
+                card.querySelector(
+                    ".detail-button"
+                );
+
+            if (button) {
+
+                button.addEventListener(
+                    "click",
+                    function(event) {
+
+                        event.preventDefault();
+
+                        event.stopPropagation();
+
+                        openProductGallery(
+                            product
+                        );
+
+                    }
+                );
+
+            }
+
+            fragment.appendChild(
                 card
             );
 
         }
     );
 
+    productsElement.appendChild(
+        fragment
+    );
+
 }
+
 
 /* =====================================================
    GET FOLDER
@@ -1286,40 +1409,34 @@ function displayProducts(list) {
 
 function getFolderFromProduct(product) {
 
-    if (
-        !product ||
-        !product["Ảnh chi tiết"]
-    ) {
+    const value =
+        product?.["Ảnh chi tiết"];
 
+    if (!value) {
         return "";
-
     }
 
     try {
 
-        const detailURL =
+        const url =
             new URL(
-                product["Ảnh chi tiết"]
+                String(value).trim()
             );
 
         return (
-            detailURL.searchParams.get(
+            url.searchParams.get(
                 "folder"
             ) || ""
         );
 
-    } catch (error) {
-
-        console.error(
-            "Lỗi đọc folder:",
-            error
-        );
+    } catch {
 
         return "";
 
     }
 
 }
+
 
 /* =====================================================
    LOAD GALLERY
@@ -1328,9 +1445,7 @@ function getFolderFromProduct(product) {
 async function loadGalleryImages(folder) {
 
     if (!folder) {
-
         return [];
-
     }
 
     try {
@@ -1338,29 +1453,24 @@ async function loadGalleryImages(folder) {
         const url =
             IMAGE_API +
             "?folder=" +
-            encodeURIComponent(
-                folder
-            );
+            encodeURIComponent(folder);
 
         const response =
-            await fetch(url);
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Không thể tải gallery"
+            await fetchWithTimeout(
+                url
             );
 
+        if (!response.ok) {
+            return [];
         }
 
         const data =
             await response.json();
 
         if (
+            !data ||
             !data.success ||
-            !Array.isArray(
-                data.images
-            )
+            !Array.isArray(data.images)
         ) {
 
             return [];
@@ -1370,6 +1480,7 @@ async function loadGalleryImages(folder) {
         return data.images
             .map(
                 image =>
+                    image &&
                     image.url
             )
             .filter(Boolean);
@@ -1387,497 +1498,109 @@ async function loadGalleryImages(folder) {
 
 }
 
+
 /* =====================================================
-   SHOW DETAIL
+   OPEN PRODUCT GALLERY
 ===================================================== */
 
-async function showDetail(product) {
-
-    document.getElementById(
-        "products"
-    ).style.display =
-        "none";
-
-    document.getElementById(
-        "count"
-    ).style.display =
-        "none";
-
-    document.querySelector(
-        ".filters"
-    ).style.display =
-        "none";
-
-    document.querySelector(
-        ".search-box"
-    ).style.display =
-        "none";
-
-    const detail =
-        document.getElementById(
-            "detail"
-        );
-
-    detail.style.display =
-        "block";
-
-    const image =
-        getImageUrl(
-            product["Ảnh"]
-        );
-
-    let imageHTML = "";
-
-    if (image) {
-
-        imageHTML = `
-
-            <img
-                class="detail-image"
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(
-                    product["Tên vợt"] || ""
-                )}"
-            >
-
-        `;
-
-    } else {
-
-        imageHTML = `
-
-            <div class="no-image">
-
-                Không có ảnh
-
-            </div>
-
-        `;
-
-    }
-
-    detail.innerHTML = `
-
-        <button
-            class="back"
-            id="backButton"
-        >
-
-            ← Quay lại
-
-        </button>
-
-        <div class="detail-image-box">
-
-            ${imageHTML}
-
-        </div>
-
-        <div class="detail-content">
-
-            <div class="detail-brand">
-
-                ${escapeHTML(
-                    product["Hãng"] || ""
-                )}
-
-            </div>
-
-            <div class="detail-name">
-
-                ${escapeHTML(
-                    product["Tên vợt"] || ""
-                )}
-
-            </div>
-
-            <div class="detail-price">
-
-                ${formatPrice(
-                    product["Giá"]
-                )}
-
-            </div>
-
-            <div class="info-grid">
-
-                <div class="info-row">
-
-                    <strong>Mã vợt</strong>
-
-                    ${escapeHTML(
-                        product["Mã"] || "-"
-                    )}
-
-                </div>
-
-                <div class="info-row">
-
-                    <strong>Tình trạng cước</strong>
-
-                    ${escapeHTML(
-                        product["Tình trạng cước"] || "-"
-                    )}
-
-                </div>
-
-                <div class="info-row">
-
-                    <strong>Tình trạng vợt</strong>
-
-                    ${escapeHTML(
-                        product["Tình trạng vợt"] || "-"
-                    )}
-
-                </div>
-
-                <div class="info-row">
-
-                    <strong>Lối đánh</strong>
-
-                    ${escapeHTML(
-                        product["Lối đánh"] || "-"
-                    )}
-
-                </div>
-
-                <div class="info-row">
-
-                    <strong>Ghi chú</strong>
-
-                    ${escapeHTML(
-                        product["Ghi chú"] || "-"
-                    )}
-
-                </div>
-
-            </div>
-
-            <!-- ẢNH CHI TIẾT -->
-
-            <div class="gallery-title">
-
-                <span class="gallery-arrow">
-                    ↓
-                </span>
-
-                Ảnh chi tiết của vợt
-
-                <div class="gallery-subtitle">
-
-                    Bấm vào ảnh để xem ảnh lớn
-
-                </div>
-
-            </div>
-
-            <div
-                id="detailGallery"
-                class="gallery"
-            >
-
-                <div class="loading">
-
-                    Đang tải ảnh chi tiết...
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    document
-        .getElementById(
-            "backButton"
-        )
-        .addEventListener(
-            "click",
-            closeDetail
-        );
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-    const gallery =
-        document.getElementById(
-            "detailGallery"
-        );
+async function openProductGallery(product) {
 
     const folder =
         getFolderFromProduct(
             product
         );
 
-    const urls =
-        await loadGalleryImages(
-            folder
+    if (!folder) {
+
+        alert(
+            "Sản phẩm này chưa có ảnh chi tiết."
         );
-
-    if (!urls.length) {
-
-        gallery.innerHTML = `
-
-            <div class="loading">
-
-                Chưa có ảnh chi tiết.
-
-            </div>
-
-        `;
 
         return;
 
     }
 
-    gallery.innerHTML = "";
+    const button =
+        event?.currentTarget;
 
-    urls.forEach(
-        (url, index) => {
+    if (button) {
+        button.disabled = true;
+    }
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+    try {
 
-            item.className =
-                "gallery-item";
-
-            item.innerHTML = `
-
-                <img
-                    src="${escapeHTML(url)}"
-                    alt="Ảnh chi tiết"
-                    loading="lazy"
-                >
-
-            `;
-
-            item.addEventListener(
-                "click",
-                function() {
-
-                    currentGallery =
-                        urls;
-
-                    currentImageIndex =
-                        index;
-
-                    showModalImage();
-
-                }
+        const urls =
+            await loadGalleryImages(
+                folder
             );
 
-            gallery.appendChild(
-                item
+        if (!urls.length) {
+
+            alert(
+                "Không tìm thấy ảnh chi tiết."
             );
+
+            return;
 
         }
-    );
+
+        currentGallery =
+            urls;
+
+        currentImageIndex = 0;
+
+        showModalImage();
+
+    } finally {
+
+        if (button) {
+            button.disabled = false;
+        }
+
+    }
 
 }
 
-/* =====================================================
-   CLOSE DETAIL
-===================================================== */
-
-function closeDetail() {
-
-    document.getElementById(
-        "products"
-    ).style.display =
-        "grid";
-
-    document.getElementById(
-        "count"
-    ).style.display =
-        "block";
-
-    document.querySelector(
-        ".filters"
-    ).style.display =
-        "flex";
-
-    document.querySelector(
-        ".search-box"
-    ).style.display =
-        "block";
-
-    document.getElementById(
-        "detail"
-    ).style.display =
-        "none";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
 
 /* =====================================================
-   SEARCH + FILTER
-===================================================== */
-
-function filterProducts() {
-
-    const search =
-        document.getElementById(
-            "search"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-    const brand =
-        document.getElementById(
-            "brandFilter"
-        ).value;
-
-    const style =
-        document.getElementById(
-            "styleFilter"
-        ).value;
-
-    const filtered =
-        products.filter(
-            product => {
-
-                const text =
-                    Object.values(
-                        product
-                    )
-                    .join(" ")
-                    .toLowerCase();
-
-                return (
-
-                    text.includes(
-                        search
-                    )
-
-                    &&
-
-                    (
-                        !brand ||
-                        product["Hãng"] ===
-                        brand
-                    )
-
-                    &&
-
-                    (
-                        !style ||
-                        product["Lối đánh"] ===
-                        style
-                    )
-
-                );
-
-            }
-        );
-
-    displayProducts(
-        filtered
-    );
-
-}
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-/* =====================================================
-   MODAL
+   SHOW MODAL IMAGE
 ===================================================== */
 
 function showModalImage() {
 
-    if (
-        !currentGallery.length
-    ) {
-
+    if (!currentGallery.length) {
         return;
-
     }
 
-    const modal =
-        document.getElementById(
-            "imageModal"
-        );
-
-    const image =
-        document.getElementById(
-            "modalImage"
-        );
-
-    const counter =
-        document.getElementById(
-            "modalCounter"
-        );
-
-    image.src =
+    modalImage.src =
         currentGallery[
             currentImageIndex
         ];
 
-    counter.textContent =
+    modalCounter.textContent =
         `${currentImageIndex + 1} / ${currentGallery.length}`;
 
     const hasMultiple =
         currentGallery.length > 1;
 
-    document.getElementById(
-        "modalPrev"
-    ).style.display =
-        hasMultiple ? "" : "none";
+    modalPrev.style.display =
+        hasMultiple
+        ? "flex"
+        : "none";
 
-    document.getElementById(
-        "modalNext"
-    ).style.display =
-        hasMultiple ? "" : "none";
+    modalNext.style.display =
+        hasMultiple
+        ? "flex"
+        : "none";
 
-    modal.style.display =
+    imageModal.style.display =
         "flex";
 
     document.body.style.overflow =
         "hidden";
 
 }
+
 
 /* =====================================================
    NEXT
@@ -1888,9 +1611,7 @@ function nextImage() {
     if (
         currentGallery.length <= 1
     ) {
-
         return;
-
     }
 
     currentImageIndex =
@@ -1903,6 +1624,7 @@ function nextImage() {
 
 }
 
+
 /* =====================================================
    PREVIOUS
 ===================================================== */
@@ -1912,9 +1634,7 @@ function previousImage() {
     if (
         currentGallery.length <= 1
     ) {
-
         return;
-
     }
 
     currentImageIndex =
@@ -1929,90 +1649,303 @@ function previousImage() {
 
 }
 
+
 /* =====================================================
    CLOSE MODAL
 ===================================================== */
 
 function closeImageModal() {
 
-    document.getElementById(
-        "imageModal"
-    ).style.display =
+    imageModal.style.display =
         "none";
+
+    modalImage.src = "";
 
     document.body.style.overflow =
         "";
 
 }
 
+
+/* =====================================================
+   DETAIL PAGE
+===================================================== */
+
+function showDetail(product) {
+
+    productsElement.style.display =
+        "none";
+
+    countElement.style.display =
+        "none";
+
+    document.querySelector(
+        ".filters"
+    ).style.display =
+        "none";
+
+    document.querySelector(
+        ".search-box"
+    ).style.display =
+        "none";
+
+    detailElement.style.display =
+        "block";
+
+    const image =
+        getImageUrl(
+            product["Ảnh"]
+        );
+
+    const imageHTML =
+        image
+        ?
+        `
+        <img
+            class="detail-image"
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(
+                product["Tên vợt"] || ""
+            )}"
+        >
+        `
+        :
+        `
+        <div class="no-image">
+            Không có ảnh
+        </div>
+        `;
+
+    detailElement.innerHTML = `
+
+        <button
+            class="back"
+            type="button"
+            id="backButton"
+        >
+            ← Quay lại
+        </button>
+
+        <div class="detail-image-box">
+            ${imageHTML}
+        </div>
+
+        <div class="detail-content">
+
+            <div class="detail-brand">
+                ${escapeHTML(
+                    product["Hãng"] || ""
+                )}
+            </div>
+
+            <div class="detail-name">
+                ${escapeHTML(
+                    product["Tên vợt"] || ""
+                )}
+            </div>
+
+            <div class="detail-price">
+                ${formatPrice(
+                    product["Giá"]
+                )}
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-row">
+                    <strong>Mã vợt</strong>
+                    ${escapeHTML(
+                        product["Mã"] || "-"
+                    )}
+                </div>
+
+                <div class="info-row">
+                    <strong>Tình trạng cước</strong>
+                    ${escapeHTML(
+                        product["Tình trạng cước"] || "-"
+                    )}
+                </div>
+
+                <div class="info-row">
+                    <strong>Tình trạng vợt</strong>
+                    ${escapeHTML(
+                        product["Tình trạng vợt"] || "-"
+                    )}
+                </div>
+
+                <div class="info-row">
+                    <strong>Lối đánh</strong>
+                    ${escapeHTML(
+                        product["Lối đánh"] || "-"
+                    )}
+                </div>
+
+                <div class="info-row">
+                    <strong>Ghi chú</strong>
+                    ${escapeHTML(
+                        product["Ghi chú"] || "-"
+                    )}
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    document
+        .getElementById("backButton")
+        .addEventListener(
+            "click",
+            closeDetail
+        );
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   CLOSE DETAIL
+===================================================== */
+
+function closeDetail() {
+
+    detailElement.style.display =
+        "none";
+
+    productsElement.style.display =
+        "grid";
+
+    countElement.style.display =
+        "block";
+
+    document.querySelector(
+        ".filters"
+    ).style.display =
+        "flex";
+
+    document.querySelector(
+        ".search-box"
+    ).style.display =
+        "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function filterProducts() {
+
+    const search =
+        searchElement.value
+            .toLowerCase()
+            .trim();
+
+    const brand =
+        brandFilterElement.value;
+
+    const style =
+        styleFilterElement.value;
+
+    const filtered =
+        products.filter(
+            product => {
+
+                const text =
+                    Object.values(
+                        product
+                    )
+                    .join(" ")
+                    .toLowerCase();
+
+                return (
+                    text.includes(search) &&
+                    (
+                        !brand ||
+                        product["Hãng"] === brand
+                    ) &&
+                    (
+                        !style ||
+                        product["Lối đánh"] === style
+                    )
+                );
+
+            }
+        );
+
+    displayProducts(
+        filtered
+    );
+
+}
+
+
 /* =====================================================
    MODAL EVENTS
 ===================================================== */
 
-document
-    .getElementById(
-        "modalClose"
-    )
-    .addEventListener(
-        "click",
-        function(event) {
+modalClose.addEventListener(
+    "click",
+    function(event) {
 
-            event.stopPropagation();
+        event.stopPropagation();
+
+        closeImageModal();
+
+    }
+);
+
+
+modalPrev.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        previousImage();
+
+    }
+);
+
+
+modalNext.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        nextImage();
+
+    }
+);
+
+
+imageModal.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target ===
+            imageModal
+        ) {
 
             closeImageModal();
 
         }
-    );
 
-document
-    .getElementById(
-        "modalPrev"
-    )
-    .addEventListener(
-        "click",
-        function(event) {
+    }
+);
 
-            event.stopPropagation();
-
-            previousImage();
-
-        }
-    );
-
-document
-    .getElementById(
-        "modalNext"
-    )
-    .addEventListener(
-        "click",
-        function(event) {
-
-            event.stopPropagation();
-
-            nextImage();
-
-        }
-    );
-
-document
-    .getElementById(
-        "imageModal"
-    )
-    .addEventListener(
-        "click",
-        function(event) {
-
-            if (
-                event.target ===
-                this
-            ) {
-
-                closeImageModal();
-
-            }
-
-        }
-    );
 
 /* =====================================================
    KEYBOARD
@@ -2022,13 +1955,8 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-        const modal =
-            document.getElementById(
-                "imageModal"
-            );
-
         if (
-            modal.style.display !==
+            imageModal.style.display !==
             "flex"
         ) {
 
@@ -2066,33 +1994,25 @@ document.addEventListener(
     }
 );
 
+
 /* =====================================================
    MOBILE SWIPE
 ===================================================== */
 
 let touchStartX = 0;
 
-let touchEndX = 0;
-
-const modal =
-    document.getElementById(
-        "imageModal"
-    );
-
-modal.addEventListener(
+imageModal.addEventListener(
     "touchstart",
     function(event) {
 
         if (
-            !event.touches.length
+            event.touches.length
         ) {
 
-            return;
+            touchStartX =
+                event.touches[0].clientX;
 
         }
-
-        touchStartX =
-            event.touches[0].clientX;
 
     },
     {
@@ -2100,7 +2020,8 @@ modal.addEventListener(
     }
 );
 
-modal.addEventListener(
+
+imageModal.addEventListener(
     "touchend",
     function(event) {
 
@@ -2112,7 +2033,7 @@ modal.addEventListener(
 
         }
 
-        touchEndX =
+        const touchEndX =
             event.changedTouches[0].clientX;
 
         const distance =
@@ -2143,36 +2064,26 @@ modal.addEventListener(
     }
 );
 
+
 /* =====================================================
-   EVENTS
+   SEARCH EVENTS
 ===================================================== */
 
-document
-    .getElementById(
-        "search"
-    )
-    .addEventListener(
-        "input",
-        filterProducts
-    );
+searchElement.addEventListener(
+    "input",
+    filterProducts
+);
 
-document
-    .getElementById(
-        "brandFilter"
-    )
-    .addEventListener(
-        "change",
-        filterProducts
-    );
+brandFilterElement.addEventListener(
+    "change",
+    filterProducts
+);
 
-document
-    .getElementById(
-        "styleFilter"
-    )
-    .addEventListener(
-        "change",
-        filterProducts
-    );
+styleFilterElement.addEventListener(
+    "change",
+    filterProducts
+);
+
 
 /* =====================================================
    START
@@ -2184,3 +2095,4 @@ loadProducts();
 
 </body>
 </html>
+```
