@@ -585,6 +585,12 @@ select {
             <option value="">Tất cả lối đánh</option>
         </select>
 
+        <!-- THÊM DUY NHẤT CHỨC NĂNG MỚI NHẤT -->
+        <select id="sortFilter">
+            <option value="">Mặc định</option>
+            <option value="newest">Mới nhất</option>
+        </select>
+
     </div>
 
     <div id="count" class="count"></div>
@@ -1261,13 +1267,6 @@ function getFolderFromProduct(product) {
     }
 
 
-    /* ---------------------------------------------
-       TRƯỜNG HỢP 1:
-       Sheet đã ghi full folder
-       
-       /TSPORT/YN002 - 700game
-    --------------------------------------------- */
-
     if (
         value.startsWith("/")
     ) {
@@ -1280,13 +1279,6 @@ function getFolderFromProduct(product) {
         return value;
     }
 
-
-    /* ---------------------------------------------
-       TRƯỜNG HỢP 2:
-       Sheet ghi URL ImageKit Dashboard
-
-       https://imagekit.io/dashboard/media-library/...
-    --------------------------------------------- */
 
     const imageKitMatch =
         value.match(
@@ -1347,15 +1339,6 @@ function getFolderFromProduct(product) {
         }
     }
 
-
-    /* ---------------------------------------------
-       TRƯỜNG HỢP 3:
-       Sheet chỉ ghi tên folder
-
-       YN002 - 700game
-
-       => /TSPORT/YN002 - 700game
-    --------------------------------------------- */
 
     const folder =
         "/TSPORT/" +
@@ -1788,20 +1771,11 @@ async function showDetail(product) {
     });
 
 
-    /* =================================================
-       LOAD ẢNH CHI TIẾT
-    ================================================= */
-
     const galleryContainer =
         document.getElementById(
             "detailGallery"
         );
 
-
-    /*
-       QUAN TRỌNG:
-       Lấy folder từ đúng cột "Ảnh chi tiết".
-    */
 
     const folder =
         getFolderFromProduct(product);
@@ -2002,6 +1976,11 @@ function filterProducts() {
             "styleFilter"
         ).value;
 
+    const sort =
+        document.getElementById(
+            "sortFilter"
+        ).value;
+
     const filtered =
         products.filter(product => {
 
@@ -2024,7 +2003,118 @@ function filterProducts() {
 
         });
 
+
+    /* =================================================
+       CHỈ THÊM CHỨC NĂNG MỚI NHẤT
+    ================================================= */
+
+    if (sort === "newest") {
+
+        filtered.sort(
+            (a, b) => {
+
+                const dateA =
+                    parseProductDate(
+                        a["Ngày"]
+                    );
+
+                const dateB =
+                    parseProductDate(
+                        b["Ngày"]
+                    );
+
+                return dateB - dateA;
+
+            }
+        );
+
+    }
+
+
     displayProducts(filtered);
+
+}
+
+
+/* =====================================================
+   PARSE PRODUCT DATE
+===================================================== */
+
+/*
+    Hỗ trợ:
+
+    08/08/2026
+    8/8/2026
+    08-08-2026
+    2026-08-08
+*/
+
+function parseProductDate(value) {
+
+    if (!value) {
+        return 0;
+    }
+
+    const text =
+        String(value)
+            .trim();
+
+    let match =
+        text.match(
+            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/
+        );
+
+    if (match) {
+
+        const day =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]) - 1;
+
+        const year =
+            Number(match[3]);
+
+        return new Date(
+            year,
+            month,
+            day
+        ).getTime();
+
+    }
+
+
+    match =
+        text.match(
+            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/
+        );
+
+    if (match) {
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]) - 1;
+
+        const day =
+            Number(match[3]);
+
+        return new Date(
+            year,
+            month,
+            day
+        ).getTime();
+
+    }
+
+
+    const timestamp =
+        Date.parse(text);
+
+    return isNaN(timestamp)
+        ? 0
+        : timestamp;
 
 }
 
@@ -2233,6 +2323,18 @@ document
 
 document
     .getElementById("styleFilter")
+    .addEventListener(
+        "change",
+        filterProducts
+    );
+
+
+/* =====================================================
+   NEWEST EVENT
+===================================================== */
+
+document
+    .getElementById("sortFilter")
     .addEventListener(
         "change",
         filterProducts
