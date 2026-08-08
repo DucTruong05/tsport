@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -1215,24 +1216,6 @@ function displayProducts(list) {
    GET FOLDER FROM PRODUCT
 ===================================================== */
 
-/*
-    HỖ TRỢ 3 KIỂU DỮ LIỆU TRONG GOOGLE SHEETS:
-
-    1. YN002 - 700game
-
-    2. /TSPORT/YN002 - 700game
-
-    3. https://imagekit.io/dashboard/media-library/...
-
-    Với dữ liệu hiện tại của bạn:
-        YN002 - 700game
-
-    sẽ trở thành:
-        /TSPORT/YN002 - 700game
-
-    Đây chính xác là folder mà API của bạn đã trả về.
-*/
-
 function getFolderFromProduct(product) {
 
     if (!product) {
@@ -1266,7 +1249,6 @@ function getFolderFromProduct(product) {
         return "";
     }
 
-
     if (
         value.startsWith("/")
     ) {
@@ -1278,7 +1260,6 @@ function getFolderFromProduct(product) {
 
         return value;
     }
-
 
     const imageKitMatch =
         value.match(
@@ -1338,7 +1319,6 @@ function getFolderFromProduct(product) {
             return "";
         }
     }
-
 
     const folder =
         "/TSPORT/" +
@@ -1421,7 +1401,6 @@ async function loadGalleryImages(folder) {
             data
         );
 
-
         if (
             !data ||
             !data.success ||
@@ -1436,7 +1415,6 @@ async function loadGalleryImages(folder) {
             return [];
         }
 
-
         const urls =
             data.images
                 .map(
@@ -1445,7 +1423,6 @@ async function loadGalleryImages(folder) {
                         image.url
                 )
                 .filter(Boolean);
-
 
         console.log(
             "Tìm thấy:",
@@ -1457,7 +1434,6 @@ async function loadGalleryImages(folder) {
             "Danh sách ảnh:",
             urls
         );
-
 
         return urls;
 
@@ -1672,7 +1648,6 @@ async function showDetail(product) {
         </div>
         `;
 
-
     detail.innerHTML = `
 
         <button
@@ -1764,22 +1739,18 @@ async function showDetail(product) {
         </div>
     `;
 
-
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 
     const galleryContainer =
         document.getElementById(
             "detailGallery"
         );
 
-
     const folder =
         getFolderFromProduct(product);
-
 
     console.log(
         "Sản phẩm đang mở:",
@@ -1801,7 +1772,6 @@ async function showDetail(product) {
         folder
     );
 
-
     if (!folder) {
 
         galleryContainer.innerHTML = `
@@ -1817,12 +1787,10 @@ async function showDetail(product) {
         return;
     }
 
-
     const urls =
         await loadGalleryImages(
             folder
         );
-
 
     if (!urls.length) {
 
@@ -1842,11 +1810,9 @@ async function showDetail(product) {
         return;
     }
 
-
     currentGallery = urls;
 
     currentImageIndex = 0;
-
 
     galleryContainer.innerHTML = `
 
@@ -1861,12 +1827,10 @@ async function showDetail(product) {
 
     `;
 
-
     const galleryGrid =
         document.getElementById(
             "detailGalleryGrid"
         );
-
 
     urls.forEach(
         (url, index) => {
@@ -2015,12 +1979,12 @@ function filterProducts() {
 
                 const dateA =
                     parseProductDate(
-                        a["Ngày"]
+                        a["Ngày đăng"]
                     );
 
                 const dateB =
                     parseProductDate(
-                        b["Ngày"]
+                        b["Ngày đăng"]
                     );
 
                 return dateB - dateA;
@@ -2045,8 +2009,10 @@ function filterProducts() {
 
     08/08/2026
     8/8/2026
+    08/08/2026 12:22:38
     08-08-2026
     2026-08-08
+    2026-08-08 12:22:38
 */
 
 function parseProductDate(value) {
@@ -2059,9 +2025,14 @@ function parseProductDate(value) {
         String(value)
             .trim();
 
+
+    /* -----------------------------------------------
+       DD/MM/YYYY hoặc DD/MM/YYYY HH:mm:ss
+    ----------------------------------------------- */
+
     let match =
         text.match(
-            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/
+            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?$/
         );
 
     if (match) {
@@ -2075,18 +2046,34 @@ function parseProductDate(value) {
         const year =
             Number(match[3]);
 
+        const hour =
+            Number(match[4] || 0);
+
+        const minute =
+            Number(match[5] || 0);
+
+        const second =
+            Number(match[6] || 0);
+
         return new Date(
             year,
             month,
-            day
+            day,
+            hour,
+            minute,
+            second
         ).getTime();
 
     }
 
+
+    /* -----------------------------------------------
+       YYYY/MM/DD hoặc YYYY/MM/DD HH:mm:ss
+    ----------------------------------------------- */
 
     match =
         text.match(
-            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/
+            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?$/
         );
 
     if (match) {
@@ -2100,14 +2087,30 @@ function parseProductDate(value) {
         const day =
             Number(match[3]);
 
+        const hour =
+            Number(match[4] || 0);
+
+        const minute =
+            Number(match[5] || 0);
+
+        const second =
+            Number(match[6] || 0);
+
         return new Date(
             year,
             month,
-            day
+            day,
+            hour,
+            minute,
+            second
         ).getTime();
 
     }
 
+
+    /* -----------------------------------------------
+       Fallback
+    ----------------------------------------------- */
 
     const timestamp =
         Date.parse(text);
@@ -2355,3 +2358,4 @@ loadProducts();
 
 </body>
 </html>
+```
