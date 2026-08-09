@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TSPORT - Vợt Cầu Lông Lướt</title>
+<title>TSPORT - Vợt Cầu Lông Lướt <br> <h2>zalo : 0395364443</h2>
+</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -565,92 +566,92 @@ select {
         height: 280px;
     }
 }
-
 </style>
+
 </head>
 
 <body>
 
 <header>
     <div class="logo">TSPORT</div>
-    <div class="subtitle">Vợt Cầu Lông Lướt - 0395364443</div>
+    <div class="subtitle">Vợt Cầu Lông Lướt - 0395364443 </div>
 </header>
 
 <div class="container">
 
-    <div class="search-box">
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="🔎 Tìm vợt, mã, hãng..."
-        >
+<div class="search-box">
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 Tìm vợt, mã, hãng..."
+    >
+</div>
+
+<div class="filters">
+
+    <select id="brandFilter">
+        <option value="">Tất cả hãng</option>
+    </select>
+
+    <select id="styleFilter">
+        <option value="">Tất cả lối đánh</option>
+    </select>
+
+    <select id="sortFilter">
+        <option value="">Mặc định</option>
+        <option value="newest">Mới nhất</option>
+    </select>
+
+</div>
+
+<div id="count" class="count"></div>
+
+<div id="products" class="products">
+    <div class="loading">
+        Đang tải sản phẩm...
     </div>
+</div>
 
-    <div class="filters">
-
-        <select id="brandFilter">
-            <option value="">Tất cả hãng</option>
-        </select>
-
-        <select id="styleFilter">
-            <option value="">Tất cả lối đánh</option>
-        </select>
-
-        <select id="sortFilter">
-            <option value="">Mặc định</option>
-            <option value="newest">Mới nhất</option>
-        </select>
-
-    </div>
-
-    <div id="count" class="count"></div>
-
-    <div id="products" class="products">
-        <div class="loading">
-            Đang tải sản phẩm...
-        </div>
-    </div>
-
-    <div id="detail" class="detail"></div>
+<div id="detail" class="detail"></div>
 
 </div>
 
 <div id="imageModal" class="image-modal">
 
-    <div id="modalImageWrap" class="modal-image-wrap">
+<div id="modalImageWrap" class="modal-image-wrap">
 
-        <div id="modalClose" class="modal-close">
-            ×
-        </div>
-
-        <button
-            id="modalPrev"
-            class="modal-prev"
-            type="button"
-        >
-            ‹
-        </button>
-
-        <img
-            id="modalImage"
-            src=""
-            alt="Ảnh chi tiết"
-        >
-
-        <button
-            id="modalNext"
-            class="modal-next"
-            type="button"
-        >
-            ›
-        </button>
-
-        <div id="modalCounter" class="modal-counter">
-            1 / 1
-        </div>
-
+    <div id="modalClose" class="modal-close">
+        ×
     </div>
+
+    <button
+        id="modalPrev"
+        class="modal-prev"
+        type="button"
+    >
+        ‹
+    </button>
+
+    <img
+        id="modalImage"
+        src=""
+        alt="Ảnh chi tiết"
+    >
+
+    <button
+        id="modalNext"
+        class="modal-next"
+        type="button"
+    >
+        ›
+    </button>
+
+    <div id="modalCounter" class="modal-counter">
+        1 / 1
+    </div>
+
+</div>
 
 </div>
 
@@ -1082,133 +1083,6 @@ function formatPrice(price) {
 
 function displayProducts(list) {
 
-
-    /* =================================================
-       SẮP XẾP MÃ VỢT
-
-       YN001
-       YN002
-       YN003
-       ...
-
-       SAU YN → LN
-       SAU LN → VT
-       SAU VT → BBD
-       SAU BBD → KP
-       SAU KP → VS
-       SAU VS → FL
-       SAU FL → K
-    ================================================= */
-
-    list = [...list].sort((a, b) => {
-
-        const codeA =
-            String(a["Mã"] || "")
-                .trim()
-                .toUpperCase();
-
-        const codeB =
-            String(b["Mã"] || "")
-                .trim()
-                .toUpperCase();
-
-
-        const matchA =
-            codeA.match(/^([A-Z]+)(\d+)$/);
-
-        const matchB =
-            codeB.match(/^([A-Z]+)(\d+)$/);
-
-
-        if (!matchA && !matchB) {
-            return codeA.localeCompare(codeB);
-        }
-
-        if (!matchA) {
-            return 1;
-        }
-
-        if (!matchB) {
-            return -1;
-        }
-
-
-        const prefixA = matchA[1];
-        const prefixB = matchB[1];
-
-        const numberA =
-            Number(matchA[2]);
-
-        const numberB =
-            Number(matchB[2]);
-
-
-        const brandOrder = [
-            "YN",
-            "LN",
-            "VT",
-            "BBD",
-            "KP",
-            "VS",
-            "FL",
-            "K"
-        ];
-
-
-        const indexA =
-            brandOrder.indexOf(prefixA);
-
-        const indexB =
-            brandOrder.indexOf(prefixB);
-
-
-        if (
-            indexA !== -1 &&
-            indexB !== -1 &&
-            indexA !== indexB
-        ) {
-
-            return indexA - indexB;
-
-        }
-
-
-        if (
-            indexA !== -1 &&
-            indexB === -1
-        ) {
-
-            return -1;
-
-        }
-
-
-        if (
-            indexA === -1 &&
-            indexB !== -1
-        ) {
-
-            return 1;
-
-        }
-
-
-        if (
-            prefixA !== prefixB
-        ) {
-
-            return prefixA.localeCompare(
-                prefixB
-            );
-
-        }
-
-
-        return numberA - numberB;
-
-    });
-
-
     const container =
         document.getElementById(
             "products"
@@ -1354,7 +1228,6 @@ function displayProducts(list) {
 function getFolderFromProduct(product) {
 
     if (!product) {
-
         console.error(
             "getFolderFromProduct: product không tồn tại"
         );
@@ -1385,6 +1258,7 @@ function getFolderFromProduct(product) {
         return "";
     }
 
+
     if (
         value.startsWith("/")
     ) {
@@ -1396,6 +1270,7 @@ function getFolderFromProduct(product) {
 
         return value;
     }
+
 
     const imageKitMatch =
         value.match(
@@ -1414,9 +1289,7 @@ function getFolderFromProduct(product) {
             while (
                 encoded.length % 4 !== 0
             ) {
-
                 encoded += "=";
-
             }
 
             const decoded =
@@ -1457,6 +1330,7 @@ function getFolderFromProduct(product) {
             return "";
         }
     }
+
 
     const folder =
         "/TSPORT/" +
@@ -1539,6 +1413,7 @@ async function loadGalleryImages(folder) {
             data
         );
 
+
         if (
             !data ||
             !data.success ||
@@ -1553,6 +1428,7 @@ async function loadGalleryImages(folder) {
             return [];
         }
 
+
         const urls =
             data.images
                 .map(
@@ -1561,6 +1437,7 @@ async function loadGalleryImages(folder) {
                         image.url
                 )
                 .filter(Boolean);
+
 
         console.log(
             "Tìm thấy:",
@@ -1572,6 +1449,7 @@ async function loadGalleryImages(folder) {
             "Danh sách ảnh:",
             urls
         );
+
 
         return urls;
 
@@ -1786,6 +1664,7 @@ async function showDetail(product) {
         </div>
         `;
 
+
     detail.innerHTML = `
 
         <button
@@ -1877,18 +1756,22 @@ async function showDetail(product) {
         </div>
     `;
 
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 
     const galleryContainer =
         document.getElementById(
             "detailGallery"
         );
 
+
     const folder =
         getFolderFromProduct(product);
+
 
     console.log(
         "Sản phẩm đang mở:",
@@ -1910,6 +1793,7 @@ async function showDetail(product) {
         folder
     );
 
+
     if (!folder) {
 
         galleryContainer.innerHTML = `
@@ -1925,10 +1809,12 @@ async function showDetail(product) {
         return;
     }
 
+
     const urls =
         await loadGalleryImages(
             folder
         );
+
 
     if (!urls.length) {
 
@@ -1948,9 +1834,11 @@ async function showDetail(product) {
         return;
     }
 
+
     currentGallery = urls;
 
     currentImageIndex = 0;
+
 
     galleryContainer.innerHTML = `
 
@@ -1965,10 +1853,12 @@ async function showDetail(product) {
 
     `;
 
+
     const galleryGrid =
         document.getElementById(
             "detailGalleryGrid"
         );
+
 
     urls.forEach(
         (url, index) => {
@@ -1986,6 +1876,12 @@ async function showDetail(product) {
                     src="${escapeHTML(url)}"
                     alt="Ảnh chi tiết ${index + 1}"
                     loading="lazy"
+                    onerror="
+                        console.error(
+                            'Không tải được ảnh:',
+                            '${escapeHTML(url)}'
+                        );
+                    "
                 >
             `;
 
@@ -2145,6 +2041,16 @@ function parseProductDate(value) {
     const text =
         String(value).trim();
 
+    /*
+        Hỗ trợ:
+
+        08/08/2026
+        8/8/2026
+        08/08/2026 12:22:38
+        08-08-2026 12:22:38
+        2026-08-08
+        2026-08-08 12:22:38
+    */
 
     let match =
         text.match(
