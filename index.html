@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -454,6 +456,7 @@ select {
     .detail-gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 @media (max-width: 650px) {
@@ -549,6 +552,7 @@ select {
     .modal-counter {
         bottom: 18px;
     }
+
 }
 
 @media (max-width: 400px) {
@@ -564,9 +568,11 @@ select {
     .detail-gallery-item {
         height: 280px;
     }
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -676,10 +682,10 @@ select {
 ===================================================== */
 
 const SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
+"https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
 const IMAGE_API =
-    "https://tsport-image-api.ntr9766.workers.dev/";
+"https://tsport-image-api.ntr9766.workers.dev/";
 
 
 /* =====================================================
@@ -711,6 +717,10 @@ function escapeHTML(value) {
 
 /* =====================================================
    IMAGE URL
+
+   QUAN TRỌNG:
+   ImageKit URL được giữ nguyên.
+   Không chuyển đổi sang Google Drive.
 ===================================================== */
 
 function getImageUrl(url) {
@@ -719,55 +729,7 @@ function getImageUrl(url) {
         return "";
     }
 
-    url = String(url).trim();
-
-    /* IMAGEKIT */
-
-    if (
-        url.includes("ik.imagekit.io") ||
-        url.includes("imagekit.io")
-    ) {
-
-        return url;
-
-    }
-
-    /* GOOGLE DRIVE */
-
-    let id = "";
-
-    let match = url.match(
-        /\/file\/d\/([^/]+)/
-    );
-
-    if (match) {
-        id = match[1];
-    }
-
-    if (!id) {
-
-        match = url.match(
-            /[?&]id=([^&]+)/
-        );
-
-        if (match) {
-            id = match[1];
-        }
-
-    }
-
-    if (id) {
-
-        return (
-            "https://drive.google.com/thumbnail" +
-            "?id=" +
-            encodeURIComponent(id) +
-            "&sz=w1000"
-        );
-
-    }
-
-    return url;
+    return String(url).trim();
 
 }
 
@@ -937,7 +899,9 @@ function parseCSV(text) {
 async function loadProducts() {
 
     const container =
-        document.getElementById("products");
+        document.getElementById(
+            "products"
+        );
 
     container.innerHTML = `
         <div class="loading">
@@ -974,7 +938,9 @@ async function loadProducts() {
 
         createFilters();
 
-        displayProducts(products);
+        displayProducts(
+            products
+        );
 
     } catch (error) {
 
@@ -987,8 +953,7 @@ async function loadProducts() {
             <div class="loading">
                 Không thể tải dữ liệu sản phẩm.
                 <br><br>
-                Kiểm tra quyền chia sẻ Google Sheet
-                và Console trình duyệt.
+                Kiểm tra quyền chia sẻ Google Sheet.
             </div>
         `;
 
@@ -1019,6 +984,7 @@ function createFilters() {
     styleFilter.innerHTML =
         `<option value="">Tất cả lối đánh</option>`;
 
+
     const brands =
         [
             ...new Set(
@@ -1030,6 +996,7 @@ function createFilters() {
                     .filter(Boolean)
             )
         ];
+
 
     const styles =
         [
@@ -1043,31 +1010,49 @@ function createFilters() {
             )
         ];
 
-    brands.forEach(brand => {
 
-        const option =
-            document.createElement("option");
+    brands.forEach(
+        brand => {
 
-        option.value = brand;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        option.textContent = brand;
+            option.value =
+                brand;
 
-        brandFilter.appendChild(option);
+            option.textContent =
+                brand;
 
-    });
+            brandFilter.appendChild(
+                option
+            );
 
-    styles.forEach(style => {
+        }
+    );
 
-        const option =
-            document.createElement("option");
 
-        option.value = style;
+    styles.forEach(
+        style => {
 
-        option.textContent = style;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        styleFilter.appendChild(option);
+            option.value =
+                style;
 
-    });
+            option.textContent =
+                style;
+
+            styleFilter.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
@@ -1123,6 +1108,7 @@ function displayProducts(list) {
     count.textContent =
         `${list.length} sản phẩm`;
 
+
     if (!list.length) {
 
         container.innerHTML = `
@@ -1135,121 +1121,155 @@ function displayProducts(list) {
 
     }
 
-    list.forEach(product => {
 
-        const card =
-            document.createElement("div");
+    list.forEach(
+        product => {
 
-        card.className = "card";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
-        const image =
-            getImageUrl(
-                product["Ảnh"]
-            );
+            card.className =
+                "card";
 
-        let imageHTML = "";
 
-        if (image) {
+            const image =
+                getImageUrl(
+                    product["Ảnh"]
+                );
 
-            imageHTML = `
-                <img
-                    src="${escapeHTML(image)}"
-                    alt="${escapeHTML(
-                        product["Tên vợt"] || ""
-                    )}"
-                    loading="lazy"
-                    onerror="this.style.display='none';"
-                >
-            `;
 
-        } else {
+            let imageHTML = "";
 
-            imageHTML = `
-                <div class="no-image">
-                    Không có ảnh
-                </div>
-            `;
 
-        }
+            if (image) {
 
-        card.innerHTML = `
+                imageHTML = `
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}"
+                        loading="lazy"
+                        onerror="
+                            this.style.display='none';
+                            this.parentElement.innerHTML +=
+                            '<div class=&quot;no-image&quot;>Không có ảnh</div>';
+                        "
+                    >
+                `;
 
-            <div class="image-box">
-                ${imageHTML}
-            </div>
+            } else {
 
-            <div class="card-info">
-
-                <div class="brand">
-                    ${escapeHTML(
-                        product["Hãng"] || ""
-                    )}
-                </div>
-
-                <div class="name">
-                    ${escapeHTML(
-                        product["Tên vợt"] || ""
-                    )}
-                </div>
-
-                <div class="price">
-                    ${formatPrice(
-                        product["Giá"]
-                    )}
-                </div>
-
-                <div class="meta">
-
-                    ${escapeHTML(
-                        product["Tình trạng vợt"] || ""
-                    )}
-
-                    ${
-                        product["Tình trạng cước"]
-                        ? " · " +
-                        escapeHTML(
-                            product["Tình trạng cước"]
-                        )
-                        : ""
-                    }
-
-                    ${
-                        product["Lối đánh"]
-                        ?
-                        `
-                        <br>
-                        ${escapeHTML(
-                            product["Lối đánh"]
-                        )}
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-            </div>
-
-        `;
-
-        card.addEventListener(
-            "click",
-            function() {
-
-                showDetail(product);
+                imageHTML = `
+                    <div class="no-image">
+                        Không có ảnh
+                    </div>
+                `;
 
             }
-        );
 
-        container.appendChild(card);
 
-    });
+            card.innerHTML = `
+
+                <div class="image-box">
+
+                    ${imageHTML}
+
+                </div>
+
+
+                <div class="card-info">
+
+                    <div class="brand">
+
+                        ${escapeHTML(
+                            product["Hãng"] || ""
+                        )}
+
+                    </div>
+
+
+                    <div class="name">
+
+                        ${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ${formatPrice(
+                            product["Giá"]
+                        )}
+
+                    </div>
+
+
+                    <div class="meta">
+
+                        ${escapeHTML(
+                            product["Tình trạng vợt"] || ""
+                        )}
+
+                        ${
+                            product["Tình trạng cước"]
+                            ?
+                            " · " +
+                            escapeHTML(
+                                product["Tình trạng cước"]
+                            )
+                            :
+                            ""
+                        }
+
+                        ${
+                            product["Lối đánh"]
+                            ?
+                            `
+                            <br>
+                            ${escapeHTML(
+                                product["Lối đánh"]
+                            )}
+                            `
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                function() {
+
+                    showDetail(
+                        product
+                    );
+
+                }
+            );
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   GET FOLDER FROM PRODUCT
+   GET FOLDER
 ===================================================== */
 
 function getFolderFromProduct(product) {
@@ -1277,6 +1297,7 @@ function getFolderFromProduct(product) {
         return "";
     }
 
+
     if (
         value.startsWith("/")
     ) {
@@ -1285,10 +1306,12 @@ function getFolderFromProduct(product) {
 
     }
 
+
     const imageKitMatch =
         value.match(
             /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
         );
+
 
     if (imageKitMatch) {
 
@@ -1325,8 +1348,7 @@ function getFolderFromProduct(product) {
         } catch (error) {
 
             console.error(
-                "Không decode được link ImageKit:",
-                value,
+                "ImageKit decode error:",
                 error
             );
 
@@ -1336,11 +1358,14 @@ function getFolderFromProduct(product) {
 
     }
 
-    const folder =
-        "/TSPORT/" +
-        value.replace(/^\/+/, "");
 
-    return folder;
+    return (
+        "/TSPORT/" +
+        value.replace(
+            /^\/+/,
+            ""
+        )
+    );
 
 }
 
@@ -1349,7 +1374,9 @@ function getFolderFromProduct(product) {
    LOAD GALLERY
 ===================================================== */
 
-async function loadGalleryImages(folder) {
+async function loadGalleryImages(
+    folder
+) {
 
     if (!folder) {
         return [];
@@ -1358,7 +1385,9 @@ async function loadGalleryImages(folder) {
     const url =
         IMAGE_API +
         "?folder=" +
-        encodeURIComponent(folder);
+        encodeURIComponent(
+            folder
+        );
 
     try {
 
@@ -1385,7 +1414,9 @@ async function loadGalleryImages(folder) {
         if (
             !data ||
             !data.success ||
-            !Array.isArray(data.images)
+            !Array.isArray(
+                data.images
+            )
         ) {
 
             return [];
@@ -1441,28 +1472,40 @@ function showModalImage() {
             "modalCounter"
         );
 
+
     image.src =
         currentGallery[
             currentImageIndex
         ];
 
+
     counter.textContent =
         `${currentImageIndex + 1} / ${currentGallery.length}`;
+
 
     const hasMultiple =
         currentGallery.length > 1;
 
+
     document.getElementById(
         "modalPrev"
     ).style.display =
-        hasMultiple ? "flex" : "none";
+        hasMultiple
+        ? "flex"
+        : "none";
+
 
     document.getElementById(
         "modalNext"
     ).style.display =
-        hasMultiple ? "flex" : "none";
+        hasMultiple
+        ? "flex"
+        : "none";
 
-    modal.style.display = "flex";
+
+    modal.style.display =
+        "flex";
+
 
     document.body.style.overflow =
         "hidden";
@@ -1482,7 +1525,8 @@ function openGalleryImage(index) {
         return;
     }
 
-    currentImageIndex = index;
+    currentImageIndex =
+        index;
 
     showModalImage();
 
@@ -1548,9 +1592,11 @@ function closeImageModal() {
             "imageModal"
         );
 
-    modal.style.display = "none";
+    modal.style.display =
+        "none";
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 
     document.getElementById(
         "modalImage"
@@ -1563,54 +1609,65 @@ function closeImageModal() {
    DETAIL
 ===================================================== */
 
-async function showDetail(product) {
+async function showDetail(
+    product
+) {
 
     document.getElementById(
         "products"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     document.getElementById(
         "count"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     document.querySelector(
         ".filters"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     document.querySelector(
         ".search-box"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 
     const detail =
         document.getElementById(
             "detail"
         );
 
-    detail.style.display = "block";
+    detail.style.display =
+        "block";
+
 
     const image =
         getImageUrl(
             product["Ảnh"]
         );
 
+
     const imageHTML =
         image
         ?
         `
-        <img
-            class="detail-image"
-            src="${escapeHTML(image)}"
-            alt="${escapeHTML(
-                product["Tên vợt"] || ""
-            )}"
-        >
+            <img
+                class="detail-image"
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(
+                    product["Tên vợt"] || ""
+                )}"
+            >
         `
         :
         `
-        <div class="no-image">
-            Không có ảnh
-        </div>
+            <div class="no-image">
+                Không có ảnh
+            </div>
         `;
+
 
     detail.innerHTML = `
 
@@ -1622,68 +1679,111 @@ async function showDetail(product) {
             ← Quay lại
         </button>
 
+
         <div class="detail-image-box">
+
             ${imageHTML}
+
         </div>
+
 
         <div class="detail-content">
 
             <div class="detail-brand">
+
                 ${escapeHTML(
                     product["Hãng"] || ""
                 )}
+
             </div>
 
+
             <div class="detail-name">
+
                 ${escapeHTML(
                     product["Tên vợt"] || ""
                 )}
+
             </div>
 
+
             <div class="detail-price">
+
                 ${formatPrice(
                     product["Giá"]
                 )}
+
             </div>
+
 
             <div class="info-grid">
 
                 <div class="info-row">
-                    <strong>Mã vợt</strong>
+
+                    <strong>
+                        Mã vợt
+                    </strong>
+
                     ${escapeHTML(
                         product["Mã"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Tình trạng cước</strong>
+
+                    <strong>
+                        Tình trạng cước
+                    </strong>
+
                     ${escapeHTML(
                         product["Tình trạng cước"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Tình trạng vợt</strong>
+
+                    <strong>
+                        Tình trạng vợt
+                    </strong>
+
                     ${escapeHTML(
                         product["Tình trạng vợt"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Lối đánh</strong>
+
+                    <strong>
+                        Lối đánh
+                    </strong>
+
                     ${escapeHTML(
                         product["Lối đánh"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Ghi chú</strong>
+
+                    <strong>
+                        Ghi chú
+                    </strong>
+
                     ${escapeHTML(
                         product["Ghi chú"] || "-"
                     )}
+
                 </div>
 
             </div>
+
 
             <div
                 id="detailGallery"
@@ -1704,22 +1804,29 @@ async function showDetail(product) {
 
     `;
 
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 
     const galleryContainer =
         document.getElementById(
             "detailGallery"
         );
 
+
     const folder =
-        getFolderFromProduct(product);
+        getFolderFromProduct(
+            product
+        );
+
 
     if (!folder) {
 
         galleryContainer.innerHTML = `
+
             <div class="detail-gallery-title">
                 Ảnh chi tiết
             </div>
@@ -1727,39 +1834,45 @@ async function showDetail(product) {
             <div class="loading">
                 Sản phẩm chưa có ảnh chi tiết.
             </div>
+
         `;
 
         return;
 
     }
+
 
     const urls =
         await loadGalleryImages(
             folder
         );
 
+
     if (!urls.length) {
 
         galleryContainer.innerHTML = `
+
             <div class="detail-gallery-title">
                 Ảnh chi tiết
             </div>
 
             <div class="loading">
                 Không tìm thấy ảnh chi tiết.
-                <br><br>
-                Folder:
-                ${escapeHTML(folder)}
             </div>
+
         `;
 
         return;
 
     }
 
-    currentGallery = urls;
 
-    currentImageIndex = 0;
+    currentGallery =
+        urls;
+
+    currentImageIndex =
+        0;
+
 
     galleryContainer.innerHTML = `
 
@@ -1774,10 +1887,12 @@ async function showDetail(product) {
 
     `;
 
+
     const galleryGrid =
         document.getElementById(
             "detailGalleryGrid"
         );
+
 
     urls.forEach(
         (url, index) => {
@@ -1790,13 +1905,17 @@ async function showDetail(product) {
             item.className =
                 "detail-gallery-item";
 
+
             item.innerHTML = `
+
                 <img
                     src="${escapeHTML(url)}"
                     alt="Ảnh chi tiết ${index + 1}"
                     loading="lazy"
                 >
+
             `;
+
 
             item.addEventListener(
                 "click",
@@ -1808,6 +1927,7 @@ async function showDetail(product) {
 
                 }
             );
+
 
             galleryGrid.appendChild(
                 item
@@ -1827,27 +1947,36 @@ function closeDetail() {
 
     document.getElementById(
         "products"
-    ).style.display = "grid";
+    ).style.display =
+        "grid";
 
     document.getElementById(
         "count"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
     document.querySelector(
         ".filters"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 
     document.querySelector(
         ".search-box"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
     document.getElementById(
         "detail"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
-    currentGallery = [];
 
-    currentImageIndex = 0;
+    currentGallery =
+        [];
+
+    currentImageIndex =
+        0;
+
 
     window.scrollTo({
         top: 0,
@@ -1871,39 +2000,62 @@ function filterProducts() {
         .toLowerCase()
         .trim();
 
+
     const brand =
         document.getElementById(
             "brandFilter"
         ).value;
+
 
     const style =
         document.getElementById(
             "styleFilter"
         ).value;
 
-    const filtered =
-        products.filter(product => {
 
-            const text =
-                Object.values(product)
+    const filtered =
+        products.filter(
+            product => {
+
+                const text =
+                    Object.values(
+                        product
+                    )
                     .join(" ")
                     .toLowerCase();
 
-            return (
-                text.includes(search) &&
-                (
-                    !brand ||
-                    product["Hãng"] === brand
-                ) &&
-                (
-                    !style ||
-                    product["Lối đánh"] === style
-                )
-            );
 
-        });
+                return (
 
-    displayProducts(filtered);
+                    text.includes(
+                        search
+                    )
+
+                    &&
+
+                    (
+                        !brand ||
+                        product["Hãng"] ===
+                        brand
+                    )
+
+                    &&
+
+                    (
+                        !style ||
+                        product["Lối đánh"] ===
+                        style
+                    )
+
+                );
+
+            }
+        );
+
+
+    displayProducts(
+        filtered
+    );
 
 }
 
@@ -1913,7 +2065,9 @@ function filterProducts() {
 ===================================================== */
 
 document
-    .getElementById("modalClose")
+    .getElementById(
+        "modalClose"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -1925,8 +2079,11 @@ document
         }
     );
 
+
 document
-    .getElementById("modalPrev")
+    .getElementById(
+        "modalPrev"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -1938,8 +2095,11 @@ document
         }
     );
 
+
 document
-    .getElementById("modalNext")
+    .getElementById(
+        "modalNext"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -1951,8 +2111,11 @@ document
         }
     );
 
+
 document
-    .getElementById("imageModal")
+    .getElementById(
+        "imageModal"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -1983,30 +2146,40 @@ document.addEventListener(
                 "imageModal"
             );
 
-        if (
-            modal.style.display !== "flex"
-        ) {
-            return;
-        }
 
         if (
-            event.key === "ArrowRight"
+            modal.style.display !==
+            "flex"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowRight"
         ) {
 
             nextImage();
 
         }
 
+
         if (
-            event.key === "ArrowLeft"
+            event.key ===
+            "ArrowLeft"
         ) {
 
             previousImage();
 
         }
 
+
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             closeImageModal();
@@ -2023,8 +2196,11 @@ document.addEventListener(
 
 let touchStartX = 0;
 
+
 document
-    .getElementById("imageModal")
+    .getElementById(
+        "imageModal"
+    )
     .addEventListener(
         "touchstart",
         function(event) {
@@ -2034,7 +2210,8 @@ document
             ) {
 
                 touchStartX =
-                    event.touches[0].clientX;
+                    event.touches[0]
+                        .clientX;
 
             }
 
@@ -2044,8 +2221,11 @@ document
         }
     );
 
+
 document
-    .getElementById("imageModal")
+    .getElementById(
+        "imageModal"
+    )
     .addEventListener(
         "touchend",
         function(event) {
@@ -2053,23 +2233,34 @@ document
             if (
                 !event.changedTouches.length
             ) {
+
                 return;
+
             }
 
+
             const touchEndX =
-                event.changedTouches[0].clientX;
+                event.changedTouches[0]
+                    .clientX;
+
 
             const distance =
                 touchEndX -
                 touchStartX;
 
+
             if (
                 Math.abs(distance) < 50
             ) {
+
                 return;
+
             }
 
-            if (distance < 0) {
+
+            if (
+                distance < 0
+            ) {
 
                 nextImage();
 
@@ -2091,21 +2282,29 @@ document
 ===================================================== */
 
 document
-    .getElementById("search")
+    .getElementById(
+        "search"
+    )
     .addEventListener(
         "input",
         filterProducts
     );
 
+
 document
-    .getElementById("brandFilter")
+    .getElementById(
+        "brandFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
     );
 
+
 document
-    .getElementById("styleFilter")
+    .getElementById(
+        "styleFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
@@ -2115,10 +2314,6 @@ document
 /* =====================================================
    START
 ===================================================== */
-
-console.log(
-    "TSPORT: JavaScript OK"
-);
 
 loadProducts();
 
