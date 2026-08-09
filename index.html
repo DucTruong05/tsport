@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TSPORT - Vợt Cầu Lông Lướt</title>
+<title>TSPORT - Vợt Cầu Lông Lướt <br> <h2>zalo : 0395364443</h2>
+</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -456,7 +454,6 @@ select {
     .detail-gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 @media (max-width: 650px) {
@@ -552,7 +549,6 @@ select {
     .modal-counter {
         bottom: 18px;
     }
-
 }
 
 @media (max-width: 400px) {
@@ -568,38 +564,27 @@ select {
     .detail-gallery-item {
         height: 280px;
     }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-    <div class="logo">
-        TSPORT
-    </div>
-
-    <div class="subtitle">
-        Vợt Cầu Lông Lướt - 0395364443
-    </div>
-
+    <div class="logo">TSPORT</div>
+    <div class="subtitle">Vợt Cầu Lông Lướt - 0395364443 </div>
 </header>
+    
 
 <div class="container">
 
     <div class="search-box">
-
         <input
             id="search"
             class="search"
             type="text"
             placeholder="🔎 Tìm vợt, mã, hãng..."
         >
-
     </div>
 
     <div class="filters">
@@ -612,16 +597,27 @@ select {
             <option value="">Tất cả lối đánh</option>
         </select>
 
+        <select id="sortFilter">
+            <option value="">Mặc định</option>
+            <option value="newest">Mới nhất</option>
+        </select>
+
+        <select id="priceFilter">
+            <option value="">Tất cả mức giá</option>
+            <option value="under500">Dưới 500</option>
+            <option value="500to1000">500 - 1000</option>
+            <option value="1000to2000">1000 - 2000</option>
+            <option value="2000plus">Từ 2000 trở lên</option>
+        </select>
+
     </div>
 
     <div id="count" class="count"></div>
 
     <div id="products" class="products">
-
         <div class="loading">
             Đang tải sản phẩm...
         </div>
-
     </div>
 
     <div id="detail" class="detail"></div>
@@ -630,15 +626,9 @@ select {
 
 <div id="imageModal" class="image-modal">
 
-    <div
-        id="modalImageWrap"
-        class="modal-image-wrap"
-    >
+    <div id="modalImageWrap" class="modal-image-wrap">
 
-        <div
-            id="modalClose"
-            class="modal-close"
-        >
+        <div id="modalClose" class="modal-close">
             ×
         </div>
 
@@ -664,10 +654,7 @@ select {
             ›
         </button>
 
-        <div
-            id="modalCounter"
-            class="modal-counter"
-        >
+        <div id="modalCounter" class="modal-counter">
             1 / 1
         </div>
 
@@ -717,10 +704,6 @@ function escapeHTML(value) {
 
 /* =====================================================
    IMAGE URL
-
-   QUAN TRỌNG:
-   ImageKit URL được giữ nguyên.
-   Không chuyển đổi sang Google Drive.
 ===================================================== */
 
 function getImageUrl(url) {
@@ -729,8 +712,42 @@ function getImageUrl(url) {
         return "";
     }
 
-    return String(url).trim();
+    url = String(url).trim();
 
+    let id = "";
+
+    let match = url.match(
+        /\/file\/d\/([^/]+)/
+    );
+
+    if (match) {
+        id = match[1];
+    }
+
+    if (!id) {
+
+        match = url.match(
+            /[?&]id=([^&]+)/
+        );
+
+        if (match) {
+            id = match[1];
+        }
+
+    }
+
+    if (id) {
+
+        return (
+            "https://drive.google.com/thumbnail" +
+            "?id=" +
+            encodeURIComponent(id) +
+            "&sz=w1000"
+        );
+
+    }
+
+    return url;
 }
 
 
@@ -769,7 +786,6 @@ function parseCSV(text) {
             i++;
 
             continue;
-
         }
 
         if (char === '"') {
@@ -778,7 +794,6 @@ function parseCSV(text) {
                 !insideQuotes;
 
             continue;
-
         }
 
         if (
@@ -791,7 +806,6 @@ function parseCSV(text) {
             value = "";
 
             continue;
-
         }
 
         if (
@@ -806,9 +820,7 @@ function parseCSV(text) {
                 char === "\r" &&
                 next === "\n"
             ) {
-
                 i++;
-
             }
 
             row.push(value);
@@ -821,7 +833,6 @@ function parseCSV(text) {
             ) {
 
                 rows.push(row);
-
             }
 
             row = [];
@@ -829,11 +840,9 @@ function parseCSV(text) {
             value = "";
 
             continue;
-
         }
 
         value += char;
-
     }
 
     if (
@@ -851,9 +860,7 @@ function parseCSV(text) {
         ) {
 
             rows.push(row);
-
         }
-
     }
 
     if (rows.length < 1) {
@@ -886,7 +893,6 @@ function parseCSV(text) {
             );
 
             return item;
-
         });
 
 }
@@ -899,9 +905,7 @@ function parseCSV(text) {
 async function loadProducts() {
 
     const container =
-        document.getElementById(
-            "products"
-        );
+        document.getElementById("products");
 
     container.innerHTML = `
         <div class="loading">
@@ -927,20 +931,32 @@ async function loadProducts() {
                 "Google Sheets HTTP " +
                 response.status
             );
-
         }
 
         const text =
             await response.text();
 
+        console.log(
+            "Google Sheets response:",
+            text.substring(0, 300)
+        );
+
         products =
             parseCSV(text);
 
+        console.log(
+            "TSPORT - Số sản phẩm:",
+            products.length
+        );
+
+        console.log(
+            "TSPORT - Ví dụ sản phẩm đầu tiên:",
+            products[0]
+        );
+
         createFilters();
 
-        displayProducts(
-            products
-        );
+        displayProducts(products);
 
     } catch (error) {
 
@@ -953,7 +969,8 @@ async function loadProducts() {
             <div class="loading">
                 Không thể tải dữ liệu sản phẩm.
                 <br><br>
-                Kiểm tra quyền chia sẻ Google Sheet.
+                Kiểm tra quyền chia sẻ Google Sheet
+                và Console trình duyệt.
             </div>
         `;
 
@@ -984,7 +1001,6 @@ function createFilters() {
     styleFilter.innerHTML =
         `<option value="">Tất cả lối đánh</option>`;
 
-
     const brands =
         [
             ...new Set(
@@ -996,7 +1012,6 @@ function createFilters() {
                     .filter(Boolean)
             )
         ];
-
 
     const styles =
         [
@@ -1010,49 +1025,31 @@ function createFilters() {
             )
         ];
 
+    brands.forEach(brand => {
 
-    brands.forEach(
-        brand => {
+        const option =
+            document.createElement("option");
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        option.value = brand;
 
-            option.value =
-                brand;
+        option.textContent = brand;
 
-            option.textContent =
-                brand;
+        brandFilter.appendChild(option);
 
-            brandFilter.appendChild(
-                option
-            );
+    });
 
-        }
-    );
+    styles.forEach(style => {
 
+        const option =
+            document.createElement("option");
 
-    styles.forEach(
-        style => {
+        option.value = style;
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        option.textContent = style;
 
-            option.value =
-                style;
+        styleFilter.appendChild(option);
 
-            option.textContent =
-                style;
-
-            styleFilter.appendChild(
-                option
-            );
-
-        }
-    );
+    });
 
 }
 
@@ -1108,7 +1105,6 @@ function displayProducts(list) {
     count.textContent =
         `${list.length} sản phẩm`;
 
-
     if (!list.length) {
 
         container.innerHTML = `
@@ -1118,163 +1114,131 @@ function displayProducts(list) {
         `;
 
         return;
-
     }
 
+    list.forEach(product => {
 
-    list.forEach(
-        product => {
+        const card =
+            document.createElement("div");
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        card.className = "card";
 
-            card.className =
-                "card";
+        const image =
+            getImageUrl(
+                product["Ảnh"]
+            );
 
+        let imageHTML = "";
 
-            const image =
-                getImageUrl(
-                    product["Ảnh"]
-                );
+        if (image) {
 
-
-            let imageHTML = "";
-
-
-            if (image) {
-
-                imageHTML = `
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}"
-                        loading="lazy"
-                        onerror="
-                            this.style.display='none';
-                            this.parentElement.innerHTML +=
-                            '<div class=&quot;no-image&quot;>Không có ảnh</div>';
-                        "
-                    >
-                `;
-
-            } else {
-
-                imageHTML = `
-                    <div class="no-image">
-                        Không có ảnh
-                    </div>
-                `;
-
-            }
-
-
-            card.innerHTML = `
-
-                <div class="image-box">
-
-                    ${imageHTML}
-
-                </div>
-
-
-                <div class="card-info">
-
-                    <div class="brand">
-
-                        ${escapeHTML(
-                            product["Hãng"] || ""
-                        )}
-
-                    </div>
-
-
-                    <div class="name">
-
-                        ${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}
-
-                    </div>
-
-
-                    <div class="price">
-
-                        ${formatPrice(
-                            product["Giá"]
-                        )}
-
-                    </div>
-
-
-                    <div class="meta">
-
-                        ${escapeHTML(
-                            product["Tình trạng vợt"] || ""
-                        )}
-
-                        ${
-                            product["Tình trạng cước"]
-                            ?
-                            " · " +
-                            escapeHTML(
-                                product["Tình trạng cước"]
-                            )
-                            :
-                            ""
-                        }
-
-                        ${
-                            product["Lối đánh"]
-                            ?
-                            `
-                            <br>
-                            ${escapeHTML(
-                                product["Lối đánh"]
-                            )}
-                            `
-                            :
-                            ""
-                        }
-
-                    </div>
-
-                </div>
-
+            imageHTML = `
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(
+                        product["Tên vợt"] || ""
+                    )}"
+                    loading="lazy"
+                    onerror="this.style.display='none';"
+                >
             `;
 
+        } else {
 
-            card.addEventListener(
-                "click",
-                function() {
-
-                    showDetail(
-                        product
-                    );
-
-                }
-            );
-
-
-            container.appendChild(
-                card
-            );
+            imageHTML = `
+                <div class="no-image">
+                    Không có ảnh
+                </div>
+            `;
 
         }
-    );
+
+        card.innerHTML = `
+
+            <div class="image-box">
+                ${imageHTML}
+            </div>
+
+            <div class="card-info">
+
+                <div class="brand">
+                    ${escapeHTML(
+                        product["Hãng"] || ""
+                    )}
+                </div>
+
+                <div class="name">
+                    ${escapeHTML(
+                        product["Tên vợt"] || ""
+                    )}
+                </div>
+
+                <div class="price">
+                    ${formatPrice(
+                        product["Giá"]
+                    )}
+                </div>
+
+                <div class="meta">
+
+                    ${escapeHTML(
+                        product["Tình trạng vợt"] || ""
+                    )}
+
+                    ${
+                        product["Tình trạng cước"]
+                        ? " · " +
+                        escapeHTML(
+                            product["Tình trạng cước"]
+                        )
+                        : ""
+                    }
+
+                    ${
+                        product["Lối đánh"]
+                        ?
+                        `
+                        <br>
+                        ${escapeHTML(
+                            product["Lối đánh"]
+                        )}
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+        `;
+
+        card.addEventListener(
+            "click",
+            function() {
+
+                showDetail(product);
+
+            }
+        );
+
+        container.appendChild(card);
+
+    });
 
 }
 
 
 /* =====================================================
-   GET FOLDER
+   GET FOLDER FROM PRODUCT
 ===================================================== */
 
 function getFolderFromProduct(product) {
 
     if (!product) {
+        console.error(
+            "getFolderFromProduct: product không tồn tại"
+        );
+
         return "";
     }
 
@@ -1286,8 +1250,12 @@ function getFolderFromProduct(product) {
         rawValue === null
     ) {
 
-        return "";
+        console.warn(
+            "Sản phẩm không có cột 'Ảnh chi tiết':",
+            product
+        );
 
+        return "";
     }
 
     let value =
@@ -1302,8 +1270,12 @@ function getFolderFromProduct(product) {
         value.startsWith("/")
     ) {
 
-        return value;
+        console.log(
+            "Folder lấy trực tiếp:",
+            value
+        );
 
+        return value;
     }
 
 
@@ -1311,7 +1283,6 @@ function getFolderFromProduct(product) {
         value.match(
             /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
         );
-
 
     if (imageKitMatch) {
 
@@ -1325,9 +1296,7 @@ function getFolderFromProduct(product) {
             while (
                 encoded.length % 4 !== 0
             ) {
-
                 encoded += "=";
-
             }
 
             const decoded =
@@ -1339,34 +1308,47 @@ function getFolderFromProduct(product) {
                 decoded.startsWith("/")
             ) {
 
-                return decoded;
+                console.log(
+                    "Folder decode từ ImageKit:",
+                    decoded
+                );
 
+                return decoded;
             }
 
-            return "/" + decoded;
+            const folder =
+                "/" + decoded;
+
+            console.log(
+                "Folder decode từ ImageKit:",
+                folder
+            );
+
+            return folder;
 
         } catch (error) {
 
             console.error(
-                "ImageKit decode error:",
+                "Không decode được link ImageKit:",
+                value,
                 error
             );
 
             return "";
-
         }
-
     }
 
 
-    return (
+    const folder =
         "/TSPORT/" +
-        value.replace(
-            /^\/+/,
-            ""
-        )
+        value.replace(/^\/+/, "");
+
+    console.log(
+        "Folder tự tạo:",
+        folder
     );
 
+    return folder;
 }
 
 
@@ -1374,20 +1356,43 @@ function getFolderFromProduct(product) {
    LOAD GALLERY
 ===================================================== */
 
-async function loadGalleryImages(
-    folder
-) {
+async function loadGalleryImages(folder) {
 
     if (!folder) {
+
+        console.warn(
+            "loadGalleryImages: folder rỗng"
+        );
+
         return [];
     }
 
     const url =
         IMAGE_API +
         "?folder=" +
-        encodeURIComponent(
-            folder
-        );
+        encodeURIComponent(folder);
+
+    console.log(
+        "===================================="
+    );
+
+    console.log(
+        "TSPORT GALLERY"
+    );
+
+    console.log(
+        "Folder:",
+        folder
+    );
+
+    console.log(
+        "API URL:",
+        url
+    );
+
+    console.log(
+        "===================================="
+    );
 
     try {
 
@@ -1405,31 +1410,55 @@ async function loadGalleryImages(
                 "Image API HTTP " +
                 response.status
             );
-
         }
 
         const data =
             await response.json();
 
+        console.log(
+            "Image API response:",
+            data
+        );
+
+
         if (
             !data ||
             !data.success ||
-            !Array.isArray(
-                data.images
-            )
+            !Array.isArray(data.images)
         ) {
 
-            return [];
+            console.warn(
+                "Image API không trả về images hợp lệ:",
+                data
+            );
 
+            return [];
         }
 
-        return data.images
-            .map(
-                image =>
-                    image &&
-                    image.url
-            )
-            .filter(Boolean);
+
+        const urls =
+            data.images
+                .map(
+                    image =>
+                        image &&
+                        image.url
+                )
+                .filter(Boolean);
+
+
+        console.log(
+            "Tìm thấy:",
+            urls.length,
+            "ảnh"
+        );
+
+        console.log(
+            "Danh sách ảnh:",
+            urls
+        );
+
+
+        return urls;
 
     } catch (error) {
 
@@ -1439,7 +1468,6 @@ async function loadGalleryImages(
         );
 
         return [];
-
     }
 
 }
@@ -1472,40 +1500,28 @@ function showModalImage() {
             "modalCounter"
         );
 
-
     image.src =
         currentGallery[
             currentImageIndex
         ];
 
-
     counter.textContent =
         `${currentImageIndex + 1} / ${currentGallery.length}`;
-
 
     const hasMultiple =
         currentGallery.length > 1;
 
-
     document.getElementById(
         "modalPrev"
     ).style.display =
-        hasMultiple
-        ? "flex"
-        : "none";
-
+        hasMultiple ? "flex" : "none";
 
     document.getElementById(
         "modalNext"
     ).style.display =
-        hasMultiple
-        ? "flex"
-        : "none";
+        hasMultiple ? "flex" : "none";
 
-
-    modal.style.display =
-        "flex";
-
+    modal.style.display = "flex";
 
     document.body.style.overflow =
         "hidden";
@@ -1525,8 +1541,7 @@ function openGalleryImage(index) {
         return;
     }
 
-    currentImageIndex =
-        index;
+    currentImageIndex = index;
 
     showModalImage();
 
@@ -1592,11 +1607,9 @@ function closeImageModal() {
             "imageModal"
         );
 
-    modal.style.display =
-        "none";
+    modal.style.display = "none";
 
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
 
     document.getElementById(
         "modalImage"
@@ -1609,63 +1622,53 @@ function closeImageModal() {
    DETAIL
 ===================================================== */
 
-async function showDetail(
-    product
-) {
+async function showDetail(product) {
 
     document.getElementById(
         "products"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     document.getElementById(
         "count"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     document.querySelector(
         ".filters"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     document.querySelector(
         ".search-box"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     const detail =
         document.getElementById(
             "detail"
         );
 
-    detail.style.display =
-        "block";
-
+    detail.style.display = "block";
 
     const image =
         getImageUrl(
             product["Ảnh"]
         );
 
-
     const imageHTML =
         image
         ?
         `
-            <img
-                class="detail-image"
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(
-                    product["Tên vợt"] || ""
-                )}"
-            >
+        <img
+            class="detail-image"
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(
+                product["Tên vợt"] || ""
+            )}"
+        >
         `
         :
         `
-            <div class="no-image">
-                Không có ảnh
-            </div>
+        <div class="no-image">
+            Không có ảnh
+        </div>
         `;
 
 
@@ -1679,111 +1682,68 @@ async function showDetail(
             ← Quay lại
         </button>
 
-
         <div class="detail-image-box">
-
             ${imageHTML}
-
         </div>
-
 
         <div class="detail-content">
 
             <div class="detail-brand">
-
                 ${escapeHTML(
                     product["Hãng"] || ""
                 )}
-
             </div>
 
-
             <div class="detail-name">
-
                 ${escapeHTML(
                     product["Tên vợt"] || ""
                 )}
-
             </div>
 
-
             <div class="detail-price">
-
                 ${formatPrice(
                     product["Giá"]
                 )}
-
             </div>
-
 
             <div class="info-grid">
 
                 <div class="info-row">
-
-                    <strong>
-                        Mã vợt
-                    </strong>
-
+                    <strong>Mã vợt</strong>
                     ${escapeHTML(
                         product["Mã"] || "-"
                     )}
-
                 </div>
 
-
                 <div class="info-row">
-
-                    <strong>
-                        Tình trạng cước
-                    </strong>
-
+                    <strong>Tình trạng cước</strong>
                     ${escapeHTML(
                         product["Tình trạng cước"] || "-"
                     )}
-
                 </div>
 
-
                 <div class="info-row">
-
-                    <strong>
-                        Tình trạng vợt
-                    </strong>
-
+                    <strong>Tình trạng vợt</strong>
                     ${escapeHTML(
                         product["Tình trạng vợt"] || "-"
                     )}
-
                 </div>
 
-
                 <div class="info-row">
-
-                    <strong>
-                        Lối đánh
-                    </strong>
-
+                    <strong>Lối đánh</strong>
                     ${escapeHTML(
                         product["Lối đánh"] || "-"
                     )}
-
                 </div>
 
-
                 <div class="info-row">
-
-                    <strong>
-                        Ghi chú
-                    </strong>
-
+                    <strong>Ghi chú</strong>
                     ${escapeHTML(
                         product["Ghi chú"] || "-"
                     )}
-
                 </div>
 
             </div>
-
 
             <div
                 id="detailGallery"
@@ -1801,7 +1761,6 @@ async function showDetail(
             </div>
 
         </div>
-
     `;
 
 
@@ -1818,15 +1777,33 @@ async function showDetail(
 
 
     const folder =
-        getFolderFromProduct(
-            product
-        );
+        getFolderFromProduct(product);
+
+
+    console.log(
+        "Sản phẩm đang mở:",
+        product["Tên vợt"]
+    );
+
+    console.log(
+        "Mã sản phẩm:",
+        product["Mã"]
+    );
+
+    console.log(
+        "Giá trị Ảnh chi tiết trong Sheet:",
+        product["Ảnh chi tiết"]
+    );
+
+    console.log(
+        "Folder cuối cùng gửi API:",
+        folder
+    );
 
 
     if (!folder) {
 
         galleryContainer.innerHTML = `
-
             <div class="detail-gallery-title">
                 Ảnh chi tiết
             </div>
@@ -1834,11 +1811,9 @@ async function showDetail(
             <div class="loading">
                 Sản phẩm chưa có ảnh chi tiết.
             </div>
-
         `;
 
         return;
-
     }
 
 
@@ -1851,27 +1826,25 @@ async function showDetail(
     if (!urls.length) {
 
         galleryContainer.innerHTML = `
-
             <div class="detail-gallery-title">
                 Ảnh chi tiết
             </div>
 
             <div class="loading">
                 Không tìm thấy ảnh chi tiết.
+                <br><br>
+                Folder:
+                ${escapeHTML(folder)}
             </div>
-
         `;
 
         return;
-
     }
 
 
-    currentGallery =
-        urls;
+    currentGallery = urls;
 
-    currentImageIndex =
-        0;
+    currentImageIndex = 0;
 
 
     galleryContainer.innerHTML = `
@@ -1905,17 +1878,19 @@ async function showDetail(
             item.className =
                 "detail-gallery-item";
 
-
             item.innerHTML = `
-
                 <img
                     src="${escapeHTML(url)}"
                     alt="Ảnh chi tiết ${index + 1}"
                     loading="lazy"
+                    onerror="
+                        console.error(
+                            'Không tải được ảnh:',
+                            '${escapeHTML(url)}'
+                        );
+                    "
                 >
-
             `;
-
 
             item.addEventListener(
                 "click",
@@ -1927,7 +1902,6 @@ async function showDetail(
 
                 }
             );
-
 
             galleryGrid.appendChild(
                 item
@@ -1947,36 +1921,27 @@ function closeDetail() {
 
     document.getElementById(
         "products"
-    ).style.display =
-        "grid";
+    ).style.display = "grid";
 
     document.getElementById(
         "count"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
     document.querySelector(
         ".filters"
-    ).style.display =
-        "flex";
+    ).style.display = "flex";
 
     document.querySelector(
         ".search-box"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
     document.getElementById(
         "detail"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
+    currentGallery = [];
 
-    currentGallery =
-        [];
-
-    currentImageIndex =
-        0;
-
+    currentImageIndex = 0;
 
     window.scrollTo({
         top: 0,
@@ -2000,62 +1965,206 @@ function filterProducts() {
         .toLowerCase()
         .trim();
 
-
     const brand =
         document.getElementById(
             "brandFilter"
         ).value;
-
 
     const style =
         document.getElementById(
             "styleFilter"
         ).value;
 
+    const sort =
+        document.getElementById(
+            "sortFilter"
+        ).value;
+
+    const priceFilter =
+        document.getElementById(
+            "priceFilter"
+        ).value;
 
     const filtered =
-        products.filter(
-            product => {
+        products.filter(product => {
 
-                const text =
-                    Object.values(
-                        product
-                    )
+            const text =
+                Object.values(product)
                     .join(" ")
                     .toLowerCase();
 
-
-                return (
-
-                    text.includes(
-                        search
-                    )
-
-                    &&
-
+            return (
+                text.includes(search) &&
+                (
+                    !brand ||
+                    product["Hãng"] === brand
+                ) &&
+                (
+                    !style ||
+                    product["Lối đánh"] === style
+                ) &&
+                (
+                    !priceFilter ||
                     (
-                        !brand ||
-                        product["Hãng"] ===
-                        brand
-                    )
-
-                    &&
-
+                        priceFilter === "under500" &&
+                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) < 500
+                    ) ||
                     (
-                        !style ||
-                        product["Lối đánh"] ===
-                        style
+                        priceFilter === "500to1000" &&
+                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) >= 500 &&
+                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) < 1000
+                    ) ||
+                    (
+                        priceFilter === "1000to2000" &&
+                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) >= 1000 &&
+                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) < 2000
+                    ) ||
+                    (
+                        priceFilter === "2000plus" &&
+                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) >= 2000
                     )
+                )
+            );
 
-                );
+        });
+
+
+    /* =================================================
+       MỚI NHẤT
+    ================================================= */
+
+    if (sort === "newest") {
+
+        filtered.sort(
+            (a, b) => {
+
+                const dateA =
+                    parseProductDate(
+                        a["Ngày đăng"]
+                    );
+
+                const dateB =
+                    parseProductDate(
+                        b["Ngày đăng"]
+                    );
+
+                return dateB - dateA;
 
             }
         );
 
+    }
 
-    displayProducts(
-        filtered
-    );
+
+    displayProducts(filtered);
+
+}
+
+
+/* =====================================================
+   PARSE PRODUCT DATE
+===================================================== */
+
+function parseProductDate(value) {
+
+    if (!value) {
+        return 0;
+    }
+
+    const text =
+        String(value).trim();
+
+    /*
+        Hỗ trợ:
+
+        08/08/2026
+        8/8/2026
+        08/08/2026 12:22:38
+        08-08-2026 12:22:38
+        2026-08-08
+        2026-08-08 12:22:38
+    */
+
+    let match =
+        text.match(
+            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+    if (match) {
+
+        const day =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]) - 1;
+
+        const year =
+            Number(match[3]);
+
+        const hour =
+            Number(match[4] || 0);
+
+        const minute =
+            Number(match[5] || 0);
+
+        const second =
+            Number(match[6] || 0);
+
+        return new Date(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second
+        ).getTime();
+
+    }
+
+
+    match =
+        text.match(
+            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+    if (match) {
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]) - 1;
+
+        const day =
+            Number(match[3]);
+
+        const hour =
+            Number(match[4] || 0);
+
+        const minute =
+            Number(match[5] || 0);
+
+        const second =
+            Number(match[6] || 0);
+
+        return new Date(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second
+        ).getTime();
+
+    }
+
+
+    const timestamp =
+        Date.parse(text);
+
+    return isNaN(timestamp)
+        ? 0
+        : timestamp;
 
 }
 
@@ -2065,9 +2174,7 @@ function filterProducts() {
 ===================================================== */
 
 document
-    .getElementById(
-        "modalClose"
-    )
+    .getElementById("modalClose")
     .addEventListener(
         "click",
         function(event) {
@@ -2081,9 +2188,7 @@ document
 
 
 document
-    .getElementById(
-        "modalPrev"
-    )
+    .getElementById("modalPrev")
     .addEventListener(
         "click",
         function(event) {
@@ -2097,9 +2202,7 @@ document
 
 
 document
-    .getElementById(
-        "modalNext"
-    )
+    .getElementById("modalNext")
     .addEventListener(
         "click",
         function(event) {
@@ -2113,9 +2216,7 @@ document
 
 
 document
-    .getElementById(
-        "imageModal"
-    )
+    .getElementById("imageModal")
     .addEventListener(
         "click",
         function(event) {
@@ -2146,40 +2247,30 @@ document.addEventListener(
                 "imageModal"
             );
 
-
         if (
-            modal.style.display !==
-            "flex"
+            modal.style.display !== "flex"
         ) {
-
             return;
-
         }
 
-
         if (
-            event.key ===
-            "ArrowRight"
+            event.key === "ArrowRight"
         ) {
 
             nextImage();
 
         }
 
-
         if (
-            event.key ===
-            "ArrowLeft"
+            event.key === "ArrowLeft"
         ) {
 
             previousImage();
 
         }
 
-
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             closeImageModal();
@@ -2196,11 +2287,8 @@ document.addEventListener(
 
 let touchStartX = 0;
 
-
 document
-    .getElementById(
-        "imageModal"
-    )
+    .getElementById("imageModal")
     .addEventListener(
         "touchstart",
         function(event) {
@@ -2210,8 +2298,7 @@ document
             ) {
 
                 touchStartX =
-                    event.touches[0]
-                        .clientX;
+                    event.touches[0].clientX;
 
             }
 
@@ -2223,9 +2310,7 @@ document
 
 
 document
-    .getElementById(
-        "imageModal"
-    )
+    .getElementById("imageModal")
     .addEventListener(
         "touchend",
         function(event) {
@@ -2233,34 +2318,23 @@ document
             if (
                 !event.changedTouches.length
             ) {
-
                 return;
-
             }
 
-
             const touchEndX =
-                event.changedTouches[0]
-                    .clientX;
-
+                event.changedTouches[0].clientX;
 
             const distance =
                 touchEndX -
                 touchStartX;
 
-
             if (
                 Math.abs(distance) < 50
             ) {
-
                 return;
-
             }
 
-
-            if (
-                distance < 0
-            ) {
+            if (distance < 0) {
 
                 nextImage();
 
@@ -2282,9 +2356,7 @@ document
 ===================================================== */
 
 document
-    .getElementById(
-        "search"
-    )
+    .getElementById("search")
     .addEventListener(
         "input",
         filterProducts
@@ -2292,9 +2364,7 @@ document
 
 
 document
-    .getElementById(
-        "brandFilter"
-    )
+    .getElementById("brandFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -2302,9 +2372,27 @@ document
 
 
 document
-    .getElementById(
-        "styleFilter"
-    )
+    .getElementById("styleFilter")
+    .addEventListener(
+        "change",
+        filterProducts
+    );
+
+
+/* =====================================================
+   NEWEST EVENT
+===================================================== */
+
+document
+    .getElementById("sortFilter")
+    .addEventListener(
+        "change",
+        filterProducts
+    );
+
+
+document
+    .getElementById("priceFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -2314,6 +2402,10 @@ document
 /* =====================================================
    START
 ===================================================== */
+
+console.log(
+    "TSPORT: JavaScript OK"
+);
 
 loadProducts();
 
