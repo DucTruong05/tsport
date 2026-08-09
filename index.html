@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TSPORT - Vợt Cầu Lông Lướt <br> <h2>zalo : 0395364443</h2>
-</title>
+<title>TSPORT - Vợt Cầu Lông Lướt</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -566,92 +565,107 @@ select {
         height: 280px;
     }
 }
-</style>
 
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">TSPORT</div>
-    <div class="subtitle">Vợt Cầu Lông Lướt - 0395364443 </div>
+
+    <div class="logo">
+        TSPORT
+    </div>
+
+    <div class="subtitle">
+        Vợt Cầu Lông Lướt - 0395364443
+    </div>
+
 </header>
 
 <div class="container">
 
-<div class="search-box">
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="🔎 Tìm vợt, mã, hãng..."
-    >
-</div>
+    <div class="search-box">
 
-<div class="filters">
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="🔎 Tìm vợt, mã, hãng..."
+        >
 
-    <select id="brandFilter">
-        <option value="">Tất cả hãng</option>
-    </select>
-
-    <select id="styleFilter">
-        <option value="">Tất cả lối đánh</option>
-    </select>
-
-    <select id="sortFilter">
-        <option value="">Mặc định</option>
-        <option value="newest">Mới nhất</option>
-    </select>
-
-</div>
-
-<div id="count" class="count"></div>
-
-<div id="products" class="products">
-    <div class="loading">
-        Đang tải sản phẩm...
     </div>
-</div>
 
-<div id="detail" class="detail"></div>
+    <div class="filters">
+
+        <select id="brandFilter">
+            <option value="">Tất cả hãng</option>
+        </select>
+
+        <select id="styleFilter">
+            <option value="">Tất cả lối đánh</option>
+        </select>
+
+    </div>
+
+    <div id="count" class="count"></div>
+
+    <div id="products" class="products">
+
+        <div class="loading">
+            Đang tải sản phẩm...
+        </div>
+
+    </div>
+
+    <div id="detail" class="detail"></div>
 
 </div>
 
 <div id="imageModal" class="image-modal">
 
-<div id="modalImageWrap" class="modal-image-wrap">
+    <div
+        id="modalImageWrap"
+        class="modal-image-wrap"
+    >
 
-    <div id="modalClose" class="modal-close">
-        ×
+        <div
+            id="modalClose"
+            class="modal-close"
+        >
+            ×
+        </div>
+
+        <button
+            id="modalPrev"
+            class="modal-prev"
+            type="button"
+        >
+            ‹
+        </button>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Ảnh chi tiết"
+        >
+
+        <button
+            id="modalNext"
+            class="modal-next"
+            type="button"
+        >
+            ›
+        </button>
+
+        <div
+            id="modalCounter"
+            class="modal-counter"
+        >
+            1 / 1
+        </div>
+
     </div>
-
-    <button
-        id="modalPrev"
-        class="modal-prev"
-        type="button"
-    >
-        ‹
-    </button>
-
-    <img
-        id="modalImage"
-        src=""
-        alt="Ảnh chi tiết"
-    >
-
-    <button
-        id="modalNext"
-        class="modal-next"
-        type="button"
-    >
-        ›
-    </button>
-
-    <div id="modalCounter" class="modal-counter">
-        1 / 1
-    </div>
-
-</div>
 
 </div>
 
@@ -662,10 +676,10 @@ select {
 ===================================================== */
 
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
+    "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
 const IMAGE_API =
-"https://tsport-image-api.ntr9766.workers.dev/";
+    "https://tsport-image-api.ntr9766.workers.dev/";
 
 
 /* =====================================================
@@ -707,6 +721,19 @@ function getImageUrl(url) {
 
     url = String(url).trim();
 
+    /* IMAGEKIT */
+
+    if (
+        url.includes("ik.imagekit.io") ||
+        url.includes("imagekit.io")
+    ) {
+
+        return url;
+
+    }
+
+    /* GOOGLE DRIVE */
+
     let id = "";
 
     let match = url.match(
@@ -741,6 +768,7 @@ function getImageUrl(url) {
     }
 
     return url;
+
 }
 
 
@@ -779,6 +807,7 @@ function parseCSV(text) {
             i++;
 
             continue;
+
         }
 
         if (char === '"') {
@@ -787,6 +816,7 @@ function parseCSV(text) {
                 !insideQuotes;
 
             continue;
+
         }
 
         if (
@@ -799,6 +829,7 @@ function parseCSV(text) {
             value = "";
 
             continue;
+
         }
 
         if (
@@ -813,7 +844,9 @@ function parseCSV(text) {
                 char === "\r" &&
                 next === "\n"
             ) {
+
                 i++;
+
             }
 
             row.push(value);
@@ -826,6 +859,7 @@ function parseCSV(text) {
             ) {
 
                 rows.push(row);
+
             }
 
             row = [];
@@ -833,9 +867,11 @@ function parseCSV(text) {
             value = "";
 
             continue;
+
         }
 
         value += char;
+
     }
 
     if (
@@ -853,7 +889,9 @@ function parseCSV(text) {
         ) {
 
             rows.push(row);
+
         }
+
     }
 
     if (rows.length < 1) {
@@ -886,6 +924,7 @@ function parseCSV(text) {
             );
 
             return item;
+
         });
 
 }
@@ -924,28 +963,14 @@ async function loadProducts() {
                 "Google Sheets HTTP " +
                 response.status
             );
+
         }
 
         const text =
             await response.text();
 
-        console.log(
-            "Google Sheets response:",
-            text.substring(0, 300)
-        );
-
         products =
             parseCSV(text);
-
-        console.log(
-            "TSPORT - Số sản phẩm:",
-            products.length
-        );
-
-        console.log(
-            "TSPORT - Ví dụ sản phẩm đầu tiên:",
-            products[0]
-        );
 
         createFilters();
 
@@ -1107,6 +1132,7 @@ function displayProducts(list) {
         `;
 
         return;
+
     }
 
     list.forEach(product => {
@@ -1203,6 +1229,7 @@ function displayProducts(list) {
                 </div>
 
             </div>
+
         `;
 
         card.addEventListener(
@@ -1228,10 +1255,6 @@ function displayProducts(list) {
 function getFolderFromProduct(product) {
 
     if (!product) {
-        console.error(
-            "getFolderFromProduct: product không tồn tại"
-        );
-
         return "";
     }
 
@@ -1243,12 +1266,8 @@ function getFolderFromProduct(product) {
         rawValue === null
     ) {
 
-        console.warn(
-            "Sản phẩm không có cột 'Ảnh chi tiết':",
-            product
-        );
-
         return "";
+
     }
 
     let value =
@@ -1258,19 +1277,13 @@ function getFolderFromProduct(product) {
         return "";
     }
 
-
     if (
         value.startsWith("/")
     ) {
 
-        console.log(
-            "Folder lấy trực tiếp:",
-            value
-        );
-
         return value;
-    }
 
+    }
 
     const imageKitMatch =
         value.match(
@@ -1289,7 +1302,9 @@ function getFolderFromProduct(product) {
             while (
                 encoded.length % 4 !== 0
             ) {
+
                 encoded += "=";
+
             }
 
             const decoded =
@@ -1301,23 +1316,11 @@ function getFolderFromProduct(product) {
                 decoded.startsWith("/")
             ) {
 
-                console.log(
-                    "Folder decode từ ImageKit:",
-                    decoded
-                );
-
                 return decoded;
+
             }
 
-            const folder =
-                "/" + decoded;
-
-            console.log(
-                "Folder decode từ ImageKit:",
-                folder
-            );
-
-            return folder;
+            return "/" + decoded;
 
         } catch (error) {
 
@@ -1328,20 +1331,17 @@ function getFolderFromProduct(product) {
             );
 
             return "";
-        }
-    }
 
+        }
+
+    }
 
     const folder =
         "/TSPORT/" +
         value.replace(/^\/+/, "");
 
-    console.log(
-        "Folder tự tạo:",
-        folder
-    );
-
     return folder;
+
 }
 
 
@@ -1352,11 +1352,6 @@ function getFolderFromProduct(product) {
 async function loadGalleryImages(folder) {
 
     if (!folder) {
-
-        console.warn(
-            "loadGalleryImages: folder rỗng"
-        );
-
         return [];
     }
 
@@ -1364,28 +1359,6 @@ async function loadGalleryImages(folder) {
         IMAGE_API +
         "?folder=" +
         encodeURIComponent(folder);
-
-    console.log(
-        "===================================="
-    );
-
-    console.log(
-        "TSPORT GALLERY"
-    );
-
-    console.log(
-        "Folder:",
-        folder
-    );
-
-    console.log(
-        "API URL:",
-        url
-    );
-
-    console.log(
-        "===================================="
-    );
 
     try {
 
@@ -1403,16 +1376,11 @@ async function loadGalleryImages(folder) {
                 "Image API HTTP " +
                 response.status
             );
+
         }
 
         const data =
             await response.json();
-
-        console.log(
-            "Image API response:",
-            data
-        );
-
 
         if (
             !data ||
@@ -1420,38 +1388,17 @@ async function loadGalleryImages(folder) {
             !Array.isArray(data.images)
         ) {
 
-            console.warn(
-                "Image API không trả về images hợp lệ:",
-                data
-            );
-
             return [];
+
         }
 
-
-        const urls =
-            data.images
-                .map(
-                    image =>
-                        image &&
-                        image.url
-                )
-                .filter(Boolean);
-
-
-        console.log(
-            "Tìm thấy:",
-            urls.length,
-            "ảnh"
-        );
-
-        console.log(
-            "Danh sách ảnh:",
-            urls
-        );
-
-
-        return urls;
+        return data.images
+            .map(
+                image =>
+                    image &&
+                    image.url
+            )
+            .filter(Boolean);
 
     } catch (error) {
 
@@ -1461,6 +1408,7 @@ async function loadGalleryImages(folder) {
         );
 
         return [];
+
     }
 
 }
@@ -1664,7 +1612,6 @@ async function showDetail(product) {
         </div>
         `;
 
-
     detail.innerHTML = `
 
         <button
@@ -1754,45 +1701,21 @@ async function showDetail(product) {
             </div>
 
         </div>
-    `;
 
+    `;
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 
-
     const galleryContainer =
         document.getElementById(
             "detailGallery"
         );
 
-
     const folder =
         getFolderFromProduct(product);
-
-
-    console.log(
-        "Sản phẩm đang mở:",
-        product["Tên vợt"]
-    );
-
-    console.log(
-        "Mã sản phẩm:",
-        product["Mã"]
-    );
-
-    console.log(
-        "Giá trị Ảnh chi tiết trong Sheet:",
-        product["Ảnh chi tiết"]
-    );
-
-    console.log(
-        "Folder cuối cùng gửi API:",
-        folder
-    );
-
 
     if (!folder) {
 
@@ -1807,14 +1730,13 @@ async function showDetail(product) {
         `;
 
         return;
-    }
 
+    }
 
     const urls =
         await loadGalleryImages(
             folder
         );
-
 
     if (!urls.length) {
 
@@ -1832,13 +1754,12 @@ async function showDetail(product) {
         `;
 
         return;
-    }
 
+    }
 
     currentGallery = urls;
 
     currentImageIndex = 0;
-
 
     galleryContainer.innerHTML = `
 
@@ -1853,12 +1774,10 @@ async function showDetail(product) {
 
     `;
 
-
     const galleryGrid =
         document.getElementById(
             "detailGalleryGrid"
         );
-
 
     urls.forEach(
         (url, index) => {
@@ -1876,12 +1795,6 @@ async function showDetail(product) {
                     src="${escapeHTML(url)}"
                     alt="Ảnh chi tiết ${index + 1}"
                     loading="lazy"
-                    onerror="
-                        console.error(
-                            'Không tải được ảnh:',
-                            '${escapeHTML(url)}'
-                        );
-                    "
                 >
             `;
 
@@ -1968,11 +1881,6 @@ function filterProducts() {
             "styleFilter"
         ).value;
 
-    const sort =
-        document.getElementById(
-            "sortFilter"
-        ).value;
-
     const filtered =
         products.filter(product => {
 
@@ -1995,143 +1903,7 @@ function filterProducts() {
 
         });
 
-
-    /* =================================================
-       MỚI NHẤT
-    ================================================= */
-
-    if (sort === "newest") {
-
-        filtered.sort(
-            (a, b) => {
-
-                const dateA =
-                    parseProductDate(
-                        a["Ngày đăng"]
-                    );
-
-                const dateB =
-                    parseProductDate(
-                        b["Ngày đăng"]
-                    );
-
-                return dateB - dateA;
-
-            }
-        );
-
-    }
-
-
     displayProducts(filtered);
-
-}
-
-
-/* =====================================================
-   PARSE PRODUCT DATE
-===================================================== */
-
-function parseProductDate(value) {
-
-    if (!value) {
-        return 0;
-    }
-
-    const text =
-        String(value).trim();
-
-    /*
-        Hỗ trợ:
-
-        08/08/2026
-        8/8/2026
-        08/08/2026 12:22:38
-        08-08-2026 12:22:38
-        2026-08-08
-        2026-08-08 12:22:38
-    */
-
-    let match =
-        text.match(
-            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
-        );
-
-    if (match) {
-
-        const day =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]) - 1;
-
-        const year =
-            Number(match[3]);
-
-        const hour =
-            Number(match[4] || 0);
-
-        const minute =
-            Number(match[5] || 0);
-
-        const second =
-            Number(match[6] || 0);
-
-        return new Date(
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second
-        ).getTime();
-
-    }
-
-
-    match =
-        text.match(
-            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
-        );
-
-    if (match) {
-
-        const year =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]) - 1;
-
-        const day =
-            Number(match[3]);
-
-        const hour =
-            Number(match[4] || 0);
-
-        const minute =
-            Number(match[5] || 0);
-
-        const second =
-            Number(match[6] || 0);
-
-        return new Date(
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second
-        ).getTime();
-
-    }
-
-
-    const timestamp =
-        Date.parse(text);
-
-    return isNaN(timestamp)
-        ? 0
-        : timestamp;
 
 }
 
@@ -2153,7 +1925,6 @@ document
         }
     );
 
-
 document
     .getElementById("modalPrev")
     .addEventListener(
@@ -2167,7 +1938,6 @@ document
         }
     );
 
-
 document
     .getElementById("modalNext")
     .addEventListener(
@@ -2180,7 +1950,6 @@ document
 
         }
     );
-
 
 document
     .getElementById("imageModal")
@@ -2275,7 +2044,6 @@ document
         }
     );
 
-
 document
     .getElementById("imageModal")
     .addEventListener(
@@ -2329,7 +2097,6 @@ document
         filterProducts
     );
 
-
 document
     .getElementById("brandFilter")
     .addEventListener(
@@ -2337,21 +2104,8 @@ document
         filterProducts
     );
 
-
 document
     .getElementById("styleFilter")
-    .addEventListener(
-        "change",
-        filterProducts
-    );
-
-
-/* =====================================================
-   NEWEST EVENT
-===================================================== */
-
-document
-    .getElementById("sortFilter")
     .addEventListener(
         "change",
         filterProducts
