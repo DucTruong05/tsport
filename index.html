@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,8 +19,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TSPORT - Vợt Cầu Lông Lướt<br>zalo : 0395364443</title>
+<title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
+
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -35,9 +38,10 @@ body {
     color: #171717;
 }
 
-/* =========================
+
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 header {
     background:
@@ -68,9 +72,10 @@ header {
     font-size: 15px;
 }
 
-/* =========================
+
+/* =====================================================
    CONTAINER
-========================= */
+===================================================== */
 
 .container {
     width: 100%;
@@ -79,9 +84,10 @@ header {
     padding: 20px;
 }
 
-/* =========================
+
+/* =====================================================
    SEARCH
-========================= */
+===================================================== */
 
 .search-box {
     margin-bottom: 15px;
@@ -101,9 +107,10 @@ header {
     border-color: #888;
 }
 
-/* =========================
+
+/* =====================================================
    FILTER
-========================= */
+===================================================== */
 
 .filters {
     display: flex;
@@ -121,9 +128,10 @@ select {
     outline: none;
 }
 
-/* =========================
+
+/* =====================================================
    COUNT
-========================= */
+===================================================== */
 
 .count {
     color: #777;
@@ -131,9 +139,10 @@ select {
     margin-bottom: 15px;
 }
 
-/* =========================
+
+/* =====================================================
    PRODUCTS
-========================= */
+===================================================== */
 
 .products {
     display: grid;
@@ -141,9 +150,10 @@ select {
     gap: 18px;
 }
 
-/* =========================
+
+/* =====================================================
    CARD
-========================= */
+===================================================== */
 
 .card {
     background: white;
@@ -209,9 +219,16 @@ select {
     line-height: 1.6;
 }
 
-/* =========================
+.post-date {
+    margin-top: 7px;
+    color: #999;
+    font-size: 12px;
+}
+
+
+/* =====================================================
    DETAIL
-========================= */
+===================================================== */
 
 .detail {
     display: none;
@@ -231,9 +248,10 @@ select {
     margin-bottom: 25px;
 }
 
-/* =========================
+
+/* =====================================================
    DETAIL IMAGE
-========================= */
+===================================================== */
 
 .detail-image-box {
     width: 100%;
@@ -254,9 +272,10 @@ select {
     object-fit: contain;
 }
 
-/* =========================
+
+/* =====================================================
    DETAIL CONTENT
-========================= */
+===================================================== */
 
 .detail-content {
     max-width: 800px;
@@ -281,9 +300,17 @@ select {
     margin: 15px 0 25px;
 }
 
-/* =========================
+.detail-date {
+    color: #888;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
    INFO
-========================= */
+===================================================== */
 
 .info-grid {
     display: grid;
@@ -307,9 +334,10 @@ select {
     margin-bottom: 6px;
 }
 
-/* =========================
+
+/* =====================================================
    DETAIL GALLERY
-========================= */
+===================================================== */
 
 .detail-gallery {
     max-width: 1000px;
@@ -349,9 +377,10 @@ select {
     transform: scale(1.03);
 }
 
-/* =========================
+
+/* =====================================================
    IMAGE MODAL
-========================= */
+===================================================== */
 
 .image-modal {
     display: none;
@@ -438,9 +467,10 @@ select {
     z-index: 10;
 }
 
-/* =========================
+
+/* =====================================================
    LOADING
-========================= */
+===================================================== */
 
 .loading {
     grid-column: 1 / -1;
@@ -449,9 +479,10 @@ select {
     color: #777;
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media (max-width: 900px) {
 
@@ -466,7 +497,9 @@ select {
     .detail-gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
+
 
 @media (max-width: 650px) {
 
@@ -561,7 +594,9 @@ select {
     .modal-counter {
         bottom: 18px;
     }
+
 }
+
 
 @media (max-width: 400px) {
 
@@ -576,73 +611,148 @@ select {
     .detail-gallery-item {
         height: 280px;
     }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
+
 <header>
-    <div class="logo">TSPORT</div>
-    <div class="subtitle">Vợt Cầu Lông Lướt - 0395364443 </div>
+
+    <div class="logo">
+        TSPORT
+    </div>
+
+    <div class="subtitle">
+        Vợt Cầu Lông Lướt - 0395364443
+    </div>
+
 </header>
-    
+
 
 <div class="container">
 
+
+    <!-- =================================================
+         SEARCH
+    ================================================= -->
+
     <div class="search-box">
+
         <input
             id="search"
             class="search"
             type="text"
             placeholder="🔎 Tìm vợt, mã, hãng..."
         >
+
     </div>
+
+
+    <!-- =================================================
+         FILTERS
+    ================================================= -->
 
     <div class="filters">
 
         <select id="brandFilter">
-            <option value="">Tất cả hãng</option>
+
+            <option value="">
+                Tất cả hãng
+            </option>
+
         </select>
+
 
         <select id="styleFilter">
-            <option value="">Tất cả lối đánh</option>
+
+            <option value="">
+                Tất cả lối đánh
+            </option>
+
         </select>
+
 
         <select id="sortFilter">
-            <option value="">Mặc định</option>
-            <option value="newest">Mới nhất</option>
+
+            <option value="">
+                Mặc định
+            </option>
+
+            <option value="newest">
+                Mới nhất
+            </option>
+
         </select>
 
+
         <select id="priceFilter">
-            <option value="">Tất cả mức giá</option>
-            <option value="under500">Dưới 500</option>
-            <option value="500to1000">500 - 1000</option>
-            <option value="1000to2000">1000 - 2000</option>
-            <option value="2000plus">Từ 2000 trở lên</option>
+
+            <option value="">
+                Tất cả mức giá
+            </option>
+
+            <option value="under500">
+                Dưới 500
+            </option>
+
+            <option value="500to1000">
+                500 - 1000
+            </option>
+
+            <option value="1000to2000">
+                1000 - 2000
+            </option>
+
+            <option value="2000plus">
+                Từ 2000 trở lên
+            </option>
+
         </select>
 
     </div>
+
 
     <div id="count" class="count"></div>
 
+
     <div id="products" class="products">
+
         <div class="loading">
             Đang tải sản phẩm...
         </div>
+
     </div>
+
 
     <div id="detail" class="detail"></div>
 
+
 </div>
+
+
+<!-- =====================================================
+     IMAGE MODAL
+===================================================== -->
 
 <div id="imageModal" class="image-modal">
 
-    <div id="modalImageWrap" class="modal-image-wrap">
+    <div
+        id="modalImageWrap"
+        class="modal-image-wrap"
+    >
 
-        <div id="modalClose" class="modal-close">
+        <div
+            id="modalClose"
+            class="modal-close"
+        >
             ×
         </div>
+
 
         <button
             id="modalPrev"
@@ -652,11 +762,13 @@ select {
             ‹
         </button>
 
+
         <img
             id="modalImage"
             src=""
             alt="Ảnh chi tiết"
         >
+
 
         <button
             id="modalNext"
@@ -666,7 +778,11 @@ select {
             ›
         </button>
 
-        <div id="modalCounter" class="modal-counter">
+
+        <div
+            id="modalCounter"
+            class="modal-counter"
+        >
             1 / 1
         </div>
 
@@ -674,7 +790,9 @@ select {
 
 </div>
 
+
 <script>
+
 
 /* =====================================================
    CONFIG
@@ -682,6 +800,7 @@ select {
 
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
+
 
 const IMAGE_API =
 "https://tsport-image-api.ntr9766.workers.dev/";
@@ -728,25 +847,30 @@ function getImageUrl(url) {
 
     let id = "";
 
-    let match = url.match(
-        /\/file\/d\/([^/]+)/
-    );
+    let match =
+        url.match(
+            /\/file\/d\/([^/]+)/
+        );
+
 
     if (match) {
         id = match[1];
     }
 
+
     if (!id) {
 
-        match = url.match(
-            /[?&]id=([^&]+)/
-        );
+        match =
+            url.match(
+                /[?&]id=([^&]+)/
+            );
 
         if (match) {
             id = match[1];
         }
 
     }
+
 
     if (id) {
 
@@ -759,7 +883,9 @@ function getImageUrl(url) {
 
     }
 
+
     return url;
+
 }
 
 
@@ -777,6 +903,7 @@ function parseCSV(text) {
 
     let insideQuotes = false;
 
+
     for (
         let i = 0;
         i < text.length;
@@ -786,6 +913,7 @@ function parseCSV(text) {
         const char = text[i];
 
         const next = text[i + 1];
+
 
         if (
             char === '"' &&
@@ -798,7 +926,9 @@ function parseCSV(text) {
             i++;
 
             continue;
+
         }
+
 
         if (char === '"') {
 
@@ -806,7 +936,9 @@ function parseCSV(text) {
                 !insideQuotes;
 
             continue;
+
         }
+
 
         if (
             char === "," &&
@@ -818,7 +950,9 @@ function parseCSV(text) {
             value = "";
 
             continue;
+
         }
+
 
         if (
             (
@@ -835,7 +969,9 @@ function parseCSV(text) {
                 i++;
             }
 
+
             row.push(value);
+
 
             if (
                 row.some(
@@ -845,17 +981,23 @@ function parseCSV(text) {
             ) {
 
                 rows.push(row);
+
             }
+
 
             row = [];
 
             value = "";
 
             continue;
+
         }
 
+
         value += char;
+
     }
+
 
     if (
         value !== "" ||
@@ -863,6 +1005,7 @@ function parseCSV(text) {
     ) {
 
         row.push(value);
+
 
         if (
             row.some(
@@ -872,12 +1015,16 @@ function parseCSV(text) {
         ) {
 
             rows.push(row);
+
         }
+
     }
+
 
     if (rows.length < 1) {
         return [];
     }
+
 
     const headers =
         rows[0].map(
@@ -887,11 +1034,13 @@ function parseCSV(text) {
                     .replace(/^\uFEFF/, "")
         );
 
+
     return rows
         .slice(1)
         .map(rowData => {
 
             const item = {};
+
 
             headers.forEach(
                 (header, index) => {
@@ -904,7 +1053,9 @@ function parseCSV(text) {
                 }
             );
 
+
             return item;
+
         });
 
 }
@@ -917,13 +1068,17 @@ function parseCSV(text) {
 async function loadProducts() {
 
     const container =
-        document.getElementById("products");
+        document.getElementById(
+            "products"
+        );
+
 
     container.innerHTML = `
         <div class="loading">
             Đang tải sản phẩm...
         </div>
     `;
+
 
     try {
 
@@ -937,38 +1092,47 @@ async function loadProducts() {
                 }
             );
 
+
         if (!response.ok) {
 
             throw new Error(
                 "Google Sheets HTTP " +
                 response.status
             );
+
         }
+
 
         const text =
             await response.text();
+
 
         console.log(
             "Google Sheets response:",
             text.substring(0, 300)
         );
 
+
         products =
             parseCSV(text);
+
 
         console.log(
             "TSPORT - Số sản phẩm:",
             products.length
         );
 
+
         console.log(
             "TSPORT - Ví dụ sản phẩm đầu tiên:",
             products[0]
         );
 
+
         createFilters();
 
         displayProducts(products);
+
 
     } catch (error) {
 
@@ -977,12 +1141,17 @@ async function loadProducts() {
             error
         );
 
+
         container.innerHTML = `
             <div class="loading">
+
                 Không thể tải dữ liệu sản phẩm.
+
                 <br><br>
+
                 Kiểm tra quyền chia sẻ Google Sheet
                 và Console trình duyệt.
+
             </div>
         `;
 
@@ -1002,16 +1171,20 @@ function createFilters() {
             "brandFilter"
         );
 
+
     const styleFilter =
         document.getElementById(
             "styleFilter"
         );
 
+
     brandFilter.innerHTML =
         `<option value="">Tất cả hãng</option>`;
 
+
     styleFilter.innerHTML =
         `<option value="">Tất cả lối đánh</option>`;
+
 
     const brands =
         [
@@ -1025,6 +1198,7 @@ function createFilters() {
             )
         ];
 
+
     const styles =
         [
             ...new Set(
@@ -1037,29 +1211,39 @@ function createFilters() {
             )
         ];
 
+
     brands.forEach(brand => {
 
         const option =
             document.createElement("option");
 
+
         option.value = brand;
 
         option.textContent = brand;
 
-        brandFilter.appendChild(option);
+
+        brandFilter.appendChild(
+            option
+        );
 
     });
+
 
     styles.forEach(style => {
 
         const option =
             document.createElement("option");
 
+
         option.value = style;
 
         option.textContent = style;
 
-        styleFilter.appendChild(option);
+
+        styleFilter.appendChild(
+            option
+        );
 
     });
 
@@ -1070,27 +1254,95 @@ function createFilters() {
    PRICE
 ===================================================== */
 
+function getPriceNumber(price) {
+
+    if (!price) {
+        return 0;
+    }
+
+
+    return Number(
+        String(price)
+            .replace(/[^\d]/g, "")
+    ) || 0;
+
+}
+
+
 function formatPrice(price) {
 
     if (!price) {
         return "";
     }
 
+
     const number =
-        Number(
-            String(price).replace(
-                /[^\d]/g,
-                ""
-            )
-        );
+        getPriceNumber(price);
+
 
     if (!number) {
         return escapeHTML(price);
     }
 
+
     return (
         number.toLocaleString("vi-VN") +
         " ₫"
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDisplayDate(value) {
+
+    if (!value) {
+        return "";
+    }
+
+
+    const timestamp =
+        parseProductDate(value);
+
+
+    if (!timestamp) {
+
+        return escapeHTML(
+            String(value)
+        );
+
+    }
+
+
+    const date =
+        new Date(timestamp);
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const year =
+        date.getFullYear();
+
+
+    return (
+        day +
+        "/" +
+        month +
+        "/" +
+        year
     );
 
 }
@@ -1107,15 +1359,19 @@ function displayProducts(list) {
             "products"
         );
 
+
     const count =
         document.getElementById(
             "count"
         );
 
+
     container.innerHTML = "";
+
 
     count.textContent =
         `${list.length} sản phẩm`;
+
 
     if (!list.length) {
 
@@ -1126,21 +1382,30 @@ function displayProducts(list) {
         `;
 
         return;
+
     }
+
 
     list.forEach(product => {
 
         const card =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        card.className = "card";
+
+        card.className =
+            "card";
+
 
         const image =
             getImageUrl(
                 product["Ảnh"]
             );
 
+
         let imageHTML = "";
+
 
         if (image) {
 
@@ -1165,11 +1430,27 @@ function displayProducts(list) {
 
         }
 
+
+        const dateHTML =
+            product["Ngày đăng"]
+            ?
+            `
+                <div class="post-date">
+                    Đăng: ${formatDisplayDate(
+                        product["Ngày đăng"]
+                    )}
+                </div>
+            `
+            :
+            "";
+
+
         card.innerHTML = `
 
             <div class="image-box">
                 ${imageHTML}
             </div>
+
 
             <div class="card-info">
 
@@ -1179,11 +1460,13 @@ function displayProducts(list) {
                     )}
                 </div>
 
+
                 <div class="name">
                     ${escapeHTML(
                         product["Tên vợt"] || ""
                     )}
                 </div>
+
 
                 <div class="price">
                     ${formatPrice(
@@ -1191,29 +1474,34 @@ function displayProducts(list) {
                     )}
                 </div>
 
+
                 <div class="meta">
 
                     ${escapeHTML(
                         product["Tình trạng vợt"] || ""
                     )}
 
+
                     ${
                         product["Tình trạng cước"]
-                        ? " · " +
+                        ?
+                        " · " +
                         escapeHTML(
                             product["Tình trạng cước"]
                         )
-                        : ""
+                        :
+                        ""
                     }
+
 
                     ${
                         product["Lối đánh"]
                         ?
                         `
-                        <br>
-                        ${escapeHTML(
-                            product["Lối đánh"]
-                        )}
+                            <br>
+                            ${escapeHTML(
+                                product["Lối đánh"]
+                            )}
                         `
                         :
                         ""
@@ -1221,8 +1509,13 @@ function displayProducts(list) {
 
                 </div>
 
+
+                ${dateHTML}
+
             </div>
+
         `;
+
 
         card.addEventListener(
             "click",
@@ -1233,7 +1526,10 @@ function displayProducts(list) {
             }
         );
 
-        container.appendChild(card);
+
+        container.appendChild(
+            card
+        );
 
     });
 
@@ -1244,18 +1540,36 @@ function displayProducts(list) {
    GET FOLDER FROM PRODUCT
 ===================================================== */
 
+/*
+   GOOGLE APPS SCRIPT HIỆN TẠI:
+
+   product["Ảnh chi tiết"]
+
+   sẽ trả trực tiếp:
+
+   /TSPORT/TSPORT YN/YN001 - Astrox 10
+
+   Vì vậy chỉ cần dùng trực tiếp giá trị này.
+
+   Vẫn giữ khả năng tương thích với dữ liệu cũ.
+*/
+
 function getFolderFromProduct(product) {
 
     if (!product) {
+
         console.error(
             "getFolderFromProduct: product không tồn tại"
         );
 
         return "";
+
     }
+
 
     const rawValue =
         product["Ảnh chi tiết"];
+
 
     if (
         rawValue === undefined ||
@@ -1268,33 +1582,42 @@ function getFolderFromProduct(product) {
         );
 
         return "";
+
     }
+
 
     let value =
         String(rawValue).trim();
+
 
     if (!value) {
         return "";
     }
 
 
+    /* ================================================
+       TRƯỜNG HỢP MỚI
+       Apps Script trả trực tiếp folderPath
+       ================================================ */
+
     if (
         value.startsWith("/")
     ) {
 
-        console.log(
-            "Folder lấy trực tiếp:",
-            value
-        );
-
         return value;
+
     }
 
+
+    /* ================================================
+       TƯƠNG THÍCH DỮ LIỆU IMAGEKIT CŨ
+       ================================================ */
 
     const imageKitMatch =
         value.match(
             /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
         );
+
 
     if (imageKitMatch) {
 
@@ -1305,38 +1628,33 @@ function getFolderFromProduct(product) {
                     .replace(/-/g, "+")
                     .replace(/_/g, "/");
 
+
             while (
                 encoded.length % 4 !== 0
             ) {
+
                 encoded += "=";
+
             }
+
 
             const decoded =
                 decodeURIComponent(
                     atob(encoded)
                 );
 
+
             if (
                 decoded.startsWith("/")
             ) {
 
-                console.log(
-                    "Folder decode từ ImageKit:",
-                    decoded
-                );
-
                 return decoded;
+
             }
 
-            const folder =
-                "/" + decoded;
 
-            console.log(
-                "Folder decode từ ImageKit:",
-                folder
-            );
+            return "/" + decoded;
 
-            return folder;
 
         } catch (error) {
 
@@ -1347,20 +1665,21 @@ function getFolderFromProduct(product) {
             );
 
             return "";
+
         }
+
     }
 
 
-    const folder =
-        "/TSPORT/" +
-        value.replace(/^\/+/, "");
+    /*
+     * Dữ liệu cũ chỉ lưu tên folder.
+     */
 
-    console.log(
-        "Folder tự tạo:",
-        folder
+    return (
+        "/TSPORT/" +
+        value.replace(/^\/+/, "")
     );
 
-    return folder;
 }
 
 
@@ -1377,34 +1696,42 @@ async function loadGalleryImages(folder) {
         );
 
         return [];
+
     }
+
 
     const url =
         IMAGE_API +
         "?folder=" +
         encodeURIComponent(folder);
 
+
     console.log(
         "===================================="
     );
 
+
     console.log(
         "TSPORT GALLERY"
     );
+
 
     console.log(
         "Folder:",
         folder
     );
 
+
     console.log(
         "API URL:",
         url
     );
 
+
     console.log(
         "===================================="
     );
+
 
     try {
 
@@ -1416,16 +1743,20 @@ async function loadGalleryImages(folder) {
                 }
             );
 
+
         if (!response.ok) {
 
             throw new Error(
                 "Image API HTTP " +
                 response.status
             );
+
         }
+
 
         const data =
             await response.json();
+
 
         console.log(
             "Image API response:",
@@ -1436,7 +1767,9 @@ async function loadGalleryImages(folder) {
         if (
             !data ||
             !data.success ||
-            !Array.isArray(data.images)
+            !Array.isArray(
+                data.images
+            )
         ) {
 
             console.warn(
@@ -1445,6 +1778,7 @@ async function loadGalleryImages(folder) {
             );
 
             return [];
+
         }
 
 
@@ -1464,13 +1798,9 @@ async function loadGalleryImages(folder) {
             "ảnh"
         );
 
-        console.log(
-            "Danh sách ảnh:",
-            urls
-        );
-
 
         return urls;
+
 
     } catch (error) {
 
@@ -1480,6 +1810,7 @@ async function loadGalleryImages(folder) {
         );
 
         return [];
+
     }
 
 }
@@ -1494,46 +1825,63 @@ function showModalImage() {
     if (
         !currentGallery.length
     ) {
+
         return;
+
     }
+
 
     const modal =
         document.getElementById(
             "imageModal"
         );
 
+
     const image =
         document.getElementById(
             "modalImage"
         );
+
 
     const counter =
         document.getElementById(
             "modalCounter"
         );
 
+
     image.src =
         currentGallery[
             currentImageIndex
         ];
 
+
     counter.textContent =
         `${currentImageIndex + 1} / ${currentGallery.length}`;
+
 
     const hasMultiple =
         currentGallery.length > 1;
 
+
     document.getElementById(
         "modalPrev"
     ).style.display =
-        hasMultiple ? "flex" : "none";
+        hasMultiple
+            ? "flex"
+            : "none";
+
 
     document.getElementById(
         "modalNext"
     ).style.display =
-        hasMultiple ? "flex" : "none";
+        hasMultiple
+            ? "flex"
+            : "none";
 
-    modal.style.display = "flex";
+
+    modal.style.display =
+        "flex";
+
 
     document.body.style.overflow =
         "hidden";
@@ -1550,10 +1898,15 @@ function openGalleryImage(index) {
     if (
         !currentGallery.length
     ) {
+
         return;
+
     }
 
-    currentImageIndex = index;
+
+    currentImageIndex =
+        index;
+
 
     showModalImage();
 
@@ -1569,14 +1922,18 @@ function nextImage() {
     if (
         currentGallery.length <= 1
     ) {
+
         return;
+
     }
+
 
     currentImageIndex =
         (
             currentImageIndex + 1
         ) %
         currentGallery.length;
+
 
     showModalImage();
 
@@ -1592,8 +1949,11 @@ function previousImage() {
     if (
         currentGallery.length <= 1
     ) {
+
         return;
+
     }
+
 
     currentImageIndex =
         (
@@ -1602,6 +1962,7 @@ function previousImage() {
             currentGallery.length
         ) %
         currentGallery.length;
+
 
     showModalImage();
 
@@ -1619,9 +1980,14 @@ function closeImageModal() {
             "imageModal"
         );
 
-    modal.style.display = "none";
 
-    document.body.style.overflow = "";
+    modal.style.display =
+        "none";
+
+
+    document.body.style.overflow =
+        "";
+
 
     document.getElementById(
         "modalImage"
@@ -1640,48 +2006,71 @@ async function showDetail(product) {
         "products"
     ).style.display = "none";
 
+
     document.getElementById(
         "count"
     ).style.display = "none";
+
 
     document.querySelector(
         ".filters"
     ).style.display = "none";
 
+
     document.querySelector(
         ".search-box"
     ).style.display = "none";
+
 
     const detail =
         document.getElementById(
             "detail"
         );
 
-    detail.style.display = "block";
+
+    detail.style.display =
+        "block";
+
 
     const image =
         getImageUrl(
             product["Ảnh"]
         );
 
+
     const imageHTML =
         image
         ?
         `
-        <img
-            class="detail-image"
-            src="${escapeHTML(image)}"
-            alt="${escapeHTML(
-                product["Tên vợt"] || ""
-            )}"
-        >
+            <img
+                class="detail-image"
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(
+                    product["Tên vợt"] || ""
+                )}"
+            >
         `
         :
         `
-        <div class="no-image">
-            Không có ảnh
-        </div>
+            <div class="no-image">
+                Không có ảnh
+            </div>
         `;
+
+
+    const dateHTML =
+        product["Ngày đăng"]
+        ?
+        `
+            <div class="detail-date">
+                Đăng ngày:
+                ${formatDisplayDate(
+                    product["Ngày đăng"]
+                )}
+            </div>
+        `
+        :
+        "";
 
 
     detail.innerHTML = `
@@ -1694,68 +2083,117 @@ async function showDetail(product) {
             ← Quay lại
         </button>
 
+
         <div class="detail-image-box">
+
             ${imageHTML}
+
         </div>
+
 
         <div class="detail-content">
 
+
             <div class="detail-brand">
+
                 ${escapeHTML(
                     product["Hãng"] || ""
                 )}
+
             </div>
 
+
             <div class="detail-name">
+
                 ${escapeHTML(
                     product["Tên vợt"] || ""
                 )}
+
             </div>
 
+
             <div class="detail-price">
+
                 ${formatPrice(
                     product["Giá"]
                 )}
+
             </div>
+
+
+            ${dateHTML}
+
 
             <div class="info-grid">
 
+
                 <div class="info-row">
-                    <strong>Mã vợt</strong>
+
+                    <strong>
+                        Mã vợt
+                    </strong>
+
                     ${escapeHTML(
                         product["Mã"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Tình trạng cước</strong>
+
+                    <strong>
+                        Tình trạng cước
+                    </strong>
+
                     ${escapeHTML(
                         product["Tình trạng cước"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Tình trạng vợt</strong>
+
+                    <strong>
+                        Tình trạng vợt
+                    </strong>
+
                     ${escapeHTML(
                         product["Tình trạng vợt"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Lối đánh</strong>
+
+                    <strong>
+                        Lối đánh
+                    </strong>
+
                     ${escapeHTML(
                         product["Lối đánh"] || "-"
                     )}
+
                 </div>
 
+
                 <div class="info-row">
-                    <strong>Ghi chú</strong>
+
+                    <strong>
+                        Ghi chú
+                    </strong>
+
                     ${escapeHTML(
                         product["Ghi chú"] || "-"
                     )}
+
                 </div>
 
+
             </div>
+
 
             <div
                 id="detailGallery"
@@ -1766,13 +2204,16 @@ async function showDetail(product) {
                     Ảnh chi tiết
                 </div>
 
+
                 <div class="loading">
                     Đang tải ảnh chi tiết...
                 </div>
 
             </div>
 
+
         </div>
+
     `;
 
 
@@ -1789,7 +2230,9 @@ async function showDetail(product) {
 
 
     const folder =
-        getFolderFromProduct(product);
+        getFolderFromProduct(
+            product
+        );
 
 
     console.log(
@@ -1797,18 +2240,21 @@ async function showDetail(product) {
         product["Tên vợt"]
     );
 
+
     console.log(
         "Mã sản phẩm:",
         product["Mã"]
     );
 
+
     console.log(
-        "Giá trị Ảnh chi tiết trong Sheet:",
+        "Ảnh chi tiết trong Sheet:",
         product["Ảnh chi tiết"]
     );
 
+
     console.log(
-        "Folder cuối cùng gửi API:",
+        "Folder gửi Worker:",
         folder
     );
 
@@ -1816,16 +2262,22 @@ async function showDetail(product) {
     if (!folder) {
 
         galleryContainer.innerHTML = `
+
             <div class="detail-gallery-title">
                 Ảnh chi tiết
             </div>
 
+
             <div class="loading">
+
                 Sản phẩm chưa có ảnh chi tiết.
+
             </div>
+
         `;
 
         return;
+
     }
 
 
@@ -1838,25 +2290,39 @@ async function showDetail(product) {
     if (!urls.length) {
 
         galleryContainer.innerHTML = `
+
             <div class="detail-gallery-title">
                 Ảnh chi tiết
             </div>
 
+
             <div class="loading">
+
                 Không tìm thấy ảnh chi tiết.
+
                 <br><br>
+
                 Folder:
-                ${escapeHTML(folder)}
+
+                ${escapeHTML(
+                    folder
+                )}
+
             </div>
+
         `;
 
         return;
+
     }
 
 
-    currentGallery = urls;
+    currentGallery =
+        urls;
 
-    currentImageIndex = 0;
+
+    currentImageIndex =
+        0;
 
 
     galleryContainer.innerHTML = `
@@ -1864,6 +2330,7 @@ async function showDetail(product) {
         <div class="detail-gallery-title">
             Ảnh chi tiết
         </div>
+
 
         <div
             id="detailGalleryGrid"
@@ -1887,22 +2354,44 @@ async function showDetail(product) {
                     "div"
                 );
 
+
             item.className =
                 "detail-gallery-item";
 
-            item.innerHTML = `
-                <img
-                    src="${escapeHTML(url)}"
-                    alt="Ảnh chi tiết ${index + 1}"
-                    loading="lazy"
-                    onerror="
-                        console.error(
-                            'Không tải được ảnh:',
-                            '${escapeHTML(url)}'
-                        );
-                    "
-                >
-            `;
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+
+            img.src =
+                url;
+
+
+            img.alt =
+                `Ảnh chi tiết ${index + 1}`;
+
+
+            img.loading =
+                "lazy";
+
+
+            img.onerror =
+                function() {
+
+                    console.error(
+                        "Không tải được ảnh:",
+                        url
+                    );
+
+                };
+
+
+            item.appendChild(
+                img
+            );
+
 
             item.addEventListener(
                 "click",
@@ -1914,6 +2403,7 @@ async function showDetail(product) {
 
                 }
             );
+
 
             galleryGrid.appendChild(
                 item
@@ -1933,27 +2423,41 @@ function closeDetail() {
 
     document.getElementById(
         "products"
-    ).style.display = "grid";
+    ).style.display =
+        "grid";
+
 
     document.getElementById(
         "count"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
 
     document.querySelector(
         ".filters"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
+
 
     document.querySelector(
         ".search-box"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
 
     document.getElementById(
         "detail"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
-    currentGallery = [];
 
-    currentImageIndex = 0;
+    currentGallery =
+        [];
+
+
+    currentImageIndex =
+        0;
+
 
     window.scrollTo({
         top: 0,
@@ -1977,75 +2481,130 @@ function filterProducts() {
         .toLowerCase()
         .trim();
 
+
     const brand =
         document.getElementById(
             "brandFilter"
         ).value;
+
 
     const style =
         document.getElementById(
             "styleFilter"
         ).value;
 
+
     const sort =
         document.getElementById(
             "sortFilter"
         ).value;
+
 
     const priceFilter =
         document.getElementById(
             "priceFilter"
         ).value;
 
-    const filtered =
-        products.filter(product => {
 
-            const text =
-                Object.values(product)
+    const filtered =
+        products.filter(
+            product => {
+
+                const text =
+                    Object.values(
+                        product
+                    )
                     .join(" ")
                     .toLowerCase();
 
-            return (
-                text.includes(search) &&
-                (
-                    !brand ||
-                    product["Hãng"] === brand
-                ) &&
-                (
-                    !style ||
-                    product["Lối đánh"] === style
-                ) &&
-                (
-                    !priceFilter ||
-                    (
-                        priceFilter === "under500" &&
-                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) < 500
-                    ) ||
-                    (
-                        priceFilter === "500to1000" &&
-                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) >= 500 &&
-                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) < 1000
-                    ) ||
-                    (
-                        priceFilter === "1000to2000" &&
-                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) >= 1000 &&
-                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) < 2000
-                    ) ||
-                    (
-                        priceFilter === "2000plus" &&
-                        Number(String(product["Giá"] || "").replace(/[^\d]/g, "")) >= 2000
-                    )
-                )
-            );
 
-        });
+                const price =
+                    getPriceNumber(
+                        product["Giá"]
+                    );
+
+
+                return (
+
+                    text.includes(
+                        search
+                    )
+
+
+                    &&
+
+                    (
+                        !brand ||
+                        product["Hãng"] === brand
+                    )
+
+
+                    &&
+
+                    (
+                        !style ||
+                        product["Lối đánh"] === style
+                    )
+
+
+                    &&
+
+                    (
+                        !priceFilter
+
+
+                        ||
+
+                        (
+                            priceFilter ===
+                            "under500" &&
+                            price < 500
+                        )
+
+
+                        ||
+
+                        (
+                            priceFilter ===
+                            "500to1000" &&
+                            price >= 500 &&
+                            price < 1000
+                        )
+
+
+                        ||
+
+                        (
+                            priceFilter ===
+                            "1000to2000" &&
+                            price >= 1000 &&
+                            price < 2000
+                        )
+
+
+                        ||
+
+                        (
+                            priceFilter ===
+                            "2000plus" &&
+                            price >= 2000
+                        )
+
+                    )
+
+                );
+
+            }
+        );
 
 
     /* =================================================
        MỚI NHẤT
     ================================================= */
 
-    if (sort === "newest") {
+    if (
+        sort === "newest"
+    ) {
 
         filtered.sort(
             (a, b) => {
@@ -2055,10 +2614,12 @@ function filterProducts() {
                         a["Ngày đăng"]
                     );
 
+
                 const dateB =
                     parseProductDate(
                         b["Ngày đăng"]
                     );
+
 
                 return dateB - dateA;
 
@@ -2068,7 +2629,9 @@ function filterProducts() {
     }
 
 
-    displayProducts(filtered);
+    displayProducts(
+        filtered
+    );
 
 }
 
@@ -2083,8 +2646,10 @@ function parseProductDate(value) {
         return 0;
     }
 
+
     const text =
         String(value).trim();
+
 
     /*
         Hỗ trợ:
@@ -2097,30 +2662,38 @@ function parseProductDate(value) {
         2026-08-08 12:22:38
     */
 
+
     let match =
         text.match(
             /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
         );
+
 
     if (match) {
 
         const day =
             Number(match[1]);
 
+
         const month =
             Number(match[2]) - 1;
+
 
         const year =
             Number(match[3]);
 
+
         const hour =
             Number(match[4] || 0);
+
 
         const minute =
             Number(match[5] || 0);
 
+
         const second =
             Number(match[6] || 0);
+
 
         return new Date(
             year,
@@ -2139,25 +2712,32 @@ function parseProductDate(value) {
             /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
         );
 
+
     if (match) {
 
         const year =
             Number(match[1]);
 
+
         const month =
             Number(match[2]) - 1;
+
 
         const day =
             Number(match[3]);
 
+
         const hour =
             Number(match[4] || 0);
+
 
         const minute =
             Number(match[5] || 0);
 
+
         const second =
             Number(match[6] || 0);
+
 
         return new Date(
             year,
@@ -2174,6 +2754,7 @@ function parseProductDate(value) {
     const timestamp =
         Date.parse(text);
 
+
     return isNaN(timestamp)
         ? 0
         : timestamp;
@@ -2186,7 +2767,9 @@ function parseProductDate(value) {
 ===================================================== */
 
 document
-    .getElementById("modalClose")
+    .getElementById(
+        "modalClose"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -2200,7 +2783,9 @@ document
 
 
 document
-    .getElementById("modalPrev")
+    .getElementById(
+        "modalPrev"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -2214,7 +2799,9 @@ document
 
 
 document
-    .getElementById("modalNext")
+    .getElementById(
+        "modalNext"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -2228,7 +2815,9 @@ document
 
 
 document
-    .getElementById("imageModal")
+    .getElementById(
+        "imageModal"
+    )
     .addEventListener(
         "click",
         function(event) {
@@ -2259,30 +2848,40 @@ document.addEventListener(
                 "imageModal"
             );
 
-        if (
-            modal.style.display !== "flex"
-        ) {
-            return;
-        }
 
         if (
-            event.key === "ArrowRight"
+            modal.style.display !==
+            "flex"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowRight"
         ) {
 
             nextImage();
 
         }
 
+
         if (
-            event.key === "ArrowLeft"
+            event.key ===
+            "ArrowLeft"
         ) {
 
             previousImage();
 
         }
 
+
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             closeImageModal();
@@ -2299,8 +2898,11 @@ document.addEventListener(
 
 let touchStartX = 0;
 
+
 document
-    .getElementById("imageModal")
+    .getElementById(
+        "imageModal"
+    )
     .addEventListener(
         "touchstart",
         function(event) {
@@ -2310,7 +2912,8 @@ document
             ) {
 
                 touchStartX =
-                    event.touches[0].clientX;
+                    event.touches[0]
+                        .clientX;
 
             }
 
@@ -2322,7 +2925,9 @@ document
 
 
 document
-    .getElementById("imageModal")
+    .getElementById(
+        "imageModal"
+    )
     .addEventListener(
         "touchend",
         function(event) {
@@ -2330,23 +2935,35 @@ document
             if (
                 !event.changedTouches.length
             ) {
+
                 return;
+
             }
 
+
             const touchEndX =
-                event.changedTouches[0].clientX;
+                event.changedTouches[0]
+                    .clientX;
+
 
             const distance =
                 touchEndX -
                 touchStartX;
 
+
             if (
-                Math.abs(distance) < 50
+                Math.abs(distance) <
+                50
             ) {
+
                 return;
+
             }
 
-            if (distance < 0) {
+
+            if (
+                distance < 0
+            ) {
 
                 nextImage();
 
@@ -2368,7 +2985,9 @@ document
 ===================================================== */
 
 document
-    .getElementById("search")
+    .getElementById(
+        "search"
+    )
     .addEventListener(
         "input",
         filterProducts
@@ -2376,7 +2995,9 @@ document
 
 
 document
-    .getElementById("brandFilter")
+    .getElementById(
+        "brandFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
@@ -2384,19 +3005,9 @@ document
 
 
 document
-    .getElementById("styleFilter")
-    .addEventListener(
-        "change",
-        filterProducts
-    );
-
-
-/* =====================================================
-   NEWEST EVENT
-===================================================== */
-
-document
-    .getElementById("sortFilter")
+    .getElementById(
+        "styleFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
@@ -2404,7 +3015,19 @@ document
 
 
 document
-    .getElementById("priceFilter")
+    .getElementById(
+        "sortFilter"
+    )
+    .addEventListener(
+        "change",
+        filterProducts
+    );
+
+
+document
+    .getElementById(
+        "priceFilter"
+    )
     .addEventListener(
         "change",
         filterProducts
@@ -2419,9 +3042,11 @@ console.log(
     "TSPORT: JavaScript OK"
 );
 
+
 loadProducts();
 
 </script>
 
 </body>
 </html>
+```
