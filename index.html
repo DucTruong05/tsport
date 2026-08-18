@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 
 <meta charset="UTF-8">
@@ -23,6 +24,10 @@ gtag("config", "G-QLNGKQXHJ5");
 
 <style>
 
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -37,6 +42,7 @@ body {
     background: #f5f6f8;
     color: #171717;
 }
+
 
 /* =====================================================
    HEADER
@@ -71,6 +77,7 @@ header {
     font-size: 15px;
 }
 
+
 /* =====================================================
    CONTAINER
 ===================================================== */
@@ -81,6 +88,7 @@ header {
     margin: auto;
     padding: 20px;
 }
+
 
 /* =====================================================
    SEARCH
@@ -104,6 +112,7 @@ header {
     border-color: #888;
 }
 
+
 /* =====================================================
    FILTER
 ===================================================== */
@@ -124,6 +133,7 @@ select {
     outline: none;
 }
 
+
 /* =====================================================
    COUNT
 ===================================================== */
@@ -134,6 +144,7 @@ select {
     margin-bottom: 15px;
 }
 
+
 /* =====================================================
    PRODUCTS
 ===================================================== */
@@ -143,6 +154,7 @@ select {
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
 }
+
 
 /* =====================================================
    CARD
@@ -218,6 +230,7 @@ select {
     font-size: 12px;
 }
 
+
 /* =====================================================
    DETAIL
 ===================================================== */
@@ -239,6 +252,7 @@ select {
     font-size: 14px;
     margin-bottom: 25px;
 }
+
 
 /* =====================================================
    DETAIL IMAGE
@@ -262,6 +276,7 @@ select {
     height: 100%;
     object-fit: contain;
 }
+
 
 /* =====================================================
    DETAIL CONTENT
@@ -297,6 +312,7 @@ select {
     margin-bottom: 20px;
 }
 
+
 /* =====================================================
    INFO
 ===================================================== */
@@ -322,6 +338,7 @@ select {
     color: #777;
     margin-bottom: 6px;
 }
+
 
 /* =====================================================
    DETAIL GALLERY
@@ -364,6 +381,7 @@ select {
 .detail-gallery-item:hover img {
     transform: scale(1.03);
 }
+
 
 /* =====================================================
    IMAGE MODAL
@@ -454,6 +472,7 @@ select {
     z-index: 10;
 }
 
+
 /* =====================================================
    LOADING
 ===================================================== */
@@ -465,14 +484,16 @@ select {
     color: #777;
 }
 
+
 /* =====================================================
    FLOATING ZALO
 ===================================================== */
 
 .zalo-float {
     position: fixed;
-    left: auto;
-    top: auto;
+
+    right: 20px;
+    bottom: 25px;
 
     width: 62px;
     height: 62px;
@@ -487,9 +508,6 @@ select {
 
     color: white;
     text-decoration: none;
-
-    font-size: 15px;
-    font-weight: 800;
 
     box-shadow:
         0 6px 20px rgba(0,0,0,0.22);
@@ -518,27 +536,67 @@ select {
     transition: none;
 }
 
-.zalo-inner {
+
+/* =====================================================
+   ZALO ICON
+===================================================== */
+
+.zalo-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #0068ff;
+
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    line-height: 1;
-}
-
-.zalo-text {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 900;
+
     letter-spacing: -0.5px;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,0.12);
 }
 
-.zalo-label {
-    margin-top: 3px;
-    font-size: 9px;
-    font-weight: 600;
-    opacity: 0.95;
+
+/* =====================================================
+   ZALO TOOLTIP
+===================================================== */
+
+.zalo-tooltip {
+    position: absolute;
+
+    right: 72px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    white-space: nowrap;
+
+    background: #111;
+    color: white;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: 0.2s ease;
 }
+
+.zalo-float:hover .zalo-tooltip {
+    opacity: 1;
+}
+
 
 /* =====================================================
    MOBILE
@@ -559,6 +617,7 @@ select {
     }
 
 }
+
 
 @media (max-width: 650px) {
 
@@ -657,13 +716,22 @@ select {
     .zalo-float {
         width: 58px;
         height: 58px;
+
+        right: 15px;
+        bottom: 18px;
+    }
+
+    .zalo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .zalo-tooltip {
+        display: none;
     }
 
 }
 
-/* =====================================================
-   VERY SMALL MOBILE
-===================================================== */
 
 @media (max-width: 400px) {
 
@@ -681,153 +749,33 @@ select {
 
 }
 
+
 /* =====================================================
-   FLOATING ZALO CTA
+   ZALO POSITION
 ===================================================== */
 
-.zalo-float {
-    position: fixed;
-    right: 20px;
-    bottom: 25px;
-
-    width: 58px;
-    height: 58px;
-
-    border-radius: 50%;
-
-    background: #0068ff;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 13px;
-    font-weight: 800;
-
-    text-decoration: none;
-
-    box-shadow: 0 5px 18px rgba(0,0,0,0.22);
-
-    z-index: 9998;
-
-    cursor: grab;
-
-    user-select: none;
-    touch-action: none;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+.zalo-float.custom-position {
+    right: auto;
+    bottom: auto;
 }
 
-.zalo-float:hover {
-    transform: scale(1.08);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
 
-.zalo-float.dragging {
-    cursor: grabbing;
-    transform: scale(1.05);
-}
+/* =====================================================
+   END CSS
+===================================================== */
 
-.zalo-icon {
-    width: 38px;
-    height: 38px;
-
-    border-radius: 50%;
-
-    background: white;
-    color: #0068ff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 12px;
-    font-weight: 900;
-}
-
-.zalo-tooltip {
-    position: absolute;
-
-    right: 68px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    white-space: nowrap;
-
-    background: #111;
-    color: white;
-
-    padding: 8px 12px;
-
-    border-radius: 8px;
-
-    font-size: 13px;
-
-    opacity: 0;
-    pointer-events: none;
-
-    transition: 0.2s ease;
-}
-
-.zalo-float:hover .zalo-tooltip {
-    opacity: 1;
-}
-
-@media (max-width: 650px) {
-
-    .zalo-float {
-        width: 54px;
-        height: 54px;
-
-        right: 15px;
-        bottom: 18px;
-    }
-
-    .zalo-icon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .zalo-tooltip {
-        display: none;
-    }
-
-}
 </style>
+
 </head>
 
+
 <body>
-<body>
+
 
 <!-- =====================================================
-     FLOATING ZALO CTA
+     HEADER
 ===================================================== -->
 
-<a
-    id="zaloFloat"
-    class="zalo-float"
-    href="https://zalo.me/0395364443"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Liên hệ Zalo TSPORT"
->
-
-    <span class="zalo-icon">
-        Zalo
-    </span>
-
-    <span class="zalo-tooltip">
-        Chat Zalo: 0395364443
-    </span>
-
-</a>
-
-
-<header>
 <header>
 
     <div class="logo">
@@ -840,7 +788,13 @@ select {
 
 </header>
 
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
+
 <div class="container">
+
 
     <!-- SEARCH -->
 
@@ -855,6 +809,7 @@ select {
 
     </div>
 
+
     <!-- FILTERS -->
 
     <div class="filters">
@@ -867,6 +822,7 @@ select {
 
         </select>
 
+
         <select id="styleFilter">
 
             <option value="">
@@ -874,6 +830,7 @@ select {
             </option>
 
         </select>
+
 
         <select id="sortFilter">
 
@@ -886,6 +843,7 @@ select {
             </option>
 
         </select>
+
 
         <select id="priceFilter">
 
@@ -913,9 +871,21 @@ select {
 
     </div>
 
-    <div id="count" class="count"></div>
 
-    <div id="products" class="products">
+    <!-- COUNT -->
+
+    <div
+        id="count"
+        class="count"
+    ></div>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        id="products"
+        class="products"
+    >
 
         <div class="loading">
             Đang tải sản phẩm...
@@ -923,12 +893,20 @@ select {
 
     </div>
 
-    <div id="detail" class="detail"></div>
+
+    <!-- DETAIL -->
+
+    <div
+        id="detail"
+        class="detail"
+    ></div>
+
 
 </div>
 
+
 <!-- =====================================================
-     FLOATING ZALO
+     FLOATING ZALO CTA
 ===================================================== -->
 
 <a
@@ -940,24 +918,25 @@ select {
     aria-label="Liên hệ Zalo TSPORT"
 >
 
-    <div class="zalo-inner">
+    <span class="zalo-icon">
+        Zalo
+    </span>
 
-        <div class="zalo-text">
-            Zalo
-        </div>
-
-        <div class="zalo-label">
-            Liên hệ
-        </div>
-
-    </div>
+    <span class="zalo-tooltip">
+        Chat Zalo: 0395364443
+    </span>
 
 </a>
 
 
-<!-- IMAGE MODAL -->
+<!-- =====================================================
+     IMAGE MODAL
+===================================================== -->
 
-<div id="imageModal" class="image-modal">
+<div
+    id="imageModal"
+    class="image-modal"
+>
 
     <div
         id="modalImageWrap"
@@ -971,6 +950,7 @@ select {
             ×
         </div>
 
+
         <button
             id="modalPrev"
             class="modal-prev"
@@ -979,11 +959,13 @@ select {
             ‹
         </button>
 
+
         <img
             id="modalImage"
             src=""
             alt="Ảnh chi tiết"
         >
+
 
         <button
             id="modalNext"
@@ -992,6 +974,7 @@ select {
         >
             ›
         </button>
+
 
         <div
             id="modalCounter"
@@ -1003,6 +986,7 @@ select {
     </div>
 
 </div>
+
 
 <script>
 
@@ -1062,6 +1046,7 @@ function getImageUrl(value) {
         return "";
     }
 
+
     if (
         url.startsWith("TSPORT/")
     ) {
@@ -1073,6 +1058,7 @@ function getImageUrl(value) {
         );
 
     }
+
 
     if (
         url.startsWith("/TSPORT/")
@@ -1089,6 +1075,7 @@ function getImageUrl(value) {
 
     }
 
+
     if (
         url.startsWith(
             IMAGE_API + "image?"
@@ -1099,16 +1086,20 @@ function getImageUrl(value) {
 
     }
 
+
     let id = "";
+
 
     let match =
         url.match(
             /\/file\/d\/([^/]+)/
         );
 
+
     if (match) {
         id = match[1];
     }
+
 
     if (!id) {
 
@@ -1123,6 +1114,7 @@ function getImageUrl(value) {
 
     }
 
+
     if (id) {
 
         return (
@@ -1133,6 +1125,7 @@ function getImageUrl(value) {
         );
 
     }
+
 
     return url;
 
@@ -1153,6 +1146,7 @@ function parseCSV(text) {
 
     let insideQuotes = false;
 
+
     for (
         let i = 0;
         i < text.length;
@@ -1162,6 +1156,7 @@ function parseCSV(text) {
         const char = text[i];
 
         const next = text[i + 1];
+
 
         if (
             char === '"' &&
@@ -1177,6 +1172,7 @@ function parseCSV(text) {
 
         }
 
+
         if (char === '"') {
 
             insideQuotes =
@@ -1185,6 +1181,7 @@ function parseCSV(text) {
             continue;
 
         }
+
 
         if (
             char === "," &&
@@ -1198,6 +1195,7 @@ function parseCSV(text) {
             continue;
 
         }
+
 
         if (
             (
@@ -1216,7 +1214,9 @@ function parseCSV(text) {
 
             }
 
+
             row.push(value);
+
 
             if (
                 row.some(
@@ -1229,6 +1229,7 @@ function parseCSV(text) {
 
             }
 
+
             row = [];
 
             value = "";
@@ -1237,9 +1238,11 @@ function parseCSV(text) {
 
         }
 
+
         value += char;
 
     }
+
 
     if (
         value !== "" ||
@@ -1247,6 +1250,7 @@ function parseCSV(text) {
     ) {
 
         row.push(value);
+
 
         if (
             row.some(
@@ -1261,9 +1265,11 @@ function parseCSV(text) {
 
     }
 
+
     if (rows.length < 1) {
         return [];
     }
+
 
     const headers =
         rows[0].map(
@@ -1273,11 +1279,13 @@ function parseCSV(text) {
                     .replace(/^\uFEFF/, "")
         );
 
+
     return rows
         .slice(1)
         .map(rowData => {
 
             const item = {};
+
 
             headers.forEach(
                 (header, index) => {
@@ -1289,6 +1297,7 @@ function parseCSV(text) {
 
                 }
             );
+
 
             return item;
 
@@ -1308,11 +1317,13 @@ async function loadProducts() {
             "products"
         );
 
+
     container.innerHTML = `
         <div class="loading">
             Đang tải sản phẩm...
         </div>
     `;
+
 
     try {
 
@@ -1326,6 +1337,7 @@ async function loadProducts() {
                 }
             );
 
+
         if (!response.ok) {
 
             throw new Error(
@@ -1335,30 +1347,37 @@ async function loadProducts() {
 
         }
 
+
         const text =
             await response.text();
+
 
         console.log(
             "Google Sheets response:",
             text.substring(0, 300)
         );
 
+
         products =
             parseCSV(text);
+
 
         console.log(
             "TSPORT - Số sản phẩm:",
             products.length
         );
 
+
         console.log(
             "TSPORT - Ví dụ sản phẩm đầu tiên:",
             products[0]
         );
 
+
         createFilters();
 
         displayProducts(products);
+
 
     } catch (error) {
 
@@ -1366,6 +1385,7 @@ async function loadProducts() {
             "LOAD PRODUCTS ERROR:",
             error
         );
+
 
         container.innerHTML = `
             <div class="loading">
@@ -1396,16 +1416,20 @@ function createFilters() {
             "brandFilter"
         );
 
+
     const styleFilter =
         document.getElementById(
             "styleFilter"
         );
 
+
     brandFilter.innerHTML =
         `<option value="">Tất cả hãng</option>`;
 
+
     styleFilter.innerHTML =
         `<option value="">Tất cả lối đánh</option>`;
+
 
     const brands =
         [
@@ -1419,6 +1443,7 @@ function createFilters() {
             )
         ];
 
+
     const styles =
         [
             ...new Set(
@@ -1431,6 +1456,7 @@ function createFilters() {
             )
         ];
 
+
     brands.forEach(brand => {
 
         const option =
@@ -1438,15 +1464,18 @@ function createFilters() {
                 "option"
             );
 
+
         option.value = brand;
 
         option.textContent = brand;
+
 
         brandFilter.appendChild(
             option
         );
 
     });
+
 
     styles.forEach(style => {
 
@@ -1455,9 +1484,11 @@ function createFilters() {
                 "option"
             );
 
+
         option.value = style;
 
         option.textContent = style;
+
 
         styleFilter.appendChild(
             option
@@ -1478,6 +1509,7 @@ function getPriceNumber(price) {
         return 0;
     }
 
+
     return Number(
         String(price)
             .replace(/[^\d]/g, "")
@@ -1492,12 +1524,15 @@ function formatPrice(price) {
         return "";
     }
 
+
     const number =
         getPriceNumber(price);
+
 
     if (!number) {
         return escapeHTML(price);
     }
+
 
     return (
         number.toLocaleString("vi-VN") +
@@ -1517,14 +1552,17 @@ function parseProductDate(value) {
         return 0;
     }
 
+
     const text =
         String(value).trim();
+
 
     let match =
         text.match(
             /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
         );
 
+
     if (match) {
 
         const day =
@@ -1545,6 +1583,7 @@ function parseProductDate(value) {
         const second =
             Number(match[6] || 0);
 
+
         return new Date(
             year,
             month,
@@ -1555,12 +1594,14 @@ function parseProductDate(value) {
         ).getTime();
 
     }
+
 
     match =
         text.match(
             /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
         );
 
+
     if (match) {
 
         const year =
@@ -1581,6 +1622,7 @@ function parseProductDate(value) {
         const second =
             Number(match[6] || 0);
 
+
         return new Date(
             year,
             month,
@@ -1592,8 +1634,10 @@ function parseProductDate(value) {
 
     }
 
+
     const timestamp =
         Date.parse(text);
+
 
     return isNaN(timestamp)
         ? 0
@@ -1608,8 +1652,10 @@ function formatDisplayDate(value) {
         return "";
     }
 
+
     const timestamp =
         parseProductDate(value);
+
 
     if (!timestamp) {
 
@@ -1619,21 +1665,26 @@ function formatDisplayDate(value) {
 
     }
 
+
     const date =
         new Date(timestamp);
+
 
     const day =
         String(
             date.getDate()
         ).padStart(2, "0");
 
+
     const month =
         String(
             date.getMonth() + 1
         ).padStart(2, "0");
 
+
     const year =
         date.getFullYear();
+
 
     return (
         day +
@@ -1657,15 +1708,19 @@ function displayProducts(list) {
             "products"
         );
 
+
     const count =
         document.getElementById(
             "count"
         );
 
+
     container.innerHTML = "";
+
 
     count.textContent =
         `${list.length} sản phẩm`;
+
 
     if (!list.length) {
 
@@ -1679,6 +1734,7 @@ function displayProducts(list) {
 
     }
 
+
     list.forEach(product => {
 
         const card =
@@ -1686,15 +1742,19 @@ function displayProducts(list) {
                 "div"
             );
 
+
         card.className =
             "card";
+
 
         const image =
             getImageUrl(
                 product["Ảnh"]
             );
 
+
         let imageHTML = "";
+
 
         if (image) {
 
@@ -1719,6 +1779,7 @@ function displayProducts(list) {
 
         }
 
+
         const dateHTML =
             product["Ngày đăng"]
             ?
@@ -1732,6 +1793,7 @@ function displayProducts(list) {
             `
             :
             "";
+
 
         card.innerHTML = `
 
@@ -1797,6 +1859,7 @@ function displayProducts(list) {
 
         `;
 
+
         card.addEventListener(
             "click",
             function() {
@@ -1805,6 +1868,7 @@ function displayProducts(list) {
 
             }
         );
+
 
         container.appendChild(
             card
@@ -1831,8 +1895,10 @@ function getFolderFromProduct(product) {
 
     }
 
+
     const rawValue =
         product["Ảnh chi tiết"];
+
 
     if (
         rawValue === undefined ||
@@ -1848,12 +1914,15 @@ function getFolderFromProduct(product) {
 
     }
 
+
     let value =
         String(rawValue).trim();
+
 
     if (!value) {
         return "";
     }
+
 
     if (
         value.startsWith("/TSPORT/")
@@ -1863,6 +1932,7 @@ function getFolderFromProduct(product) {
 
     }
 
+
     if (
         value.startsWith("TSPORT/")
     ) {
@@ -1871,10 +1941,12 @@ function getFolderFromProduct(product) {
 
     }
 
+
     const imageKitMatch =
         value.match(
             /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
         );
+
 
     if (imageKitMatch) {
 
@@ -1885,6 +1957,7 @@ function getFolderFromProduct(product) {
                     .replace(/-/g, "+")
                     .replace(/_/g, "/");
 
+
             while (
                 encoded.length % 4 !== 0
             ) {
@@ -1893,10 +1966,12 @@ function getFolderFromProduct(product) {
 
             }
 
+
             const decoded =
                 decodeURIComponent(
                     atob(encoded)
                 );
+
 
             if (
                 decoded.startsWith("/")
@@ -1906,7 +1981,9 @@ function getFolderFromProduct(product) {
 
             }
 
+
             return "/" + decoded;
+
 
         } catch (error) {
 
@@ -1921,6 +1998,7 @@ function getFolderFromProduct(product) {
         }
 
     }
+
 
     return (
         "/TSPORT/" +
@@ -1946,32 +2024,39 @@ async function loadGalleryImages(folder) {
 
     }
 
+
     const url =
         IMAGE_API +
         "?folder=" +
         encodeURIComponent(folder);
 
+
     console.log(
         "===================================="
     );
 
+
     console.log(
         "TSPORT R2 GALLERY"
     );
+
 
     console.log(
         "Folder:",
         folder
     );
 
+
     console.log(
         "API URL:",
         url
     );
 
+
     console.log(
         "===================================="
     );
+
 
     try {
 
@@ -1983,6 +2068,7 @@ async function loadGalleryImages(folder) {
                 }
             );
 
+
         if (!response.ok) {
 
             throw new Error(
@@ -1992,13 +2078,16 @@ async function loadGalleryImages(folder) {
 
         }
 
+
         const data =
             await response.json();
+
 
         console.log(
             "R2 Worker response:",
             data
         );
+
 
         if (
             !data ||
@@ -2017,6 +2106,7 @@ async function loadGalleryImages(folder) {
 
         }
 
+
         const urls =
             data.images
                 .map(image => {
@@ -2024,6 +2114,7 @@ async function loadGalleryImages(folder) {
                     if (!image) {
                         return "";
                     }
+
 
                     if (
                         image.r2Url
@@ -2035,6 +2126,7 @@ async function loadGalleryImages(folder) {
 
                     }
 
+
                     if (
                         image.filePath
                     ) {
@@ -2043,6 +2135,7 @@ async function loadGalleryImages(folder) {
                             String(
                                 image.filePath
                             ).trim();
+
 
                         if (
                             filePath.startsWith(
@@ -2063,6 +2156,7 @@ async function loadGalleryImages(folder) {
 
                         }
 
+
                         if (
                             filePath.startsWith(
                                 "TSPORT/"
@@ -2081,6 +2175,7 @@ async function loadGalleryImages(folder) {
 
                     }
 
+
                     if (
                         image.url
                     ) {
@@ -2091,10 +2186,12 @@ async function loadGalleryImages(folder) {
 
                     }
 
+
                     return "";
 
                 })
                 .filter(Boolean);
+
 
         console.log(
             "Tìm thấy:",
@@ -2102,7 +2199,9 @@ async function loadGalleryImages(folder) {
             "ảnh"
         );
 
+
         return urls;
+
 
     } catch (error) {
 
@@ -2132,31 +2231,38 @@ function showModalImage() {
 
     }
 
+
     const modal =
         document.getElementById(
             "imageModal"
         );
+
 
     const image =
         document.getElementById(
             "modalImage"
         );
 
+
     const counter =
         document.getElementById(
             "modalCounter"
         );
+
 
     image.src =
         currentGallery[
             currentImageIndex
         ];
 
+
     counter.textContent =
         `${currentImageIndex + 1} / ${currentGallery.length}`;
 
+
     const hasMultiple =
         currentGallery.length > 1;
+
 
     document.getElementById(
         "modalPrev"
@@ -2165,6 +2271,7 @@ function showModalImage() {
             ? "flex"
             : "none";
 
+
     document.getElementById(
         "modalNext"
     ).style.display =
@@ -2172,8 +2279,10 @@ function showModalImage() {
             ? "flex"
             : "none";
 
+
     modal.style.display =
         "flex";
+
 
     document.body.style.overflow =
         "hidden";
@@ -2191,8 +2300,10 @@ function openGalleryImage(index) {
 
     }
 
+
     currentImageIndex =
         index;
+
 
     showModalImage();
 
@@ -2209,11 +2320,13 @@ function nextImage() {
 
     }
 
+
     currentImageIndex =
         (
             currentImageIndex + 1
         ) %
         currentGallery.length;
+
 
     showModalImage();
 
@@ -2230,6 +2343,7 @@ function previousImage() {
 
     }
 
+
     currentImageIndex =
         (
             currentImageIndex -
@@ -2237,6 +2351,7 @@ function previousImage() {
             currentGallery.length
         ) %
         currentGallery.length;
+
 
     showModalImage();
 
@@ -2250,11 +2365,14 @@ function closeImageModal() {
             "imageModal"
         );
 
+
     modal.style.display =
         "none";
 
+
     document.body.style.overflow =
         "";
+
 
     document.getElementById(
         "modalImage"
@@ -2274,33 +2392,40 @@ async function showDetail(product) {
     ).style.display =
         "none";
 
+
     document.getElementById(
         "count"
     ).style.display =
         "none";
+
 
     document.querySelector(
         ".filters"
     ).style.display =
         "none";
 
+
     document.querySelector(
         ".search-box"
     ).style.display =
         "none";
+
 
     const detail =
         document.getElementById(
             "detail"
         );
 
+
     detail.style.display =
         "block";
+
 
     const image =
         getImageUrl(
             product["Ảnh"]
         );
+
 
     const imageHTML =
         image
@@ -2321,6 +2446,7 @@ async function showDetail(product) {
             </div>
         `;
 
+
     const dateHTML =
         product["Ngày đăng"]
         ?
@@ -2335,6 +2461,7 @@ async function showDetail(product) {
         :
         "";
 
+
     detail.innerHTML = `
 
         <button
@@ -2345,11 +2472,13 @@ async function showDetail(product) {
             ← Quay lại
         </button>
 
+
         <div class="detail-image-box">
 
             ${imageHTML}
 
         </div>
+
 
         <div class="detail-content">
 
@@ -2361,6 +2490,7 @@ async function showDetail(product) {
 
             </div>
 
+
             <div class="detail-name">
 
                 ${escapeHTML(
@@ -2368,6 +2498,7 @@ async function showDetail(product) {
                 )}
 
             </div>
+
 
             <div class="detail-price">
 
@@ -2377,7 +2508,9 @@ async function showDetail(product) {
 
             </div>
 
+
             ${dateHTML}
+
 
             <div class="info-grid">
 
@@ -2393,6 +2526,7 @@ async function showDetail(product) {
 
                 </div>
 
+
                 <div class="info-row">
 
                     <strong>
@@ -2404,6 +2538,7 @@ async function showDetail(product) {
                     )}
 
                 </div>
+
 
                 <div class="info-row">
 
@@ -2417,6 +2552,7 @@ async function showDetail(product) {
 
                 </div>
 
+
                 <div class="info-row">
 
                     <strong>
@@ -2428,6 +2564,7 @@ async function showDetail(product) {
                     )}
 
                 </div>
+
 
                 <div class="info-row">
 
@@ -2442,6 +2579,7 @@ async function showDetail(product) {
                 </div>
 
             </div>
+
 
             <div
                 id="detailGallery"
@@ -2462,40 +2600,48 @@ async function showDetail(product) {
 
     `;
 
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 
     const galleryContainer =
         document.getElementById(
             "detailGallery"
         );
 
+
     const folder =
         getFolderFromProduct(
             product
         );
+
 
     console.log(
         "Sản phẩm đang mở:",
         product["Tên vợt"]
     );
 
+
     console.log(
         "Mã sản phẩm:",
         product["Mã"]
     );
+
 
     console.log(
         "Ảnh chi tiết trong Sheet:",
         product["Ảnh chi tiết"]
     );
 
+
     console.log(
         "Folder gửi Worker:",
         folder
     );
+
 
     if (!folder) {
 
@@ -2506,21 +2652,22 @@ async function showDetail(product) {
             </div>
 
             <div class="loading">
-
                 Sản phẩm chưa có ảnh chi tiết.
-
             </div>
 
         `;
+
 
         return;
 
     }
 
+
     const urls =
         await loadGalleryImages(
             folder
         );
+
 
     if (!urls.length) {
 
@@ -2546,21 +2693,26 @@ async function showDetail(product) {
 
         `;
 
+
         return;
 
     }
 
+
     currentGallery =
         urls;
 
+
     currentImageIndex =
         0;
+
 
     galleryContainer.innerHTML = `
 
         <div class="detail-gallery-title">
             Ảnh chi tiết
         </div>
+
 
         <div
             id="detailGalleryGrid"
@@ -2569,10 +2721,12 @@ async function showDetail(product) {
 
     `;
 
+
     const galleryGrid =
         document.getElementById(
             "detailGalleryGrid"
         );
+
 
     urls.forEach(
         (url, index) => {
@@ -2582,22 +2736,28 @@ async function showDetail(product) {
                     "div"
                 );
 
+
             item.className =
                 "detail-gallery-item";
+
 
             const img =
                 document.createElement(
                     "img"
                 );
 
+
             img.src =
                 url;
+
 
             img.alt =
                 `Ảnh chi tiết ${index + 1}`;
 
+
             img.loading =
                 "lazy";
+
 
             img.onerror =
                 function() {
@@ -2609,9 +2769,11 @@ async function showDetail(product) {
 
                 };
 
+
             item.appendChild(
                 img
             );
+
 
             item.addEventListener(
                 "click",
@@ -2623,6 +2785,7 @@ async function showDetail(product) {
 
                 }
             );
+
 
             galleryGrid.appendChild(
                 item
@@ -2645,31 +2808,38 @@ function closeDetail() {
     ).style.display =
         "grid";
 
+
     document.getElementById(
         "count"
     ).style.display =
         "block";
+
 
     document.querySelector(
         ".filters"
     ).style.display =
         "flex";
 
+
     document.querySelector(
         ".search-box"
     ).style.display =
         "block";
+
 
     document.getElementById(
         "detail"
     ).style.display =
         "none";
 
+
     currentGallery =
         [];
 
+
     currentImageIndex =
         0;
+
 
     window.scrollTo({
         top: 0,
@@ -2693,25 +2863,30 @@ function filterProducts() {
         .toLowerCase()
         .trim();
 
+
     const brand =
         document.getElementById(
             "brandFilter"
         ).value;
+
 
     const style =
         document.getElementById(
             "styleFilter"
         ).value;
 
+
     const sort =
         document.getElementById(
             "sortFilter"
         ).value;
 
+
     const priceFilter =
         document.getElementById(
             "priceFilter"
         ).value;
+
 
     const filtered =
         products.filter(
@@ -2724,10 +2899,12 @@ function filterProducts() {
                     .join(" ")
                     .toLowerCase();
 
+
                 const price =
                     getPriceNumber(
                         product["Giá"]
                     );
+
 
                 return (
 
@@ -2795,6 +2972,7 @@ function filterProducts() {
             }
         );
 
+
     if (
         sort === "newest"
     ) {
@@ -2807,10 +2985,12 @@ function filterProducts() {
                         a["Ngày đăng"]
                     );
 
+
                 const dateB =
                     parseProductDate(
                         b["Ngày đăng"]
                     );
+
 
                 return dateB - dateA;
 
@@ -2818,6 +2998,7 @@ function filterProducts() {
         );
 
     }
+
 
     displayProducts(
         filtered
@@ -2912,6 +3093,7 @@ document.addEventListener(
                 "imageModal"
             );
 
+
         if (
             modal.style.display !==
             "flex"
@@ -2920,6 +3102,7 @@ document.addEventListener(
             return;
 
         }
+
 
         if (
             event.key ===
@@ -2930,6 +3113,7 @@ document.addEventListener(
 
         }
 
+
         if (
             event.key ===
             "ArrowLeft"
@@ -2938,6 +3122,7 @@ document.addEventListener(
             previousImage();
 
         }
+
 
         if (
             event.key ===
@@ -3000,13 +3185,16 @@ document
 
             }
 
+
             const touchEndX =
                 event.changedTouches[0]
                     .clientX;
 
+
             const distance =
                 touchEndX -
                 touchStartX;
+
 
             if (
                 Math.abs(distance) <
@@ -3016,6 +3204,7 @@ document
                 return;
 
             }
+
 
             if (
                 distance < 0
@@ -3101,6 +3290,7 @@ document
             "zaloFloat"
         );
 
+
     if (!button) {
         return;
     }
@@ -3121,19 +3311,20 @@ document
     let offsetY = 0;
 
 
-    /*
-     * Vị trí mặc định:
-     * góc phải + giữa phía dưới.
-     */
+    /* =================================================
+       DEFAULT POSITION
+    ================================================= */
 
     function setDefaultPosition() {
 
         const margin = 20;
 
+
         const x =
             window.innerWidth -
             button.offsetWidth -
             margin;
+
 
         const y =
             window.innerHeight -
@@ -3147,80 +3338,32 @@ document
                 x
             ) + "px";
 
+
         button.style.top =
             Math.max(
                 margin,
                 y
             ) + "px";
 
+
         button.style.right =
             "auto";
+
 
         button.style.bottom =
             "auto";
 
-    }
 
-
-    /*
-     * Load vị trí cũ.
-     */
-
-    function loadPosition() {
-
-        try {
-
-            const saved =
-                localStorage.getItem(
-                    STORAGE_KEY
-                );
-
-            if (!saved) {
-
-                setDefaultPosition();
-
-                return;
-
-            }
-
-            const position =
-                JSON.parse(saved);
-
-            if (
-                typeof position.x !==
-                    "number" ||
-                typeof position.y !==
-                    "number"
-            ) {
-
-                setDefaultPosition();
-
-                return;
-
-            }
-
-            applyPosition(
-                position.x,
-                position.y
-            );
-
-        } catch (error) {
-
-            console.warn(
-                "Không đọc được vị trí Zalo:",
-                error
-            );
-
-            setDefaultPosition();
-
-        }
+        button.classList.add(
+            "custom-position"
+        );
 
     }
 
 
-    /*
-     * Đảm bảo nút không bị nằm ngoài màn hình.
-     */
+    /* =================================================
+       CLAMP
+    ================================================= */
 
     function clampPosition(
         x,
@@ -3229,10 +3372,12 @@ document
 
         const margin = 8;
 
+
         const maxX =
             window.innerWidth -
             button.offsetWidth -
             margin;
+
 
         const maxY =
             window.innerHeight -
@@ -3253,6 +3398,7 @@ document
                 )
             ),
 
+
             y: Math.min(
                 Math.max(
                     margin,
@@ -3269,6 +3415,10 @@ document
     }
 
 
+    /* =================================================
+       APPLY POSITION
+    ================================================= */
+
     function applyPosition(
         x,
         y
@@ -3280,25 +3430,39 @@ document
                 y
             );
 
+
         button.style.left =
             position.x + "px";
+
 
         button.style.top =
             position.y + "px";
 
+
         button.style.right =
             "auto";
+
 
         button.style.bottom =
             "auto";
 
+
+        button.classList.add(
+            "custom-position"
+        );
+
     }
 
+
+    /* =================================================
+       SAVE
+    ================================================= */
 
     function savePosition() {
 
         const rect =
             button.getBoundingClientRect();
+
 
         try {
 
@@ -3322,9 +3486,71 @@ document
     }
 
 
-    /*
-     * Pointer down
-     */
+    /* =================================================
+       LOAD
+    ================================================= */
+
+    function loadPosition() {
+
+        try {
+
+            const saved =
+                localStorage.getItem(
+                    STORAGE_KEY
+                );
+
+
+            if (!saved) {
+
+                setDefaultPosition();
+
+                return;
+
+            }
+
+
+            const position =
+                JSON.parse(saved);
+
+
+            if (
+                typeof position.x !==
+                    "number" ||
+                typeof position.y !==
+                    "number"
+            ) {
+
+                setDefaultPosition();
+
+                return;
+
+            }
+
+
+            applyPosition(
+                position.x,
+                position.y
+            );
+
+
+        } catch (error) {
+
+            console.warn(
+                "Không đọc được vị trí Zalo:",
+                error
+            );
+
+
+            setDefaultPosition();
+
+        }
+
+    }
+
+
+    /* =================================================
+       POINTER DOWN
+    ================================================= */
 
     button.addEventListener(
         "pointerdown",
@@ -3383,9 +3609,9 @@ document
     );
 
 
-    /*
-     * Pointer move
-     */
+    /* =================================================
+       POINTER MOVE
+    ================================================= */
 
     button.addEventListener(
         "pointermove",
@@ -3402,7 +3628,8 @@ document
             }
 
 
-            moved = true;
+            const rect =
+                button.getBoundingClientRect();
 
 
             const x =
@@ -3413,6 +3640,28 @@ document
             const y =
                 event.clientY -
                 offsetY;
+
+
+            if (
+                Math.abs(
+                    event.clientX -
+                    (
+                        rect.left +
+                        offsetX
+                    )
+                ) > 5 ||
+                Math.abs(
+                    event.clientY -
+                    (
+                        rect.top +
+                        offsetY
+                    )
+                ) > 5
+            ) {
+
+                moved = true;
+
+            }
 
 
             applyPosition(
@@ -3427,9 +3676,9 @@ document
     );
 
 
-    /*
-     * Pointer up
-     */
+    /* =================================================
+       POINTER UP
+    ================================================= */
 
     button.addEventListener(
         "pointerup",
@@ -3446,6 +3695,7 @@ document
 
 
             dragging = false;
+
 
             button.classList.remove(
                 "dragging"
@@ -3470,9 +3720,9 @@ document
     );
 
 
-    /*
-     * Pointer cancel
-     */
+    /* =================================================
+       POINTER CANCEL
+    ================================================= */
 
     button.addEventListener(
         "pointercancel",
@@ -3480,11 +3730,14 @@ document
 
             dragging = false;
 
+
             button.classList.remove(
                 "dragging"
             );
 
+
             savePosition();
+
 
             pointerId = null;
 
@@ -3492,10 +3745,9 @@ document
     );
 
 
-    /*
-     * Không mở Zalo nếu người dùng
-     * vừa kéo nút.
-     */
+    /* =================================================
+       CLICK
+    ================================================= */
 
     button.addEventListener(
         "click",
@@ -3509,18 +3761,15 @@ document
 
                 moved = false;
 
-                return;
-
             }
 
         }
     );
 
 
-    /*
-     * Khi đổi kích thước màn hình,
-     * giữ nút trong viewport.
-     */
+    /* =================================================
+       RESIZE
+    ================================================= */
 
     window.addEventListener(
         "resize",
@@ -3529,16 +3778,22 @@ document
             const rect =
                 button.getBoundingClientRect();
 
+
             applyPosition(
                 rect.left,
                 rect.top
             );
+
 
             savePosition();
 
         }
     );
 
+
+    /* =================================================
+       START
+    ================================================= */
 
     loadPosition();
 
@@ -3553,10 +3808,12 @@ console.log(
     "TSPORT: JavaScript OK"
 );
 
+
 console.log(
     "TSPORT: R2 Worker:",
     IMAGE_API
 );
+
 
 console.log(
     "TSPORT: Zalo:",
@@ -3565,296 +3822,9 @@ console.log(
 
 
 loadProducts();
-/* =====================================================
-   DRAGGABLE ZALO CTA
-===================================================== */
 
-(function () {
-
-    const zalo =
-        document.getElementById("zaloFloat");
-
-    if (!zalo) {
-        return;
-    }
-
-    let dragging = false;
-    let moved = false;
-
-    let startX = 0;
-    let startY = 0;
-
-    let startLeft = 0;
-    let startTop = 0;
-
-
-    /* ================================
-       LOAD VỊ TRÍ ĐÃ LƯU
-    ================================= */
-
-    const saved =
-        localStorage.getItem(
-            "tsport_zalo_position"
-        );
-
-    if (saved) {
-
-        try {
-
-            const position =
-                JSON.parse(saved);
-
-            if (
-                Number.isFinite(position.left) &&
-                Number.isFinite(position.top)
-            ) {
-
-                zalo.style.left =
-                    position.left + "px";
-
-                zalo.style.top =
-                    position.top + "px";
-
-                zalo.style.right = "auto";
-                zalo.style.bottom = "auto";
-
-            }
-
-        } catch (error) {
-
-            console.warn(
-                "Không đọc được vị trí Zalo:",
-                error
-            );
-
-        }
-
-    }
-
-
-    /* ================================
-       BẮT ĐẦU KÉO
-    ================================= */
-
-    zalo.addEventListener(
-        "pointerdown",
-        function (event) {
-
-            dragging = true;
-            moved = false;
-
-            zalo.classList.add("dragging");
-
-            const rect =
-                zalo.getBoundingClientRect();
-
-            startX = event.clientX;
-            startY = event.clientY;
-
-            startLeft = rect.left;
-            startTop = rect.top;
-
-            zalo.setPointerCapture(
-                event.pointerId
-            );
-
-        }
-    );
-
-
-    /* ================================
-       ĐANG KÉO
-    ================================= */
-
-    zalo.addEventListener(
-        "pointermove",
-        function (event) {
-
-            if (!dragging) {
-                return;
-            }
-
-            const deltaX =
-                event.clientX - startX;
-
-            const deltaY =
-                event.clientY - startY;
-
-
-            if (
-                Math.abs(deltaX) > 5 ||
-                Math.abs(deltaY) > 5
-            ) {
-
-                moved = true;
-
-            }
-
-
-            let newLeft =
-                startLeft + deltaX;
-
-            let newTop =
-                startTop + deltaY;
-
-
-            const maxLeft =
-                window.innerWidth -
-                zalo.offsetWidth;
-
-            const maxTop =
-                window.innerHeight -
-                zalo.offsetHeight;
-
-
-            newLeft =
-                Math.max(
-                    0,
-                    Math.min(
-                        newLeft,
-                        maxLeft
-                    )
-                );
-
-
-            newTop =
-                Math.max(
-                    0,
-                    Math.min(
-                        newTop,
-                        maxTop
-                    )
-                );
-
-
-            zalo.style.left =
-                newLeft + "px";
-
-            zalo.style.top =
-                newTop + "px";
-
-            zalo.style.right = "auto";
-            zalo.style.bottom = "auto";
-
-        }
-    );
-
-
-    /* ================================
-       THẢ RA
-    ================================= */
-
-    zalo.addEventListener(
-        "pointerup",
-        function (event) {
-
-            if (!dragging) {
-                return;
-            }
-
-            dragging = false;
-
-            zalo.classList.remove(
-                "dragging"
-            );
-
-
-            const rect =
-                zalo.getBoundingClientRect();
-
-
-            localStorage.setItem(
-                "tsport_zalo_position",
-                JSON.stringify({
-                    left: rect.left,
-                    top: rect.top
-                })
-            );
-
-
-            try {
-
-                zalo.releasePointerCapture(
-                    event.pointerId
-                );
-
-            } catch (error) {}
-
-        }
-    );
-
-
-    /* ================================
-       KHÔNG MỞ ZALO NẾU ĐANG KÉO
-    ================================= */
-
-    zalo.addEventListener(
-        "click",
-        function (event) {
-
-            if (moved) {
-
-                event.preventDefault();
-
-                moved = false;
-
-            }
-
-        }
-    );
-
-
-    /* ================================
-       GIỮ NÚT TRONG MÀN HÌNH KHI RESIZE
-    ================================= */
-
-    window.addEventListener(
-        "resize",
-        function () {
-
-            const rect =
-                zalo.getBoundingClientRect();
-
-            const maxLeft =
-                window.innerWidth -
-                zalo.offsetWidth;
-
-            const maxTop =
-                window.innerHeight -
-                zalo.offsetHeight;
-
-
-            const left =
-                Math.max(
-                    0,
-                    Math.min(
-                        rect.left,
-                        maxLeft
-                    )
-                );
-
-
-            const top =
-                Math.max(
-                    0,
-                    Math.min(
-                        rect.top,
-                        maxTop
-                    )
-                );
-
-
-            zalo.style.left =
-                left + "px";
-
-            zalo.style.top =
-                top + "px";
-
-        }
-    );
-
-})();
 </script>
 
 </body>
+
 </html>
