@@ -1,25 +1,25 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLNGKQXHJ5"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-    gtag('config', 'G-QLNGKQXHJ5');
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLNGKQXHJ5"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag("js", new Date());
+gtag("config", "G-QLNGKQXHJ5");
+</script>
 
 <style>
 
@@ -37,7 +37,6 @@ body {
     background: #f5f6f8;
     color: #171717;
 }
-
 
 /* =====================================================
    HEADER
@@ -72,7 +71,6 @@ header {
     font-size: 15px;
 }
 
-
 /* =====================================================
    CONTAINER
 ===================================================== */
@@ -83,7 +81,6 @@ header {
     margin: auto;
     padding: 20px;
 }
-
 
 /* =====================================================
    SEARCH
@@ -107,7 +104,6 @@ header {
     border-color: #888;
 }
 
-
 /* =====================================================
    FILTER
 ===================================================== */
@@ -128,7 +124,6 @@ select {
     outline: none;
 }
 
-
 /* =====================================================
    COUNT
 ===================================================== */
@@ -139,7 +134,6 @@ select {
     margin-bottom: 15px;
 }
 
-
 /* =====================================================
    PRODUCTS
 ===================================================== */
@@ -149,7 +143,6 @@ select {
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
 }
-
 
 /* =====================================================
    CARD
@@ -225,7 +218,6 @@ select {
     font-size: 12px;
 }
 
-
 /* =====================================================
    DETAIL
 ===================================================== */
@@ -247,7 +239,6 @@ select {
     font-size: 14px;
     margin-bottom: 25px;
 }
-
 
 /* =====================================================
    DETAIL IMAGE
@@ -271,7 +262,6 @@ select {
     height: 100%;
     object-fit: contain;
 }
-
 
 /* =====================================================
    DETAIL CONTENT
@@ -307,7 +297,6 @@ select {
     margin-bottom: 20px;
 }
 
-
 /* =====================================================
    INFO
 ===================================================== */
@@ -333,7 +322,6 @@ select {
     color: #777;
     margin-bottom: 6px;
 }
-
 
 /* =====================================================
    DETAIL GALLERY
@@ -376,7 +364,6 @@ select {
 .detail-gallery-item:hover img {
     transform: scale(1.03);
 }
-
 
 /* =====================================================
    IMAGE MODAL
@@ -467,7 +454,6 @@ select {
     z-index: 10;
 }
 
-
 /* =====================================================
    LOADING
 ===================================================== */
@@ -478,7 +464,6 @@ select {
     padding: 60px 20px;
     color: #777;
 }
-
 
 /* =====================================================
    MOBILE
@@ -499,7 +484,6 @@ select {
     }
 
 }
-
 
 @media (max-width: 650px) {
 
@@ -597,7 +581,6 @@ select {
 
 }
 
-
 @media (max-width: 400px) {
 
     .products {
@@ -617,9 +600,7 @@ select {
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -633,13 +614,9 @@ select {
 
 </header>
 
-
 <div class="container">
 
-
-    <!-- =================================================
-         SEARCH
-    ================================================= -->
+    <!-- SEARCH -->
 
     <div class="search-box">
 
@@ -652,10 +629,7 @@ select {
 
     </div>
 
-
-    <!-- =================================================
-         FILTERS
-    ================================================= -->
+    <!-- FILTERS -->
 
     <div class="filters">
 
@@ -667,7 +641,6 @@ select {
 
         </select>
 
-
         <select id="styleFilter">
 
             <option value="">
@@ -675,7 +648,6 @@ select {
             </option>
 
         </select>
-
 
         <select id="sortFilter">
 
@@ -688,7 +660,6 @@ select {
             </option>
 
         </select>
-
 
         <select id="priceFilter">
 
@@ -716,9 +687,7 @@ select {
 
     </div>
 
-
     <div id="count" class="count"></div>
-
 
     <div id="products" class="products">
 
@@ -728,16 +697,11 @@ select {
 
     </div>
 
-
     <div id="detail" class="detail"></div>
-
 
 </div>
 
-
-<!-- =====================================================
-     IMAGE MODAL
-===================================================== -->
+<!-- IMAGE MODAL -->
 
 <div id="imageModal" class="image-modal">
 
@@ -753,7 +717,6 @@ select {
             ×
         </div>
 
-
         <button
             id="modalPrev"
             class="modal-prev"
@@ -762,13 +725,11 @@ select {
             ‹
         </button>
 
-
         <img
             id="modalImage"
             src=""
             alt="Ảnh chi tiết"
         >
-
 
         <button
             id="modalNext"
@@ -777,7 +738,6 @@ select {
         >
             ›
         </button>
-
 
         <div
             id="modalCounter"
@@ -790,9 +750,7 @@ select {
 
 </div>
 
-
 <script>
-
 
 /* =====================================================
    CONFIG
@@ -801,6 +759,20 @@ select {
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
+
+/*
+ * QUAN TRỌNG
+ *
+ * Đây là URL Worker R2 của bạn.
+ *
+ * Tất cả ảnh trong R2 sẽ được lấy qua:
+ *
+ * /image?key=TSPORT/...
+ *
+ * và gallery lấy qua:
+ *
+ * ?folder=/TSPORT/...
+ */
 
 const IMAGE_API =
 "https://tsport-image-api.ntr9766.workers.dev/";
@@ -837,13 +809,102 @@ function escapeHTML(value) {
    IMAGE URL
 ===================================================== */
 
-function getImageUrl(url) {
+/*
+ * Google Drive:
+ *
+ * https://drive.google.com/file/d/ABC/view
+ *
+ * vẫn được hỗ trợ.
+ *
+ *
+ * R2:
+ *
+ * Nếu Sheet chứa:
+ *
+ * TSPORT/TSPORT YN/YN046 - Astrox 10/av.jpg
+ *
+ * hoặc:
+ *
+ * /TSPORT/TSPORT YN/YN046 - Astrox 10/av.jpg
+ *
+ * sẽ tự động chuyển thành:
+ *
+ * https://tsport-image-api.../image?key=...
+ */
+
+function getImageUrl(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    let url =
+        String(value).trim();
 
     if (!url) {
         return "";
     }
 
-    url = String(url).trim();
+
+    /*
+     * R2 key dạng:
+     *
+     * TSPORT/...
+     */
+
+    if (
+        url.startsWith("TSPORT/")
+    ) {
+
+        return (
+            IMAGE_API +
+            "?key=" +
+            encodeURIComponent(url)
+        );
+
+    }
+
+
+    /*
+     * R2 key dạng:
+     *
+     * /TSPORT/...
+     */
+
+    if (
+        url.startsWith("/TSPORT/")
+    ) {
+
+        const key =
+            url.replace(/^\/+/, "");
+
+        return (
+            IMAGE_API +
+            "?key=" +
+            encodeURIComponent(key)
+        );
+
+    }
+
+
+    /*
+     * URL Worker /image?key=...
+     */
+
+    if (
+        url.startsWith(
+            IMAGE_API + "image?"
+        )
+    ) {
+
+        return url;
+
+    }
+
+
+    /*
+     * Google Drive
+     */
 
     let id = "";
 
@@ -851,7 +912,6 @@ function getImageUrl(url) {
         url.match(
             /\/file\/d\/([^/]+)/
         );
-
 
     if (match) {
         id = match[1];
@@ -883,6 +943,11 @@ function getImageUrl(url) {
 
     }
 
+
+    /*
+     * Nếu là URL bình thường
+     * thì giữ nguyên.
+     */
 
     return url;
 
@@ -966,7 +1031,9 @@ function parseCSV(text) {
                 char === "\r" &&
                 next === "\n"
             ) {
+
                 i++;
+
             }
 
 
@@ -1215,7 +1282,9 @@ function createFilters() {
     brands.forEach(brand => {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
 
         option.value = brand;
@@ -1233,7 +1302,9 @@ function createFilters() {
     styles.forEach(style => {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
 
         option.value = style;
@@ -1294,8 +1365,108 @@ function formatPrice(price) {
 
 
 /* =====================================================
-   FORMAT DATE
+   DATE
 ===================================================== */
+
+function parseProductDate(value) {
+
+    if (!value) {
+        return 0;
+    }
+
+
+    const text =
+        String(value).trim();
+
+
+    let match =
+        text.match(
+            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+
+    if (match) {
+
+        const day =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]) - 1;
+
+        const year =
+            Number(match[3]);
+
+        const hour =
+            Number(match[4] || 0);
+
+        const minute =
+            Number(match[5] || 0);
+
+        const second =
+            Number(match[6] || 0);
+
+
+        return new Date(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second
+        ).getTime();
+
+    }
+
+
+    match =
+        text.match(
+            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+
+    if (match) {
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]) - 1;
+
+        const day =
+            Number(match[3]);
+
+        const hour =
+            Number(match[4] || 0);
+
+        const minute =
+            Number(match[5] || 0);
+
+        const second =
+            Number(match[6] || 0);
+
+
+        return new Date(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second
+        ).getTime();
+
+    }
+
+
+    const timestamp =
+        Date.parse(text);
+
+
+    return isNaN(timestamp)
+        ? 0
+        : timestamp;
+
+}
+
 
 function formatDisplayDate(value) {
 
@@ -1436,7 +1607,8 @@ function displayProducts(list) {
             ?
             `
                 <div class="post-date">
-                    Đăng: ${formatDisplayDate(
+                    Đăng:
+                    ${formatDisplayDate(
                         product["Ngày đăng"]
                     )}
                 </div>
@@ -1451,7 +1623,6 @@ function displayProducts(list) {
                 ${imageHTML}
             </div>
 
-
             <div class="card-info">
 
                 <div class="brand">
@@ -1460,13 +1631,11 @@ function displayProducts(list) {
                     )}
                 </div>
 
-
                 <div class="name">
                     ${escapeHTML(
                         product["Tên vợt"] || ""
                     )}
                 </div>
-
 
                 <div class="price">
                     ${formatPrice(
@@ -1474,13 +1643,11 @@ function displayProducts(list) {
                     )}
                 </div>
 
-
                 <div class="meta">
 
                     ${escapeHTML(
                         product["Tình trạng vợt"] || ""
                     )}
-
 
                     ${
                         product["Tình trạng cước"]
@@ -1492,7 +1659,6 @@ function displayProducts(list) {
                         :
                         ""
                     }
-
 
                     ${
                         product["Lối đánh"]
@@ -1508,7 +1674,6 @@ function displayProducts(list) {
                     }
 
                 </div>
-
 
                 ${dateHTML}
 
@@ -1537,22 +1702,8 @@ function displayProducts(list) {
 
 
 /* =====================================================
-   GET FOLDER FROM PRODUCT
+   GET FOLDER
 ===================================================== */
-
-/*
-   GOOGLE APPS SCRIPT HIỆN TẠI:
-
-   product["Ảnh chi tiết"]
-
-   sẽ trả trực tiếp:
-
-   /TSPORT/TSPORT YN/YN001 - Astrox 10
-
-   Vì vậy chỉ cần dùng trực tiếp giá trị này.
-
-   Vẫn giữ khả năng tương thích với dữ liệu cũ.
-*/
 
 function getFolderFromProduct(product) {
 
@@ -1595,13 +1746,14 @@ function getFolderFromProduct(product) {
     }
 
 
-    /* ================================================
-       TRƯỜNG HỢP MỚI
-       Apps Script trả trực tiếp folderPath
-       ================================================ */
+    /*
+     * Trường hợp chuẩn:
+     *
+     * /TSPORT/TSPORT YN/YN046 - Astrox 10
+     */
 
     if (
-        value.startsWith("/")
+        value.startsWith("/TSPORT/")
     ) {
 
         return value;
@@ -1609,9 +1761,24 @@ function getFolderFromProduct(product) {
     }
 
 
-    /* ================================================
-       TƯƠNG THÍCH DỮ LIỆU IMAGEKIT CŨ
-       ================================================ */
+    /*
+     * Nếu Sheet lưu:
+     *
+     * TSPORT/TSPORT YN/YN046 - Astrox 10
+     */
+
+    if (
+        value.startsWith("TSPORT/")
+    ) {
+
+        return "/" + value;
+
+    }
+
+
+    /*
+     * Tương thích dữ liệu ImageKit cũ.
+     */
 
     const imageKitMatch =
         value.match(
@@ -1655,7 +1822,6 @@ function getFolderFromProduct(product) {
 
             return "/" + decoded;
 
-
         } catch (error) {
 
             console.error(
@@ -1672,7 +1838,7 @@ function getFolderFromProduct(product) {
 
 
     /*
-     * Dữ liệu cũ chỉ lưu tên folder.
+     * Nếu Sheet chỉ lưu tên folder.
      */
 
     return (
@@ -1684,7 +1850,7 @@ function getFolderFromProduct(product) {
 
 
 /* =====================================================
-   LOAD GALLERY
+   LOAD GALLERY FROM R2
 ===================================================== */
 
 async function loadGalleryImages(folder) {
@@ -1710,23 +1876,19 @@ async function loadGalleryImages(folder) {
         "===================================="
     );
 
-
     console.log(
-        "TSPORT GALLERY"
+        "TSPORT R2 GALLERY"
     );
-
 
     console.log(
         "Folder:",
         folder
     );
 
-
     console.log(
         "API URL:",
         url
     );
-
 
     console.log(
         "===================================="
@@ -1747,7 +1909,7 @@ async function loadGalleryImages(folder) {
         if (!response.ok) {
 
             throw new Error(
-                "Image API HTTP " +
+                "R2 Worker HTTP " +
                 response.status
             );
 
@@ -1759,7 +1921,7 @@ async function loadGalleryImages(folder) {
 
 
         console.log(
-            "Image API response:",
+            "R2 Worker response:",
             data
         );
 
@@ -1773,7 +1935,7 @@ async function loadGalleryImages(folder) {
         ) {
 
             console.warn(
-                "Image API không trả về images hợp lệ:",
+                "Worker không trả images hợp lệ:",
                 data
             );
 
@@ -1782,13 +1944,116 @@ async function loadGalleryImages(folder) {
         }
 
 
+        /*
+         * Worker hiện tại trả:
+         *
+         * image.url
+         *
+         * từ ImageKit.
+         *
+         * Nhưng HTML này sẽ chuyển
+         * filePath sang R2 nếu có.
+         */
+
         const urls =
             data.images
-                .map(
-                    image =>
-                        image &&
+                .map(image => {
+
+                    if (!image) {
+                        return "";
+                    }
+
+
+                    /*
+                     * Nếu Worker sau này
+                     * trả R2 URL trực tiếp.
+                     */
+
+                    if (
+                        image.r2Url
+                    ) {
+
+                        return String(
+                            image.r2Url
+                        ).trim();
+
+                    }
+
+
+                    /*
+                     * Nếu Worker trả filePath:
+                     *
+                     * /TSPORT/.../1.jpg
+                     */
+
+                    if (
+                        image.filePath
+                    ) {
+
+                        const filePath =
+                            String(
+                                image.filePath
+                            ).trim();
+
+
+                        if (
+                            filePath.startsWith(
+                                "/TSPORT/"
+                            )
+                        ) {
+
+                            return (
+                                IMAGE_API +
+                                "?key=" +
+                                encodeURIComponent(
+                                    filePath.replace(
+                                        /^\/+/,
+                                        ""
+                                    )
+                                )
+                            );
+
+                        }
+
+
+                        if (
+                            filePath.startsWith(
+                                "TSPORT/"
+                            )
+                        ) {
+
+                            return (
+                                IMAGE_API +
+                                "?key=" +
+                                encodeURIComponent(
+                                    filePath
+                                )
+                            );
+
+                        }
+
+                    }
+
+
+                    /*
+                     * Nếu Worker trả URL
+                     * thì dùng URL đó.
+                     */
+
+                    if (
                         image.url
-                )
+                    ) {
+
+                        return String(
+                            image.url
+                        ).trim();
+
+                    }
+
+
+                    return "";
+
+                })
                 .filter(Boolean);
 
 
@@ -1801,11 +2066,10 @@ async function loadGalleryImages(folder) {
 
         return urls;
 
-
     } catch (error) {
 
         console.error(
-            "GALLERY ERROR:",
+            "R2 GALLERY ERROR:",
             error
         );
 
@@ -1817,7 +2081,7 @@ async function loadGalleryImages(folder) {
 
 
 /* =====================================================
-   SHOW MODAL
+   MODAL
 ===================================================== */
 
 function showModalImage() {
@@ -1889,10 +2153,6 @@ function showModalImage() {
 }
 
 
-/* =====================================================
-   OPEN GALLERY IMAGE
-===================================================== */
-
 function openGalleryImage(index) {
 
     if (
@@ -1912,10 +2172,6 @@ function openGalleryImage(index) {
 
 }
 
-
-/* =====================================================
-   NEXT
-===================================================== */
 
 function nextImage() {
 
@@ -1939,10 +2195,6 @@ function nextImage() {
 
 }
 
-
-/* =====================================================
-   PREVIOUS
-===================================================== */
 
 function previousImage() {
 
@@ -1968,10 +2220,6 @@ function previousImage() {
 
 }
 
-
-/* =====================================================
-   CLOSE MODAL
-===================================================== */
 
 function closeImageModal() {
 
@@ -2004,22 +2252,26 @@ async function showDetail(product) {
 
     document.getElementById(
         "products"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "count"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.querySelector(
         ".filters"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.querySelector(
         ".search-box"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     const detail =
@@ -2093,7 +2345,6 @@ async function showDetail(product) {
 
         <div class="detail-content">
 
-
             <div class="detail-brand">
 
                 ${escapeHTML(
@@ -2125,7 +2376,6 @@ async function showDetail(product) {
 
 
             <div class="info-grid">
-
 
                 <div class="info-row">
 
@@ -2191,7 +2441,6 @@ async function showDetail(product) {
 
                 </div>
 
-
             </div>
 
 
@@ -2210,7 +2459,6 @@ async function showDetail(product) {
                 </div>
 
             </div>
-
 
         </div>
 
@@ -2530,14 +2778,12 @@ function filterProducts() {
                         search
                     )
 
-
                     &&
 
                     (
                         !brand ||
                         product["Hãng"] === brand
                     )
-
 
                     &&
 
@@ -2546,12 +2792,10 @@ function filterProducts() {
                         product["Lối đánh"] === style
                     )
 
-
                     &&
 
                     (
                         !priceFilter
-
 
                         ||
 
@@ -2560,7 +2804,6 @@ function filterProducts() {
                             "under500" &&
                             price < 500
                         )
-
 
                         ||
 
@@ -2571,7 +2814,6 @@ function filterProducts() {
                             price < 1000
                         )
 
-
                         ||
 
                         (
@@ -2580,7 +2822,6 @@ function filterProducts() {
                             price >= 1000 &&
                             price < 2000
                         )
-
 
                         ||
 
@@ -2597,10 +2838,6 @@ function filterProducts() {
             }
         );
 
-
-    /* =================================================
-       MỚI NHẤT
-    ================================================= */
 
     if (
         sort === "newest"
@@ -2632,132 +2869,6 @@ function filterProducts() {
     displayProducts(
         filtered
     );
-
-}
-
-
-/* =====================================================
-   PARSE PRODUCT DATE
-===================================================== */
-
-function parseProductDate(value) {
-
-    if (!value) {
-        return 0;
-    }
-
-
-    const text =
-        String(value).trim();
-
-
-    /*
-        Hỗ trợ:
-
-        08/08/2026
-        8/8/2026
-        08/08/2026 12:22:38
-        08-08-2026 12:22:38
-        2026-08-08
-        2026-08-08 12:22:38
-    */
-
-
-    let match =
-        text.match(
-            /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
-        );
-
-
-    if (match) {
-
-        const day =
-            Number(match[1]);
-
-
-        const month =
-            Number(match[2]) - 1;
-
-
-        const year =
-            Number(match[3]);
-
-
-        const hour =
-            Number(match[4] || 0);
-
-
-        const minute =
-            Number(match[5] || 0);
-
-
-        const second =
-            Number(match[6] || 0);
-
-
-        return new Date(
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second
-        ).getTime();
-
-    }
-
-
-    match =
-        text.match(
-            /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
-        );
-
-
-    if (match) {
-
-        const year =
-            Number(match[1]);
-
-
-        const month =
-            Number(match[2]) - 1;
-
-
-        const day =
-            Number(match[3]);
-
-
-        const hour =
-            Number(match[4] || 0);
-
-
-        const minute =
-            Number(match[5] || 0);
-
-
-        const second =
-            Number(match[6] || 0);
-
-
-        return new Date(
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second
-        ).getTime();
-
-    }
-
-
-    const timestamp =
-        Date.parse(text);
-
-
-    return isNaN(timestamp)
-        ? 0
-        : timestamp;
 
 }
 
@@ -3042,6 +3153,11 @@ console.log(
     "TSPORT: JavaScript OK"
 );
 
+console.log(
+    "TSPORT: R2 Worker:",
+    IMAGE_API
+);
+
 
 loadProducts();
 
@@ -3049,4 +3165,3 @@ loadProducts();
 
 </body>
 </html>
-```
