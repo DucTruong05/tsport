@@ -379,6 +379,23 @@ select {
 
  .image-modal img.zoomed:active {
      cursor: grabbing;
+ }
+
+ .modal-zoom-controls {
+     position: absolute; right: 22px; bottom: 22px;
+     display: flex; gap: 8px; z-index: 20;
+ }
+ .modal-zoom-button {
+     width: 44px; height: 44px; border: none; border-radius: 50%;
+     background: rgba(255,255,255,0.16); color: white; font-size: 28px;
+     line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center;
+ }
+ .modal-zoom-button:hover { background: rgba(255,255,255,0.3); }
+ .modal-zoom-level {
+     min-width: 58px; height: 44px; padding: 0 10px; border-radius: 22px;
+     background: rgba(0,0,0,0.55); color: white; display: flex;
+     align-items: center; justify-content: center; font-size: 14px;
+ }
 
 .modal-close {
     position: absolute;
@@ -724,6 +741,19 @@ function updateModalZoom() {
 
     if (modalZoom > 1) image.classList.add("zoomed");
     else image.classList.remove("zoomed");
+}
+
+
+function changeModalZoom(amount) {
+    modalZoom = Math.min(4, Math.max(1, modalZoom + amount));
+    if (modalZoom === 1) { modalPanX = 0; modalPanY = 0; }
+    updateModalZoom();
+}
+
+function toggleModalZoom() {
+    modalZoom = modalZoom > 1 ? 1 : 2;
+    if (modalZoom === 1) { modalPanX = 0; modalPanY = 0; }
+    updateModalZoom();
 }
 
 
@@ -2211,6 +2241,36 @@ function parseProductDate(value) {
 
 }
 
+
+/* =====================================================
+   ZOOM EVENTS
+===================================================== */
+
+document.getElementById("modalZoomIn").addEventListener("click", function(event) {
+    event.stopPropagation(); changeModalZoom(0.5);
+});
+document.getElementById("modalZoomOut").addEventListener("click", function(event) {
+    event.stopPropagation(); changeModalZoom(-0.5);
+});
+document.getElementById("modalImage").addEventListener("dblclick", function(event) {
+    event.stopPropagation(); toggleModalZoom();
+});
+document.getElementById("modalImage").addEventListener("wheel", function(event) {
+    event.preventDefault(); event.stopPropagation();
+    changeModalZoom(event.deltaY < 0 ? 0.5 : -0.5);
+}, { passive: false });
+document.getElementById("modalImage").addEventListener("mousedown", function(event) {
+    if (modalZoom <= 1) return;
+    isDraggingModalImage = true;
+    dragStartX = event.clientX - modalPanX; dragStartY = event.clientY - modalPanY;
+    event.preventDefault();
+});
+document.addEventListener("mousemove", function(event) {
+    if (!isDraggingModalImage) return;
+    modalPanX = event.clientX - dragStartX; modalPanY = event.clientY - dragStartY;
+    updateModalZoom();
+});
+document.addEventListener("mouseup", function() { isDraggingModalImage = false; });
 
 /* =====================================================
    MODAL EVENTS
