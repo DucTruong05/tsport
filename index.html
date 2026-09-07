@@ -1090,6 +1090,10 @@ let currentGallery = [];
 
 let currentImageIndex = 0;
 
+// Lưu vị trí cuộn của trang danh sách để khi quay lại sản phẩm
+// có thể trở về đúng vị trí người dùng đang xem.
+let productsScrollPosition = 0;
+
 
 /* =====================================================
    ESCAPE HTML
@@ -2412,6 +2416,9 @@ function closeImageModal() {
 
 async function showDetail(product) {
 
+    // Lưu vị trí hiện tại trước khi chuyển sang trang chi tiết.
+    productsScrollPosition = window.scrollY || window.pageYOffset || 0;
+
     document.getElementById(
         "products"
     ).style.display =
@@ -2830,9 +2837,12 @@ function closeDetail() {
         0;
 
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    // Khôi phục đúng vị trí người dùng đang xem trước khi mở sản phẩm.
+    requestAnimationFrame(function() {
+        window.scrollTo({
+            top: productsScrollPosition,
+            behavior: "auto"
+        });
     });
 
 }
