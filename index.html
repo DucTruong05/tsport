@@ -482,6 +482,8 @@ select {
     padding: 20px;
 
     touch-action: none;
+
+    overflow: hidden;
 }
 
 .modal-image-wrap {
@@ -495,18 +497,131 @@ select {
     align-items: center;
 
     justify-content: center;
+
+    overflow: hidden;
+
+    touch-action: none;
 }
 
-.image-modal img {
+
+/* =====================================================
+   ZOOM IMAGE
+===================================================== */
+
+#modalImage {
     max-width: 90%;
     max-height: 88vh;
+
+    width: auto;
+    height: auto;
 
     object-fit: contain;
 
     user-select: none;
 
     -webkit-user-drag: none;
+
+    cursor: zoom-in;
+
+    transform-origin: center center;
+
+    will-change: transform;
+
+    transition:
+        transform 0.15s ease;
+
+    touch-action: none;
 }
+
+#modalImage.zoomed {
+    cursor: grab;
+}
+
+#modalImage.dragging {
+    cursor: grabbing;
+
+    transition: none;
+}
+
+
+/* =====================================================
+   ZOOM CONTROLS
+===================================================== */
+
+.zoom-controls {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    display: flex;
+
+    gap: 8px;
+
+    z-index: 20;
+}
+
+.zoom-button {
+    width: 44px;
+    height: 44px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.zoom-button:hover {
+    background:
+        rgba(255,255,255,0.3);
+
+    transform: scale(1.05);
+}
+
+.zoom-level {
+    min-width: 58px;
+
+    height: 44px;
+
+    padding: 0 10px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    color: white;
+
+    font-size: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =====================================================
+   MODAL CLOSE
+===================================================== */
 
 .modal-close {
     position: absolute;
@@ -522,8 +637,15 @@ select {
 
     cursor: pointer;
 
-    z-index: 10;
+    z-index: 30;
+
+    user-select: none;
 }
+
+
+/* =====================================================
+   MODAL PREV NEXT
+===================================================== */
 
 .modal-prev,
 .modal-next {
@@ -555,7 +677,7 @@ select {
     align-items: center;
     justify-content: center;
 
-    z-index: 10;
+    z-index: 20;
 }
 
 .modal-prev {
@@ -571,6 +693,11 @@ select {
     background:
         rgba(255,255,255,0.3);
 }
+
+
+/* =====================================================
+   MODAL COUNTER
+===================================================== */
 
 .modal-counter {
     position: absolute;
@@ -593,7 +720,7 @@ select {
 
     font-size: 14px;
 
-    z-index: 10;
+    z-index: 20;
 }
 
 
@@ -796,13 +923,33 @@ select {
         padding: 10px;
     }
 
-    .image-modal img {
+    #modalImage {
         max-width: 96%;
         max-height: 85vh;
     }
 
     .modal-counter {
         bottom: 18px;
+    }
+
+
+    /* ZOOM CONTROLS MOBILE */
+
+    .zoom-controls {
+        left: 12px;
+        bottom: 15px;
+
+        gap: 6px;
+    }
+
+    .zoom-button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .zoom-level {
+        height: 42px;
+        min-width: 54px;
     }
 
 
@@ -985,28 +1132,29 @@ select {
 
 </div>
 
+
 <!-- =====================================================
      CHỈ 1 NÚT ZALO DUY NHẤT
 ===================================================== -->
 
 <a
-id="zaloFloat"
-href="https://zalo.me/0395364443"
-target="_blank"
-rel="noopener noreferrer"
-aria-label="Liên hệ Zalo TSPORT"
+    id="zaloFloat"
+    href="https://zalo.me/0395364443"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Liên hệ Zalo TSPORT"
+>
 
+    <div class="zalo-logo">
+        Zalo
+    </div>
 
-
-<div class="zalo-logo">
-    Zalo
-</div>
-
-<div class="zalo-contact">
-    Liên hệ
-</div>
+    <div class="zalo-contact">
+        Liên hệ
+    </div>
 
 </a>
+
 
 <!-- =====================================================
      IMAGE MODAL
@@ -1034,6 +1182,7 @@ aria-label="Liên hệ Zalo TSPORT"
         id="modalPrev"
         class="modal-prev"
         type="button"
+        aria-label="Ảnh trước"
     >
         ‹
     </button>
@@ -1043,6 +1192,7 @@ aria-label="Liên hệ Zalo TSPORT"
         id="modalImage"
         src=""
         alt="Ảnh chi tiết"
+        draggable="false"
     >
 
 
@@ -1050,9 +1200,54 @@ aria-label="Liên hệ Zalo TSPORT"
         id="modalNext"
         class="modal-next"
         type="button"
+        aria-label="Ảnh tiếp theo"
     >
         ›
     </button>
+
+
+    <!-- ZOOM CONTROLS -->
+
+    <div
+        id="zoomControls"
+        class="zoom-controls"
+    >
+
+        <button
+            id="zoomOut"
+            class="zoom-button"
+            type="button"
+            aria-label="Thu nhỏ"
+        >
+            −
+        </button>
+
+        <div
+            id="zoomLevel"
+            class="zoom-level"
+        >
+            100%
+        </div>
+
+        <button
+            id="zoomIn"
+            class="zoom-button"
+            type="button"
+            aria-label="Phóng to"
+        >
+            +
+        </button>
+
+        <button
+            id="zoomReset"
+            class="zoom-button"
+            type="button"
+            aria-label="Đặt lại zoom"
+        >
+            ↺
+        </button>
+
+    </div>
 
 
     <div
@@ -1065,6 +1260,7 @@ aria-label="Liên hệ Zalo TSPORT"
 </div>
 
 </div>
+
 
 <script>
 
@@ -1090,9 +1286,69 @@ let currentGallery = [];
 
 let currentImageIndex = 0;
 
-// Lưu vị trí cuộn của trang danh sách để khi quay lại sản phẩm
-// có thể trở về đúng vị trí người dùng đang xem.
+
+/* =====================================================
+   SCROLL POSITION
+===================================================== */
+
+/*
+   Lưu vị trí cuộn của trang danh sách.
+
+   Khi người dùng đang ở giữa danh sách rồi mở sản phẩm,
+   giá trị này sẽ được giữ lại để khi bấm "Quay lại"
+   trang trở về đúng vị trí cũ.
+*/
+
 let productsScrollPosition = 0;
+
+
+/* =====================================================
+   ZOOM STATE
+===================================================== */
+
+let modalZoom = 1;
+
+let modalTranslateX = 0;
+
+let modalTranslateY = 0;
+
+const MIN_ZOOM = 1;
+
+const MAX_ZOOM = 4;
+
+const ZOOM_STEP = 0.25;
+
+
+/* =====================================================
+   DRAG STATE
+===================================================== */
+
+let imageDragging = false;
+
+let imagePointerId = null;
+
+let imageDragStartX = 0;
+
+let imageDragStartY = 0;
+
+let imageStartTranslateX = 0;
+
+let imageStartTranslateY = 0;
+
+
+/* =====================================================
+   PINCH ZOOM STATE
+===================================================== */
+
+let pinchActive = false;
+
+let pinchStartDistance = 0;
+
+let pinchStartZoom = 1;
+
+let pinchCenterX = 0;
+
+let pinchCenterY = 0;
 
 
 /* =====================================================
@@ -1120,6 +1376,7 @@ function getImageUrl(value) {
     if (!value) {
         return "";
     }
+
 
     let url =
         String(value).trim();
@@ -2247,7 +2504,247 @@ async function loadGalleryImages(folder) {
 
 
 /* =====================================================
-   MODAL
+   ZOOM FUNCTIONS
+===================================================== */
+
+function clampZoom(value) {
+
+    return Math.max(
+        MIN_ZOOM,
+        Math.min(
+            MAX_ZOOM,
+            value
+        )
+    );
+
+}
+
+
+function updateZoomDisplay() {
+
+    const image =
+        document.getElementById(
+            "modalImage"
+        );
+
+
+    const zoomLevel =
+        document.getElementById(
+            "zoomLevel"
+        );
+
+
+    if (!image) {
+        return;
+    }
+
+
+    image.style.transform =
+        `translate3d(
+            ${modalTranslateX}px,
+            ${modalTranslateY}px,
+            0
+        ) scale(${modalZoom})`;
+
+
+    if (zoomLevel) {
+
+        zoomLevel.textContent =
+            `${Math.round(modalZoom * 100)}%`;
+
+    }
+
+
+    if (modalZoom > 1) {
+
+        image.classList.add(
+            "zoomed"
+        );
+
+    } else {
+
+        image.classList.remove(
+            "zoomed"
+        );
+
+        modalTranslateX = 0;
+        modalTranslateY = 0;
+
+        image.style.transform =
+            "translate3d(0px, 0px, 0) scale(1)";
+
+    }
+
+}
+
+
+function setZoom(value) {
+
+    modalZoom =
+        clampZoom(value);
+
+
+    if (
+        modalZoom === 1
+    ) {
+
+        modalTranslateX = 0;
+        modalTranslateY = 0;
+
+    }
+
+
+    updateZoomDisplay();
+
+}
+
+
+function zoomIn() {
+
+    setZoom(
+        modalZoom + ZOOM_STEP
+    );
+
+}
+
+
+function zoomOut() {
+
+    setZoom(
+        modalZoom - ZOOM_STEP
+    );
+
+}
+
+
+function resetZoom() {
+
+    modalZoom = 1;
+
+    modalTranslateX = 0;
+
+    modalTranslateY = 0;
+
+    updateZoomDisplay();
+
+}
+
+
+/* =====================================================
+   ZOOM WITH WHEEL
+===================================================== */
+
+function handleImageWheel(event) {
+
+    event.preventDefault();
+
+    event.stopPropagation();
+
+
+    const oldZoom =
+        modalZoom;
+
+
+    const direction =
+        event.deltaY < 0
+            ? 1
+            : -1;
+
+
+    const newZoom =
+        clampZoom(
+            oldZoom +
+            direction *
+            ZOOM_STEP
+        );
+
+
+    if (
+        newZoom === oldZoom
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       Zoom theo vị trí con trỏ chuột.
+
+       Điều này giúp người dùng đưa chuột vào đúng
+       phần cây vợt muốn xem rồi lăn chuột,
+       thay vì ảnh chỉ phóng từ tâm.
+    */
+
+    const image =
+        document.getElementById(
+            "modalImage"
+        );
+
+
+    const rect =
+        image.getBoundingClientRect();
+
+
+    const pointerX =
+        event.clientX -
+        (
+            rect.left +
+            rect.width / 2
+        );
+
+
+    const pointerY =
+        event.clientY -
+        (
+            rect.top +
+            rect.height / 2
+        );
+
+
+    const scaleRatio =
+        newZoom / oldZoom;
+
+
+    if (newZoom > 1) {
+
+        modalTranslateX =
+            pointerX -
+            (
+                pointerX -
+                modalTranslateX
+            ) *
+            scaleRatio;
+
+
+        modalTranslateY =
+            pointerY -
+            (
+                pointerY -
+                modalTranslateY
+            ) *
+            scaleRatio;
+
+    } else {
+
+        modalTranslateX = 0;
+
+        modalTranslateY = 0;
+
+    }
+
+
+    modalZoom =
+        newZoom;
+
+
+    updateZoomDisplay();
+
+}
+
+
+/* =====================================================
+   IMAGE MODAL
 ===================================================== */
 
 function showModalImage() {
@@ -2307,6 +2804,9 @@ function showModalImage() {
         hasMultiple
             ? "flex"
             : "none";
+
+
+    resetZoom();
 
 
     modal.style.display =
@@ -2407,6 +2907,9 @@ function closeImageModal() {
         "modalImage"
     ).src = "";
 
+
+    resetZoom();
+
 }
 
 
@@ -2416,8 +2919,25 @@ function closeImageModal() {
 
 async function showDetail(product) {
 
-    // Lưu vị trí hiện tại trước khi chuyển sang trang chi tiết.
-    productsScrollPosition = window.scrollY || window.pageYOffset || 0;
+    /*
+       QUAN TRỌNG:
+
+       Lưu vị trí scroll TRƯỚC khi thay đổi giao diện.
+       Ví dụ đang ở 3500px thì lưu đúng 3500px.
+    */
+
+    productsScrollPosition =
+        window.scrollY ||
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        0;
+
+
+    console.log(
+        "TSPORT - Lưu vị trí scroll:",
+        productsScrollPosition
+    );
+
 
     document.getElementById(
         "products"
@@ -2633,9 +3153,15 @@ async function showDetail(product) {
     `;
 
 
+    /*
+       Chuyển lên đầu trang chi tiết bằng "auto",
+       không dùng smooth để tránh ảnh hưởng tới việc
+       khôi phục scroll khi quay lại.
+    */
+
     window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        behavior: "auto"
     });
 
 
@@ -2799,6 +3325,14 @@ async function showDetail(product) {
 
 function closeDetail() {
 
+    /*
+       Lưu lại vị trí cần quay về trước khi hiện danh sách.
+    */
+
+    const savedScrollPosition =
+        productsScrollPosition;
+
+
     document.getElementById(
         "products"
     ).style.display =
@@ -2837,13 +3371,49 @@ function closeDetail() {
         0;
 
 
-    // Khôi phục đúng vị trí người dùng đang xem trước khi mở sản phẩm.
+    /*
+       Không smooth.
+
+       Dùng nhiều frame để đảm bảo trình duyệt đã render
+       lại danh sách sản phẩm trước khi khôi phục scroll.
+    */
+
     requestAnimationFrame(function() {
-        window.scrollTo({
-            top: productsScrollPosition,
-            behavior: "auto"
+
+        requestAnimationFrame(function() {
+
+            window.scrollTo({
+                top: savedScrollPosition,
+                left: 0,
+                behavior: "auto"
+            });
+
+
+            /*
+               Một lần kiểm tra cuối sau khi layout hoàn tất.
+               Điều này giúp ổn định hơn nếu ảnh lazy-load
+               hoặc grid vừa thay đổi kích thước.
+            */
+
+            setTimeout(function() {
+
+                window.scrollTo({
+                    top: savedScrollPosition,
+                    left: 0,
+                    behavior: "auto"
+                });
+
+            }, 50);
+
         });
+
     });
+
+
+    console.log(
+        "TSPORT - Khôi phục vị trí scroll:",
+        savedScrollPosition
+    );
 
 }
 
@@ -3080,6 +3650,482 @@ document
 
 
 /* =====================================================
+   ZOOM BUTTON EVENTS
+===================================================== */
+
+document
+    .getElementById(
+        "zoomIn"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            zoomIn();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "zoomOut"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            zoomOut();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "zoomReset"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            resetZoom();
+
+        }
+    );
+
+
+/* =====================================================
+   IMAGE WHEEL ZOOM
+===================================================== */
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "wheel",
+        handleImageWheel,
+        {
+            passive: false
+        }
+    );
+
+
+/* =====================================================
+   DOUBLE CLICK ZOOM
+===================================================== */
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "dblclick",
+        function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            if (
+                modalZoom > 1
+            ) {
+
+                resetZoom();
+
+            } else {
+
+                modalZoom = 2;
+
+                modalTranslateX = 0;
+
+                modalTranslateY = 0;
+
+                updateZoomDisplay();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   IMAGE POINTER DRAG
+===================================================== */
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "pointerdown",
+        function(event) {
+
+            /*
+               Chỉ kéo khi ảnh đang zoom.
+            */
+
+            if (
+                modalZoom <= 1
+            ) {
+
+                return;
+
+            }
+
+
+            imageDragging = true;
+
+            imagePointerId =
+                event.pointerId;
+
+
+            imageDragStartX =
+                event.clientX;
+
+
+            imageDragStartY =
+                event.clientY;
+
+
+            imageStartTranslateX =
+                modalTranslateX;
+
+
+            imageStartTranslateY =
+                modalTranslateY;
+
+
+            this.classList.add(
+                "dragging"
+            );
+
+
+            try {
+
+                this.setPointerCapture(
+                    imagePointerId
+                );
+
+            } catch (error) {}
+
+
+            event.preventDefault();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "pointermove",
+        function(event) {
+
+            if (
+                !imageDragging ||
+                event.pointerId !==
+                    imagePointerId
+            ) {
+
+                return;
+
+            }
+
+
+            modalTranslateX =
+                imageStartTranslateX +
+                (
+                    event.clientX -
+                    imageDragStartX
+                );
+
+
+            modalTranslateY =
+                imageStartTranslateY +
+                (
+                    event.clientY -
+                    imageDragStartY
+                );
+
+
+            updateZoomDisplay();
+
+            event.preventDefault();
+
+        }
+    );
+
+
+function stopImageDragging(event) {
+
+    if (
+        !imageDragging
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        event &&
+        event.pointerId !==
+            imagePointerId
+    ) {
+
+        return;
+
+    }
+
+
+    imageDragging = false;
+
+
+    const image =
+        document.getElementById(
+            "modalImage"
+        );
+
+
+    image.classList.remove(
+        "dragging"
+    );
+
+
+    try {
+
+        if (
+            imagePointerId !== null
+        ) {
+
+            image.releasePointerCapture(
+                imagePointerId
+            );
+
+        }
+
+    } catch (error) {}
+
+
+    imagePointerId = null;
+
+}
+
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "pointerup",
+        stopImageDragging
+    );
+
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "pointercancel",
+        stopImageDragging
+    );
+
+
+/* =====================================================
+   PINCH ZOOM
+===================================================== */
+
+function getTouchDistance(touches) {
+
+    if (
+        touches.length < 2
+    ) {
+
+        return 0;
+
+    }
+
+
+    const dx =
+        touches[0].clientX -
+        touches[1].clientX;
+
+
+    const dy =
+        touches[0].clientY -
+        touches[1].clientY;
+
+
+    return Math.sqrt(
+        dx * dx +
+        dy * dy
+    );
+
+}
+
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "touchstart",
+        function(event) {
+
+            if (
+                event.touches.length !== 2
+            ) {
+
+                return;
+
+            }
+
+
+            pinchActive = true;
+
+
+            pinchStartDistance =
+                getTouchDistance(
+                    event.touches
+                );
+
+
+            pinchStartZoom =
+                modalZoom;
+
+
+            pinchCenterX =
+                (
+                    event.touches[0].clientX +
+                    event.touches[1].clientX
+                ) / 2;
+
+
+            pinchCenterY =
+                (
+                    event.touches[0].clientY +
+                    event.touches[1].clientY
+                ) / 2;
+
+
+            event.preventDefault();
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "touchmove",
+        function(event) {
+
+            if (
+                !pinchActive ||
+                event.touches.length !== 2
+            ) {
+
+                return;
+
+            }
+
+
+            const currentDistance =
+                getTouchDistance(
+                    event.touches
+                );
+
+
+            if (
+                !currentDistance ||
+                !pinchStartDistance
+            ) {
+
+                return;
+
+            }
+
+
+            const scale =
+                currentDistance /
+                pinchStartDistance;
+
+
+            const newZoom =
+                clampZoom(
+                    pinchStartZoom *
+                    scale
+                );
+
+
+            modalZoom =
+                newZoom;
+
+
+            if (
+                modalZoom <= 1
+            ) {
+
+                modalTranslateX = 0;
+
+                modalTranslateY = 0;
+
+            }
+
+
+            updateZoomDisplay();
+
+
+            event.preventDefault();
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+document
+    .getElementById(
+        "modalImage"
+    )
+    .addEventListener(
+        "touchend",
+        function(event) {
+
+            if (
+                event.touches.length < 2
+            ) {
+
+                pinchActive = false;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+/* =====================================================
    KEYBOARD
 ===================================================== */
 
@@ -3125,6 +4171,39 @@ document.addEventListener(
 
         if (
             event.key ===
+            "+"
+            ||
+            event.key ===
+            "="
+        ) {
+
+            zoomIn();
+
+        }
+
+
+        if (
+            event.key ===
+            "-"
+        ) {
+
+            zoomOut();
+
+        }
+
+
+        if (
+            event.key ===
+            "0"
+        ) {
+
+            resetZoom();
+
+        }
+
+
+        if (
+            event.key ===
             "Escape"
         ) {
 
@@ -3142,6 +4221,8 @@ document.addEventListener(
 
 let touchStartX = 0;
 
+let touchStartY = 0;
+
 
 document
     .getElementById(
@@ -3151,15 +4232,27 @@ document
         "touchstart",
         function(event) {
 
+            /*
+               Không coi pinch là swipe chuyển ảnh.
+            */
+
             if (
-                event.touches.length
+                event.touches.length !== 1
             ) {
 
-                touchStartX =
-                    event.touches[0]
-                        .clientX;
+                return;
 
             }
+
+
+            touchStartX =
+                event.touches[0]
+                    .clientX;
+
+
+            touchStartY =
+                event.touches[0]
+                    .clientY;
 
         },
         {
@@ -3185,18 +4278,41 @@ document
             }
 
 
+            if (
+                modalZoom > 1
+            ) {
+
+                return;
+
+            }
+
+
             const touchEndX =
                 event.changedTouches[0]
                     .clientX;
 
 
-            const distance =
+            const touchEndY =
+                event.changedTouches[0]
+                    .clientY;
+
+
+            const distanceX =
                 touchEndX -
                 touchStartX;
 
 
+            const distanceY =
+                touchEndY -
+                touchStartY;
+
+
+            /*
+               Chỉ xử lý swipe ngang.
+            */
+
             if (
-                Math.abs(distance) <
+                Math.abs(distanceX) <
                 50
             ) {
 
@@ -3206,7 +4322,17 @@ document
 
 
             if (
-                distance < 0
+                Math.abs(distanceY) >
+                Math.abs(distanceX)
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                distanceX < 0
             ) {
 
                 nextImage();
