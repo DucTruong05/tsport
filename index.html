@@ -3035,6 +3035,741 @@ select.is-active {
 
 }
 
+/* =====================================================
+   TSPORT CUSTOMER REVIEW SYSTEM (ISOLATED & SCOPED)
+===================================================== */
+
+.tsr-widget {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate3d(0, -50%, 0);
+    width: 264px;
+    z-index: 995;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 16px;
+    padding: 13px 14px 12px;
+    box-shadow:
+        0 14px 34px -8px rgba(2, 6, 23, 0.65),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 0 24px -6px rgba(14, 165, 233, 0.16);
+    color: #f8fafc;
+    font-family: inherit;
+    user-select: none;
+    transition:
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        opacity 0.28s ease;
+    will-change: transform;
+}
+
+.tsr-widget:hover {
+    border-color: rgba(56, 189, 248, 0.42);
+    box-shadow:
+        0 18px 40px -8px rgba(2, 6, 23, 0.78),
+        0 0 0 1px rgba(56, 189, 248, 0.12) inset,
+        0 0 28px -4px rgba(14, 165, 233, 0.24);
+}
+
+/* Header: Average score + Total reviews */
+.tsr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.tsr-score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(245, 158, 11, 0.08));
+    border: 1px solid rgba(250, 204, 21, 0.32);
+    border-radius: 999px;
+    padding: 3px 9px;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #fde047;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+}
+
+.tsr-score-badge .tsr-star-icon {
+    font-size: 12px;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.45));
+}
+
+.tsr-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tsr-total-count {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.01em;
+}
+
+.tsr-mobile-minimize {
+    display: none;
+    appearance: none;
+    border: 1px solid rgba(248, 113, 113, 0.32);
+    background: rgba(30, 41, 59, 0.85);
+    color: #fca5a5;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.tsr-mobile-minimize:hover,
+.tsr-mobile-minimize:active {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(248, 113, 113, 0.6);
+    color: #ffffff;
+}
+
+/* Smooth Vertical Sliding Review Viewport */
+.tsr-viewport {
+    position: relative;
+    height: 94px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.tsr-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2px 2px;
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+    transition:
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+.tsr-slide.is-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+}
+
+.tsr-slide.is-exiting {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+    pointer-events: none;
+}
+
+.tsr-slide.is-prep-bottom {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+    transition: none !important;
+    pointer-events: none;
+}
+
+.tsr-stars {
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    line-height: 1.1;
+    color: #facc15;
+}
+
+.tsr-quote {
+    font-size: 12.2px;
+    line-height: 1.42;
+    color: #e2e8f0;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.tsr-author {
+    font-size: 11.2px;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Write Review Button inside Widget */
+.tsr-write-btn {
+    width: 100%;
+    appearance: none;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(37, 99, 235, 0.14));
+    color: #e0f2fe;
+    border-radius: 10px;
+    padding: 7px 10px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition:
+        background 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.18s ease,
+        box-shadow 0.22s ease;
+}
+
+.tsr-write-btn:hover {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(37, 99, 235, 0.26));
+    border-color: rgba(56, 189, 248, 0.55);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px -4px rgba(14, 165, 233, 0.35);
+}
+
+.tsr-write-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile Compact Pill Launcher (shown when closed on mobile so it never blocks scrolling/content) */
+.tsr-mobile-pill {
+    display: none;
+    position: fixed;
+    left: 12px;
+    bottom: 18px;
+    right: auto;
+    top: auto;
+    z-index: 994;
+    appearance: none;
+    border: 1px solid rgba(56, 189, 248, 0.32);
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #f8fafc;
+    border-radius: 999px;
+    padding: 6px 11px;
+    font-size: 11.5px;
+    font-weight: 700;
+    box-shadow: 0 8px 22px -4px rgba(2, 6, 23, 0.65);
+    cursor: pointer;
+    align-items: center;
+    gap: 5px;
+    touch-action: manipulation;
+}
+
+.tsr-mobile-pill .tsr-pill-score {
+    color: #fde047;
+    font-weight: 800;
+}
+
+.tsr-mobile-pill .tsr-pill-count {
+    color: #94a3b8;
+    font-size: 10.5px;
+    font-weight: 600;
+}
+
+/* Write Review Modal / Popup */
+.tsr-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba(2, 6, 23, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tsr-modal-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.tsr-modal-dialog {
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.97) 0%, rgba(10, 15, 30, 0.98) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 20px;
+    padding: 22px 22px 20px;
+    box-shadow:
+        0 24px 60px -12px rgba(2, 6, 23, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 0 36px -8px rgba(14, 165, 233, 0.22);
+    color: #f8fafc;
+    transform: translate3d(0, 14px, 0) scale(0.95);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.tsr-modal-backdrop.is-open .tsr-modal-dialog {
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.tsr-modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.tsr-modal-title {
+    margin: 0;
+    font-size: 16.5px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.tsr-modal-close {
+    appearance: none;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(30, 41, 59, 0.65);
+    color: #cbd5e1;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.tsr-modal-close:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.45);
+    color: #fca5a5;
+}
+
+.tsr-field {
+    margin-bottom: 14px;
+}
+
+.tsr-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-bottom: 6px;
+}
+
+.tsr-input,
+.tsr-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #f8fafc;
+    font-size: 13.5px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.tsr-input::placeholder,
+.tsr-textarea::placeholder {
+    color: #64748b;
+}
+
+.tsr-input:focus,
+.tsr-textarea:focus {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.14);
+}
+
+.tsr-textarea {
+    min-height: 88px;
+    resize: vertical;
+    line-height: 1.45;
+}
+
+/* Star Picker */
+.tsr-star-picker-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 12px;
+    padding: 8px 12px;
+}
+
+.tsr-star-picker {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tsr-star-btn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    font-size: 23px;
+    line-height: 1;
+    padding: 2px;
+    cursor: pointer;
+    color: rgba(148, 163, 184, 0.35);
+    transition: transform 0.16s ease, color 0.16s ease, filter 0.16s ease;
+}
+
+.tsr-star-btn.is-selected,
+.tsr-star-btn.is-hovered {
+    color: #facc15;
+    filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.45));
+}
+
+.tsr-star-btn:hover {
+    transform: scale(1.15);
+}
+
+.tsr-star-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fde047;
+}
+
+.tsr-submit-btn {
+    width: 100%;
+    appearance: none;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -6px rgba(14, 165, 233, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.tsr-submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px -6px rgba(14, 165, 233, 0.6);
+}
+
+.tsr-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.tsr-feedback-msg {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tsr-feedback-msg.is-success {
+    display: block;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.38);
+    color: #6ee7b7;
+}
+
+.tsr-feedback-msg.is-error {
+    display: block;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.38);
+    color: #fca5a5;
+}
+
+/* Responsive Mobile Rules: Show X button on mobile to close review widget cleanly */
+@media (max-width: 900px) {
+    .tsr-widget {
+        left: 12px;
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        transform: translate3d(0, -50%, 0);
+        width: 232px;
+        padding: 10px 11px;
+        border-radius: 14px;
+    }
+
+    .tsr-mobile-minimize {
+        display: inline-flex;
+    }
+
+    .tsr-widget.is-mobile-minimized {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(-20px, -50%, 0) scale(0.92);
+    }
+
+    .tsr-mobile-pill.is-visible {
+        display: inline-flex;
+    }
+
+    .tsr-viewport {
+        height: 86px;
+        margin-bottom: 8px;
+    }
+
+    .tsr-quote {
+        font-size: 11.5px;
+    }
+}
+
+/* =====================================================
+   TSPORT WELCOME POPUP (FIRST-VISIT ONLY, ISOLATED)
+===================================================== */
+
+.tsw-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1350;
+    background: rgba(2, 6, 23, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tsw-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.tsw-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    background:
+        radial-gradient(120% 90% at 50% 0%, rgba(14, 165, 233, 0.16) 0%, rgba(15, 23, 42, 0) 65%),
+        linear-gradient(180deg, rgba(15, 23, 42, 0.97) 0%, rgba(10, 15, 30, 0.99) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 22px;
+    padding: 28px 24px 22px;
+    text-align: center;
+    color: #f8fafc;
+    box-shadow:
+        0 24px 60px -12px rgba(2, 6, 23, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 0 36px -8px rgba(14, 165, 233, 0.22);
+    transform: translate3d(0, 10px, 0) scale(0.95);
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.tsw-backdrop.is-open .tsw-dialog {
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.tsw-close-x {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(30, 41, 59, 0.65);
+    color: #cbd5e1;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.tsw-close-x:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.45);
+    color: #fca5a5;
+}
+
+.tsw-title {
+    margin: 4px 0 10px;
+    font-size: 16.5px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    color: #f8fafc;
+}
+
+.tsw-tagline {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(14, 165, 233, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.tsw-desc {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    line-height: 1.45;
+}
+
+.tsw-subdesc {
+    margin: 0 0 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #94a3b8;
+    line-height: 1.45;
+}
+
+.tsw-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tsw-btn-zalo {
+    flex: 1.25;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 10px 22px -6px rgba(14, 165, 233, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.tsw-btn-zalo:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px -6px rgba(14, 165, 233, 0.6);
+}
+
+.tsw-btn-ok {
+    flex: 0.95;
+    appearance: none;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(30, 41, 59, 0.75);
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.tsw-btn-ok:hover {
+    background: rgba(51, 65, 85, 0.85);
+    border-color: rgba(148, 163, 184, 0.45);
+    color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .tsw-dialog {
+        padding: 24px 18px 18px;
+        border-radius: 18px;
+    }
+
+    .tsw-title {
+        font-size: 15px;
+    }
+
+    .tsw-actions {
+        flex-direction: column;
+    }
+
+    .tsw-btn-zalo,
+    .tsw-btn-ok {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tsr-slide,
+    .tsr-modal-backdrop,
+    .tsr-modal-dialog,
+    .tsw-backdrop,
+    .tsw-dialog {
+        transition-duration: 0.01ms !important;
+    }
+}
+
 </style>
 
 </head>
@@ -3335,6 +4070,194 @@ select.is-active {
 
     </div>
 
+</div>
+
+
+<!-- =====================================================
+     TSPORT CUSTOMER REVIEW WIDGET & MODAL (ISOLATED HTML)
+===================================================== -->
+<aside
+    id="tsportReviewWidget"
+    class="tsr-widget"
+    aria-label="Đánh giá khách hàng TSPORT"
+>
+    <div class="tsr-header">
+        <span class="tsr-score-badge" title="Điểm đánh giá trung bình">
+            <span class="tsr-star-icon">⭐</span>
+            <span id="tsrAvgScore">--/5</span>
+        </span>
+        <div class="tsr-header-right">
+            <span id="tsrTotalCount" class="tsr-total-count">0 đánh giá</span>
+            <button
+                type="button"
+                id="tsrMobileMinBtn"
+                class="tsr-mobile-minimize"
+                title="Đóng đánh giá"
+                aria-label="Đóng bảng đánh giá"
+            >
+                ✕
+            </button>
+        </div>
+    </div>
+
+    <div id="tsrViewport" class="tsr-viewport" aria-live="polite">
+        <div id="tsrSlideA" class="tsr-slide is-active"></div>
+        <div id="tsrSlideB" class="tsr-slide is-prep-bottom"></div>
+    </div>
+
+    <button
+        type="button"
+        id="tsrOpenModalBtn"
+        class="tsr-write-btn"
+    >
+        <span>✍️</span>
+        <span>VIẾT ĐÁNH GIÁ</span>
+    </button>
+</aside>
+
+<button
+    type="button"
+    id="tsrMobilePill"
+    class="tsr-mobile-pill"
+    aria-label="Mở đánh giá khách hàng TSPORT"
+>
+    <span>⭐</span>
+    <span id="tsrPillScore" class="tsr-pill-score">4.9/5</span>
+    <span id="tsrPillCount" class="tsr-pill-count">(128)</span>
+</button>
+
+<div
+    id="tsportReviewModal"
+    class="tsr-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tsrModalTitle"
+    aria-hidden="true"
+>
+    <div class="tsr-modal-dialog">
+        <div class="tsr-modal-head">
+            <h3 id="tsrModalTitle" class="tsr-modal-title">
+                <span>✍️</span>
+                <span>ĐÁNH GIÁ TSPORT</span>
+            </h3>
+            <button
+                type="button"
+                id="tsrCloseModalBtn"
+                class="tsr-modal-close"
+                aria-label="Đóng"
+                title="Đóng"
+            >
+                ✕
+            </button>
+        </div>
+
+        <form id="tsrReviewForm" novalidate>
+            <div class="tsr-field">
+                <label class="tsr-label" for="tsrInputName">Tên của bạn *</label>
+                <input
+                    id="tsrInputName"
+                    class="tsr-input"
+                    type="text"
+                    maxlength="60"
+                    placeholder="VD: Nguyễn Văn A"
+                    required
+                    autocomplete="name"
+                >
+            </div>
+
+            <div class="tsr-field">
+                <label class="tsr-label">Mức độ hài lòng *</label>
+                <div class="tsr-star-picker-wrap">
+                    <div id="tsrStarPicker" class="tsr-star-picker" role="radiogroup" aria-label="Chọn số sao từ 1 đến 5">
+                        <button type="button" class="tsr-star-btn is-selected" data-rating="1" aria-label="1 sao">★</button>
+                        <button type="button" class="tsr-star-btn is-selected" data-rating="2" aria-label="2 sao">★</button>
+                        <button type="button" class="tsr-star-btn is-selected" data-rating="3" aria-label="3 sao">★</button>
+                        <button type="button" class="tsr-star-btn is-selected" data-rating="4" aria-label="4 sao">★</button>
+                        <button type="button" class="tsr-star-btn is-selected" data-rating="5" aria-label="5 sao">★</button>
+                    </div>
+                    <span id="tsrStarLabel" class="tsr-star-label">5 sao · Rất hài lòng</span>
+                </div>
+            </div>
+
+            <div class="tsr-field">
+                <label class="tsr-label" for="tsrInputText">Nội dung đánh giá *</label>
+                <textarea
+                    id="tsrInputText"
+                    class="tsr-textarea"
+                    maxlength="260"
+                    placeholder="Chia sẻ trải nghiệm mua vợt và dịch vụ tại TSPORT..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" id="tsrSubmitBtn" class="tsr-submit-btn">
+                GỬI ĐÁNH GIÁ
+            </button>
+
+            <div id="tsrFeedbackMsg" class="tsr-feedback-msg" role="status"></div>
+        </form>
+    </div>
+</div>
+
+<!-- =====================================================
+     TSPORT WELCOME POPUP (FIRST-VISIT ONLY, ISOLATED HTML)
+===================================================== -->
+<div
+    id="tsportWelcomeModal"
+    class="tsw-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tswTitle"
+    aria-hidden="true"
+>
+    <div class="tsw-dialog">
+        <button
+            type="button"
+            id="tswCloseXBtn"
+            class="tsw-close-x"
+            aria-label="Đóng thông báo chào mừng"
+            title="Đóng"
+        >
+            ✕
+        </button>
+
+        <h2 id="tswTitle" class="tsw-title">
+            🏸 CHÀO MỪNG ANH EM ĐẾN VỚI TSPORT
+        </h2>
+
+        <div class="tsw-tagline">
+          SHOP • NHẬN • THU • MUA • TRAO ĐỔI VỢT
+        </div>
+
+        <p class="tsw-desc">
+            Cần bán vợt hoặc đang tìm vợt?
+        </p>
+
+        <p class="tsw-subdesc">
+            IB Zalo TSPORT để được hỗ trợ nhanh gọn.
+        </p>
+
+        <div class="tsw-actions">
+            <a
+                id="tswZaloBtn"
+                href="https://zalo.me/0395364443"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tsw-btn-zalo"
+            >
+                <span>💬</span>
+                <span>NHẮN ZALO</span>
+            </a>
+
+            <button
+                type="button"
+                id="tswOkBtn"
+                class="tsw-btn-ok"
+            >
+                ĐÃ HIỂU
+            </button>
+        </div>
+    </div>
 </div>
 
 
@@ -7037,6 +7960,622 @@ console.log(
 ===================================================== */
 
 loadProducts();
+
+
+/* =====================================================
+   QUẢN LÝ DỮ LIỆU ĐÁNH GIÁ KHÁCH HÀNG (TSPORT REVIEWS)
+   - Dễ dàng thêm / sửa / xóa đánh giá tại mảng TSPORT_REVIEWS_DATA bên dưới.
+   - Chỉ những đánh giá có `approved: true` mới hiển thị trên website.
+   - Khi khách gửi đánh giá mới từ nút "✍️ VIẾT ĐÁNH GIÁ":
+     Khách → Form đánh giá → Google Sheet (approved: false) → Kiểm duyệt → Hiển thị.
+===================================================== */
+
+const TSPORT_REVIEWS_CONFIG = {
+    // Tự động tính điểm trung bình & tổng số đánh giá từ các dòng được tích duyệt (TRUE) trên Google Sheet
+    autoCalculateStats: true,
+    displayAverageRating: "5.0",
+    displayTotalReviews: 0,
+
+    // Thời gian tự động chuyển giữa các review (mili-giây, 3000 - 5000ms)
+    rotationIntervalMs: 4200,
+
+    // CHẾ ĐỘ CÁCH 2 (GOOGLE SHEET LÀ NGUỒN CHÍNH):
+    // - Đọc trực tiếp tab "Reviews" từ Google Sheet hiện tại của TSPORT:
+    //   Cột A: name | Cột B: rating | Cột C: text | Cột D: approved (TRUE/FALSE) | Cột E: created_at
+    enableGoogleSheetSync: true,
+    useSheetAsPrimarySource: true,
+    googleSheetReviewCsvUrl:
+        "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv&sheet=Reviews",
+
+    // URL Web App Google Apps Script của bạn:
+    appsScriptWebhookUrl: "https://script.google.com/macros/s/AKfycbwBpjsAN5QS06w5sEO_-IN2ZXNzoRZiEX-MGdvlWmY-nSqBPAVjNRMFMAkNFmN3ZUtG/exec"
+};
+
+// Đã xóa toàn bộ dữ liệu chạy test. Hệ thống chỉ hiển thị dữ liệu thật từ Google Sheet.
+const TSPORT_REVIEWS_DATA = [];
+
+/* =====================================================
+   TSPORT CUSTOMER REVIEW CONTROLLER (IIFE ISOLATED)
+===================================================== */
+(function initTsportReviewSystem() {
+    const widgetEl = document.getElementById("tsportReviewWidget");
+    const slideA = document.getElementById("tsrSlideA");
+    const slideB = document.getElementById("tsrSlideB");
+    const avgScoreEl = document.getElementById("tsrAvgScore");
+    const totalCountEl = document.getElementById("tsrTotalCount");
+    const pillEl = document.getElementById("tsrMobilePill");
+    const pillScoreEl = document.getElementById("tsrPillScore");
+    const pillCountEl = document.getElementById("tsrPillCount");
+    const mobileMinBtn = document.getElementById("tsrMobileMinBtn");
+
+    const openModalBtn = document.getElementById("tsrOpenModalBtn");
+    const modalBackdrop = document.getElementById("tsportReviewModal");
+    const closeModalBtn = document.getElementById("tsrCloseModalBtn");
+    const reviewForm = document.getElementById("tsrReviewForm");
+    const inputName = document.getElementById("tsrInputName");
+    const inputText = document.getElementById("tsrInputText");
+    const starPicker = document.getElementById("tsrStarPicker");
+    const starLabel = document.getElementById("tsrStarLabel");
+    const submitBtn = document.getElementById("tsrSubmitBtn");
+    const feedbackMsg = document.getElementById("tsrFeedbackMsg");
+
+    if (!widgetEl || !slideA || !slideB) return;
+
+    const STAR_LABELS = {
+        1: "1 sao · Chưa hài lòng",
+        2: "2 sao · Tạm ổn",
+        3: "3 sao · Bình thường",
+        4: "4 sao · Hài lòng",
+        5: "5 sao · Rất hài lòng"
+    };
+
+    const CACHE_KEY = "tsport_reviews_cache_v2";
+    let hasLoadedCacheOrRemote = false;
+
+    // Only keep reviews where approved === true
+    let approvedReviews = TSPORT_REVIEWS_DATA.filter(function (item) {
+        return item && item.approved === true && item.name && item.text;
+    });
+
+    // 1. Đọc tức thì (0ms) từ bộ nhớ đệm localStorage để không bao giờ phải chờ mạng
+    try {
+        const cachedRaw = localStorage.getItem(CACHE_KEY);
+        if (cachedRaw) {
+            const parsed = JSON.parse(cachedRaw);
+            if (Array.isArray(parsed)) {
+                approvedReviews = parsed.filter(function (item) {
+                    return item && item.approved === true && item.name && item.text;
+                });
+                hasLoadedCacheOrRemote = true;
+            }
+        }
+    } catch (_) {}
+
+    let currentIndex = 0;
+    let activeSlot = "A"; // Alternates between "A" and "B" for smooth zero-flicker vertical slide
+    let rotationTimer = null;
+    let isHoveredOrPaused = false;
+    let isModalOpen = false;
+    let isTransitioning = false;
+    let selectedRating = 5;
+
+    function escapeReviewHtml(str) {
+        return String(str || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    }
+
+    function renderStarsString(ratingNum) {
+        const clamped = Math.max(1, Math.min(5, Math.round(Number(ratingNum) || 5)));
+        return "⭐".repeat(clamped);
+    }
+
+    function buildEmptyStateHtml() {
+        if (!hasLoadedCacheOrRemote) {
+            return (
+                '<div class="tsr-quote" style="color:#94a3b8;text-align:center;margin:0;">' +
+                'Đang tải đánh giá khách hàng...' +
+                '</div>'
+            );
+        }
+        return (
+            '<div class="tsr-quote" style="color:#94a3b8;text-align:center;margin:0;">' +
+            'Chưa có đánh giá nào.<br>Hãy là người đầu tiên đánh giá TSPORT!' +
+            '</div>'
+        );
+    }
+
+    function buildSlideInnerHtml(review) {
+        if (!review) return buildEmptyStateHtml();
+        const stars = renderStarsString(review.rating);
+        const safeText = escapeReviewHtml(review.text.trim());
+        const safeName = escapeReviewHtml(review.name.trim());
+        return (
+            '<div class="tsr-stars" aria-label="' + (review.rating || 5) + ' sao">' + stars + '</div>' +
+            '<div class="tsr-quote">“' + safeText + '”</div>' +
+            '<div class="tsr-author">— ' + safeName + '</div>'
+        );
+    }
+
+    function updateHeaderStats() {
+        let avgText = TSPORT_REVIEWS_CONFIG.displayAverageRating || "5.0";
+        let totalCount = TSPORT_REVIEWS_CONFIG.displayTotalReviews || approvedReviews.length;
+
+        if (TSPORT_REVIEWS_CONFIG.autoCalculateStats) {
+            if (approvedReviews.length > 0) {
+                const sum = approvedReviews.reduce(function (acc, item) {
+                    return acc + (Number(item.rating) || 5);
+                }, 0);
+                avgText = (sum / approvedReviews.length).toFixed(1);
+                totalCount = approvedReviews.length;
+            } else {
+                avgText = "--";
+                totalCount = 0;
+            }
+        }
+
+        if (avgScoreEl) avgScoreEl.textContent = avgText + "/5";
+        if (totalCountEl) totalCountEl.textContent = totalCount + " đánh giá";
+        if (pillScoreEl) pillScoreEl.textContent = avgText + "/5";
+        if (pillCountEl) pillCountEl.textContent = "(" + totalCount + ")";
+    }
+
+    function stepNextReview() {
+        if (approvedReviews.length <= 1 || isTransitioning) return;
+
+        isTransitioning = true;
+        currentIndex = (currentIndex + 1) % approvedReviews.length;
+        const nextReview = approvedReviews[currentIndex];
+
+        const currentEl = activeSlot === "A" ? slideA : slideB;
+        const incomingEl = activeSlot === "A" ? slideB : slideA;
+
+        // 1. Instantly place incoming slide at bottom (translateY(100%)) without transition
+        incomingEl.classList.remove("is-active", "is-exiting");
+        incomingEl.classList.add("is-prep-bottom");
+        incomingEl.innerHTML = buildSlideInnerHtml(nextReview);
+
+        // Force reflow so browser registers starting position at bottom
+        void incomingEl.offsetWidth;
+
+        // 2. On next animation frame, slide current UP (-100%) and incoming UP to center (0%)
+        requestAnimationFrame(function () {
+            incomingEl.classList.remove("is-prep-bottom");
+            currentEl.classList.remove("is-active");
+            currentEl.classList.add("is-exiting");
+            incomingEl.classList.add("is-active");
+
+            activeSlot = activeSlot === "A" ? "B" : "A";
+
+            setTimeout(function () {
+                currentEl.classList.remove("is-exiting");
+                currentEl.classList.add("is-prep-bottom");
+                isTransitioning = false;
+            }, 680);
+        });
+    }
+
+    function startRotation() {
+        stopRotation();
+        if (approvedReviews.length <= 1) return;
+        const interval = Math.max(2800, Number(TSPORT_REVIEWS_CONFIG.rotationIntervalMs) || 4200);
+        rotationTimer = setInterval(function () {
+            if (!isHoveredOrPaused && !isModalOpen && !document.hidden) {
+                stepNextReview();
+            }
+        }, interval);
+    }
+
+    function stopRotation() {
+        if (rotationTimer) {
+            clearInterval(rotationTimer);
+            rotationTimer = null;
+        }
+    }
+
+    // Initialize first slide immediately (0ms from cache if available)
+    updateHeaderStats();
+    slideA.innerHTML = buildSlideInnerHtml(approvedReviews[0] || null);
+    slideA.classList.add("is-active");
+    slideB.classList.add("is-prep-bottom");
+    if (approvedReviews.length > 1) {
+        startRotation();
+    }
+
+    // Pause on desktop hover / focus so customers can read comfortably
+    widgetEl.addEventListener("mouseenter", function () {
+        isHoveredOrPaused = true;
+    });
+
+    widgetEl.addEventListener("mouseleave", function () {
+        isHoveredOrPaused = false;
+    });
+
+    widgetEl.addEventListener("focusin", function () {
+        isHoveredOrPaused = true;
+    });
+
+    widgetEl.addEventListener("focusout", function () {
+        isHoveredOrPaused = false;
+    });
+
+    // Mobile close / reopen button on review widget
+    if (mobileMinBtn && pillEl) {
+        mobileMinBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            widgetEl.classList.add("is-mobile-minimized");
+            pillEl.classList.add("is-visible");
+        });
+
+        pillEl.addEventListener("click", function () {
+            pillEl.classList.remove("is-visible");
+            widgetEl.classList.remove("is-mobile-minimized");
+        });
+    }
+
+    // Star rating picker interaction
+    function setStarPickerValue(val, isHoverPreview) {
+        const targetVal = Math.max(1, Math.min(5, Number(val) || 5));
+        if (!isHoverPreview) {
+            selectedRating = targetVal;
+        }
+        if (starPicker) {
+            const buttons = starPicker.querySelectorAll(".tsr-star-btn");
+            buttons.forEach(function (btn) {
+                const btnRating = Number(btn.getAttribute("data-rating")) || 1;
+                btn.classList.toggle("is-selected", btnRating <= selectedRating);
+                btn.classList.toggle("is-hovered", Boolean(isHoverPreview) && btnRating <= targetVal);
+            });
+        }
+        if (starLabel) {
+            starLabel.textContent = STAR_LABELS[targetVal] || (targetVal + " sao");
+        }
+    }
+
+    if (starPicker) {
+        starPicker.addEventListener("click", function (e) {
+            const btn = e.target.closest(".tsr-star-btn");
+            if (!btn) return;
+            setStarPickerValue(btn.getAttribute("data-rating"), false);
+        });
+
+        starPicker.addEventListener("mouseover", function (e) {
+            const btn = e.target.closest(".tsr-star-btn");
+            if (!btn) return;
+            setStarPickerValue(btn.getAttribute("data-rating"), true);
+        });
+
+        starPicker.addEventListener("mouseleave", function () {
+            setStarPickerValue(selectedRating, false);
+        });
+    }
+
+    // Modal Open / Close
+    function openReviewModal() {
+        if (!modalBackdrop) return;
+        isModalOpen = true;
+        modalBackdrop.classList.add("is-open");
+        modalBackdrop.setAttribute("aria-hidden", "false");
+        if (feedbackMsg) {
+            feedbackMsg.className = "tsr-feedback-msg";
+            feedbackMsg.textContent = "";
+        }
+        setTimeout(function () {
+            if (inputName) inputName.focus();
+        }, 120);
+    }
+
+    function closeReviewModal() {
+        if (!modalBackdrop) return;
+        isModalOpen = false;
+        modalBackdrop.classList.remove("is-open");
+        modalBackdrop.setAttribute("aria-hidden", "true");
+    }
+
+    if (openModalBtn) {
+        openModalBtn.addEventListener("click", openReviewModal);
+    }
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeReviewModal);
+    }
+
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener("click", function (e) {
+            if (e.target === modalBackdrop) {
+                closeReviewModal();
+            }
+        });
+    }
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && isModalOpen) {
+            closeReviewModal();
+        }
+    });
+
+    // Submit Review -> Send to Google Sheet (approved: false) for Admin Moderation
+    if (reviewForm) {
+        reviewForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const nameVal = (inputName ? inputName.value : "").trim();
+            const textVal = (inputText ? inputText.value : "").trim();
+
+            if (!nameVal) {
+                if (feedbackMsg) {
+                    feedbackMsg.className = "tsr-feedback-msg is-error";
+                    feedbackMsg.textContent = "Vui lòng nhập tên của bạn.";
+                }
+                if (inputName) inputName.focus();
+                return;
+            }
+
+            if (!textVal || textVal.length < 4) {
+                if (feedbackMsg) {
+                    feedbackMsg.className = "tsr-feedback-msg is-error";
+                    feedbackMsg.textContent = "Vui lòng nhập nội dung đánh giá (tối thiểu 4 ký tự).";
+                }
+                if (inputText) inputText.focus();
+                return;
+            }
+
+            // Build standardized review object with approved: false for moderation
+            const newReviewSubmission = {
+                name: nameVal,
+                rating: selectedRating,
+                text: textVal,
+                approved: false,
+                createdAt: new Date().toISOString()
+            };
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "ĐANG GỬI...";
+            }
+
+            try {
+                // Save backup copy to localStorage
+                try {
+                    const queueRaw = localStorage.getItem("tsport_pending_reviews");
+                    const queue = queueRaw ? JSON.parse(queueRaw) : [];
+                    queue.push(newReviewSubmission);
+                    localStorage.setItem("tsport_pending_reviews", JSON.stringify(queue));
+                } catch (_) {}
+
+                // Send directly to Google Sheet via Google Apps Script Webhook URL
+                const webhookUrl = (TSPORT_REVIEWS_CONFIG.appsScriptWebhookUrl || "").trim();
+                if (webhookUrl) {
+                    await fetch(webhookUrl, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "text/plain;charset=utf-8"
+                        },
+                        body: JSON.stringify(newReviewSubmission)
+                    });
+                }
+
+                if (feedbackMsg) {
+                    feedbackMsg.className = "tsr-feedback-msg is-success";
+                    feedbackMsg.textContent =
+                        "Cảm ơn bạn đã đánh giá TSPORT! Đánh giá đã được ghi nhận và sẽ hiển thị sau khi kiểm duyệt.";
+                }
+
+                reviewForm.reset();
+                setStarPickerValue(5, false);
+
+                setTimeout(function () {
+                    if (isModalOpen) closeReviewModal();
+                }, 2200);
+            } catch (err) {
+                if (feedbackMsg) {
+                    feedbackMsg.className = "tsr-feedback-msg is-error";
+                    feedbackMsg.textContent = "Có lỗi kết nối tạm thời, vui lòng thử lại sau.";
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "GỬI ĐÁNH GIÁ";
+                }
+            }
+        });
+    }
+
+    // Sync approved reviews from Google Sheet "Reviews" tab (Fast Parallel Race + Cache)
+    function applySheetApprovedReviews(sheetApproved) {
+        if (!Array.isArray(sheetApproved)) return false;
+
+        hasLoadedCacheOrRemote = true;
+
+        // Kiểm tra xem dữ liệu mới có khác dữ liệu đang hiển thị không để tránh vẽ lại không cần thiết
+        const oldSignature = JSON.stringify(approvedReviews);
+        const newSignature = JSON.stringify(sheetApproved);
+
+        try {
+            localStorage.setItem(CACHE_KEY, newSignature);
+        } catch (_) {}
+
+        if (TSPORT_REVIEWS_CONFIG.useSheetAsPrimarySource) {
+            approvedReviews = sheetApproved;
+            if (oldSignature !== newSignature || approvedReviews.length === 0) {
+                currentIndex = 0;
+                const currentEl = activeSlot === "A" ? slideA : slideB;
+                if (currentEl && !isTransitioning) {
+                    currentEl.innerHTML = buildSlideInnerHtml(approvedReviews[0] || null);
+                }
+            }
+        } else {
+            const existingKeys = new Set(
+                approvedReviews.map(function (r) {
+                    return (r.name + "|" + r.text).toLowerCase();
+                })
+            );
+            sheetApproved.forEach(function (item) {
+                const key = (item.name + "|" + item.text).toLowerCase();
+                if (!existingKeys.has(key)) {
+                    approvedReviews.push(item);
+                    existingKeys.add(key);
+                }
+            });
+        }
+
+        updateHeaderStats();
+        startRotation();
+        return true;
+    }
+
+    function syncApprovedReviewsFromSheet() {
+        if (!TSPORT_REVIEWS_CONFIG.enableGoogleSheetSync) {
+            return;
+        }
+
+        let appsScriptResolved = false;
+
+        // Luồng 1 (Siêu tốc ~200ms): Đọc trực tiếp Google Sheet CSV của tab "Reviews"
+        if (TSPORT_REVIEWS_CONFIG.googleSheetReviewCsvUrl) {
+            fetch(TSPORT_REVIEWS_CONFIG.googleSheetReviewCsvUrl)
+                .then(function (res) {
+                    return res.ok ? res.text() : "";
+                })
+                .then(function (csvText) {
+                    if (appsScriptResolved || !csvText || typeof parseCSV !== "function") return;
+                    const rows = parseCSV(csvText);
+                    if (!rows || rows.length < 1) return;
+
+                    const header = rows[0].map(function (col) {
+                        return String(col || "").trim().toLowerCase();
+                    });
+                    const nameIdx = header.findIndex(function (h) {
+                        return h === "name" || h === "tên" || h === "ten" || h === "khách hàng";
+                    });
+                    const ratingIdx = header.findIndex(function (h) {
+                        return h === "rating" || h === "sao" || h === "điểm";
+                    });
+                    const textIdx = header.findIndex(function (h) {
+                        return h === "text" || h === "nội dung" || h === "noi dung" || h === "review";
+                    });
+                    const approvedIdx = header.findIndex(function (h) {
+                        return h === "approved" || h === "duyệt" || h === "duyet";
+                    });
+
+                    if (nameIdx !== -1 && textIdx !== -1 && approvedIdx !== -1) {
+                        const sheetApproved = [];
+                        for (let i = 1; i < rows.length; i++) {
+                            const row = rows[i];
+                            if (!row || !row.length) continue;
+                            const rawApproved = String(row[approvedIdx] || "").trim().toLowerCase();
+                            const isApproved =
+                                rawApproved === "true" ||
+                                rawApproved === "1" ||
+                                rawApproved === "yes" ||
+                                rawApproved === "x";
+                            const name = String(row[nameIdx] || "").trim();
+                            const text = String(row[textIdx] || "").trim();
+                            const rating =
+                                ratingIdx !== -1
+                                    ? Math.max(1, Math.min(5, Number(row[ratingIdx]) || 5))
+                                    : 5;
+
+                            if (isApproved && name && text) {
+                                sheetApproved.push({
+                                    name: name,
+                                    rating: rating,
+                                    text: text,
+                                    approved: true
+                                });
+                            }
+                        }
+                        applySheetApprovedReviews(sheetApproved);
+                    }
+                })
+                .catch(function () {});
+        }
+
+        // Luồng 2 (Chạy song song ngầm): Đọc qua Apps Script Web App để đồng bộ tức thì nếu vừa sửa trên Sheet
+        const webhookUrl = (TSPORT_REVIEWS_CONFIG.appsScriptWebhookUrl || "").trim();
+        if (webhookUrl) {
+            const sep = webhookUrl.indexOf("?") === -1 ? "?" : "&";
+            fetch(webhookUrl + sep + "_t=" + Date.now(), { cache: "no-store" })
+                .then(function (res) {
+                    return res.ok ? res.json() : null;
+                })
+                .then(function (data) {
+                    if (data && data.ok && Array.isArray(data.reviews)) {
+                        appsScriptResolved = true;
+                        const valid = data.reviews.filter(function (item) {
+                            return item && item.approved === true && item.name && item.text;
+                        });
+                        applySheetApprovedReviews(valid);
+                    }
+                })
+                .catch(function () {});
+        }
+    }
+
+    syncApprovedReviewsFromSheet();
+})();
+
+
+/* =====================================================
+   TSPORT WELCOME POPUP CONTROLLER
+   - Hiển thị 1 lần mỗi khi mở web hoặc bấm F5 / tải lại trang.
+===================================================== */
+(function initTsportWelcomePopup() {
+    const backdropEl = document.getElementById("tsportWelcomeModal");
+    const closeXBtn = document.getElementById("tswCloseXBtn");
+    const okBtn = document.getElementById("tswOkBtn");
+    const zaloBtn = document.getElementById("tswZaloBtn");
+
+    if (!backdropEl) return;
+
+    let shownInCurrentLoad = false;
+
+    // Xóa khóa cũ (nếu có) để mỗi lần F5 đều hiển thị lại 1 lần
+    try {
+        localStorage.removeItem("tsportWelcomeShown");
+    } catch (_) {}
+
+    function closeWelcomePopup() {
+        backdropEl.classList.remove("is-open");
+        backdropEl.setAttribute("aria-hidden", "true");
+    }
+
+    // Hiển thị mượt 1 lần sau khi trang vừa tải / F5
+    setTimeout(function () {
+        if (shownInCurrentLoad) return;
+        shownInCurrentLoad = true;
+        backdropEl.classList.add("is-open");
+        backdropEl.setAttribute("aria-hidden", "false");
+    }, 260);
+
+    if (closeXBtn) {
+        closeXBtn.addEventListener("click", closeWelcomePopup);
+    }
+
+    if (okBtn) {
+        okBtn.addEventListener("click", closeWelcomePopup);
+    }
+
+    if (zaloBtn) {
+        zaloBtn.addEventListener("click", closeWelcomePopup);
+    }
+
+    backdropEl.addEventListener("click", function (e) {
+        if (e.target === backdropEl) {
+            closeWelcomePopup();
+        }
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && backdropEl.classList.contains("is-open")) {
+            closeWelcomePopup();
+        }
+    });
+})();
 
 </script>
 
