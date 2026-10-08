@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 
 <head>
@@ -9,8 +8,7 @@
 
 <title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
 
-<!-- Google Analytics -->
-
+<!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLNGKQXHJ5"></script>
 
 <script>
@@ -23,6 +21,7 @@ function gtag() {
 gtag("js", new Date());
 gtag("config", "G-QLNGKQXHJ5");
 </script>
+
 
 <style>
 
@@ -169,11 +168,8 @@ select {
 
 .card {
     background: white;
-
     border-radius: 16px;
-
     overflow: hidden;
-
     cursor: pointer;
 
     transition: 0.2s ease;
@@ -205,7 +201,6 @@ select {
 .image-box img {
     width: 100%;
     height: 100%;
-
     object-fit: contain;
 }
 
@@ -300,6 +295,7 @@ select {
     margin: auto;
 
     background: #fafafa;
+
     border-radius: 14px;
 
     display: flex;
@@ -310,19 +306,16 @@ select {
 
     position: relative;
 }
+
 .detail-image {
     width: 100%;
     height: 100%;
-
     object-fit: contain;
 }
-/* =====================================================
-   SCROLL HINT - MŨI TÊN CHỈ DẪN KÉO XUỐNG
-===================================================== */
+
 
 /* =====================================================
    SCROLL HINT
-   Khung chỉ dẫn nằm cố định trong khung ảnh
 ===================================================== */
 
 .detail-scroll-hint {
@@ -339,7 +332,8 @@ select {
     gap: 3px;
 
     color: white;
-    background: rgba(0, 0, 0, 0.62);
+
+    background: rgba(0,0,0,0.62);
 
     padding: 9px 12px;
 
@@ -351,29 +345,21 @@ select {
     z-index: 5;
 
     pointer-events: none;
-
     user-select: none;
 
-    /* Chỉ nhấp nháy nhẹ */
     animation: scrollHintFade 1.5s ease-in-out infinite;
 }
 
-
 .detail-scroll-arrow {
     font-size: 28px;
-
     line-height: 22px;
 
     animation: scrollArrowMove 0.9s ease-in-out infinite;
 }
 
-
 .detail-scroll-text {
     white-space: nowrap;
 }
-
-
-/* Mũi tên nhấp nháy / chuyển động nhẹ */
 
 @keyframes scrollArrowMove {
 
@@ -387,7 +373,6 @@ select {
 
 }
 
-
 @keyframes scrollHintFade {
 
     0%, 100% {
@@ -400,32 +385,6 @@ select {
 
 }
 
-
-/* Mobile */
-
-@media (max-width: 650px) {
-
-    .detail-scroll-hint {
-
-        right: 12px;
-        bottom: 12px;
-
-        padding: 7px 9px;
-
-        font-size: 11px;
-
-        border-radius: 10px;
-
-    }
-
-
-    .detail-scroll-arrow {
-
-        font-size: 25px;
-
-    }
-
-}
 
 /* =====================================================
    DETAIL CONTENT
@@ -478,8 +437,7 @@ select {
 .info-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 12px;
 
@@ -532,8 +490,7 @@ select {
 .detail-gallery-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 15px;
 }
@@ -579,11 +536,9 @@ select {
 
     inset: 0;
 
-    background:
-        rgba(0,0,0,0.94);
+    background: rgba(0,0,0,0.94);
 
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
@@ -602,7 +557,6 @@ select {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     overflow: hidden;
@@ -634,8 +588,7 @@ select {
 
     will-change: transform;
 
-    transition:
-        transform 0.15s ease;
+    transition: transform 0.15s ease;
 
     touch-action: none;
 }
@@ -676,8 +629,7 @@ select {
 
     border-radius: 50%;
 
-    background:
-        rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.16);
 
     color: white;
 
@@ -689,17 +641,10 @@ select {
 
     align-items: center;
     justify-content: center;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
 }
 
 .zoom-button:hover {
-    background:
-        rgba(255,255,255,0.3);
-
-    transform: scale(1.05);
+    background: rgba(255,255,255,0.3);
 }
 
 .zoom-level {
@@ -711,8 +656,7 @@ select {
 
     border-radius: 22px;
 
-    background:
-        rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.16);
 
     color: white;
 
@@ -721,7 +665,6 @@ select {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 }
 
@@ -760,8 +703,7 @@ select {
 
     top: 50%;
 
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
 
     width: 50px;
     height: 50px;
@@ -770,8 +712,7 @@ select {
 
     border-radius: 50%;
 
-    background:
-        rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.16);
 
     color: white;
 
@@ -797,8 +738,7 @@ select {
 
 .modal-prev:hover,
 .modal-next:hover {
-    background:
-        rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.3);
 }
 
 
@@ -810,16 +750,13 @@ select {
     position: absolute;
 
     bottom: 22px;
-
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     color: white;
 
-    background:
-        rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.55);
 
     padding: 7px 13px;
 
@@ -847,7 +784,7 @@ select {
 
 
 /* =====================================================
-   ZALO FLOATING BUTTON
+   ZALO
 ===================================================== */
 
 #zaloFloat {
@@ -878,18 +815,14 @@ select {
     flex-direction: column;
 
     border: none;
-
     outline: none;
 
     box-shadow:
-        0 6px 22px
-        rgba(0,0,0,0.25);
+        0 6px 22px rgba(0,0,0,0.25);
 
     z-index: 2147483647 !important;
 
     cursor: pointer;
-
-    font-family: Arial, Helvetica, sans-serif;
 
     transition:
         transform 0.2s ease,
@@ -900,8 +833,7 @@ select {
     transform: scale(1.08);
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.35);
+        0 10px 30px rgba(0,0,0,0.35);
 }
 
 #zaloFloat .zalo-logo {
@@ -930,8 +862,7 @@ select {
 @media (max-width: 900px) {
 
     .products {
-        grid-template-columns:
-            repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .image-box {
@@ -939,8 +870,7 @@ select {
     }
 
     .detail-gallery-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -965,9 +895,7 @@ select {
     }
 
     .products {
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -1013,7 +941,6 @@ select {
 
     .detail-gallery-grid {
         grid-template-columns: 1fr;
-
         gap: 10px;
     }
 
@@ -1039,9 +966,6 @@ select {
         bottom: 18px;
     }
 
-
-    /* ZOOM CONTROLS MOBILE */
-
     .zoom-controls {
         left: 12px;
         bottom: 15px;
@@ -1059,9 +983,6 @@ select {
         min-width: 54px;
     }
 
-
-    /* ZALO MOBILE */
-
     #zaloFloat {
         width: 58px;
         height: 58px;
@@ -1076,6 +997,21 @@ select {
 
     #zaloFloat .zalo-contact {
         font-size: 8px;
+    }
+
+    .detail-scroll-hint {
+        right: 12px;
+        bottom: 12px;
+
+        padding: 7px 9px;
+
+        font-size: 11px;
+
+        border-radius: 10px;
+    }
+
+    .detail-scroll-arrow {
+        font-size: 25px;
     }
 
 }
@@ -1098,10 +1034,6 @@ select {
 }
 
 
-/* =====================================================
-   DRAGGING
-===================================================== */
-
 #zaloFloat.dragging {
     cursor: grabbing;
 
@@ -1114,7 +1046,9 @@ select {
 
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      HEADER
@@ -1122,15 +1056,16 @@ select {
 
 <header>
 
-<div class="logo">
-    TSPORT
-</div>
+    <div class="logo">
+        TSPORT
+    </div>
 
-<div class="subtitle">
-    Vợt Cầu Lông Lướt - 0395364443
-</div>
+    <div class="subtitle">
+        Vợt Cầu Lông Lướt - 0395364443
+    </div>
 
 </header>
+
 
 <!-- =====================================================
      MAIN
@@ -1138,110 +1073,102 @@ select {
 
 <div class="container">
 
-<!-- SEARCH -->
 
-<div class="search-box">
+    <!-- SEARCH -->
 
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="🔎 Tìm vợt, mã, hãng..."
-    >
+    <div class="search-box">
 
-</div>
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="🔎 Tìm vợt, mã, hãng..."
+        >
 
-
-<!-- FILTERS -->
-
-<div class="filters">
-
-    <select id="brandFilter">
-
-        <option value="">
-            Tất cả hãng
-        </option>
-
-    </select>
-
-
-    <select id="styleFilter">
-
-        <option value="">
-            Tất cả lối đánh
-        </option>
-
-    </select>
-
-
-    <select id="sortFilter">
-
-        <option value="">
-            Mặc định
-        </option>
-
-        <option value="newest">
-            Mới nhất
-        </option>
-
-    </select>
-
-
-    <select id="priceFilter">
-
-        <option value="">
-            Tất cả mức giá
-        </option>
-
-        <option value="under500">
-            Dưới 500
-        </option>
-
-        <option value="500to1000">
-            500 - 1000
-        </option>
-
-        <option value="1000to2000">
-            1000 - 2000
-        </option>
-
-        <option value="2000plus">
-            Từ 2000 trở lên
-        </option>
-
-    </select>
-
-</div>
-
-
-<div
-    id="count"
-    class="count"
-></div>
-
-
-<div
-    id="products"
-    class="products"
->
-
-    <div class="loading">
-        Đang tải sản phẩm...
     </div>
 
-</div>
+
+    <!-- FILTER -->
+
+    <div class="filters">
+
+        <select id="brandFilter">
+
+            <option value="">
+                Tất cả hãng
+            </option>
+
+        </select>
 
 
-<div
-    id="detail"
-    class="detail"
-></div>
+        <select id="styleFilter">
+
+            <option value="">
+                Tất cả lối đánh
+            </option>
+
+        </select>
+
+
+        <select id="sortFilter">
+
+            <option value="">
+                Mặc định
+            </option>
+
+            <option value="newest">
+                Mới nhất
+            </option>
+
+        </select>
+
+
+        <select id="priceFilter">
+
+            <option value="">
+                Tất cả mức giá
+            </option>
+
+            <option value="under500">
+                Dưới 500
+            </option>
+
+            <option value="500to1000">
+                500 - 1000
+            </option>
+
+            <option value="1000to2000">
+                1000 - 2000
+            </option>
+
+            <option value="2000plus">
+                Từ 2000 trở lên
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div id="count" class="count"></div>
+
+
+    <div id="products" class="products">
+
+        <div class="loading">
+            Đang tải sản phẩm...
+        </div>
+
+    </div>
+
+
+    <div id="detail" class="detail"></div>
 
 </div>
 
 
 <!-- =====================================================
-     CHỈ 1 NÚT ZALO DUY NHẤT
+     ZALO
 ===================================================== -->
 
 <a
@@ -1267,104 +1194,90 @@ select {
      IMAGE MODAL
 ===================================================== -->
 
-<div
-    id="imageModal"
-    class="image-modal"
->
+<div id="imageModal" class="image-modal">
 
-<div
-    id="modalImageWrap"
-    class="modal-image-wrap"
->
+    <div id="modalImageWrap" class="modal-image-wrap">
 
-    <div
-        id="modalClose"
-        class="modal-close"
-    >
-        ×
-    </div>
-
-
-    <button
-        id="modalPrev"
-        class="modal-prev"
-        type="button"
-        aria-label="Ảnh trước"
-    >
-        ‹
-    </button>
-
-
-    <img
-        id="modalImage"
-        src=""
-        alt="Ảnh chi tiết"
-        draggable="false"
-    >
-
-
-    <button
-        id="modalNext"
-        class="modal-next"
-        type="button"
-        aria-label="Ảnh tiếp theo"
-    >
-        ›
-    </button>
-
-
-    <!-- ZOOM CONTROLS -->
-
-    <div
-        id="zoomControls"
-        class="zoom-controls"
-    >
-
-        <button
-            id="zoomOut"
-            class="zoom-button"
-            type="button"
-            aria-label="Thu nhỏ"
-        >
-            −
-        </button>
-
-        <div
-            id="zoomLevel"
-            class="zoom-level"
-        >
-            100%
+        <div id="modalClose" class="modal-close">
+            ×
         </div>
 
-        <button
-            id="zoomIn"
-            class="zoom-button"
-            type="button"
-            aria-label="Phóng to"
-        >
-            +
-        </button>
 
         <button
-            id="zoomReset"
-            class="zoom-button"
+            id="modalPrev"
+            class="modal-prev"
             type="button"
-            aria-label="Đặt lại zoom"
+            aria-label="Ảnh trước"
         >
-            ↺
+            ‹
         </button>
 
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Ảnh chi tiết"
+            draggable="false"
+        >
+
+
+        <button
+            id="modalNext"
+            class="modal-next"
+            type="button"
+            aria-label="Ảnh tiếp theo"
+        >
+            ›
+        </button>
+
+
+        <div id="zoomControls" class="zoom-controls">
+
+            <button
+                id="zoomOut"
+                class="zoom-button"
+                type="button"
+                aria-label="Thu nhỏ"
+            >
+                −
+            </button>
+
+
+            <div
+                id="zoomLevel"
+                class="zoom-level"
+            >
+                100%
+            </div>
+
+
+            <button
+                id="zoomIn"
+                class="zoom-button"
+                type="button"
+                aria-label="Phóng to"
+            >
+                +
+            </button>
+
+
+            <button
+                id="zoomReset"
+                class="zoom-button"
+                type="button"
+                aria-label="Đặt lại zoom"
+            >
+                ↺
+            </button>
+
+        </div>
+
+
+        <div id="modalCounter" class="modal-counter">
+            1 / 1
+        </div>
+
     </div>
-
-
-    <div
-        id="modalCounter"
-        class="modal-counter"
-    >
-        1 / 1
-    </div>
-
-</div>
 
 </div>
 
@@ -1378,13 +1291,12 @@ select {
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/1PqbleAOXsLtT1h8emp1zepyovsBOINSPNu8JTWPgm7Y/gviz/tq?tqx=out:csv";
 
-
 const IMAGE_API =
 "https://tsport-image-api.ntr9766.workers.dev/";
 
 
 /* =====================================================
-   DATA
+   GLOBAL DATA
 ===================================================== */
 
 let products = [];
@@ -1393,24 +1305,13 @@ let currentGallery = [];
 
 let currentImageIndex = 0;
 
-
-/* =====================================================
-   SCROLL POSITION
-===================================================== */
-
-/*
-   Lưu vị trí cuộn của trang danh sách.
-
-   Khi người dùng đang ở giữa danh sách rồi mở sản phẩm,
-   giá trị này sẽ được giữ lại để khi bấm "Quay lại"
-   trang trở về đúng vị trí cũ.
-*/
-
 let productsScrollPosition = 0;
 
+let scrollHintHidden = false;
+
 
 /* =====================================================
-   ZOOM STATE
+   ZOOM
 ===================================================== */
 
 let modalZoom = 1;
@@ -1427,7 +1328,7 @@ const ZOOM_STEP = 0.25;
 
 
 /* =====================================================
-   DRAG STATE
+   DRAG
 ===================================================== */
 
 let imageDragging = false;
@@ -1444,7 +1345,7 @@ let imageStartTranslateY = 0;
 
 
 /* =====================================================
-   PINCH ZOOM STATE
+   PINCH
 ===================================================== */
 
 let pinchActive = false;
@@ -1452,10 +1353,6 @@ let pinchActive = false;
 let pinchStartDistance = 0;
 
 let pinchStartZoom = 1;
-
-let pinchCenterX = 0;
-
-let pinchCenterY = 0;
 
 
 /* =====================================================
@@ -1484,18 +1381,14 @@ function getImageUrl(value) {
         return "";
     }
 
-
-    let url =
-        String(value).trim();
+    let url = String(value).trim();
 
     if (!url) {
         return "";
     }
 
 
-    if (
-        url.startsWith("TSPORT/")
-    ) {
+    if (url.startsWith("TSPORT/")) {
 
         return (
             IMAGE_API +
@@ -1506,9 +1399,7 @@ function getImageUrl(value) {
     }
 
 
-    if (
-        url.startsWith("/TSPORT/")
-    ) {
+    if (url.startsWith("/TSPORT/")) {
 
         const key =
             url.replace(/^\/+/, "");
@@ -1533,40 +1424,32 @@ function getImageUrl(value) {
     }
 
 
-    let id = "";
-
-
     let match =
-        url.match(
-            /\/file\/d\/([^/]+)/
-        );
+        url.match(/\/file\/d\/([^/]+)/);
 
 
     if (match) {
-        id = match[1];
-    }
-
-
-    if (!id) {
-
-        match =
-            url.match(
-                /[?&]id=([^&]+)/
-            );
-
-        if (match) {
-            id = match[1];
-        }
-
-    }
-
-
-    if (id) {
 
         return (
             "https://drive.google.com/thumbnail" +
             "?id=" +
-            encodeURIComponent(id) +
+            encodeURIComponent(match[1]) +
+            "&sz=w1000"
+        );
+
+    }
+
+
+    match =
+        url.match(/[?&]id=([^&]+)/);
+
+
+    if (match) {
+
+        return (
+            "https://drive.google.com/thumbnail" +
+            "?id=" +
+            encodeURIComponent(match[1]) +
             "&sz=w1000"
         );
 
@@ -1712,7 +1595,7 @@ function parseCSV(text) {
     }
 
 
-    if (rows.length < 1) {
+    if (!rows.length) {
         return [];
     }
 
@@ -1759,9 +1642,7 @@ function parseCSV(text) {
 async function loadProducts() {
 
     const container =
-        document.getElementById(
-            "products"
-        );
+        document.getElementById("products");
 
 
     container.innerHTML = `
@@ -1773,6 +1654,11 @@ async function loadProducts() {
 
     try {
 
+        console.log(
+            "TSPORT: Bắt đầu tải Google Sheet..."
+        );
+
+
         const response =
             await fetch(
                 SHEET_URL +
@@ -1782,6 +1668,12 @@ async function loadProducts() {
                     cache: "no-store"
                 }
             );
+
+
+        console.log(
+            "TSPORT: HTTP:",
+            response.status
+        );
 
 
         if (!response.ok) {
@@ -1799,8 +1691,8 @@ async function loadProducts() {
 
 
         console.log(
-            "Google Sheets response:",
-            text.substring(0, 300)
+            "TSPORT: Google Sheet response:",
+            text.substring(0, 500)
         );
 
 
@@ -1809,13 +1701,32 @@ async function loadProducts() {
 
 
         console.log(
-            "TSPORT - Số sản phẩm:",
+            "TSPORT: Số sản phẩm:",
             products.length
         );
 
 
+        if (!products.length) {
+
+            container.innerHTML = `
+                <div class="loading">
+
+                    Không có sản phẩm.
+
+                    <br><br>
+
+                    Google Sheet không trả về dữ liệu.
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
         console.log(
-            "TSPORT - Ví dụ sản phẩm đầu tiên:",
+            "TSPORT: Sản phẩm đầu tiên:",
             products[0]
         );
 
@@ -1828,7 +1739,7 @@ async function loadProducts() {
     } catch (error) {
 
         console.error(
-            "LOAD PRODUCTS ERROR:",
+            "TSPORT LOAD PRODUCTS ERROR:",
             error
         );
 
@@ -1836,12 +1747,16 @@ async function loadProducts() {
         container.innerHTML = `
             <div class="loading">
 
-                Không thể tải dữ liệu sản phẩm.
+                ❌ Không thể tải dữ liệu sản phẩm.
 
                 <br><br>
 
-                Kiểm tra quyền chia sẻ Google Sheet
-                và Console trình duyệt.
+                Lỗi:
+                ${escapeHTML(error.message)}
+
+                <br><br>
+
+                Mở F12 → Console để kiểm tra.
 
             </div>
         `;
@@ -1903,40 +1818,44 @@ function createFilters() {
         ];
 
 
-    brands.forEach(brand => {
+    brands.forEach(
+        brand => {
 
-        const option =
-            document.createElement(
-                "option"
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = brand;
+
+            option.textContent = brand;
+
+            brandFilter.appendChild(
+                option
             );
 
-        option.value = brand;
-
-        option.textContent = brand;
-
-        brandFilter.appendChild(
-            option
-        );
-
-    });
+        }
+    );
 
 
-    styles.forEach(style => {
+    styles.forEach(
+        style => {
 
-        const option =
-            document.createElement(
-                "option"
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = style;
+
+            option.textContent = style;
+
+            styleFilter.appendChild(
+                option
             );
 
-        option.value = style;
-
-        option.textContent = style;
-
-        styleFilter.appendChild(
-            option
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -2007,32 +1926,13 @@ function parseProductDate(value) {
 
     if (match) {
 
-        const day =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]) - 1;
-
-        const year =
-            Number(match[3]);
-
-        const hour =
-            Number(match[4] || 0);
-
-        const minute =
-            Number(match[5] || 0);
-
-        const second =
-            Number(match[6] || 0);
-
-
         return new Date(
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second
+            Number(match[3]),
+            Number(match[2]) - 1,
+            Number(match[1]),
+            Number(match[4] || 0),
+            Number(match[5] || 0),
+            Number(match[6] || 0)
         ).getTime();
 
     }
@@ -2046,32 +1946,13 @@ function parseProductDate(value) {
 
     if (match) {
 
-        const year =
-            Number(match[1]);
-
-        const month =
-            Number(match[2]) - 1;
-
-        const day =
-            Number(match[3]);
-
-        const hour =
-            Number(match[4] || 0);
-
-        const minute =
-            Number(match[5] || 0);
-
-        const second =
-            Number(match[6] || 0);
-
-
         return new Date(
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second
+            Number(match[1]),
+            Number(match[2]) - 1,
+            Number(match[3]),
+            Number(match[4] || 0),
+            Number(match[5] || 0),
+            Number(match[6] || 0)
         ).getTime();
 
     }
@@ -2112,28 +1993,12 @@ function formatDisplayDate(value) {
         new Date(timestamp);
 
 
-    const day =
-        String(
-            date.getDate()
-        ).padStart(2, "0");
-
-
-    const month =
-        String(
-            date.getMonth() + 1
-        ).padStart(2, "0");
-
-
-    const year =
-        date.getFullYear();
-
-
     return (
-        day +
+        String(date.getDate()).padStart(2, "0") +
         "/" +
-        month +
+        String(date.getMonth() + 1).padStart(2, "0") +
         "/" +
-        year
+        date.getFullYear()
     );
 
 }
@@ -2177,146 +2042,144 @@ function displayProducts(list) {
     }
 
 
-    list.forEach(product => {
+    list.forEach(
+        product => {
 
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className =
-            "card";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        const image =
-            getImageUrl(
-                product["Ảnh"]
-            );
+            card.className =
+                "card";
 
 
-        let imageHTML = "";
+            const image =
+                getImageUrl(
+                    product["Ảnh"]
+                );
 
 
-        if (image) {
-
-            imageHTML = `
-                <img
-                    src="${escapeHTML(image)}"
-                    alt="${escapeHTML(
-                        product["Tên vợt"] || ""
-                    )}"
-                    loading="lazy"
-                    onerror="this.style.display='none';"
-                >
-            `;
-
-        } else {
-
-            imageHTML = `
-                <div class="no-image">
-                    Không có ảnh
-                </div>
-            `;
-
-        }
+            let imageHTML = "";
 
 
-        const dateHTML =
-            product["Ngày đăng"]
-            ?
-            `
-                <div class="post-date">
-                    Đăng:
-                    ${formatDisplayDate(
-                        product["Ngày đăng"]
-                    )}
-                </div>
-            `
-            :
-            "";
+            if (image) {
 
+                imageHTML = `
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}"
+                        loading="lazy"
+                        onerror="this.style.display='none';"
+                    >
+                `;
 
-        card.innerHTML = `
+            } else {
 
-            <div class="image-box">
-                ${imageHTML}
-            </div>
-
-            <div class="card-info">
-
-                <div class="brand">
-                    ${escapeHTML(
-                        product["Hãng"] || ""
-                    )}
-                </div>
-
-                <div class="name">
-                    ${escapeHTML(
-                        product["Tên vợt"] || ""
-                    )}
-                </div>
-
-                <div class="price">
-                    ${formatPrice(
-                        product["Giá"]
-                    )}
-                </div>
-
-                <div class="meta">
-
-                    ${escapeHTML(
-                        product["Tình trạng vợt"] || ""
-                    )}
-
-                    ${
-                        product["Tình trạng cước"]
-                        ?
-                        " · " +
-                        escapeHTML(
-                            product["Tình trạng cước"]
-                        )
-                        :
-                        ""
-                    }
-
-                    ${
-                        product["Lối đánh"]
-                        ?
-                        `
-                            <br>
-                            ${escapeHTML(
-                                product["Lối đánh"]
-                            )}
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-                ${dateHTML}
-
-            </div>
-
-        `;
-
-
-        card.addEventListener(
-            "click",
-            function() {
-
-                showDetail(product);
+                imageHTML = `
+                    <div class="no-image">
+                        Không có ảnh
+                    </div>
+                `;
 
             }
-        );
 
 
-        container.appendChild(
-            card
-        );
+            const dateHTML =
+                product["Ngày đăng"]
+                ?
+                `
+                    <div class="post-date">
+                        Đăng:
+                        ${formatDisplayDate(
+                            product["Ngày đăng"]
+                        )}
+                    </div>
+                `
+                :
+                "";
 
-    });
+
+            card.innerHTML = `
+
+                <div class="image-box">
+                    ${imageHTML}
+                </div>
+
+                <div class="card-info">
+
+                    <div class="brand">
+                        ${escapeHTML(
+                            product["Hãng"] || ""
+                        )}
+                    </div>
+
+                    <div class="name">
+                        ${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}
+                    </div>
+
+                    <div class="price">
+                        ${formatPrice(
+                            product["Giá"]
+                        )}
+                    </div>
+
+                    <div class="meta">
+
+                        ${escapeHTML(
+                            product["Tình trạng vợt"] || ""
+                        )}
+
+                        ${
+                            product["Tình trạng cước"]
+                            ?
+                            " · " +
+                            escapeHTML(
+                                product["Tình trạng cước"]
+                            )
+                            :
+                            ""
+                        }
+
+                        ${
+                            product["Lối đánh"]
+                            ?
+                            `
+                                <br>
+                                ${escapeHTML(
+                                    product["Lối đánh"]
+                                )}
+                            `
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                    ${dateHTML}
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                () => showDetail(product)
+            );
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
 
@@ -2328,37 +2191,14 @@ function displayProducts(list) {
 function getFolderFromProduct(product) {
 
     if (!product) {
-
-        console.error(
-            "getFolderFromProduct: product không tồn tại"
-        );
-
         return "";
-
-    }
-
-
-    const rawValue =
-        product["Ảnh chi tiết"];
-
-
-    if (
-        rawValue === undefined ||
-        rawValue === null
-    ) {
-
-        console.warn(
-            "Sản phẩm không có cột 'Ảnh chi tiết':",
-            product
-        );
-
-        return "";
-
     }
 
 
     let value =
-        String(rawValue).trim();
+        String(
+            product["Ảnh chi tiết"] ?? ""
+        ).trim();
 
 
     if (!value) {
@@ -2366,21 +2206,13 @@ function getFolderFromProduct(product) {
     }
 
 
-    if (
-        value.startsWith("/TSPORT/")
-    ) {
-
+    if (value.startsWith("/TSPORT/")) {
         return value;
-
     }
 
 
-    if (
-        value.startsWith("TSPORT/")
-    ) {
-
+    if (value.startsWith("TSPORT/")) {
         return "/" + value;
-
     }
 
 
@@ -2415,23 +2247,15 @@ function getFolderFromProduct(product) {
                 );
 
 
-            if (
-                decoded.startsWith("/")
-            ) {
-
-                return decoded;
-
-            }
-
-
-            return "/" + decoded;
+            return decoded.startsWith("/")
+                ? decoded
+                : "/" + decoded;
 
 
         } catch (error) {
 
             console.error(
-                "Không decode được link ImageKit:",
-                value,
+                "ImageKit decode error:",
                 error
             );
 
@@ -2457,9 +2281,7 @@ function getFolderFromProduct(product) {
 async function loadGalleryImages(folder) {
 
     if (!folder) {
-
         return [];
-
     }
 
 
@@ -2497,9 +2319,7 @@ async function loadGalleryImages(folder) {
         if (
             !data ||
             !data.success ||
-            !Array.isArray(
-                data.images
-            )
+            !Array.isArray(data.images)
         ) {
 
             return [];
@@ -2507,93 +2327,56 @@ async function loadGalleryImages(folder) {
         }
 
 
-        const urls =
-            data.images
-                .map(image => {
+        return data.images
+            .map(image => {
 
-                    if (!image) {
-                        return "";
-                    }
-
-
-                    if (
-                        image.r2Url
-                    ) {
-
-                        return String(
-                            image.r2Url
-                        ).trim();
-
-                    }
-
-
-                    if (
-                        image.filePath
-                    ) {
-
-                        const filePath =
-                            String(
-                                image.filePath
-                            ).trim();
-
-
-                        if (
-                            filePath.startsWith(
-                                "/TSPORT/"
-                            )
-                        ) {
-
-                            return (
-                                IMAGE_API +
-                                "?key=" +
-                                encodeURIComponent(
-                                    filePath.replace(
-                                        /^\/+/,
-                                        ""
-                                    )
-                                )
-                            );
-
-                        }
-
-
-                        if (
-                            filePath.startsWith(
-                                "TSPORT/"
-                            )
-                        ) {
-
-                            return (
-                                IMAGE_API +
-                                "?key=" +
-                                encodeURIComponent(
-                                    filePath
-                                )
-                            );
-
-                        }
-
-                    }
-
-
-                    if (
-                        image.url
-                    ) {
-
-                        return String(
-                            image.url
-                        ).trim();
-
-                    }
-
-
+                if (!image) {
                     return "";
-
-                })
-                .filter(Boolean);
+                }
 
 
-        return urls;
+                if (image.r2Url) {
+                    return String(
+                        image.r2Url
+                    ).trim();
+                }
+
+
+                if (image.filePath) {
+
+                    const filePath =
+                        String(
+                            image.filePath
+                        ).trim();
+
+
+                    return (
+                        IMAGE_API +
+                        "?key=" +
+                        encodeURIComponent(
+                            filePath.replace(
+                                /^\/+/,
+                                ""
+                            )
+                        )
+                    );
+
+                }
+
+
+                if (image.url) {
+
+                    return String(
+                        image.url
+                    ).trim();
+
+                }
+
+
+                return "";
+
+            })
+            .filter(Boolean);
 
 
     } catch (error) {
@@ -2611,7 +2394,7 @@ async function loadGalleryImages(folder) {
 
 
 /* =====================================================
-   ZOOM FUNCTIONS
+   ZOOM
 ===================================================== */
 
 function clampZoom(value) {
@@ -2646,6 +2429,27 @@ function updateZoomDisplay() {
     }
 
 
+    if (modalZoom <= 1) {
+
+        modalZoom = 1;
+
+        modalTranslateX = 0;
+
+        modalTranslateY = 0;
+
+        image.classList.remove(
+            "zoomed"
+        );
+
+    } else {
+
+        image.classList.add(
+            "zoomed"
+        );
+
+    }
+
+
     image.style.transform =
         `translate3d(
             ${modalTranslateX}px,
@@ -2661,27 +2465,6 @@ function updateZoomDisplay() {
 
     }
 
-
-    if (modalZoom > 1) {
-
-        image.classList.add(
-            "zoomed"
-        );
-
-    } else {
-
-        image.classList.remove(
-            "zoomed"
-        );
-
-        modalTranslateX = 0;
-        modalTranslateY = 0;
-
-        image.style.transform =
-            "translate3d(0px, 0px, 0) scale(1)";
-
-    }
-
 }
 
 
@@ -2691,11 +2474,10 @@ function setZoom(value) {
         clampZoom(value);
 
 
-    if (
-        modalZoom === 1
-    ) {
+    if (modalZoom === 1) {
 
         modalTranslateX = 0;
+
         modalTranslateY = 0;
 
     }
@@ -2738,7 +2520,7 @@ function resetZoom() {
 
 
 /* =====================================================
-   ZOOM WITH WHEEL
+   WHEEL ZOOM
 ===================================================== */
 
 function handleImageWheel(event) {
@@ -2766,22 +2548,10 @@ function handleImageWheel(event) {
         );
 
 
-    if (
-        newZoom === oldZoom
-    ) {
-
+    if (newZoom === oldZoom) {
         return;
-
     }
 
-
-    /*
-       Zoom theo vị trí con trỏ chuột.
-
-       Điều này giúp người dùng đưa chuột vào đúng
-       phần cây vợt muốn xem rồi lăn chuột,
-       thay vì ảnh chỉ phóng từ tâm.
-    */
 
     const image =
         document.getElementById(
@@ -2851,17 +2621,13 @@ function handleImageWheel(event) {
 
 
 /* =====================================================
-   IMAGE MODAL
+   MODAL
 ===================================================== */
 
 function showModalImage() {
 
-    if (
-        !currentGallery.length
-    ) {
-
+    if (!currentGallery.length) {
         return;
-
     }
 
 
@@ -2900,17 +2666,13 @@ function showModalImage() {
     document.getElementById(
         "modalPrev"
     ).style.display =
-        hasMultiple
-            ? "flex"
-            : "none";
+        hasMultiple ? "flex" : "none";
 
 
     document.getElementById(
         "modalNext"
     ).style.display =
-        hasMultiple
-            ? "flex"
-            : "none";
+        hasMultiple ? "flex" : "none";
 
 
     resetZoom();
@@ -2928,18 +2690,12 @@ function showModalImage() {
 
 function openGalleryImage(index) {
 
-    if (
-        !currentGallery.length
-    ) {
-
+    if (!currentGallery.length) {
         return;
-
     }
 
 
-    currentImageIndex =
-        index;
-
+    currentImageIndex = index;
 
     showModalImage();
 
@@ -2948,12 +2704,8 @@ function openGalleryImage(index) {
 
 function nextImage() {
 
-    if (
-        currentGallery.length <= 1
-    ) {
-
+    if (currentGallery.length <= 1) {
         return;
-
     }
 
 
@@ -2971,12 +2723,8 @@ function nextImage() {
 
 function previousImage() {
 
-    if (
-        currentGallery.length <= 1
-    ) {
-
+    if (currentGallery.length <= 1) {
         return;
-
     }
 
 
@@ -3026,25 +2774,14 @@ function closeImageModal() {
 
 async function showDetail(product) {
 
-    /*
-       QUAN TRỌNG:
-
-       Lưu vị trí scroll TRƯỚC khi thay đổi giao diện.
-       Ví dụ đang ở 3500px thì lưu đúng 3500px.
-    */
     scrollHintHidden = false;
+
 
     productsScrollPosition =
         window.scrollY ||
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         0;
-
-
-    console.log(
-        "TSPORT - Lưu vị trí scroll:",
-        productsScrollPosition
-    );
 
 
     document.getElementById(
@@ -3136,50 +2873,48 @@ async function showDetail(product) {
         <div class="detail-image-box">
 
             ${imageHTML}
-        
+
+
+            <!-- MŨI TÊN HƯỚNG DẪN -->
+
             <div
                 id="detailScrollHint"
                 class="detail-scroll-hint"
             >
+
                 <div class="detail-scroll-arrow">
                     ↓
                 </div>
-        
+
                 <div class="detail-scroll-text">
                     Kéo xuống xem chi tiết
                 </div>
+
             </div>
-        
+
         </div>
-        
 
 
         <div class="detail-content">
 
             <div class="detail-brand">
-
                 ${escapeHTML(
                     product["Hãng"] || ""
                 )}
-
             </div>
 
 
             <div class="detail-name">
-
                 ${escapeHTML(
                     product["Tên vợt"] || ""
                 )}
-
             </div>
 
 
             <div class="detail-price">
-
                 ${formatPrice(
                     product["Giá"]
                 )}
-
             </div>
 
 
@@ -3275,19 +3010,15 @@ async function showDetail(product) {
     `;
 
 
-    /*
-       Chuyển lên đầu trang chi tiết bằng "auto",
-       không dùng smooth để tránh ảnh hưởng tới việc
-       khôi phục scroll khi quay lại.
-    */
-
     window.scrollTo({
         top: 0,
         behavior: "auto"
     });
-    requestAnimationFrame(() => {
-    updateDetailScrollHint();
-    });
+
+
+    requestAnimationFrame(
+        updateDetailScrollHint
+    );
 
 
     const galleryContainer =
@@ -3316,7 +3047,6 @@ async function showDetail(product) {
 
         `;
 
-
         return;
 
     }
@@ -3344,14 +3074,11 @@ async function showDetail(product) {
 
                 Folder:
 
-                ${escapeHTML(
-                    folder
-                )}
+                ${escapeHTML(folder)}
 
             </div>
 
         `;
-
 
         return;
 
@@ -3362,8 +3089,7 @@ async function showDetail(product) {
         urls;
 
 
-    currentImageIndex =
-        0;
+    currentImageIndex = 0;
 
 
     galleryContainer.innerHTML = `
@@ -3405,38 +3131,24 @@ async function showDetail(product) {
                 );
 
 
-            img.src =
-                url;
-
+            img.src = url;
 
             img.alt =
                 `Ảnh chi tiết ${index + 1}`;
 
-
-            img.loading =
-                "lazy";
+            img.loading = "lazy";
 
 
-            item.appendChild(
-                img
-            );
+            item.appendChild(img);
 
 
             item.addEventListener(
                 "click",
-                function() {
-
-                    openGalleryImage(
-                        index
-                    );
-
-                }
+                () => openGalleryImage(index)
             );
 
 
-            galleryGrid.appendChild(
-                item
-            );
+            galleryGrid.appendChild(item);
 
         }
     );
@@ -3449,10 +3161,6 @@ async function showDetail(product) {
 ===================================================== */
 
 function closeDetail() {
-
-    /*
-       Lưu lại vị trí cần quay về trước khi hiện danh sách.
-    */
 
     const savedScrollPosition =
         productsScrollPosition;
@@ -3488,63 +3196,48 @@ function closeDetail() {
         "none";
 
 
-    currentGallery =
-        [];
+    currentGallery = [];
+
+    currentImageIndex = 0;
 
 
-    currentImageIndex =
-        0;
+    requestAnimationFrame(
+        () => {
+
+            requestAnimationFrame(
+                () => {
+
+                    window.scrollTo({
+                        top: savedScrollPosition,
+                        left: 0,
+                        behavior: "auto"
+                    });
 
 
-    /*
-       Không smooth.
+                    setTimeout(
+                        () => {
 
-       Dùng nhiều frame để đảm bảo trình duyệt đã render
-       lại danh sách sản phẩm trước khi khôi phục scroll.
-    */
+                            window.scrollTo({
+                                top: savedScrollPosition,
+                                left: 0,
+                                behavior: "auto"
+                            });
 
-    requestAnimationFrame(function() {
+                        },
+                        50
+                    );
 
-        requestAnimationFrame(function() {
+                }
+            );
 
-            window.scrollTo({
-                top: savedScrollPosition,
-                left: 0,
-                behavior: "auto"
-            });
-
-
-            /*
-               Một lần kiểm tra cuối sau khi layout hoàn tất.
-               Điều này giúp ổn định hơn nếu ảnh lazy-load
-               hoặc grid vừa thay đổi kích thước.
-            */
-
-            setTimeout(function() {
-
-                window.scrollTo({
-                    top: savedScrollPosition,
-                    left: 0,
-                    behavior: "auto"
-                });
-
-            }, 50);
-
-        });
-
-    });
-
-
-    console.log(
-        "TSPORT - Khôi phục vị trí scroll:",
-        savedScrollPosition
+        }
     );
 
 }
 
 
 /* =====================================================
-   FILTER
+   FILTER PRODUCTS
 ===================================================== */
 
 function filterProducts() {
@@ -3587,11 +3280,9 @@ function filterProducts() {
             product => {
 
                 const text =
-                    Object.values(
-                        product
-                    )
-                    .join(" ")
-                    .toLowerCase();
+                    Object.values(product)
+                        .join(" ")
+                        .toLowerCase();
 
 
                 const price =
@@ -3600,11 +3291,44 @@ function filterProducts() {
                     );
 
 
+                const priceOK =
+
+                    !priceFilter
+
+                    ||
+
+                    (
+                        priceFilter === "under500" &&
+                        price < 500
+                    )
+
+                    ||
+
+                    (
+                        priceFilter === "500to1000" &&
+                        price >= 500 &&
+                        price < 1000
+                    )
+
+                    ||
+
+                    (
+                        priceFilter === "1000to2000" &&
+                        price >= 1000 &&
+                        price < 2000
+                    )
+
+                    ||
+
+                    (
+                        priceFilter === "2000plus" &&
+                        price >= 2000
+                    );
+
+
                 return (
 
-                    text.includes(
-                        search
-                    )
+                    text.includes(search)
 
                     &&
 
@@ -3622,44 +3346,7 @@ function filterProducts() {
 
                     &&
 
-                    (
-                        !priceFilter
-
-                        ||
-
-                        (
-                            priceFilter ===
-                            "under500" &&
-                            price < 500
-                        )
-
-                        ||
-
-                        (
-                            priceFilter ===
-                            "500to1000" &&
-                            price >= 500 &&
-                            price < 1000
-                        )
-
-                        ||
-
-                        (
-                            priceFilter ===
-                            "1000to2000" &&
-                            price >= 1000 &&
-                            price < 2000
-                        )
-
-                        ||
-
-                        (
-                            priceFilter ===
-                            "2000plus" &&
-                            price >= 2000
-                        )
-
-                    )
+                    priceOK
 
                 );
 
@@ -3667,36 +3354,22 @@ function filterProducts() {
         );
 
 
-    if (
-        sort === "newest"
-    ) {
+    if (sort === "newest") {
 
         filtered.sort(
-            (a, b) => {
-
-                const dateA =
-                    parseProductDate(
-                        a["Ngày đăng"]
-                    );
-
-
-                const dateB =
-                    parseProductDate(
-                        b["Ngày đăng"]
-                    );
-
-
-                return dateB - dateA;
-
-            }
+            (a, b) =>
+                parseProductDate(
+                    b["Ngày đăng"]
+                ) -
+                parseProductDate(
+                    a["Ngày đăng"]
+                )
         );
 
     }
 
 
-    displayProducts(
-        filtered
-    );
+    displayProducts(filtered);
 
 }
 
@@ -3706,12 +3379,10 @@ function filterProducts() {
 ===================================================== */
 
 document
-    .getElementById(
-        "modalClose"
-    )
+    .getElementById("modalClose")
     .addEventListener(
         "click",
-        function(event) {
+        event => {
 
             event.stopPropagation();
 
@@ -3722,12 +3393,10 @@ document
 
 
 document
-    .getElementById(
-        "modalPrev"
-    )
+    .getElementById("modalPrev")
     .addEventListener(
         "click",
-        function(event) {
+        event => {
 
             event.stopPropagation();
 
@@ -3738,12 +3407,10 @@ document
 
 
 document
-    .getElementById(
-        "modalNext"
-    )
+    .getElementById("modalNext")
     .addEventListener(
         "click",
-        function(event) {
+        event => {
 
             event.stopPropagation();
 
@@ -3754,16 +3421,13 @@ document
 
 
 document
-    .getElementById(
-        "imageModal"
-    )
+    .getElementById("imageModal")
     .addEventListener(
         "click",
         function(event) {
 
             if (
-                event.target ===
-                this
+                event.target === this
             ) {
 
                 closeImageModal();
@@ -3775,16 +3439,14 @@ document
 
 
 /* =====================================================
-   ZOOM BUTTON EVENTS
+   ZOOM BUTTONS
 ===================================================== */
 
 document
-    .getElementById(
-        "zoomIn"
-    )
+    .getElementById("zoomIn")
     .addEventListener(
         "click",
-        function(event) {
+        event => {
 
             event.stopPropagation();
 
@@ -3795,12 +3457,10 @@ document
 
 
 document
-    .getElementById(
-        "zoomOut"
-    )
+    .getElementById("zoomOut")
     .addEventListener(
         "click",
-        function(event) {
+        event => {
 
             event.stopPropagation();
 
@@ -3811,12 +3471,10 @@ document
 
 
 document
-    .getElementById(
-        "zoomReset"
-    )
+    .getElementById("zoomReset")
     .addEventListener(
         "click",
-        function(event) {
+        event => {
 
             event.stopPropagation();
 
@@ -3827,13 +3485,11 @@ document
 
 
 /* =====================================================
-   IMAGE WHEEL ZOOM
+   WHEEL ZOOM
 ===================================================== */
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "wheel",
         handleImageWheel,
@@ -3848,33 +3504,23 @@ document
 ===================================================== */
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "dblclick",
-        function(event) {
+        event => {
 
             event.preventDefault();
 
             event.stopPropagation();
 
 
-            if (
-                modalZoom > 1
-            ) {
+            if (modalZoom > 1) {
 
                 resetZoom();
 
             } else {
 
-                modalZoom = 2;
-
-                modalTranslateX = 0;
-
-                modalTranslateY = 0;
-
-                updateZoomDisplay();
+                setZoom(2);
 
             }
 
@@ -3883,27 +3529,17 @@ document
 
 
 /* =====================================================
-   IMAGE POINTER DRAG
+   IMAGE DRAG
 ===================================================== */
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "pointerdown",
         function(event) {
 
-            /*
-               Chỉ kéo khi ảnh đang zoom.
-            */
-
-            if (
-                modalZoom <= 1
-            ) {
-
+            if (modalZoom <= 1) {
                 return;
-
             }
 
 
@@ -3916,14 +3552,12 @@ document
             imageDragStartX =
                 event.clientX;
 
-
             imageDragStartY =
                 event.clientY;
 
 
             imageStartTranslateX =
                 modalTranslateX;
-
 
             imageStartTranslateY =
                 modalTranslateY;
@@ -3950,17 +3584,14 @@ document
 
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "pointermove",
         function(event) {
 
             if (
                 !imageDragging ||
-                event.pointerId !==
-                    imagePointerId
+                event.pointerId !== imagePointerId
             ) {
 
                 return;
@@ -3994,19 +3625,14 @@ document
 
 function stopImageDragging(event) {
 
-    if (
-        !imageDragging
-    ) {
-
+    if (!imageDragging) {
         return;
-
     }
 
 
     if (
         event &&
-        event.pointerId !==
-            imagePointerId
+        event.pointerId !== imagePointerId
     ) {
 
         return;
@@ -4030,9 +3656,7 @@ function stopImageDragging(event) {
 
     try {
 
-        if (
-            imagePointerId !== null
-        ) {
+        if (imagePointerId !== null) {
 
             image.releasePointerCapture(
                 imagePointerId
@@ -4049,9 +3673,7 @@ function stopImageDragging(event) {
 
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "pointerup",
         stopImageDragging
@@ -4059,9 +3681,7 @@ document
 
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "pointercancel",
         stopImageDragging
@@ -4074,12 +3694,8 @@ document
 
 function getTouchDistance(touches) {
 
-    if (
-        touches.length < 2
-    ) {
-
+    if (touches.length < 2) {
         return 0;
-
     }
 
 
@@ -4094,27 +3710,20 @@ function getTouchDistance(touches) {
 
 
     return Math.sqrt(
-        dx * dx +
-        dy * dy
+        dx * dx + dy * dy
     );
 
 }
 
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "touchstart",
-        function(event) {
+        event => {
 
-            if (
-                event.touches.length !== 2
-            ) {
-
+            if (event.touches.length !== 2) {
                 return;
-
             }
 
 
@@ -4131,20 +3740,6 @@ document
                 modalZoom;
 
 
-            pinchCenterX =
-                (
-                    event.touches[0].clientX +
-                    event.touches[1].clientX
-                ) / 2;
-
-
-            pinchCenterY =
-                (
-                    event.touches[0].clientY +
-                    event.touches[1].clientY
-                ) / 2;
-
-
             event.preventDefault();
 
         },
@@ -4155,12 +3750,10 @@ document
 
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "touchmove",
-        function(event) {
+        event => {
 
             if (
                 !pinchActive ||
@@ -4193,20 +3786,14 @@ document
                 pinchStartDistance;
 
 
-            const newZoom =
+            modalZoom =
                 clampZoom(
                     pinchStartZoom *
                     scale
                 );
 
 
-            modalZoom =
-                newZoom;
-
-
-            if (
-                modalZoom <= 1
-            ) {
+            if (modalZoom <= 1) {
 
                 modalTranslateX = 0;
 
@@ -4216,7 +3803,6 @@ document
 
 
             updateZoomDisplay();
-
 
             event.preventDefault();
 
@@ -4228,24 +3814,17 @@ document
 
 
 document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .addEventListener(
         "touchend",
-        function(event) {
+        event => {
 
-            if (
-                event.touches.length < 2
-            ) {
+            if (event.touches.length < 2) {
 
                 pinchActive = false;
 
             }
 
-        },
-        {
-            passive: true
         }
     );
 
@@ -4256,7 +3835,7 @@ document
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    event => {
 
         const modal =
             document.getElementById(
@@ -4265,8 +3844,7 @@ document.addEventListener(
 
 
         if (
-            modal.style.display !==
-            "flex"
+            modal.style.display !== "flex"
         ) {
 
             return;
@@ -4274,32 +3852,19 @@ document.addEventListener(
         }
 
 
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
+        if (event.key === "ArrowRight") {
             nextImage();
-
         }
 
 
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
+        if (event.key === "ArrowLeft") {
             previousImage();
-
         }
 
 
         if (
-            event.key ===
-            "+"
-            ||
-            event.key ===
-            "="
+            event.key === "+" ||
+            event.key === "="
         ) {
 
             zoomIn();
@@ -4307,33 +3872,18 @@ document.addEventListener(
         }
 
 
-        if (
-            event.key ===
-            "-"
-        ) {
-
+        if (event.key === "-") {
             zoomOut();
-
         }
 
 
-        if (
-            event.key ===
-            "0"
-        ) {
-
+        if (event.key === "0") {
             resetZoom();
-
         }
 
 
-        if (
-            event.key ===
-            "Escape"
-        ) {
-
+        if (event.key === "Escape") {
             closeImageModal();
-
         }
 
     }
@@ -4350,60 +3900,35 @@ let touchStartY = 0;
 
 
 document
-    .getElementById(
-        "imageModal"
-    )
+    .getElementById("imageModal")
     .addEventListener(
         "touchstart",
-        function(event) {
+        event => {
 
-            /*
-               Không coi pinch là swipe chuyển ảnh.
-            */
-
-            if (
-                event.touches.length !== 1
-            ) {
-
+            if (event.touches.length !== 1) {
                 return;
-
             }
 
 
             touchStartX =
-                event.touches[0]
-                    .clientX;
+                event.touches[0].clientX;
 
 
             touchStartY =
-                event.touches[0]
-                    .clientY;
+                event.touches[0].clientY;
 
-        },
-        {
-            passive: true
         }
     );
 
 
 document
-    .getElementById(
-        "imageModal"
-    )
+    .getElementById("imageModal")
     .addEventListener(
         "touchend",
-        function(event) {
+        event => {
 
             if (
-                !event.changedTouches.length
-            ) {
-
-                return;
-
-            }
-
-
-            if (
+                !event.changedTouches.length ||
                 modalZoom > 1
             ) {
 
@@ -4413,13 +3938,11 @@ document
 
 
             const touchEndX =
-                event.changedTouches[0]
-                    .clientX;
+                event.changedTouches[0].clientX;
 
 
             const touchEndY =
-                event.changedTouches[0]
-                    .clientY;
+                event.changedTouches[0].clientY;
 
 
             const distanceX =
@@ -4432,13 +3955,8 @@ document
                 touchStartY;
 
 
-            /*
-               Chỉ xử lý swipe ngang.
-            */
-
             if (
-                Math.abs(distanceX) <
-                50
+                Math.abs(distanceX) < 50
             ) {
 
                 return;
@@ -4456,9 +3974,7 @@ document
             }
 
 
-            if (
-                distanceX < 0
-            ) {
+            if (distanceX < 0) {
 
                 nextImage();
 
@@ -4468,9 +3984,6 @@ document
 
             }
 
-        },
-        {
-            passive: true
         }
     );
 
@@ -4480,9 +3993,7 @@ document
 ===================================================== */
 
 document
-    .getElementById(
-        "search"
-    )
+    .getElementById("search")
     .addEventListener(
         "input",
         filterProducts
@@ -4490,9 +4001,7 @@ document
 
 
 document
-    .getElementById(
-        "brandFilter"
-    )
+    .getElementById("brandFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -4500,9 +4009,7 @@ document
 
 
 document
-    .getElementById(
-        "styleFilter"
-    )
+    .getElementById("styleFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -4510,9 +4017,7 @@ document
 
 
 document
-    .getElementById(
-        "sortFilter"
-    )
+    .getElementById("sortFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -4520,9 +4025,7 @@ document
 
 
 document
-    .getElementById(
-        "priceFilter"
-    )
+    .getElementById("priceFilter")
     .addEventListener(
         "change",
         filterProducts
@@ -4530,7 +4033,7 @@ document
 
 
 /* =====================================================
-   ZALO BUTTON - DRAG
+   ZALO DRAG
 ===================================================== */
 
 (function setupZalo() {
@@ -4559,11 +4062,10 @@ document
 
     zalo.addEventListener(
         "pointerdown",
-        function(event) {
+        event => {
 
             if (
-                event.pointerType ===
-                "mouse" &&
+                event.pointerType === "mouse" &&
                 event.button !== 0
             ) {
 
@@ -4607,19 +4109,17 @@ document
 
             } catch (error) {}
 
-
         }
     );
 
 
     zalo.addEventListener(
         "pointermove",
-        function(event) {
+        event => {
 
             if (
                 !dragging ||
-                event.pointerId !==
-                    pointerId
+                event.pointerId !== pointerId
             ) {
 
                 return;
@@ -4627,29 +4127,9 @@ document
             }
 
 
-            const deltaX =
-                Math.abs(
-                    event.clientX -
-                    (
-                        offsetX +
-                        zalo.getBoundingClientRect().left
-                    )
-                );
-
-
-            const deltaY =
-                Math.abs(
-                    event.clientY -
-                    (
-                        offsetY +
-                        zalo.getBoundingClientRect().top
-                    )
-                );
-
-
             if (
-                deltaX > 4 ||
-                deltaY > 4
+                Math.abs(event.movementX) > 2 ||
+                Math.abs(event.movementY) > 2
             ) {
 
                 moved = true;
@@ -4718,11 +4198,10 @@ document
 
     zalo.addEventListener(
         "pointerup",
-        function(event) {
+        event => {
 
             if (
-                event.pointerId !==
-                pointerId
+                event.pointerId !== pointerId
             ) {
 
                 return;
@@ -4731,6 +4210,7 @@ document
 
 
             dragging = false;
+
 
             zalo.classList.remove(
                 "dragging"
@@ -4754,7 +4234,7 @@ document
 
     zalo.addEventListener(
         "pointercancel",
-        function() {
+        () => {
 
             dragging = false;
 
@@ -4770,7 +4250,7 @@ document
 
     zalo.addEventListener(
         "click",
-        function(event) {
+        event => {
 
             if (moved) {
 
@@ -4785,43 +4265,32 @@ document
         }
     );
 
-
 })();
 
 
 /* =====================================================
-   START
+   SCROLL HINT
 ===================================================== */
-
-console.log(
-    "TSPORT: JavaScript OK"
-);
-
-
-console.log(
-    "TSPORT: R2 Worker:",
-    IMAGE_API
-);
-
-
-console.log(
-    "TSPORT: Zalo:",
-    "https://zalo.me/0395364443"
-);
-
-
-let scrollHintHidden = false;
 
 function updateDetailScrollHint() {
 
     const hint =
-        document.getElementById("detailScrollHint");
+        document.getElementById(
+            "detailScrollHint"
+        );
+
 
     const imageBox =
-        document.querySelector(".detail-image-box");
+        document.querySelector(
+            ".detail-image-box"
+        );
+
 
     const detail =
-        document.getElementById("detail");
+        document.getElementById(
+            "detail"
+        );
+
 
     if (
         !hint ||
@@ -4829,24 +4298,19 @@ function updateDetailScrollHint() {
         !detail ||
         detail.style.display === "none"
     ) {
+
         return;
+
     }
+
 
     const rect =
         imageBox.getBoundingClientRect();
 
+
     /*
-       Mũi tên đi cùng khu vực ảnh.
-
-       Khi ảnh còn trên màn hình:
-       → vẫn hiện.
-
-       Khi kéo xuống:
-       → mũi tên vẫn tồn tại.
-
-       Chỉ khi TOÀN BỘ khung ảnh
-       cuộn khỏi màn hình:
-       → mũi tên mới biến mất.
+       Khi toàn bộ khung ảnh đã đi khỏi
+       màn hình phía trên thì ẩn mũi tên.
     */
 
     if (rect.bottom <= 0) {
@@ -4858,29 +4322,26 @@ function updateDetailScrollHint() {
         scrollHintHidden = true;
 
         return;
+
     }
 
 
-    /*
-       Nếu khung ảnh vẫn còn trên màn hình
-       thì giữ mũi tên.
-    */
-
     hint.style.display = "flex";
 
-    /*
-       Không cho mờ ngay khi vừa kéo.
 
-       Chỉ bắt đầu mờ khi đáy ảnh
-       còn cách mép dưới màn hình 80px.
+    /*
+       Khi gần rời màn hình thì mờ dần.
     */
 
     const fadeStart = 80;
 
+
     if (rect.bottom < fadeStart) {
 
         const opacity =
-            rect.bottom / fadeStart;
+            rect.bottom /
+            fadeStart;
+
 
         hint.style.opacity =
             Math.max(
@@ -4894,7 +4355,9 @@ function updateDetailScrollHint() {
 
     }
 
+
     scrollHintHidden = false;
+
 }
 
 
@@ -4907,8 +4370,33 @@ window.addEventListener(
 );
 
 
+/* =====================================================
+   START
+===================================================== */
+
+console.log(
+    "TSPORT: JavaScript OK"
+);
+
+console.log(
+    "TSPORT: Google Sheet:",
+    SHEET_URL
+);
+
+console.log(
+    "TSPORT: R2 Worker:",
+    IMAGE_API
+);
+
+console.log(
+    "TSPORT: Zalo:",
+    "https://zalo.me/0395364443"
+);
 
 
+/* =====================================================
+   LOAD
+===================================================== */
 
 loadProducts();
 
