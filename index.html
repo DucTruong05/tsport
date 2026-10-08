@@ -295,30 +295,118 @@ select {
 .detail-image-box {
     width: 100%;
     max-width: 700px;
-
     height: 500px;
 
     margin: auto;
 
     background: #fafafa;
-
     border-radius: 14px;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
 
     overflow: hidden;
-}
 
+    position: relative;
+}
 .detail-image {
     width: 100%;
     height: 100%;
 
     object-fit: contain;
 }
+/* =====================================================
+   SCROLL HINT - MŨI TÊN CHỈ DẪN KÉO XUỐNG
+===================================================== */
 
+.detail-scroll-hint {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.58);
+
+    padding: 8px 10px;
+    border-radius: 12px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    animation:
+        scrollHintFloat 1.2s ease-in-out infinite,
+        scrollHintFade 2s ease-in-out infinite;
+}
+
+.detail-scroll-arrow {
+    font-size: 28px;
+    line-height: 20px;
+
+    animation: scrollArrowMove 0.8s ease-in-out infinite;
+}
+
+.detail-scroll-text {
+    white-space: nowrap;
+}
+
+@keyframes scrollHintFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+@keyframes scrollArrowMove {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+@keyframes scrollHintFade {
+    0%, 100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+
+    .detail-scroll-hint {
+        right: 12px;
+        bottom: 12px;
+
+        padding: 7px 9px;
+
+        font-size: 11px;
+        border-radius: 10px;
+    }
+
+    .detail-scroll-arrow {
+        font-size: 25px;
+    }
+
+}
 
 /* =====================================================
    DETAIL CONTENT
@@ -2925,6 +3013,7 @@ async function showDetail(product) {
        Lưu vị trí scroll TRƯỚC khi thay đổi giao diện.
        Ví dụ đang ở 3500px thì lưu đúng 3500px.
     */
+    scrollHintHidden = false;
 
     productsScrollPosition =
         window.scrollY ||
@@ -3028,8 +3117,22 @@ async function showDetail(product) {
         <div class="detail-image-box">
 
             ${imageHTML}
-
+        
+            <div
+                id="detailScrollHint"
+                class="detail-scroll-hint"
+            >
+                <div class="detail-scroll-arrow">
+                    ↓
+                </div>
+        
+                <div class="detail-scroll-text">
+                    Kéo xuống xem chi tiết
+                </div>
+            </div>
+        
         </div>
+        
 
 
         <div class="detail-content">
@@ -4683,6 +4786,40 @@ console.log(
     "TSPORT: Zalo:",
     "https://zalo.me/0395364443"
 );
+
+
+let scrollHintHidden = false;
+
+function hideDetailScrollHint() {
+
+    if (scrollHintHidden) return;
+
+    const hint = document.getElementById("detailScrollHint");
+
+    if (!hint) return;
+
+    hint.style.opacity = "0";
+    hint.style.transition = "opacity 0.3s ease";
+
+    setTimeout(() => {
+        hint.style.display = "none";
+    }, 300);
+
+    scrollHintHidden = true;
+}
+
+
+window.addEventListener("scroll", function() {
+
+    if (
+        document.getElementById("detail") &&
+        document.getElementById("detail").style.display !== "none" &&
+        window.scrollY > 30
+    ) {
+        hideDetailScrollHint();
+    }
+
+}, { passive: true });
 
 
 loadProducts();
