@@ -320,20 +320,29 @@ select {
    SCROLL HINT - MŨI TÊN CHỈ DẪN KÉO XUỐNG
 ===================================================== */
 
+/* =====================================================
+   SCROLL HINT
+   Khung chỉ dẫn nằm cố định trong khung ảnh
+===================================================== */
+
 .detail-scroll-hint {
     position: absolute;
+
     right: 18px;
     bottom: 18px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    justify-content: center;
+
+    gap: 3px;
 
     color: white;
-    background: rgba(0, 0, 0, 0.58);
+    background: rgba(0, 0, 0, 0.62);
 
-    padding: 8px 10px;
+    padding: 9px 12px;
+
     border-radius: 12px;
 
     font-size: 12px;
@@ -343,33 +352,31 @@ select {
 
     pointer-events: none;
 
-    animation:
-        scrollHintFloat 1.2s ease-in-out infinite,
-        scrollHintFade 2s ease-in-out infinite;
+    user-select: none;
+
+    /* Chỉ nhấp nháy nhẹ */
+    animation: scrollHintFade 1.5s ease-in-out infinite;
 }
+
 
 .detail-scroll-arrow {
     font-size: 28px;
-    line-height: 20px;
 
-    animation: scrollArrowMove 0.8s ease-in-out infinite;
+    line-height: 22px;
+
+    animation: scrollArrowMove 0.9s ease-in-out infinite;
 }
+
 
 .detail-scroll-text {
     white-space: nowrap;
 }
 
-@keyframes scrollHintFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
 
-    50% {
-        transform: translateY(5px);
-    }
-}
+/* Mũi tên nhấp nháy / chuyển động nhẹ */
 
 @keyframes scrollArrowMove {
+
     0%, 100% {
         transform: translateY(0);
     }
@@ -377,9 +384,12 @@ select {
     50% {
         transform: translateY(5px);
     }
+
 }
 
+
 @keyframes scrollHintFade {
+
     0%, 100% {
         opacity: 0.65;
     }
@@ -387,23 +397,32 @@ select {
     50% {
         opacity: 1;
     }
+
 }
 
+
 /* Mobile */
+
 @media (max-width: 650px) {
 
     .detail-scroll-hint {
+
         right: 12px;
         bottom: 12px;
 
         padding: 7px 9px;
 
         font-size: 11px;
+
         border-radius: 10px;
+
     }
 
+
     .detail-scroll-arrow {
+
         font-size: 25px;
+
     }
 
 }
@@ -4817,50 +4836,65 @@ function updateDetailScrollHint() {
         imageBox.getBoundingClientRect();
 
     /*
-       rect.bottom = vị trí đáy của khu vực ảnh
-       tính từ mép trên màn hình.
+       Mũi tên đi cùng khu vực ảnh.
 
-       Khi đáy ảnh vẫn còn trên màn hình
-       => giữ mũi tên.
+       Khi ảnh còn trên màn hình:
+       → vẫn hiện.
 
-       Khi ảnh gần/cuộn hết khỏi màn hình
-       => mũi tên mờ dần.
-    */
+       Khi kéo xuống:
+       → mũi tên vẫn tồn tại.
 
-    const fadeStart = 120;
-    const fadeEnd = 0;
-
-    let opacity =
-        (rect.bottom - fadeEnd) /
-        (fadeStart - fadeEnd);
-
-    opacity =
-        Math.max(
-            0,
-            Math.min(1, opacity)
-        );
-
-    hint.style.opacity = opacity;
-
-    /*
-       Chỉ ẩn hoàn toàn khi toàn bộ khu vực ảnh
-       đã đi khỏi màn hình.
+       Chỉ khi TOÀN BỘ khung ảnh
+       cuộn khỏi màn hình:
+       → mũi tên mới biến mất.
     */
 
     if (rect.bottom <= 0) {
+
+        hint.style.opacity = "0";
 
         hint.style.display = "none";
 
         scrollHintHidden = true;
 
+        return;
+    }
+
+
+    /*
+       Nếu khung ảnh vẫn còn trên màn hình
+       thì giữ mũi tên.
+    */
+
+    hint.style.display = "flex";
+
+    /*
+       Không cho mờ ngay khi vừa kéo.
+
+       Chỉ bắt đầu mờ khi đáy ảnh
+       còn cách mép dưới màn hình 80px.
+    */
+
+    const fadeStart = 80;
+
+    if (rect.bottom < fadeStart) {
+
+        const opacity =
+            rect.bottom / fadeStart;
+
+        hint.style.opacity =
+            Math.max(
+                0,
+                Math.min(1, opacity)
+            );
+
     } else {
 
-        hint.style.display = "flex";
-
-        scrollHintHidden = false;
+        hint.style.opacity = "1";
 
     }
 
+    scrollHintHidden = false;
 }
 
 
@@ -4873,17 +4907,7 @@ window.addEventListener(
 );
 
 
-window.addEventListener("scroll", function() {
 
-    if (
-        document.getElementById("detail") &&
-        document.getElementById("detail").style.display !== "none" &&
-        window.scrollY > 
-    ) {
-        hideDetailScrollHint();
-    }
-
-}, { passive: true });
 
 
 loadProducts();
