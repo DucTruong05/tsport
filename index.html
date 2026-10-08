@@ -3266,6 +3266,9 @@ async function showDetail(product) {
         top: 0,
         behavior: "auto"
     });
+    requestAnimationFrame(() => {
+    updateDetailScrollHint();
+    });
 
 
     const galleryContainer =
@@ -4790,23 +4793,84 @@ console.log(
 
 let scrollHintHidden = false;
 
-function hideDetailScrollHint() {
+function updateDetailScrollHint() {
 
-    if (scrollHintHidden) return;
+    const hint =
+        document.getElementById("detailScrollHint");
 
-    const hint = document.getElementById("detailScrollHint");
+    const imageBox =
+        document.querySelector(".detail-image-box");
 
-    if (!hint) return;
+    const detail =
+        document.getElementById("detail");
 
-    hint.style.opacity = "0";
-    hint.style.transition = "opacity 0.3s ease";
+    if (
+        !hint ||
+        !imageBox ||
+        !detail ||
+        detail.style.display === "none"
+    ) {
+        return;
+    }
 
-    setTimeout(() => {
+    const rect =
+        imageBox.getBoundingClientRect();
+
+    /*
+       rect.bottom = vị trí đáy của khu vực ảnh
+       tính từ mép trên màn hình.
+
+       Khi đáy ảnh vẫn còn trên màn hình
+       => giữ mũi tên.
+
+       Khi ảnh gần/cuộn hết khỏi màn hình
+       => mũi tên mờ dần.
+    */
+
+    const fadeStart = 120;
+    const fadeEnd = 0;
+
+    let opacity =
+        (rect.bottom - fadeEnd) /
+        (fadeStart - fadeEnd);
+
+    opacity =
+        Math.max(
+            0,
+            Math.min(1, opacity)
+        );
+
+    hint.style.opacity = opacity;
+
+    /*
+       Chỉ ẩn hoàn toàn khi toàn bộ khu vực ảnh
+       đã đi khỏi màn hình.
+    */
+
+    if (rect.bottom <= 0) {
+
         hint.style.display = "none";
-    }, 300);
 
-    scrollHintHidden = true;
+        scrollHintHidden = true;
+
+    } else {
+
+        hint.style.display = "flex";
+
+        scrollHintHidden = false;
+
+    }
+
 }
+
+
+window.addEventListener(
+    "scroll",
+    updateDetailScrollHint,
+    {
+        passive: true
+    }
+);
 
 
 window.addEventListener("scroll", function() {
@@ -4814,7 +4878,7 @@ window.addEventListener("scroll", function() {
     if (
         document.getElementById("detail") &&
         document.getElementById("detail").style.display !== "none" &&
-        window.scrollY > 70
+        window.scrollY > 
     ) {
         hideDetailScrollHint();
     }
