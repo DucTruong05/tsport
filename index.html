@@ -3413,7 +3413,16 @@ select.is-active {
     white-space: nowrap;
 }
 
+.tsr-slide-body-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
 .tsr-quote {
+    flex: 1;
+    min-width: 0;
     font-size: 12.2px;
     line-height: 1.42;
     color: #e2e8f0;
@@ -3423,7 +3432,33 @@ select.is-active {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 5px;
+    margin-bottom: 0;
+}
+
+.tsr-slide-proof-thumb {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    cursor: zoom-in;
+    position: relative;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.tsr-slide-proof-thumb:hover {
+    transform: scale(1.06);
+    border-color: #38bdf8;
+}
+
+.tsr-slide-proof-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .tsr-author-row {
@@ -5032,30 +5067,6 @@ select.is-active {
                         maxlength="4"
                         placeholder="VD: 443"
                     >
-                </div>
-            </div>
-
-            <div class="tsr-field">
-                <label class="tsr-label" for="tsrInputImage">Ảnh minh chứng (tùy chọn)</label>
-                <div class="tsr-image-upload-wrap">
-                    <label for="tsrInputImage" class="tsr-image-pick-btn">
-                        <span>📷</span>
-                        <span id="tsrImagePickLabel">Chọn ảnh vợt / chụp màn hình Zalo</span>
-                    </label>
-                    <input
-                        id="tsrInputImage"
-                        type="file"
-                        accept="image/*"
-                        style="display:none;"
-                    >
-                    <div id="tsrImagePreviewBox" class="tsr-image-preview-box">
-                        <img id="tsrImagePreviewThumb" class="tsr-image-preview-thumb" src="" alt="Ảnh minh chứng">
-                        <span id="tsrImagePreviewStatus" class="tsr-image-preview-status">Đã nén chuẩn</span>
-                        <button type="button" id="tsrImageRemoveBtn" class="tsr-image-remove-btn" title="Xóa ảnh">✕</button>
-                    </div>
-                </div>
-                <div class="tsr-field-hint">
-                    💡 Ảnh sẽ được tự động thu gọn siêu nhẹ ngay trên trình duyệt để đính kèm vào đánh giá.
                 </div>
             </div>
 
@@ -9410,12 +9421,6 @@ const TSPORT_REVIEWS_DATA = [];
     const inputName = document.getElementById("tsrInputName");
     const inputRacket = document.getElementById("tsrInputRacket");
     const inputPhoneLast3 = document.getElementById("tsrInputPhoneLast3");
-    const inputImage = document.getElementById("tsrInputImage");
-    const imagePickLabel = document.getElementById("tsrImagePickLabel");
-    const imagePreviewBox = document.getElementById("tsrImagePreviewBox");
-    const imagePreviewThumb = document.getElementById("tsrImagePreviewThumb");
-    const imagePreviewStatus = document.getElementById("tsrImagePreviewStatus");
-    const imageRemoveBtn = document.getElementById("tsrImageRemoveBtn");
     const inputText = document.getElementById("tsrInputText");
     const starPicker = document.getElementById("tsrStarPicker");
     const starLabel = document.getElementById("tsrStarLabel");
@@ -9449,10 +9454,10 @@ const TSPORT_REVIEWS_DATA = [];
         "linear-gradient(135deg, #06b6d4, #0284c7)"
     ];
 
-    const CACHE_KEY = "tsport_reviews_cache_v2";
-    const REVIEW_IMAGES_STORAGE_KEY = "tsport_review_images_v1";
+    const CACHE_KEY = "tsport_reviews_cache_v3";
     let hasLoadedCacheOrRemote = false;
-    let compressedProofDataUrl = "";
+    let sheetReviewsState = [];
+    let r2FeedbackState = [];
 
     // Only keep reviews where approved === true
     let approvedReviews = TSPORT_REVIEWS_DATA.filter(function (item) {
@@ -9504,108 +9509,9 @@ const TSPORT_REVIEWS_DATA = [];
         return DEFAULT_TEXT_BY_STAR[star] || DEFAULT_TEXT_BY_STAR[5];
     }
 
-    // Tự động thu nhỏ & nén ảnh minh chứng ngay trên trình duyệt (< 42.000 ký tự để lưu vừa 1 ô Google Sheet)
-    function compressReviewImageFile(file) {
-        return new Promise(function (resolve, reject) {
-            if (!file || !file.type || !file.type.startsWith("image/")) {
-                reject(new Error("Vui lòng chọn tệp hình ảnh hợp lệ."));
-                return;
-            }
-            const reader = new FileReader();
-            reader.onerror = function () {
-                reject(new Error("Không thể đọc tệp ảnh."));
-            };
-            reader.onload = function (ev) {
-                const img = new Image();
-                img.onerror = function () {
-                    reject(new Error("Định dạng ảnh không hỗ trợ."));
-                };
-                img.onload = function () {
-                    const canvas = document.createElement("canvas");
-                    let maxDim = 500;
-                    let quality = 0.72;
-                    let dataUrl = "";
-
-                    for (let attempt = 0; attempt < 4; attempt++) {
-                        let w = img.naturalWidth || img.width || 400;
-                        let h = img.naturalHeight || img.height || 400;
-                        if (w > maxDim || h > maxDim) {
-                            if (w >= h) {
-                                h = Math.round((h * maxDim) / w);
-                                w = maxDim;
-                            } else {
-                                w = Math.round((w * maxDim) / h);
-                                h = maxDim;
-                            }
-                        }
-                        canvas.width = Math.max(1, w);
-                        canvas.height = Math.max(1, h);
-                        const ctx = canvas.getContext("2d");
-                        ctx.fillStyle = "#ffffff";
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                        dataUrl = canvas.toDataURL("image/jpeg", quality);
-                        // Giới hạn 1 ô Google Sheet là 50.000 ký tự -> giữ dưới 42.000 ký tự
-                        if (dataUrl.length <= 42000) {
-                            break;
-                        }
-                        maxDim = Math.round(maxDim * 0.78);
-                        quality = Math.max(0.48, quality - 0.1);
-                    }
-                    resolve(dataUrl);
-                };
-                img.src = ev.target.result;
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function clearSelectedProofImage() {
-        compressedProofDataUrl = "";
-        if (inputImage) inputImage.value = "";
-        if (imagePreviewBox) imagePreviewBox.classList.remove("has-image");
-        if (imagePreviewThumb) imagePreviewThumb.src = "";
-        if (imagePickLabel) imagePickLabel.textContent = "Chọn ảnh vợt / chụp màn hình Zalo";
-    }
-
-    if (inputImage) {
-        inputImage.addEventListener("change", async function () {
-            const file = inputImage.files && inputImage.files[0];
-            if (!file) {
-                clearSelectedProofImage();
-                return;
-            }
-            if (imagePickLabel) imagePickLabel.textContent = "Đang xử lý ảnh...";
-            try {
-                const compressed = await compressReviewImageFile(file);
-                compressedProofDataUrl = compressed;
-                if (imagePreviewThumb) imagePreviewThumb.src = compressed;
-                if (imagePreviewStatus) {
-                    const kb = Math.max(1, Math.round((compressed.length * 0.75) / 1024));
-                    imagePreviewStatus.textContent = "✔ Đã đính kèm (" + kb + " KB)";
-                }
-                if (imagePreviewBox) imagePreviewBox.classList.add("has-image");
-                if (imagePickLabel) imagePickLabel.textContent = "Đổi ảnh minh chứng khác";
-            } catch (err) {
-                clearSelectedProofImage();
-                if (feedbackMsg) {
-                    feedbackMsg.className = "tsr-feedback-msg is-error";
-                    feedbackMsg.textContent = err && err.message ? err.message : "Không thể xử lý ảnh này.";
-                }
-            }
-        });
-    }
-
-    if (imageRemoveBtn) {
-        imageRemoveBtn.addEventListener("click", function () {
-            clearSelectedProofImage();
-        });
-    }
-
     function resolveReviewProofImage(review) {
         if (!review) return "";
-        const directImg = String(
+        let directImg = String(
             review.image ||
             review.proofImage ||
             review.proof_image ||
@@ -9614,28 +9520,13 @@ const TSPORT_REVIEWS_DATA = [];
             ""
         ).trim();
 
-        const reviewKey =
-            (String(review.name || "").trim() + "|" + getReviewTextSafe(review)).toLowerCase();
-
-        if (directImg && (directImg.startsWith("data:image/") || directImg.startsWith("http") || directImg.startsWith("/"))) {
-            try {
-                const rawMap = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
-                const imgMap = rawMap ? JSON.parse(rawMap) : {};
-                if (imgMap[reviewKey] !== directImg) {
-                    imgMap[reviewKey] = directImg;
-                    localStorage.setItem(REVIEW_IMAGES_STORAGE_KEY, JSON.stringify(imgMap));
-                }
-            } catch (_) {}
-            return directImg;
+        if (directImg && typeof getImageUrl === "function" && !directImg.startsWith("data:image/")) {
+            directImg = getImageUrl(directImg);
         }
 
-        try {
-            const rawMap = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
-            const imgMap = rawMap ? JSON.parse(rawMap) : {};
-            if (imgMap[reviewKey]) {
-                return imgMap[reviewKey];
-            }
-        } catch (_) {}
+        if (directImg && (directImg.startsWith("data:image/") || directImg.startsWith("http") || directImg.startsWith("/"))) {
+            return directImg;
+        }
 
         return "";
     }
@@ -9838,12 +9729,21 @@ const TSPORT_REVIEWS_DATA = [];
             miniBadgeText = "✔ SĐT " + escapeReviewHtml(identity.maskedPhone);
         }
 
+        const proofThumbHtml = identity.proofImage
+            ? '<div class="tsr-slide-proof-thumb" data-proof-src="' + escapeReviewHtml(identity.proofImage) + '" title="Nhấn để phóng to ảnh feedback">' +
+                  '<img src="' + escapeReviewHtml(identity.proofImage) + '" alt="Ảnh minh chứng" loading="lazy">' +
+              '</div>'
+            : "";
+
         return (
             '<div class="tsr-stars-row">' +
                 '<span class="tsr-stars" aria-label="' + (review.rating || 5) + ' sao">' + stars + '</span>' +
                 dateHtml +
             '</div>' +
-            '<div class="tsr-quote">“' + safeText + '”</div>' +
+            '<div class="tsr-slide-body-row">' +
+                '<div class="tsr-quote">“' + safeText + '”</div>' +
+                proofThumbHtml +
+            '</div>' +
             '<div class="tsr-author-row">' +
                 '<div class="tsr-author">— ' + safeName + '</div>' +
                 '<span class="tsr-verified-mini" title="Khách hàng đã giao dịch tại TSPORT">' + miniBadgeText + '</span>' +
@@ -10072,6 +9972,16 @@ const TSPORT_REVIEWS_DATA = [];
     if (viewportEl) {
         viewportEl.addEventListener("click", function (e) {
             e.stopPropagation();
+            const thumbEl = e.target.closest(".tsr-slide-proof-thumb");
+            if (thumbEl) {
+                const src = thumbEl.getAttribute("data-proof-src");
+                if (src && typeof showModalImage === "function") {
+                    currentGallery = [src];
+                    currentImageIndex = 0;
+                    showModalImage();
+                    return;
+                }
+            }
             openAllReviewsModal();
         });
     }
@@ -10367,7 +10277,6 @@ const TSPORT_REVIEWS_DATA = [];
                 name: enrichedName,
                 rating: selectedRating,
                 text: textVal,
-                image: compressedProofDataUrl || "",
                 approved: false,
                 createdAt: new Date().toISOString()
             };
@@ -10378,17 +10287,6 @@ const TSPORT_REVIEWS_DATA = [];
             }
 
             try {
-                // Lưu ảnh minh chứng dự phòng vào localStorage theo khóa (name|text)
-                if (compressedProofDataUrl) {
-                    try {
-                        const reviewKey = (enrichedName.trim() + "|" + textVal.trim()).toLowerCase();
-                        const rawMap = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
-                        const imgMap = rawMap ? JSON.parse(rawMap) : {};
-                        imgMap[reviewKey] = compressedProofDataUrl;
-                        localStorage.setItem(REVIEW_IMAGES_STORAGE_KEY, JSON.stringify(imgMap));
-                    } catch (_) {}
-                }
-
                 // Save backup copy to localStorage
                 try {
                     const queueRaw = localStorage.getItem("tsport_pending_reviews");
@@ -10417,12 +10315,11 @@ const TSPORT_REVIEWS_DATA = [];
                 }
 
                 reviewForm.reset();
-                clearSelectedProofImage();
                 setStarPickerValue(5, false);
 
                 setTimeout(function () {
                     if (isModalOpen) closeReviewModal();
-                }, 2200);
+                }, 2000);
             } catch (err) {
                 if (feedbackMsg) {
                     feedbackMsg.className = "tsr-feedback-msg is-error";
@@ -10437,47 +10334,167 @@ const TSPORT_REVIEWS_DATA = [];
         });
     }
 
-    // Sync approved reviews from Google Sheet "Reviews" tab (Fast Parallel Race + Cache)
-    function applySheetApprovedReviews(sheetApproved) {
-        if (!Array.isArray(sheetApproved)) return false;
+    function decodeBase64UrlUtf8(str) {
+        try {
+            let b64 = String(str || "").replace(/-/g, "+").replace(/_/g, "/");
+            while (b64.length % 4 !== 0) {
+                b64 += "=";
+            }
+            const binary = atob(b64);
+            const bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+            return new TextDecoder("utf-8").decode(bytes);
+        } catch (_) {
+            return "";
+        }
+    }
 
+    function parseR2FeedbackItem(fileObj) {
+        if (!fileObj) return null;
+        const fileName = String(fileObj.fileName || fileObj.name || "").trim();
+        const imgUrl = String(
+            fileObj.r2Url ||
+            fileObj.url ||
+            (typeof getImageUrl === "function" ? getImageUrl(fileObj.key || fileObj.filePath || "") : "")
+        ).trim();
+        if (!imgUrl) return null;
+
+        let customerName = "Khách hàng Zalo";
+        let feedbackText = "Ảnh feedback giao dịch thực tế qua Zalo TSPORT";
+        let rating = 5;
+        let createdAt = "";
+
+        const dateMatch = fileName.match(/FB_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/i);
+        if (dateMatch) {
+            createdAt = dateMatch[3] + "/" + dateMatch[2] + "/" + dateMatch[1];
+        } else if (fileObj.uploaded || fileObj.createdAt) {
+            createdAt = formatReviewDateDisplay(fileObj.uploaded || fileObj.createdAt);
+        }
+
+        const metaMatch = fileName.match(/__META_([A-Za-z0-9\-_]+)/);
+        if (metaMatch && metaMatch[1]) {
+            const decodedJson = decodeBase64UrlUtf8(metaMatch[1]);
+            if (decodedJson) {
+                try {
+                    const metaObj = JSON.parse(decodedJson);
+                    if (metaObj && typeof metaObj === "object") {
+                        if (metaObj.n && String(metaObj.n).trim()) {
+                            customerName = String(metaObj.n).trim();
+                        }
+                        if (metaObj.t && String(metaObj.t).trim()) {
+                            feedbackText = String(metaObj.t).trim();
+                        }
+                        if (metaObj.r) {
+                            rating = Math.max(1, Math.min(5, Math.round(Number(metaObj.r) || 5)));
+                        }
+                    }
+                } catch (_) {}
+            }
+        }
+
+        return {
+            name: customerName,
+            rating: rating,
+            text: feedbackText,
+            image: imgUrl,
+            approved: true,
+            createdAt: createdAt || getTodayDmyString(),
+            isR2Feedback: true,
+            sortKey: fileName
+        };
+    }
+
+    function rebuildCombinedApprovedReviews() {
         hasLoadedCacheOrRemote = true;
 
-        // Kiểm tra xem dữ liệu mới có khác dữ liệu đang hiển thị không để tránh vẽ lại không cần thiết
+        // Kết hợp đánh giá chữ từ Google Sheet + Ảnh Feedback Zalo từ Cloudflare R2 (TSPORT/FEEDBACK/)
+        const combined = [];
+        const seenKeys = new Set();
+
+        sheetReviewsState.forEach(function (item) {
+            if (!item || !item.name) return;
+            const k = (String(item.name).trim() + "|" + getReviewTextSafe(item) + "|" + String(item.image || "")).toLowerCase();
+            if (!seenKeys.has(k)) {
+                seenKeys.add(k);
+                combined.push(item);
+            }
+        });
+
+        r2FeedbackState.forEach(function (item) {
+            if (!item || !item.image) return;
+            const k = "r2img|" + String(item.image).toLowerCase();
+            if (!seenKeys.has(k)) {
+                seenKeys.add(k);
+                combined.push(item);
+            }
+        });
+
         const oldSignature = JSON.stringify(approvedReviews);
-        const newSignature = JSON.stringify(sheetApproved);
+        const newSignature = JSON.stringify(combined);
 
         try {
             localStorage.setItem(CACHE_KEY, newSignature);
         } catch (_) {}
 
-        if (TSPORT_REVIEWS_CONFIG.useSheetAsPrimarySource) {
-            approvedReviews = sheetApproved;
-            if (oldSignature !== newSignature || approvedReviews.length === 0) {
-                currentIndex = 0;
-                const currentEl = activeSlot === "A" ? slideA : slideB;
-                if (currentEl && !isTransitioning) {
-                    currentEl.innerHTML = buildSlideInnerHtml(approvedReviews[0] || null);
+        approvedReviews = combined;
+
+        if (oldSignature !== newSignature || approvedReviews.length === 0) {
+            // Ưu tiên hiển thị ảnh Feedback Zalo mới nhất lên slide đầu tiên của ô Feedback trên web
+            let startIdx = Math.max(0, approvedReviews.length - 1);
+            for (let i = approvedReviews.length - 1; i >= 0; i--) {
+                if (approvedReviews[i] && approvedReviews[i].image) {
+                    startIdx = i;
+                    break;
                 }
             }
-        } else {
-            const existingKeys = new Set(
-                approvedReviews.map(function (r) {
-                    return (r.name + "|" + getReviewTextSafe(r)).toLowerCase();
-                })
-            );
-            sheetApproved.forEach(function (item) {
-                const key = (item.name + "|" + getReviewTextSafe(item)).toLowerCase();
-                if (!existingKeys.has(key)) {
-                    approvedReviews.push(item);
-                    existingKeys.add(key);
-                }
-            });
+            currentIndex = startIdx;
+            const currentEl = activeSlot === "A" ? slideA : slideB;
+            if (currentEl && !isTransitioning) {
+                currentEl.innerHTML = buildSlideInnerHtml(approvedReviews[currentIndex] || null);
+            }
         }
 
         updateHeaderStats();
         startRotation();
+    }
+
+    function applySheetApprovedReviews(sheetApproved) {
+        if (!Array.isArray(sheetApproved)) return false;
+        sheetReviewsState = sheetApproved;
+        rebuildCombinedApprovedReviews();
         return true;
+    }
+
+    function syncFeedbackImagesFromR2() {
+        const baseApi = (typeof IMAGE_API === "string" && IMAGE_API.trim())
+            ? IMAGE_API.trim()
+            : "https://tsport-image-api.ntr9766.workers.dev/";
+        const sep = baseApi.indexOf("?") === -1 ? "?" : "&";
+        const url = baseApi + sep + "folder=" + encodeURIComponent("TSPORT/FEEDBACK/") + "&_t=" + Date.now();
+
+        fetch(url, { cache: "no-store" })
+            .then(function (res) {
+                return res.ok ? res.json() : null;
+            })
+            .then(function (data) {
+                if (!data || !Array.isArray(data.images)) return;
+                const parsedItems = [];
+                data.images.forEach(function (fileObj) {
+                    const item = parseR2FeedbackItem(fileObj);
+                    if (item) {
+                        parsedItems.push(item);
+                    }
+                });
+                // Sắp xếp theo tên file tăng dần để ảnh mới nhất nằm cuối mảng (hiển thị đầu tiên khi reverse ở bảng Tất cả)
+                parsedItems.sort(function (a, b) {
+                    return String(a.sortKey || "").localeCompare(String(b.sortKey || ""));
+                });
+                r2FeedbackState = parsedItems;
+                rebuildCombinedApprovedReviews();
+            })
+            .catch(function () {});
     }
 
     function syncApprovedReviewsFromSheet() {
@@ -10495,18 +10512,33 @@ const TSPORT_REVIEWS_DATA = [];
                 })
                 .then(function (csvText) {
                     if (appsScriptResolved || !csvText || typeof parseCSV !== "function") return;
-                    const rows = parseCSV(csvText);
-                    if (!rows || !Array.isArray(rows)) return;
+                    const rawRows = parseCSV(csvText);
+                    if (!rawRows || !Array.isArray(rawRows) || rawRows.length === 0) return;
 
-                    // Nếu bảng Reviews trống (0 dòng dữ liệu), cập nhật ngay mảng rỗng
-                    if (rows.length === 0) {
-                        applySheetApprovedReviews([]);
-                        return;
+                    let rows = rawRows;
+                    if (Array.isArray(rawRows[0])) {
+                        if (rawRows.length < 2) return;
+                        const headers = rawRows[0].map(function (h) {
+                            return String(h || "").trim();
+                        });
+                        rows = [];
+                        for (let rIdx = 1; rIdx < rawRows.length; rIdx++) {
+                            const rowArr = rawRows[rIdx];
+                            if (!Array.isArray(rowArr)) continue;
+                            const obj = {};
+                            for (let cIdx = 0; cIdx < headers.length; cIdx++) {
+                                if (headers[cIdx]) {
+                                    obj[headers[cIdx]] = rowArr[cIdx] ?? "";
+                                }
+                            }
+                            rows.push(obj);
+                        }
                     }
+
+                    if (rows.length === 0) return;
 
                     const sheetApproved = [];
 
-                    // Trường hợp parseCSV trả về mảng Object [{ name, rating, text, approved, created_at, image }]
                     if (!Array.isArray(rows[0]) && typeof rows[0] === "object" && rows[0] !== null) {
                         const headerKeys = Object.keys(rows[0]).map(function (k) {
                             return String(k || "").trim().toLowerCase();
@@ -10519,7 +10551,6 @@ const TSPORT_REVIEWS_DATA = [];
                                 return k === "rating" || k === "sao" || k === "text" || k === "nội dung";
                             });
 
-                        // Nếu Google Sheet trả nhầm bảng sản phẩm (Mã, Tên vợt...) thì bỏ qua, không xóa cache đánh giá
                         if (!isValidReviewTable) {
                             return;
                         }
@@ -10595,7 +10626,7 @@ const TSPORT_REVIEWS_DATA = [];
                 .catch(function () {});
         }
 
-        // Luồng 2 (Chạy song song ngầm): Đọc qua Apps Script Web App để đồng bộ tức thì nếu vừa sửa trên Sheet
+        // Luồng 2 (Chạy song song ngầm): Đọc qua Apps Script Web App
         const webhookUrl = (TSPORT_REVIEWS_CONFIG.appsScriptWebhookUrl || "").trim();
         if (webhookUrl) {
             const sep = webhookUrl.indexOf("?") === -1 ? "?" : "&";
@@ -10606,12 +10637,6 @@ const TSPORT_REVIEWS_DATA = [];
                 .then(function (data) {
                     if (data && data.ok && Array.isArray(data.reviews)) {
                         appsScriptResolved = true;
-                        const existingImgByKey = {};
-                        approvedReviews.forEach(function (r) {
-                            if (r && r.name && r.image) {
-                                existingImgByKey[(r.name.trim() + "|" + getReviewTextSafe(r)).toLowerCase()] = r.image;
-                            }
-                        });
                         const valid = data.reviews
                             .filter(function (item) {
                                 return item && item.approved === true && item.name;
@@ -10619,12 +10644,11 @@ const TSPORT_REVIEWS_DATA = [];
                             .map(function (item) {
                                 const rNum = Math.max(1, Math.min(5, Number(item.rating) || 5));
                                 const tVal = String(item.text || "").trim() || DEFAULT_TEXT_BY_STAR[rNum] || DEFAULT_TEXT_BY_STAR[5];
-                                const key = (String(item.name || "").trim() + "|" + tVal).toLowerCase();
                                 return {
                                     name: String(item.name || "").trim(),
                                     rating: rNum,
                                     text: tVal,
-                                    image: String(item.image || existingImgByKey[key] || "").trim(),
+                                    image: String(item.image || "").trim(),
                                     approved: true,
                                     createdAt: item.createdAt || item.created_at || ""
                                 };
@@ -10636,6 +10660,7 @@ const TSPORT_REVIEWS_DATA = [];
         }
     }
 
+    syncFeedbackImagesFromR2();
     syncApprovedReviewsFromSheet();
 })();
 
