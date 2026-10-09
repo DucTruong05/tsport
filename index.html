@@ -30,7 +30,6 @@ gtag("js", new Date());
 gtag("config", "G-QLNGKQXHJ5");
 </script>
 
-
 <style>
 
 /* =====================================================
@@ -3200,6 +3199,7 @@ select.is-active {
 
 }
 
+
 /* =====================================================
    TSPORT CUSTOMER REVIEW SYSTEM (ISOLATED & SCOPED)
 ===================================================== */
@@ -3282,9 +3282,21 @@ select.is-active {
 
 .tsr-total-count {
     font-size: 11.5px;
-    font-weight: 600;
-    color: #94a3b8;
+    font-weight: 700;
+    color: #bae6fd;
     letter-spacing: 0.01em;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.tsr-total-count:hover {
+    background: rgba(56, 189, 248, 0.22);
+    border-color: rgba(56, 189, 248, 0.48);
+    color: #ffffff;
 }
 
 .tsr-mobile-minimize {
@@ -3324,9 +3336,16 @@ select.is-active {
 /* Smooth Vertical Sliding Review Viewport */
 .tsr-viewport {
     position: relative;
-    height: 94px;
+    height: 98px;
     overflow: hidden;
     margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.18s ease;
+}
+
+.tsr-viewport:hover {
+    background: rgba(30, 41, 59, 0.42);
 }
 
 .tsr-slide {
@@ -3335,7 +3354,7 @@ select.is-active {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2px 2px;
+    padding: 2px 4px;
     opacity: 0;
     transform: translate3d(0, 100%, 0);
     transition:
@@ -3407,6 +3426,13 @@ select.is-active {
     margin-bottom: 5px;
 }
 
+.tsr-author-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
 .tsr-author {
     font-size: 11.2px;
     font-weight: 700;
@@ -3417,32 +3443,81 @@ select.is-active {
     text-overflow: ellipsis;
 }
 
-/* Bottom Actions Row: Write Review + Backup Hide Button */
+.tsr-verified-mini {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 9.8px;
+    font-weight: 700;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 1px 5px;
+    border-radius: 999px;
+    line-height: 1.2;
+}
+
+/* Bottom Actions Row: View All + Write Review + Backup Hide Button */
 .tsr-bottom-actions {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     width: 100%;
+}
+
+/* View All Reviews Button inside Widget */
+.tsr-view-all-btn {
+    flex: 1;
+    min-width: 0;
+    appearance: none;
+    border: 1px solid rgba(250, 204, 21, 0.34);
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(234, 179, 8, 0.1));
+    color: #fef08a;
+    border-radius: 10px;
+    padding: 7px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+    touch-action: manipulation;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.18s ease,
+        color 0.2s ease;
+}
+
+.tsr-view-all-btn:hover {
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.28), rgba(234, 179, 8, 0.2));
+    border-color: rgba(250, 204, 21, 0.6);
+    color: #ffffff;
+    transform: translateY(-1px);
 }
 
 /* Write Review Button inside Widget */
 .tsr-write-btn {
-    flex: 1;
+    flex: 1.15;
     min-width: 0;
     appearance: none;
     border: 1px solid rgba(56, 189, 248, 0.28);
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(37, 99, 235, 0.14));
     color: #e0f2fe;
     border-radius: 10px;
-    padding: 7px 8px;
-    font-size: 11.2px;
+    padding: 7px 6px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 4px;
     white-space: nowrap;
     touch-action: manipulation;
     transition:
@@ -3472,14 +3547,14 @@ select.is-active {
     background: rgba(30, 41, 59, 0.78);
     color: #cbd5e1;
     border-radius: 10px;
-    padding: 7px 9px;
-    font-size: 11px;
+    padding: 7px 7px;
+    font-size: 10.8px;
     font-weight: 700;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 3px;
     white-space: nowrap;
     touch-action: manipulation;
     transition:
@@ -3770,6 +3845,472 @@ select.is-active {
     color: #fca5a5;
 }
 
+/* Optional 2-column row inside Write Review Form */
+.tsr-field-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.tsr-field-hint {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+    line-height: 1.35;
+}
+
+/* Proof Image Picker & Preview inside Write Review Form */
+.tsr-image-upload-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tsr-image-pick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30, 41, 59, 0.72);
+    border: 1px dashed rgba(56, 189, 248, 0.45);
+    color: #bae6fd;
+    border-radius: 11px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.tsr-image-pick-btn:hover {
+    background: rgba(14, 165, 233, 0.18);
+    border-color: rgba(56, 189, 248, 0.75);
+    color: #ffffff;
+}
+
+.tsr-image-preview-box {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(16, 185, 129, 0.36);
+    border-radius: 10px;
+    padding: 4px 8px 4px 4px;
+}
+
+.tsr-image-preview-box.has-image {
+    display: inline-flex;
+}
+
+.tsr-image-preview-thumb {
+    width: 38px;
+    height: 38px;
+    border-radius: 7px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tsr-image-preview-status {
+    font-size: 11px;
+    font-weight: 700;
+    color: #34d399;
+}
+
+.tsr-image-remove-btn {
+    appearance: none;
+    border: none;
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.tsr-image-remove-btn:hover {
+    background: rgba(239, 68, 68, 0.4);
+    color: #ffffff;
+}
+
+/* =====================================================
+   ALL REVIEWS MODAL (BẢNG TẤT CẢ ĐÁNH GIÁ & XÁC THỰC UY TÍN)
+===================================================== */
+.tsr-all-dialog {
+    max-width: 560px;
+    max-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 18px;
+}
+
+.tsr-trust-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(14, 165, 233, 0.12));
+    border: 1px solid rgba(16, 185, 129, 0.34);
+    border-radius: 12px;
+    padding: 9px 12px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #a7f3d0;
+    line-height: 1.4;
+}
+
+.tsr-trust-banner-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.tsr-summary-box {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 14px;
+    align-items: center;
+    background: rgba(30, 41, 59, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+}
+
+.tsr-summary-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid rgba(148, 163, 184, 0.16);
+    padding-right: 12px;
+}
+
+.tsr-summary-big-score {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fde047;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+.tsr-summary-stars {
+    font-size: 12px;
+    margin: 4px 0 3px;
+    letter-spacing: 1px;
+}
+
+.tsr-summary-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.tsr-summary-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tsr-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.tsr-bar-label {
+    width: 28px;
+    flex-shrink: 0;
+    color: #fde047;
+}
+
+.tsr-bar-track {
+    flex: 1;
+    height: 7px;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.tsr-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #facc15, #f59e0b);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+}
+
+.tsr-bar-num {
+    width: 24px;
+    text-align: right;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+/* Filter Pills inside All Reviews Modal */
+.tsr-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.tsr-filter-pill {
+    appearance: none;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(30, 41, 59, 0.6);
+    color: #cbd5e1;
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.tsr-filter-pill:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #f8fafc;
+}
+
+.tsr-filter-pill.is-active {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(37, 99, 235, 0.26));
+    border-color: rgba(56, 189, 248, 0.65);
+    color: #ffffff;
+}
+
+/* Scrollable List of All Review Cards */
+.tsr-all-list {
+    flex: 1;
+    min-height: 180px;
+    max-height: 340px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 4px;
+    margin-bottom: 14px;
+}
+
+.tsr-all-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tsr-all-list::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 999px;
+}
+
+.tsr-all-list::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.45);
+    border-radius: 999px;
+}
+
+.tsr-card-item {
+    background: rgba(30, 41, 59, 0.52);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 14px;
+    padding: 12px 14px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.tsr-card-item:hover {
+    background: rgba(30, 41, 59, 0.75);
+    border-color: rgba(56, 189, 248, 0.32);
+}
+
+.tsr-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 7px;
+}
+
+.tsr-card-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.tsr-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px -2px rgba(14, 165, 233, 0.4);
+}
+
+.tsr-user-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.tsr-user-name-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tsr-user-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.tsr-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.32);
+    padding: 1.5px 7px;
+    border-radius: 999px;
+}
+
+.tsr-user-subtags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.tsr-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10.8px;
+    font-weight: 600;
+    color: #bae6fd;
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.24);
+    padding: 1.5px 7px;
+    border-radius: 6px;
+}
+
+.tsr-card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.tsr-card-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #e2e8f0;
+    margin: 0;
+    word-break: break-word;
+}
+
+.tsr-card-proof-wrap {
+    margin-top: 9px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 10px;
+    padding: 5px 10px 5px 5px;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.tsr-card-proof-wrap:hover {
+    background: rgba(14, 165, 233, 0.16);
+    border-color: rgba(56, 189, 248, 0.65);
+    transform: translateY(-1px);
+}
+
+.tsr-card-proof-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 7px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    flex-shrink: 0;
+}
+
+.tsr-card-proof-label {
+    font-size: 11.2px;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 1.35;
+}
+
+.tsr-all-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.tsr-all-footer-zalo {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tsr-all-footer-zalo:hover {
+    text-decoration: underline;
+    color: #7dd3fc;
+}
+
+.tsr-all-write-cta {
+    appearance: none;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 12.2px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 8px 18px -4px rgba(14, 165, 233, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.tsr-all-write-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -4px rgba(14, 165, 233, 0.6);
+}
+
 /* Responsive Mobile Rules: Show X button on mobile to close review widget cleanly */
 @media (max-width: 900px) {
     .tsr-widget {
@@ -3778,7 +4319,7 @@ select.is-active {
         right: auto;
         bottom: auto;
         transform: translate3d(0, -50%, 0);
-        width: 232px;
+        width: 242px;
         padding: 10px 11px;
         border-radius: 14px;
     }
@@ -3798,12 +4339,33 @@ select.is-active {
     }
 
     .tsr-viewport {
-        height: 86px;
+        height: 90px;
         margin-bottom: 8px;
     }
 
     .tsr-quote {
         font-size: 11.5px;
+    }
+
+    .tsr-field-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .tsr-summary-box {
+        grid-template-columns: 105px 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .tsr-all-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .tsr-all-write-cta {
+        justify-content: center;
     }
 }
 
@@ -4082,7 +4644,7 @@ select.is-active {
         <select id="brandFilter">
 
             <option value="">
-                Tất cả hãng
+                Tất cả hãng &amp; phụ kiện
             </option>
 
         </select>
@@ -4100,11 +4662,19 @@ select.is-active {
         <select id="sortFilter">
 
             <option value="">
-                Mặc định
+                Sắp xếp: Mặc định
             </option>
 
             <option value="newest">
-                Mới nhất
+                🆕 Mới đăng nhất
+            </option>
+
+            <option value="priceAsc">
+                💰 Giá: Thấp → Cao
+            </option>
+
+            <option value="priceDesc">
+                💎 Giá: Cao → Thấp
             </option>
 
         </select>
@@ -4117,19 +4687,19 @@ select.is-active {
             </option>
 
             <option value="under500">
-                Dưới 500
+                💵 Dưới 500k
             </option>
 
             <option value="500to1000">
-                500 - 1000
+                💵 500k - 1 triệu
             </option>
 
             <option value="1000to2000">
-                1000 - 2000
+                💵 1 triệu - 2 triệu
             </option>
 
             <option value="2000plus">
-                Từ 2000 trở lên
+                💵 Từ 2 triệu trở lên
             </option>
 
         </select>
@@ -4328,7 +4898,7 @@ select.is-active {
             <span id="tsrAvgScore">--/5</span>
         </span>
         <div class="tsr-header-right">
-            <span id="tsrTotalCount" class="tsr-total-count">0 đánh giá</span>
+            <span id="tsrTotalCount" class="tsr-total-count" title="Nhấn để xem tất cả đánh giá">0 đánh giá ▸</span>
             <button
                 type="button"
                 id="tsrMobileMinBtn"
@@ -4341,7 +4911,7 @@ select.is-active {
         </div>
     </div>
 
-    <div id="tsrViewport" class="tsr-viewport" aria-live="polite">
+    <div id="tsrViewport" class="tsr-viewport" aria-live="polite" title="Nhấn để xem tất cả đánh giá khách hàng">
         <div id="tsrSlideA" class="tsr-slide is-active"></div>
         <div id="tsrSlideB" class="tsr-slide is-prep-bottom"></div>
     </div>
@@ -4349,11 +4919,21 @@ select.is-active {
     <div class="tsr-bottom-actions">
         <button
             type="button"
+            id="tsrOpenAllBtn"
+            class="tsr-view-all-btn"
+            title="Xem tất cả đánh giá khách hàng"
+        >
+            <span>📋</span>
+            <span>TẤT CẢ</span>
+        </button>
+        <button
+            type="button"
             id="tsrOpenModalBtn"
             class="tsr-write-btn"
+            title="Viết đánh giá trải nghiệm của bạn"
         >
             <span>✍️</span>
-            <span>VIẾT ĐÁNH GIÁ</span>
+            <span>ĐÁNH GIÁ</span>
         </button>
         <button
             type="button"
@@ -4405,7 +4985,7 @@ select.is-active {
 
         <form id="tsrReviewForm" novalidate>
             <div class="tsr-field">
-                <label class="tsr-label" for="tsrInputName">Tên của bạn *</label>
+                <label class="tsr-label" for="tsrInputName">Tên của bạn <span style="color:#f87171;">*</span> (Bắt buộc)</label>
                 <input
                     id="tsrInputName"
                     class="tsr-input"
@@ -4418,7 +4998,7 @@ select.is-active {
             </div>
 
             <div class="tsr-field">
-                <label class="tsr-label">Mức độ hài lòng *</label>
+                <label class="tsr-label">Số sao đánh giá <span style="color:#f87171;">*</span> (Bắt buộc)</label>
                 <div class="tsr-star-picker-wrap">
                     <div id="tsrStarPicker" class="tsr-star-picker" role="radiogroup" aria-label="Chọn số sao từ 1 đến 5">
                         <button type="button" class="tsr-star-btn is-selected" data-rating="1" aria-label="1 sao">★</button>
@@ -4431,14 +5011,62 @@ select.is-active {
                 </div>
             </div>
 
+            <div class="tsr-field-row">
+                <div>
+                    <label class="tsr-label" for="tsrInputRacket">Cây vợt đã mua (tùy chọn)</label>
+                    <input
+                        id="tsrInputRacket"
+                        class="tsr-input"
+                        type="text"
+                        maxlength="50"
+                        placeholder="VD: Astrox 88D Pro"
+                    >
+                </div>
+                <div>
+                    <label class="tsr-label" for="tsrInputPhoneLast3">3 số cuối SĐT (tùy chọn)</label>
+                    <input
+                        id="tsrInputPhoneLast3"
+                        class="tsr-input"
+                        type="text"
+                        inputmode="numeric"
+                        maxlength="4"
+                        placeholder="VD: 443"
+                    >
+                </div>
+            </div>
+
             <div class="tsr-field">
-                <label class="tsr-label" for="tsrInputText">Nội dung đánh giá *</label>
+                <label class="tsr-label" for="tsrInputImage">Ảnh minh chứng (tùy chọn)</label>
+                <div class="tsr-image-upload-wrap">
+                    <label for="tsrInputImage" class="tsr-image-pick-btn">
+                        <span>📷</span>
+                        <span id="tsrImagePickLabel">Chọn ảnh vợt / chụp màn hình Zalo</span>
+                    </label>
+                    <input
+                        id="tsrInputImage"
+                        type="file"
+                        accept="image/*"
+                        style="display:none;"
+                    >
+                    <div id="tsrImagePreviewBox" class="tsr-image-preview-box">
+                        <img id="tsrImagePreviewThumb" class="tsr-image-preview-thumb" src="" alt="Ảnh minh chứng">
+                        <span id="tsrImagePreviewStatus" class="tsr-image-preview-status">Đã nén chuẩn</span>
+                        <button type="button" id="tsrImageRemoveBtn" class="tsr-image-remove-btn" title="Xóa ảnh">✕</button>
+                    </div>
+                </div>
+                <div class="tsr-field-hint">
+                    💡 Ảnh sẽ được tự động thu gọn siêu nhẹ ngay trên trình duyệt để đính kèm vào đánh giá.
+                </div>
+            </div>
+
+            <div class="tsr-field">
+                <label class="tsr-label" for="tsrInputText">Nội dung nhận xét (tùy chọn)</label>
                 <textarea
                     id="tsrInputText"
                     class="tsr-textarea"
+                    style="min-height:68px;"
                     maxlength="260"
-                    placeholder="Chia sẻ trải nghiệm mua vợt và dịch vụ tại TSPORT..."
-                    required
+                    placeholder="Chia sẻ thêm cảm nhận của bạn (nếu để trống sẽ tự điền theo mức sao)..."
                 ></textarea>
             </div>
 
@@ -4448,6 +5076,74 @@ select.is-active {
 
             <div id="tsrFeedbackMsg" class="tsr-feedback-msg" role="status"></div>
         </form>
+    </div>
+</div>
+
+<!-- =====================================================
+     TSPORT ALL REVIEWS MODAL (BẢNG TẤT CẢ ĐÁNH GIÁ KHÁCH HÀNG)
+===================================================== -->
+<div
+    id="tsportAllReviewsModal"
+    class="tsr-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tsrAllModalTitle"
+    aria-hidden="true"
+>
+    <div class="tsr-modal-dialog tsr-all-dialog">
+        <div class="tsr-modal-head">
+            <h3 id="tsrAllModalTitle" class="tsr-modal-title">
+                <span>⭐</span>
+                <span>TẤT CẢ ĐÁNH GIÁ KHÁCH HÀNG</span>
+            </h3>
+            <button
+                type="button"
+                id="tsrCloseAllModalBtn"
+                class="tsr-modal-close"
+                aria-label="Đóng bảng tất cả đánh giá"
+                title="Đóng"
+            >
+                ✕
+            </button>
+        </div>
+
+        <div class="tsr-trust-banner">
+            <span class="tsr-trust-banner-icon">🛡️</span>
+            <span>100% đánh giá từ khách hàng giao dịch thật qua Zalo · Kiểm duyệt minh bạch bởi TSPORT</span>
+        </div>
+
+        <div class="tsr-summary-box">
+            <div class="tsr-summary-left">
+                <div id="tsrAllAvgScore" class="tsr-summary-big-score">5.0</div>
+                <div id="tsrAllAvgStars" class="tsr-summary-stars">⭐⭐⭐⭐⭐</div>
+                <div id="tsrAllTotalCount" class="tsr-summary-count">0 đánh giá</div>
+            </div>
+            <div id="tsrAllRatingBars" class="tsr-summary-bars"></div>
+        </div>
+
+        <div id="tsrAllFilterBar" class="tsr-filter-bar">
+            <button type="button" class="tsr-filter-pill is-active" data-filter="all">Tất cả</button>
+            <button type="button" class="tsr-filter-pill" data-filter="5">5 Sao ⭐</button>
+            <button type="button" class="tsr-filter-pill" data-filter="4">4 Sao ⭐</button>
+            <button type="button" class="tsr-filter-pill" data-filter="verified_detail">📷 Có ảnh / SĐT / Vợt</button>
+        </div>
+
+        <div id="tsrAllReviewsList" class="tsr-all-list"></div>
+
+        <div class="tsr-all-footer">
+            <a
+                href="https://zalo.me/0395364443"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tsr-all-footer-zalo"
+            >
+                💬 Xem thêm đối chứng giao dịch trên Zalo 0395364443 ↗
+            </a>
+            <button type="button" id="tsrSwitchToWriteBtn" class="tsr-all-write-cta">
+                <span>✍️</span>
+                <span>Viết đánh giá của bạn</span>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -4867,163 +5563,6 @@ function parseCSV(text) {
 
 
 /* =====================================================
-   LOAD PRODUCTS
-===================================================== */
-
-function getSkeletonCardsHTML(cardCount = 6) {
-    let html = "";
-    for (let i = 0; i < cardCount; i++) {
-        html += `
-            <div class="skeleton-card" aria-hidden="true">
-                <div class="skeleton-img"></div>
-                <div class="skeleton-body">
-                    <div class="skeleton-line sm"></div>
-                    <div class="skeleton-line lg"></div>
-                    <div class="skeleton-line price"></div>
-                    <div class="skeleton-line md"></div>
-                </div>
-            </div>
-        `;
-    }
-    return html;
-}
-
-async function loadProducts() {
-
-    const container =
-        document.getElementById("products");
-
-
-    container.innerHTML =
-        getSkeletonCardsHTML(6);
-
-
-    try {
-
-        console.log(
-            "TSPORT: Bắt đầu tải Google Sheet..."
-        );
-
-
-        const response =
-            await fetch(
-                SHEET_URL +
-                "&t=" +
-                Date.now(),
-                {
-                    cache: "no-store"
-                }
-            );
-
-
-        console.log(
-            "TSPORT: HTTP:",
-            response.status
-        );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Google Sheets HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const text =
-            await response.text();
-
-
-        console.log(
-            "TSPORT: Google Sheet response:",
-            text.substring(0, 500)
-        );
-
-
-        products =
-            parseCSV(text);
-
-        products.forEach(product => {
-            product._searchText =
-                Object.values(product)
-                    .join(" ")
-                    .toLowerCase();
-            product._priceNum =
-                getPriceNumber(product["Giá"]);
-            product._postTime =
-                parseProductDate(product["Ngày đăng"]);
-        });
-
-
-        console.log(
-            "TSPORT: Số sản phẩm:",
-            products.length
-        );
-
-
-        if (!products.length) {
-
-            container.innerHTML = `
-                <div class="loading">
-
-                    Không có sản phẩm.
-
-                    <br><br>
-
-                    Google Sheet không trả về dữ liệu.
-
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        console.log(
-            "TSPORT: Sản phẩm đầu tiên:",
-            products[0]
-        );
-
-
-        createFilters();
-
-        displayProducts(products);
-
-
-    } catch (error) {
-
-        console.error(
-            "TSPORT LOAD PRODUCTS ERROR:",
-            error
-        );
-
-
-        container.innerHTML = `
-            <div class="loading">
-
-                ❌ Không thể tải dữ liệu sản phẩm.
-
-                <br><br>
-
-                Lỗi:
-                ${escapeHTML(error.message)}
-
-                <br><br>
-
-                Mở F12 → Console để kiểm tra.
-
-            </div>
-        `;
-
-    }
-
-}
-
-
-/* =====================================================
    TECH SPECS PARSER & DISPLAY HELPERS (FBShop + VNB)
 ===================================================== */
 
@@ -5117,20 +5656,124 @@ function parseProductTechSpecs(rawStyle) {
 }
 
 
-function getPlayStyleFilterLabel(rawStyle) {
+const PLAYSTYLE_STANDARD_OPTIONS = [
+    { value: "Tấn công / Thiên công", label: "⚔️ Tấn công / Thiên công" },
+    { value: "Toàn diện - Thiên công", label: "🔥 Toàn diện - Thiên công" },
+    { value: "Công thủ toàn diện", label: "⚖️ Công thủ toàn diện" },
+    { value: "Phản tạt - Phòng thủ", label: "🛡️ Phản tạt - Phòng thủ" },
+    { value: "Giày", label: "👟 Giày cầu lông" },
+    { value: "Balo", label: "🎒 Balo / Túi vợt" }
+];
 
-    const specs = parseProductTechSpecs(rawStyle);
 
-    if (specs.playStyle) {
-        return specs.playStyle;
+function detectProductAccessoryType(rawStyle, productName) {
+
+    const nameLower = String(productName || "").trim().toLowerCase();
+    const rawLower = String(rawStyle || "").trim().toLowerCase();
+
+    if (/\b(balo|túi)\b/i.test(nameLower) || rawLower === "balo") {
+        return "Balo";
     }
 
-    return String(rawStyle || "").trim();
+    if (/\bgiày\b/i.test(nameLower) || rawLower === "giày") {
+        return "Giày";
+    }
+
+    return "";
 
 }
 
 
-function getCompactStyleForCard(rawStyle) {
+function getPlayStyleCategories(rawStyle, productName) {
+
+    const accessoryType = detectProductAccessoryType(rawStyle, productName);
+    if (accessoryType) {
+        return [accessoryType];
+    }
+
+    const rawText = String(rawStyle || "").trim();
+    if (!rawText || rawText === "-") {
+        return [];
+    }
+
+    const specs = parseProductTechSpecs(rawText);
+    const styleText = String(specs.playStyle || rawText).toLowerCase();
+    const balanceText = String(specs.balance || "").toLowerCase();
+
+    const categories = [];
+
+    // 1. Toàn diện - Thiên công
+    const isAllAroundAttack =
+        /toàn diện\s*[\-–/]\s*thiên công|công thủ toàn diện\s*[\-–/]\s*thiên công|toàn diện.*thiên công/i.test(styleText) ||
+        (styleText.includes("toàn diện") && styleText.includes("tấn công"));
+
+    if (isAllAroundAttack) {
+        categories.push("Toàn diện - Thiên công");
+    }
+
+    // 2. Tấn công / Thiên công
+    const isPureAllAroundAttackOnly =
+        /^(?:công thủ\s*)?toàn diện(?:,\s*toàn diện)?\s*[\-–/]\s*thiên công$/i.test(styleText.trim());
+
+    if (
+        /\btấn công\b|smash|ép cầu/i.test(styleText) ||
+        (styleText.includes("thiên công") && !isPureAllAroundAttackOnly)
+    ) {
+        categories.push("Tấn công / Thiên công");
+    }
+
+    // 3. Công thủ toàn diện
+    if (
+        styleText.includes("công thủ toàn diện") ||
+        styleText.includes("toàn diện, công thủ") ||
+        styleText.includes("linh hoạt") ||
+        (!specs.playStyle && balanceText.includes("cân bằng"))
+    ) {
+        categories.push("Công thủ toàn diện");
+    }
+
+    // 4. Phản tạt - Phòng thủ
+    if (/phản tạt|phòng thủ|thiên thủ|kiểm soát|điều cầu/i.test(styleText)) {
+        categories.push("Phản tạt - Phòng thủ");
+    }
+
+    if (categories.length === 0) {
+        if (balanceText.includes("nặng đầu")) {
+            categories.push("Tấn công / Thiên công");
+        } else if (balanceText.includes("nhẹ đầu")) {
+            categories.push("Phản tạt - Phòng thủ");
+        } else {
+            categories.push("Công thủ toàn diện");
+        }
+    }
+
+    return categories;
+
+}
+
+
+function getPlayStyleFilterLabel(rawStyle, productName) {
+
+    const categories = getPlayStyleCategories(rawStyle, productName);
+
+    if (categories.length > 0) {
+        return categories[0];
+    }
+
+    return "";
+
+}
+
+
+function getCompactStyleForCard(rawStyle, productName) {
+
+    const accessoryType = detectProductAccessoryType(rawStyle, productName);
+    if (accessoryType === "Giày") {
+        return "Giày cầu lông";
+    }
+    if (accessoryType === "Balo") {
+        return "Balo / Túi vợt";
+    }
 
     const specs = parseProductTechSpecs(rawStyle);
 
@@ -5138,15 +5781,23 @@ function getCompactStyleForCard(rawStyle) {
         return String(rawStyle || "").trim();
     }
 
-    const primaryStyle = specs.playStyle
+    let primaryStyle = specs.playStyle
         ? specs.playStyle.split(",")[0].trim()
         : "";
+
+    if (primaryStyle.length > 28) {
+        primaryStyle = getPlayStyleFilterLabel(rawStyle, productName) || primaryStyle.slice(0, 26).trim();
+    }
+
+    if (!primaryStyle && specs.balance) {
+        primaryStyle = specs.balance;
+    }
 
     if (primaryStyle && specs.stiffness) {
         return `${primaryStyle} · Đũa: ${specs.stiffness}`;
     }
 
-    if (primaryStyle && specs.balance) {
+    if (primaryStyle && specs.balance && primaryStyle !== specs.balance) {
         return `${primaryStyle} · ${specs.balance}`;
     }
 
@@ -5155,7 +5806,11 @@ function getCompactStyleForCard(rawStyle) {
 }
 
 
-function renderTechSpecsSectionHTML(rawStyle) {
+function renderTechSpecsSectionHTML(rawStyle, productName) {
+
+    if (detectProductAccessoryType(rawStyle, productName)) {
+        return "";
+    }
 
     const specs = parseProductTechSpecs(rawStyle);
 
@@ -5238,7 +5893,7 @@ function renderTechSpecsSectionHTML(rawStyle) {
                     ⚙️ Thông số kỹ thuật
                 </div>
                 <span class="tech-specs-badge">
-                    Thông Số Tham Khảo
+                    thông số tham khảo
                 </span>
             </div>
             <div class="tech-specs-grid">
@@ -5246,102 +5901,6 @@ function renderTechSpecsSectionHTML(rawStyle) {
             </div>
         </div>
     `;
-
-}
-
-
-/* =====================================================
-   FILTERS
-===================================================== */
-
-function createFilters() {
-
-    const brandFilter =
-        document.getElementById(
-            "brandFilter"
-        );
-
-
-    const styleFilter =
-        document.getElementById(
-            "styleFilter"
-        );
-
-
-    brandFilter.innerHTML =
-        `<option value="">Tất cả hãng</option>`;
-
-
-    styleFilter.innerHTML =
-        `<option value="">Tất cả lối đánh</option>`;
-
-
-    const brands =
-        [
-            ...new Set(
-                products
-                    .map(
-                        product =>
-                            product["Hãng"]
-                    )
-                    .filter(Boolean)
-            )
-        ];
-
-
-    const styles =
-        [
-            ...new Set(
-                products
-                    .map(
-                        product =>
-                            getPlayStyleFilterLabel(
-                                product["Lối đánh"]
-                            )
-                    )
-                    .filter(Boolean)
-            )
-        ];
-
-
-    brands.forEach(
-        brand => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value = brand;
-
-            option.textContent = brand;
-
-            brandFilter.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    styles.forEach(
-        style => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value = style;
-
-            option.textContent = style;
-
-            styleFilter.appendChild(
-                option
-            );
-
-        }
-    );
 
 }
 
@@ -5486,647 +6045,6 @@ function formatDisplayDate(value) {
         "/" +
         date.getFullYear()
     );
-
-}
-
-
-/* =====================================================
-   DISPLAY PRODUCTS & VIEWPORT SCROLL REVEAL
-===================================================== */
-
-let cardRevealObserver = null;
-let lastRevealScrollY = 0;
-let lastRevealScrollTime = 0;
-
-function observeProductCards(container) {
-
-    const cards =
-        Array.from(
-            container.querySelectorAll(
-                ".card.reveal-pending"
-            )
-        );
-
-
-    if (!cards.length) {
-        return;
-    }
-
-
-    if (!("IntersectionObserver" in window)) {
-
-        cards.forEach(card => {
-            card.classList.remove("reveal-pending");
-            card.classList.add("reveal-visible");
-        });
-
-        return;
-
-    }
-
-
-    if (cardRevealObserver) {
-        cardRevealObserver.disconnect();
-    }
-
-
-    lastRevealScrollY =
-        window.scrollY || window.pageYOffset || 0;
-    lastRevealScrollTime =
-        performance.now();
-
-
-    cardRevealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                const visibleEntries =
-                    entries.filter(
-                        entry => entry.isIntersecting
-                    );
-
-
-                if (!visibleEntries.length) {
-                    return;
-                }
-
-
-                const now = performance.now();
-                const currentY =
-                    window.scrollY || window.pageYOffset || 0;
-                const scrollDelta =
-                    Math.abs(currentY - lastRevealScrollY);
-                const timeDelta =
-                    Math.max(1, now - lastRevealScrollTime);
-
-                /* Nếu khách cuộn nhanh (vận tốc cao hoặc nhiều card cùng lọt vào viewport), hiện gần như tức thì */
-                const isFastScroll =
-                    scrollDelta > 260 ||
-                    (scrollDelta / timeDelta) > 1.1 ||
-                    visibleEntries.length > 6;
-
-                lastRevealScrollY = currentY;
-                lastRevealScrollTime = now;
-
-
-                visibleEntries.forEach(
-                    (entry, batchIndex) => {
-
-                        const card =
-                            entry.target;
-
-                        const delayMs =
-                            isFastScroll
-                                ? 0
-                                : Math.min(
-                                    batchIndex * 28,
-                                    112
-                                );
-
-                        card.style.setProperty(
-                            "--reveal-delay",
-                            `${delayMs}ms`
-                        );
-
-                        if (isFastScroll) {
-                            card.classList.add(
-                                "reveal-fast"
-                            );
-                        }
-
-                        card.classList.remove(
-                            "reveal-pending"
-                        );
-
-                        card.classList.add(
-                            "reveal-visible"
-                        );
-
-                        cardRevealObserver.unobserve(
-                            card
-                        );
-
-                        setTimeout(() => {
-                            card.style.removeProperty(
-                                "--reveal-delay"
-                            );
-                            card.classList.remove(
-                                "reveal-fast"
-                            );
-                        }, delayMs + 300);
-
-                    }
-                );
-
-            },
-            {
-                root: null,
-                rootMargin: "0px 0px 140px 0px",
-                threshold: 0.02
-            }
-        );
-
-
-    cards.forEach(card => {
-        cardRevealObserver.observe(card);
-    });
-
-}
-
-
-function displayProducts(list) {
-
-    const container =
-        document.getElementById(
-            "products"
-        );
-
-
-    const count =
-        document.getElementById(
-            "count"
-        );
-
-
-    container.classList.remove("no-reanimate");
-
-    if (cardRevealObserver) {
-        cardRevealObserver.disconnect();
-    }
-
-    container.innerHTML = "";
-
-
-    const hasActiveFilter =
-        typeof isAnyFilterActive === "function" &&
-        isAnyFilterActive();
-
-    count.innerHTML = `
-        <span class="count-line">${list.length} sản phẩm</span>
-        ${
-            hasActiveFilter
-            ? `<button type="button" class="filter-reset-btn" onclick="resetAllFilters()">↺ Đặt lại lọc</button>`
-            : ""
-        }
-    `;
-
-
-    if (!list.length) {
-
-        if (products && products.length > 0 && hasActiveFilter) {
-            container.innerHTML = `
-                <div class="empty-state">
-                    <div class="empty-state-title">
-                        Không tìm thấy cây vợt phù hợp
-                    </div>
-                    <div class="empty-state-sub">
-                        Hãy thử từ khóa khác hoặc đặt lại bộ lọc để xem toàn bộ vợt đang sẵn tại shop.
-                    </div>
-                    <button
-                        type="button"
-                        class="empty-reset-btn"
-                        onclick="resetAllFilters()"
-                    >
-                        ↺ Xem tất cả vợt
-                    </button>
-                </div>
-            `;
-        } else {
-            container.innerHTML = `
-                <div class="loading">
-                    Chưa có sản phẩm.
-                </div>
-            `;
-        }
-
-        return;
-
-    }
-
-
-    const fragment =
-        document.createDocumentFragment();
-    const nowTime =
-        Date.now();
-
-
-    list.forEach(
-        (product, index) => {
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "card reveal-pending";
-
-
-            const image =
-                getImageUrl(
-                    product["Ảnh"]
-                );
-
-
-            let imageHTML = "";
-
-
-            if (image) {
-
-                imageHTML = `
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}"
-                        loading="${index < 4 ? "eager" : "lazy"}"
-                        decoding="async"
-                        onerror="this.style.display='none';"
-                    >
-                `;
-
-            } else {
-
-                imageHTML = `
-                    <div class="no-image">
-                        Không có ảnh
-                    </div>
-                `;
-
-            }
-
-
-            const postTime =
-                product._postTime ??
-                parseProductDate(
-                    product["Ngày đăng"]
-                );
-
-
-            const isRecent =
-                postTime > 0 &&
-                (nowTime - postTime) >= -86400000 &&
-                (nowTime - postTime) <= 7 * 86400000;
-
-
-            const newBadgeHTML =
-                isRecent
-                ?
-                `
-                    <div class="card-badge-new">
-                        Mới về
-                    </div>
-                `
-                :
-                "";
-
-
-            const codeHTML =
-                product["Mã"]
-                ?
-                `
-                    <div class="card-code">
-                        #${escapeHTML(
-                            product["Mã"]
-                        )}
-                    </div>
-                `
-                :
-                "";
-
-
-            const dateHTML =
-                product["Ngày đăng"]
-                ?
-                `
-                    <div class="post-date">
-                        Đăng:
-                        ${formatDisplayDate(
-                            product["Ngày đăng"]
-                        )}
-                    </div>
-                `
-                :
-                "";
-
-
-            card.innerHTML = `
-
-                <div class="image-box">
-                    ${newBadgeHTML}
-                    ${imageHTML}
-                    <div class="card-quick-view">
-                        Xem chi tiết →
-                    </div>
-                </div>
-
-                <div class="card-info">
-
-                    <div class="card-top-row">
-
-                        <div class="brand">
-                            ${escapeHTML(
-                                product["Hãng"] || ""
-                            )}
-                        </div>
-
-                        ${codeHTML}
-
-                    </div>
-
-                    <div class="name">
-                        ${escapeHTML(
-                            product["Tên vợt"] || ""
-                        )}
-                    </div>
-
-                    <div class="price">
-                        ${formatPrice(
-                            product["Giá"]
-                        )}
-                    </div>
-
-                    <div class="meta">
-
-                        <div class="meta-condition">${escapeHTML(
-                            product["Tình trạng vợt"] || ""
-                        )}${
-                            product["Tình trạng cước"]
-                            ?
-                            (product["Tình trạng vợt"] ? " · " : "") +
-                            escapeHTML(
-                                product["Tình trạng cước"]
-                            )
-                            :
-                            ""
-                        }</div>
-
-                        ${
-                            product["Lối đánh"]
-                            ?
-                            `
-                                <div class="meta-style">
-                                    ${escapeHTML(
-                                        getCompactStyleForCard(
-                                            product["Lối đánh"]
-                                        )
-                                    )}
-                                </div>
-                            `
-                            :
-                            ""
-                        }
-
-                    </div>
-
-                    ${dateHTML}
-
-                </div>
-
-            `;
-
-
-            card.addEventListener(
-                "click",
-                () => showDetail(product)
-            );
-
-
-            fragment.appendChild(
-                card
-            );
-
-        }
-    );
-
-
-    container.appendChild(fragment);
-
-    observeProductCards(container);
-
-}
-
-
-/* =====================================================
-   GET FOLDER
-===================================================== */
-
-function getFolderFromProduct(product) {
-
-    if (!product) {
-        return "";
-    }
-
-
-    let value =
-        String(
-            product["Ảnh chi tiết"] ?? ""
-        ).trim();
-
-
-    if (!value) {
-        return "";
-    }
-
-
-    if (value.startsWith("/TSPORT/")) {
-        return value;
-    }
-
-
-    if (value.startsWith("TSPORT/")) {
-        return "/" + value;
-    }
-
-
-    const imageKitMatch =
-        value.match(
-            /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
-        );
-
-
-    if (imageKitMatch) {
-
-        try {
-
-            let encoded =
-                imageKitMatch[1]
-                    .replace(/-/g, "+")
-                    .replace(/_/g, "/");
-
-
-            while (
-                encoded.length % 4 !== 0
-            ) {
-
-                encoded += "=";
-
-            }
-
-
-            const decoded =
-                decodeURIComponent(
-                    atob(encoded)
-                );
-
-
-            return decoded.startsWith("/")
-                ? decoded
-                : "/" + decoded;
-
-
-        } catch (error) {
-
-            console.error(
-                "ImageKit decode error:",
-                error
-            );
-
-            return "";
-
-        }
-
-    }
-
-
-    return (
-        "/TSPORT/" +
-        value.replace(/^\/+/, "")
-    );
-
-}
-
-
-/* =====================================================
-   LOAD GALLERY
-===================================================== */
-
-const galleryCache = new Map();
-
-async function loadGalleryImages(folder) {
-
-    if (!folder) {
-        return [];
-    }
-
-
-    if (galleryCache.has(folder)) {
-        return galleryCache.get(folder);
-    }
-
-
-    const url =
-        IMAGE_API +
-        "?folder=" +
-        encodeURIComponent(folder);
-
-
-    try {
-
-        const response =
-            await fetch(
-                url,
-                {
-                    cache: "no-store"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "R2 Worker HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            !data ||
-            !data.success ||
-            !Array.isArray(data.images)
-        ) {
-
-            return [];
-
-        }
-
-
-        const urls = data.images
-            .map(image => {
-
-                if (!image) {
-                    return "";
-                }
-
-
-                if (image.r2Url) {
-                    return String(
-                        image.r2Url
-                    ).trim();
-                }
-
-
-                if (image.filePath) {
-
-                    const filePath =
-                        String(
-                            image.filePath
-                        ).trim();
-
-
-                    return (
-                        IMAGE_API +
-                        "?key=" +
-                        encodeURIComponent(
-                            filePath.replace(
-                                /^\/+/,
-                                ""
-                            )
-                        )
-                    );
-
-                }
-
-
-                if (image.url) {
-
-                    return String(
-                        image.url
-                    ).trim();
-
-                }
-
-
-                return "";
-
-            })
-            .filter(Boolean);
-
-
-        if (urls.length > 0) {
-            galleryCache.set(folder, urls);
-        }
-
-        return urls;
-
-
-    } catch (error) {
-
-        console.error(
-            "R2 GALLERY ERROR:",
-            error
-        );
-
-        return [];
-
-    }
 
 }
 
@@ -6553,827 +6471,6 @@ function closeImageModal() {
             modalCloseTimer = null;
 
         }, 220);
-
-}
-
-
-/* =====================================================
-   COPY RACKET CODE & DETAIL
-===================================================== */
-
-let copyToastTimer = null;
-
-function showCopyToast(message) {
-    const toast = document.getElementById("copyToast");
-    if (!toast) return;
-    toast.textContent = message;
-    toast.classList.add("is-visible");
-    if (copyToastTimer) {
-        clearTimeout(copyToastTimer);
-    }
-    copyToastTimer = setTimeout(() => {
-        toast.classList.remove("is-visible");
-        copyToastTimer = null;
-    }, 2200);
-}
-
-function copyRacketCode(rawCode, btnEl) {
-    const code = String(rawCode ?? "").trim();
-    if (!code) return;
-
-    const onCopied = () => {
-        showCopyToast(`✓ Đã copy mã vợt: #${code}`);
-        if (btnEl) {
-            btnEl.classList.add("is-copied");
-            btnEl.textContent = `✓ Đã copy mã: #${code}`;
-            setTimeout(() => {
-                if (btnEl && btnEl.isConnected) {
-                    btnEl.classList.remove("is-copied");
-                    btnEl.textContent = `📋 Copy mã vợt`;
-                }
-            }, 2200);
-        }
-    };
-
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
-        navigator.clipboard.writeText(code).then(onCopied).catch(() => {
-            fallbackCopyText(code, onCopied);
-        });
-    } else {
-        fallbackCopyText(code, onCopied);
-    }
-}
-
-function fallbackCopyText(text, callback) {
-    try {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "fixed";
-        ta.style.top = "-9999px";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        ta.setSelectionRange(0, text.length);
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        if (callback) callback();
-    } catch (err) {
-        console.warn("Clipboard fallback error:", err);
-    }
-}
-
-let isDetailOpen = false;
-
-async function showDetail(product) {
-
-    isDetailOpen = true;
-    scrollHintHidden = false;
-
-
-    productsScrollPosition =
-        window.scrollY ??
-        window.pageYOffset ??
-        document.documentElement.scrollTop ??
-        document.body.scrollTop ??
-        0;
-
-
-    if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-    }
-
-
-    const productsContainer =
-        document.getElementById(
-            "products"
-        );
-
-
-    productsContainer.classList.add(
-        "no-reanimate"
-    );
-
-
-    productsContainer.style.display =
-        "none";
-
-
-    document.getElementById(
-        "count"
-    ).style.display =
-        "none";
-
-
-    document.querySelector(
-        ".filters"
-    ).style.display =
-        "none";
-
-
-    document.querySelector(
-        ".search-box"
-    ).style.display =
-        "none";
-
-
-    const detail =
-        document.getElementById(
-            "detail"
-        );
-
-
-    detail.style.display =
-        "block";
-
-
-    const image =
-        getImageUrl(
-            product["Ảnh"]
-        );
-
-
-    const imageHTML =
-        image
-        ?
-        `
-            <img
-                class="detail-image"
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(
-                    product["Tên vợt"] || ""
-                )}"
-                decoding="async"
-            >
-        `
-        :
-        `
-            <div class="no-image">
-                Không có ảnh
-            </div>
-        `;
-
-
-    const dateHTML =
-        product["Ngày đăng"]
-        ?
-        `
-            <div class="detail-date">
-                Đăng ngày:
-                ${formatDisplayDate(
-                    product["Ngày đăng"]
-                )}
-            </div>
-        `
-        :
-        "";
-
-
-    const racketCode =
-        String(product["Mã"] ?? "").trim();
-
-    const copyCodeBtnHTML =
-        racketCode
-        ?
-        `
-            <button
-                type="button"
-                id="detailCopyCodeBtn"
-                class="copy-code-btn"
-            >
-                📋 Copy mã vợt
-            </button>
-        `
-        :
-        "";
-
-
-    detail.innerHTML = `
-
-        <div class="detail-sticky-bar">
-            <button
-                class="back"
-                type="button"
-                onclick="closeDetail()"
-            >
-                ← Quay lại
-            </button>
-        </div>
-
-
-        <div class="detail-image-box">
-
-            ${imageHTML}
-
-
-            <!-- MŨI TÊN HƯỚNG DẪN -->
-
-            <div
-                id="detailScrollHint"
-                class="detail-scroll-hint"
-            >
-
-                <div class="detail-scroll-arrow">
-                    ↓
-                </div>
-
-                <div class="detail-scroll-text">
-                    Kéo xuống xem chi tiết
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-content">
-
-            <div class="detail-brand">
-                ${escapeHTML(
-                    product["Hãng"] || ""
-                )}
-            </div>
-
-
-            <div class="detail-name">
-                ${escapeHTML(
-                    product["Tên vợt"] || ""
-                )}
-            </div>
-
-
-            <div class="detail-price">
-                ${formatPrice(
-                    product["Giá"]
-                )}
-            </div>
-
-
-            ${dateHTML}
-
-
-            <div class="detail-cta-wrap">
-                <a
-                    class="detail-cta-btn"
-                    href="https://zalo.me/0395364443"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    💬 Nhắn Zalo tư vấn / Chốt vợt
-                </a>
-                ${copyCodeBtnHTML}
-            </div>
-
-
-            <div class="detail-section-label">
-                📋 Thông tin tình trạng vợt
-            </div>
-
-            <div class="info-grid">
-
-                <div class="info-row info-row-blue">
-
-                    <strong>
-                        Mã vợt
-                    </strong>
-
-                    ${escapeHTML(
-                        product["Mã"] || "-"
-                    )}
-
-                </div>
-
-
-                <div class="info-row info-row-highlight">
-
-                    <strong>
-                        Tình trạng cước
-                    </strong>
-
-                    ${escapeHTML(
-                        product["Tình trạng cước"] || "-"
-                    )}
-
-                </div>
-
-
-                <div class="info-row info-row-highlight">
-
-                    <strong>
-                        Tình trạng vợt
-                    </strong>
-
-                    ${escapeHTML(
-                        product["Tình trạng vợt"] || "-"
-                    )}
-
-                </div>
-
-
-                <div class="info-row info-row-blue">
-
-                    <strong>
-                        Ghi chú
-                    </strong>
-
-                    ${escapeHTML(
-                        product["Ghi chú"] || "-"
-                    )}
-
-                </div>
-
-            </div>
-
-            ${renderTechSpecsSectionHTML(
-                product["Lối đánh"]
-            )}
-
-
-            <div
-                id="detailGallery"
-                class="detail-gallery"
-            >
-
-                <div class="detail-gallery-title">
-                    Ảnh thực tế sản phẩm
-                </div>
-
-                <div class="loading">
-                    Đang tải ảnh chi tiết...
-                </div>
-
-            </div>
-
-
-            <div class="detail-bottom-actions">
-                <button
-                    type="button"
-                    class="detail-bottom-back"
-                    onclick="closeDetail()"
-                >
-                    ← Quay lại danh sách
-                </button>
-
-                <a
-                    class="detail-cta-btn"
-                    href="https://zalo.me/0395364443"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    💬 Nhắn Zalo tư vấn / Chốt vợt
-                </a>
-            </div>
-
-        </div>
-
-    `;
-
-
-    const copyBtn =
-        document.getElementById(
-            "detailCopyCodeBtn"
-        );
-
-    if (copyBtn && racketCode) {
-        copyBtn.addEventListener(
-            "click",
-            () => copyRacketCode(racketCode, copyBtn)
-        );
-    }
-
-
-    document.documentElement.style.scrollBehavior = "auto";
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-
-    requestAnimationFrame(
-        updateDetailScrollHint
-    );
-
-
-    const galleryContainer =
-        document.getElementById(
-            "detailGallery"
-        );
-
-
-    const folder =
-        getFolderFromProduct(
-            product
-        );
-
-
-    if (!folder) {
-
-        galleryContainer.innerHTML = `
-
-            <div class="detail-gallery-title">
-                Ảnh thực tế sản phẩm
-            </div>
-
-            <div class="loading">
-                Sản phẩm chưa có ảnh chi tiết.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const urls =
-        await loadGalleryImages(
-            folder
-        );
-
-
-    if (!urls.length) {
-
-        galleryContainer.innerHTML = `
-
-            <div class="detail-gallery-title">
-                Ảnh thực tế sản phẩm
-            </div>
-
-            <div class="loading">
-
-                Không tìm thấy ảnh chi tiết.
-
-                <br><br>
-
-                Folder:
-
-                ${escapeHTML(folder)}
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    currentGallery =
-        urls;
-
-
-    currentImageIndex = 0;
-
-
-    galleryContainer.innerHTML = `
-
-        <div class="detail-gallery-title">
-            Ảnh thực tế sản phẩm
-            <span class="gallery-count-badge">
-                ${urls.length} ảnh
-            </span>
-        </div>
-
-        <div
-            id="detailGalleryGrid"
-            class="detail-gallery-grid"
-        ></div>
-
-    `;
-
-
-    const galleryGrid =
-        document.getElementById(
-            "detailGalleryGrid"
-        );
-
-    const galleryFragment =
-        document.createDocumentFragment();
-
-
-    urls.forEach(
-        (url, index) => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "detail-gallery-item";
-
-
-            const img =
-                document.createElement(
-                    "img"
-                );
-
-
-            img.src = url;
-
-            img.alt =
-                `Ảnh chi tiết ${index + 1}`;
-
-            img.loading = index < 4 ? "eager" : "lazy";
-            img.decoding = "async";
-
-
-            const indexBadge =
-                document.createElement(
-                    "span"
-                );
-
-            indexBadge.className =
-                "gallery-item-index";
-
-            indexBadge.textContent =
-                `Ảnh ${index + 1}/${urls.length}`;
-
-
-            item.appendChild(img);
-
-            item.appendChild(indexBadge);
-
-
-            item.addEventListener(
-                "click",
-                () => openGalleryImage(index)
-            );
-
-
-            galleryFragment.appendChild(item);
-
-        }
-    );
-
-    galleryGrid.appendChild(galleryFragment);
-
-}
-
-
-/* =====================================================
-   CLOSE DETAIL
-===================================================== */
-
-function closeDetail() {
-
-    isDetailOpen = false;
-
-    const savedScrollPosition =
-        Number(productsScrollPosition) || 0;
-
-
-    document.getElementById(
-        "detail"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "products"
-    ).style.display =
-        "grid";
-
-
-    document.getElementById(
-        "count"
-    ).style.display =
-        "block";
-
-
-    document.querySelector(
-        ".filters"
-    ).style.display =
-        "flex";
-
-
-    document.querySelector(
-        ".search-box"
-    ).style.display =
-        "block";
-
-
-    currentGallery = [];
-
-    currentImageIndex = 0;
-
-
-    /* Khôi phục vị trí scroll NGAY LẬP TỨC trong cùng tick trước khi trình duyệt paint */
-    document.documentElement.style.scrollBehavior = "auto";
-    void document.body.offsetHeight;
-
-    window.scrollTo(0, savedScrollPosition);
-    document.documentElement.scrollTop = savedScrollPosition;
-    document.body.scrollTop = savedScrollPosition;
-
-
-    requestAnimationFrame(
-        () => {
-
-            const currentY =
-                window.scrollY ??
-                window.pageYOffset ??
-                document.documentElement.scrollTop ??
-                0;
-
-            if (Math.abs(currentY - savedScrollPosition) > 1) {
-                window.scrollTo(0, savedScrollPosition);
-                document.documentElement.scrollTop = savedScrollPosition;
-                document.body.scrollTop = savedScrollPosition;
-            }
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   FILTER PRODUCTS
-===================================================== */
-
-function isAnyFilterActive() {
-    const searchEl = document.getElementById("search");
-    const brandEl = document.getElementById("brandFilter");
-    const styleEl = document.getElementById("styleFilter");
-    const sortEl = document.getElementById("sortFilter");
-    const priceEl = document.getElementById("priceFilter");
-
-    return Boolean(
-        (searchEl && searchEl.value.trim()) ||
-        (brandEl && brandEl.value) ||
-        (styleEl && styleEl.value) ||
-        (sortEl && sortEl.value) ||
-        (priceEl && priceEl.value)
-    );
-}
-
-function updateFilterUIState() {
-    const searchEl = document.getElementById("search");
-    const clearBtn = document.getElementById("searchClear");
-
-    if (clearBtn && searchEl) {
-        clearBtn.classList.toggle(
-            "is-visible",
-            searchEl.value.trim().length > 0
-        );
-    }
-
-    ["brandFilter", "styleFilter", "sortFilter", "priceFilter"].forEach(id => {
-        const selectEl = document.getElementById(id);
-        if (selectEl) {
-            selectEl.classList.toggle(
-                "is-active",
-                Boolean(selectEl.value)
-            );
-        }
-    });
-}
-
-function resetAllFilters() {
-    const searchEl = document.getElementById("search");
-    if (searchEl) searchEl.value = "";
-
-    ["brandFilter", "styleFilter", "sortFilter", "priceFilter"].forEach(id => {
-        const selectEl = document.getElementById(id);
-        if (selectEl) selectEl.value = "";
-    });
-
-    updateFilterUIState();
-    filterProducts();
-}
-
-function filterProducts() {
-
-    updateFilterUIState();
-
-    const search =
-        document.getElementById(
-            "search"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const brand =
-        document.getElementById(
-            "brandFilter"
-        ).value;
-
-
-    const style =
-        document.getElementById(
-            "styleFilter"
-        ).value;
-
-
-    const sort =
-        document.getElementById(
-            "sortFilter"
-        ).value;
-
-
-    const priceFilter =
-        document.getElementById(
-            "priceFilter"
-        ).value;
-
-
-    const filtered =
-        products.filter(
-            product => {
-
-                const text =
-                    product._searchText ??
-                    Object.values(product)
-                        .join(" ")
-                        .toLowerCase();
-
-
-                const price =
-                    product._priceNum ??
-                    getPriceNumber(
-                        product["Giá"]
-                    );
-
-
-                const priceOK =
-
-                    !priceFilter
-
-                    ||
-
-                    (
-                        priceFilter === "under500" &&
-                        price < 500
-                    )
-
-                    ||
-
-                    (
-                        priceFilter === "500to1000" &&
-                        price >= 500 &&
-                        price < 1000
-                    )
-
-                    ||
-
-                    (
-                        priceFilter === "1000to2000" &&
-                        price >= 1000 &&
-                        price < 2000
-                    )
-
-                    ||
-
-                    (
-                        priceFilter === "2000plus" &&
-                        price >= 2000
-                    );
-
-
-                return (
-
-                    (!search || text.includes(search))
-
-                    &&
-
-                    (
-                        !brand ||
-                        product["Hãng"] === brand
-                    )
-
-                    &&
-
-                    (
-                        !style ||
-                        product["Lối đánh"] === style ||
-                        getPlayStyleFilterLabel(product["Lối đánh"]) === style
-                    )
-
-                    &&
-
-                    priceOK
-
-                );
-
-            }
-        );
-
-
-    if (sort === "newest") {
-
-        filtered.sort(
-            (a, b) =>
-                (b._postTime ?? parseProductDate(b["Ngày đăng"])) -
-                (a._postTime ?? parseProductDate(a["Ngày đăng"]))
-        );
-
-    }
-
-
-    displayProducts(filtered);
 
 }
 
@@ -7993,6 +7090,1907 @@ document
 
 
 /* =====================================================
+   GET FOLDER
+===================================================== */
+
+function getFolderFromProduct(product) {
+
+    if (!product) {
+        return "";
+    }
+
+
+    let value =
+        String(
+            product["Ảnh chi tiết"] ?? ""
+        ).trim();
+
+
+    if (!value) {
+        return "";
+    }
+
+
+    if (value.startsWith("/TSPORT/")) {
+        return value;
+    }
+
+
+    if (value.startsWith("TSPORT/")) {
+        return "/" + value;
+    }
+
+
+    const imageKitMatch =
+        value.match(
+            /imagekit\.io\/dashboard\/media-library\/([^/?#]+)/
+        );
+
+
+    if (imageKitMatch) {
+
+        try {
+
+            let encoded =
+                imageKitMatch[1]
+                    .replace(/-/g, "+")
+                    .replace(/_/g, "/");
+
+
+            while (
+                encoded.length % 4 !== 0
+            ) {
+
+                encoded += "=";
+
+            }
+
+
+            const decoded =
+                decodeURIComponent(
+                    atob(encoded)
+                );
+
+
+            return decoded.startsWith("/")
+                ? decoded
+                : "/" + decoded;
+
+
+        } catch (error) {
+
+            console.error(
+                "ImageKit decode error:",
+                error
+            );
+
+            return "";
+
+        }
+
+    }
+
+
+    return (
+        "/TSPORT/" +
+        value.replace(/^\/+/, "")
+    );
+
+}
+
+
+/* =====================================================
+   LOAD GALLERY
+===================================================== */
+
+const galleryCache = new Map();
+
+async function loadGalleryImages(folder) {
+
+    if (!folder) {
+        return [];
+    }
+
+
+    if (galleryCache.has(folder)) {
+        return galleryCache.get(folder);
+    }
+
+
+    const url =
+        IMAGE_API +
+        "?folder=" +
+        encodeURIComponent(folder);
+
+
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "R2 Worker HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data ||
+            !data.success ||
+            !Array.isArray(data.images)
+        ) {
+
+            return [];
+
+        }
+
+
+        const urls = data.images
+            .map(image => {
+
+                if (!image) {
+                    return "";
+                }
+
+
+                if (image.r2Url) {
+                    return String(
+                        image.r2Url
+                    ).trim();
+                }
+
+
+                if (image.filePath) {
+
+                    const filePath =
+                        String(
+                            image.filePath
+                        ).trim();
+
+
+                    return (
+                        IMAGE_API +
+                        "?key=" +
+                        encodeURIComponent(
+                            filePath.replace(
+                                /^\/+/,
+                                ""
+                            )
+                        )
+                    );
+
+                }
+
+
+                if (image.url) {
+
+                    return String(
+                        image.url
+                    ).trim();
+
+                }
+
+
+                return "";
+
+            })
+            .filter(Boolean);
+
+
+        if (urls.length > 0) {
+            galleryCache.set(folder, urls);
+        }
+
+        return urls;
+
+
+    } catch (error) {
+
+        console.error(
+            "R2 GALLERY ERROR:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================================
+   COPY RACKET CODE & DETAIL
+===================================================== */
+
+let copyToastTimer = null;
+
+function showCopyToast(message) {
+    const toast = document.getElementById("copyToast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("is-visible");
+    if (copyToastTimer) {
+        clearTimeout(copyToastTimer);
+    }
+    copyToastTimer = setTimeout(() => {
+        toast.classList.remove("is-visible");
+        copyToastTimer = null;
+    }, 2200);
+}
+
+function copyRacketCode(rawCode, btnEl) {
+    const code = String(rawCode ?? "").trim();
+    if (!code) return;
+
+    const onCopied = () => {
+        showCopyToast(`✓ Đã copy mã vợt: #${code}`);
+        if (btnEl) {
+            btnEl.classList.add("is-copied");
+            btnEl.textContent = `✓ Đã copy mã: #${code}`;
+            setTimeout(() => {
+                if (btnEl && btnEl.isConnected) {
+                    btnEl.classList.remove("is-copied");
+                    btnEl.textContent = `📋 Copy mã vợt`;
+                }
+            }, 2200);
+        }
+    };
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        navigator.clipboard.writeText(code).then(onCopied).catch(() => {
+            fallbackCopyText(code, onCopied);
+        });
+    } else {
+        fallbackCopyText(code, onCopied);
+    }
+}
+
+function fallbackCopyText(text, callback) {
+    try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.top = "-9999px";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (callback) callback();
+    } catch (err) {
+        console.warn("Clipboard fallback error:", err);
+    }
+}
+
+let isDetailOpen = false;
+
+async function showDetail(product) {
+
+    isDetailOpen = true;
+    scrollHintHidden = false;
+
+
+    productsScrollPosition =
+        window.scrollY ??
+        window.pageYOffset ??
+        document.documentElement.scrollTop ??
+        document.body.scrollTop ??
+        0;
+
+
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+
+
+    const productsContainer =
+        document.getElementById(
+            "products"
+        );
+
+
+    productsContainer.classList.add(
+        "no-reanimate"
+    );
+
+
+    productsContainer.style.display =
+        "none";
+
+
+    document.getElementById(
+        "count"
+    ).style.display =
+        "none";
+
+
+    document.querySelector(
+        ".filters"
+    ).style.display =
+        "none";
+
+
+    document.querySelector(
+        ".search-box"
+    ).style.display =
+        "none";
+
+
+    const detail =
+        document.getElementById(
+            "detail"
+        );
+
+
+    detail.style.display =
+        "block";
+
+
+    const image =
+        getImageUrl(
+            product["Ảnh"]
+        );
+
+
+    const imageHTML =
+        image
+        ?
+        `
+            <img
+                class="detail-image"
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(
+                    product["Tên vợt"] || ""
+                )}"
+                decoding="async"
+            >
+        `
+        :
+        `
+            <div class="no-image">
+                Không có ảnh
+            </div>
+        `;
+
+
+    const dateHTML =
+        product["Ngày đăng"]
+        ?
+        `
+            <div class="detail-date">
+                Đăng ngày:
+                ${formatDisplayDate(
+                    product["Ngày đăng"]
+                )}
+            </div>
+        `
+        :
+        "";
+
+
+    const racketCode =
+        String(product["Mã"] ?? "").trim();
+
+    const copyCodeBtnHTML =
+        racketCode
+        ?
+        `
+            <button
+                type="button"
+                id="detailCopyCodeBtn"
+                class="copy-code-btn"
+            >
+                📋 Copy mã vợt
+            </button>
+        `
+        :
+        "";
+
+
+    detail.innerHTML = `
+
+        <div class="detail-sticky-bar">
+            <button
+                class="back"
+                type="button"
+                onclick="closeDetail()"
+            >
+                ← Quay lại
+            </button>
+        </div>
+
+
+        <div class="detail-image-box">
+
+            ${imageHTML}
+
+
+            <!-- MŨI TÊN HƯỚNG DẪN -->
+
+            <div
+                id="detailScrollHint"
+                class="detail-scroll-hint"
+            >
+
+                <div class="detail-scroll-arrow">
+                    ↓
+                </div>
+
+                <div class="detail-scroll-text">
+                    Kéo xuống xem chi tiết
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-content">
+
+            <div class="detail-brand">
+                ${escapeHTML(
+                    product["Hãng"] || ""
+                )}
+            </div>
+
+
+            <div class="detail-name">
+                ${escapeHTML(
+                    product["Tên vợt"] || ""
+                )}
+            </div>
+
+
+            <div class="detail-price">
+                ${formatPrice(
+                    product["Giá"]
+                )}
+            </div>
+
+
+            ${dateHTML}
+
+
+            <div class="detail-cta-wrap">
+                <a
+                    class="detail-cta-btn"
+                    href="https://zalo.me/0395364443"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    💬 Nhắn Zalo tư vấn / Chốt vợt
+                </a>
+                ${copyCodeBtnHTML}
+            </div>
+
+
+            <div class="detail-section-label">
+                📋 Thông tin tình trạng vợt
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-row info-row-blue">
+
+                    <strong>
+                        Mã vợt
+                    </strong>
+
+                    ${escapeHTML(
+                        product["Mã"] || "-"
+                    )}
+
+                </div>
+
+
+                <div class="info-row info-row-highlight">
+
+                    <strong>
+                        Tình trạng cước
+                    </strong>
+
+                    ${escapeHTML(
+                        product["Tình trạng cước"] || "-"
+                    )}
+
+                </div>
+
+
+                <div class="info-row info-row-highlight">
+
+                    <strong>
+                        Tình trạng vợt
+                    </strong>
+
+                    ${escapeHTML(
+                        product["Tình trạng vợt"] || "-"
+                    )}
+
+                </div>
+
+
+                <div class="info-row info-row-blue">
+
+                    <strong>
+                        Ghi chú
+                    </strong>
+
+                    ${escapeHTML(
+                        product["Ghi chú"] || "-"
+                    )}
+
+                </div>
+
+            </div>
+
+            ${renderTechSpecsSectionHTML(
+                product["Lối đánh"],
+                product["Tên vợt"]
+            )}
+
+
+            <div
+                id="detailGallery"
+                class="detail-gallery"
+            >
+
+                <div class="detail-gallery-title">
+                    Ảnh thực tế sản phẩm
+                </div>
+
+                <div class="loading">
+                    Đang tải ảnh chi tiết...
+                </div>
+
+            </div>
+
+
+            <div class="detail-bottom-actions">
+                <button
+                    type="button"
+                    class="detail-bottom-back"
+                    onclick="closeDetail()"
+                >
+                    ← Quay lại danh sách
+                </button>
+
+                <a
+                    class="detail-cta-btn"
+                    href="https://zalo.me/0395364443"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    💬 Nhắn Zalo tư vấn / Chốt vợt
+                </a>
+            </div>
+
+        </div>
+
+    `;
+
+
+    const copyBtn =
+        document.getElementById(
+            "detailCopyCodeBtn"
+        );
+
+    if (copyBtn && racketCode) {
+        copyBtn.addEventListener(
+            "click",
+            () => copyRacketCode(racketCode, copyBtn)
+        );
+    }
+
+
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+
+    requestAnimationFrame(
+        updateDetailScrollHint
+    );
+
+
+    const galleryContainer =
+        document.getElementById(
+            "detailGallery"
+        );
+
+
+    const folder =
+        getFolderFromProduct(
+            product
+        );
+
+
+    if (!folder) {
+
+        galleryContainer.innerHTML = `
+
+            <div class="detail-gallery-title">
+                Ảnh thực tế sản phẩm
+            </div>
+
+            <div class="loading">
+                Sản phẩm chưa có ảnh chi tiết.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const urls =
+        await loadGalleryImages(
+            folder
+        );
+
+
+    if (!urls.length) {
+
+        galleryContainer.innerHTML = `
+
+            <div class="detail-gallery-title">
+                Ảnh thực tế sản phẩm
+            </div>
+
+            <div class="loading">
+
+                Không tìm thấy ảnh chi tiết.
+
+                <br><br>
+
+                Folder:
+
+                ${escapeHTML(folder)}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    currentGallery =
+        urls;
+
+
+    currentImageIndex = 0;
+
+
+    galleryContainer.innerHTML = `
+
+        <div class="detail-gallery-title">
+            Ảnh thực tế sản phẩm
+            <span class="gallery-count-badge">
+                ${urls.length} ảnh
+            </span>
+        </div>
+
+        <div
+            id="detailGalleryGrid"
+            class="detail-gallery-grid"
+        ></div>
+
+    `;
+
+
+    const galleryGrid =
+        document.getElementById(
+            "detailGalleryGrid"
+        );
+
+    const galleryFragment =
+        document.createDocumentFragment();
+
+
+    urls.forEach(
+        (url, index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "detail-gallery-item";
+
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+
+            img.src = url;
+
+            img.alt =
+                `Ảnh chi tiết ${index + 1}`;
+
+            img.loading = index < 4 ? "eager" : "lazy";
+            img.decoding = "async";
+
+
+            const indexBadge =
+                document.createElement(
+                    "span"
+                );
+
+            indexBadge.className =
+                "gallery-item-index";
+
+            indexBadge.textContent =
+                `Ảnh ${index + 1}/${urls.length}`;
+
+
+            item.appendChild(img);
+
+            item.appendChild(indexBadge);
+
+
+            item.addEventListener(
+                "click",
+                () => openGalleryImage(index)
+            );
+
+
+            galleryFragment.appendChild(item);
+
+        }
+    );
+
+    galleryGrid.appendChild(galleryFragment);
+
+}
+
+
+/* =====================================================
+   CLOSE DETAIL
+===================================================== */
+
+function closeDetail() {
+
+    isDetailOpen = false;
+
+    const savedScrollPosition =
+        Number(productsScrollPosition) || 0;
+
+
+    document.getElementById(
+        "detail"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "products"
+    ).style.display =
+        "grid";
+
+
+    document.getElementById(
+        "count"
+    ).style.display =
+        "block";
+
+
+    document.querySelector(
+        ".filters"
+    ).style.display =
+        "flex";
+
+
+    document.querySelector(
+        ".search-box"
+    ).style.display =
+        "block";
+
+
+    currentGallery = [];
+
+    currentImageIndex = 0;
+
+
+    /* Khôi phục vị trí scroll NGAY LẬP TỨC trong cùng tick trước khi trình duyệt paint */
+    document.documentElement.style.scrollBehavior = "auto";
+    void document.body.offsetHeight;
+
+    window.scrollTo(0, savedScrollPosition);
+    document.documentElement.scrollTop = savedScrollPosition;
+    document.body.scrollTop = savedScrollPosition;
+
+
+    requestAnimationFrame(
+        () => {
+
+            const currentY =
+                window.scrollY ??
+                window.pageYOffset ??
+                document.documentElement.scrollTop ??
+                0;
+
+            if (Math.abs(currentY - savedScrollPosition) > 1) {
+                window.scrollTo(0, savedScrollPosition);
+                document.documentElement.scrollTop = savedScrollPosition;
+                document.body.scrollTop = savedScrollPosition;
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SCROLL HINT
+===================================================== */
+
+let scrollHintRafPending = false;
+
+function updateDetailScrollHint() {
+
+    scrollHintRafPending = false;
+
+    if (!isDetailOpen) {
+        return;
+    }
+
+    const hint =
+        document.getElementById(
+            "detailScrollHint"
+        );
+
+
+    const imageBox =
+        document.querySelector(
+            ".detail-image-box"
+        );
+
+
+    if (
+        !hint ||
+        !imageBox
+    ) {
+
+        return;
+
+    }
+
+
+    const rect =
+        imageBox.getBoundingClientRect();
+
+
+    /*
+       Khi toàn bộ khung ảnh đã đi khỏi
+       màn hình phía trên thì ẩn mũi tên.
+    */
+
+    if (rect.bottom <= 0) {
+
+        if (!scrollHintHidden) {
+            hint.style.opacity = "0";
+            hint.style.display = "none";
+            scrollHintHidden = true;
+        }
+
+        return;
+
+    }
+
+
+    if (scrollHintHidden) {
+        hint.style.display = "flex";
+        scrollHintHidden = false;
+    }
+
+
+    /*
+       Khi gần rời màn hình thì mờ dần.
+    */
+
+    const fadeStart = 80;
+
+
+    if (rect.bottom < fadeStart) {
+
+        const opacity =
+            rect.bottom /
+            fadeStart;
+
+
+        hint.style.opacity =
+            Math.max(
+                0,
+                Math.min(1, opacity)
+            );
+
+    } else {
+
+        hint.style.opacity = "1";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+        if (!isDetailOpen || scrollHintRafPending) {
+            return;
+        }
+        scrollHintRafPending = true;
+        requestAnimationFrame(updateDetailScrollHint);
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+function getSkeletonCardsHTML(cardCount = 6) {
+    let html = "";
+    for (let i = 0; i < cardCount; i++) {
+        html += `
+            <div class="skeleton-card" aria-hidden="true">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line sm"></div>
+                    <div class="skeleton-line lg"></div>
+                    <div class="skeleton-line price"></div>
+                    <div class="skeleton-line md"></div>
+                </div>
+            </div>
+        `;
+    }
+    return html;
+}
+
+async function loadProducts() {
+
+    const container =
+        document.getElementById("products");
+
+
+    container.innerHTML =
+        getSkeletonCardsHTML(6);
+
+
+    try {
+
+        console.log(
+            "TSPORT: Bắt đầu tải Google Sheet..."
+        );
+
+
+        const response =
+            await fetch(
+                SHEET_URL +
+                "&t=" +
+                Date.now(),
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        console.log(
+            "TSPORT: HTTP:",
+            response.status
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Google Sheets HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const text =
+            await response.text();
+
+
+        console.log(
+            "TSPORT: Google Sheet response:",
+            text.substring(0, 500)
+        );
+
+
+        products =
+            parseCSV(text).filter(
+                product =>
+                    Boolean(
+                        (product["Tên vợt"] && product["Tên vợt"].trim()) ||
+                        (product["Mã"] && product["Mã"].trim()) ||
+                        (product["Ảnh"] && product["Ảnh"].trim())
+                    )
+            );
+
+        products.forEach(product => {
+            product._searchText =
+                Object.values(product)
+                    .join(" ")
+                    .toLowerCase();
+            product._priceNum =
+                getPriceNumber(product["Giá"]);
+            product._postTime =
+                parseProductDate(product["Ngày đăng"]);
+            product._accessoryType =
+                detectProductAccessoryType(
+                    product["Lối đánh"],
+                    product["Tên vợt"]
+                );
+            product._styleCategories =
+                getPlayStyleCategories(
+                    product["Lối đánh"],
+                    product["Tên vợt"]
+                );
+        });
+
+
+        console.log(
+            "TSPORT: Số sản phẩm:",
+            products.length
+        );
+
+
+        if (!products.length) {
+
+            container.innerHTML = `
+                <div class="loading">
+
+                    Không có sản phẩm.
+
+                    <br><br>
+
+                    Google Sheet không trả về dữ liệu.
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        console.log(
+            "TSPORT: Sản phẩm đầu tiên:",
+            products[0]
+        );
+
+
+        createFilters();
+
+        displayProducts(products);
+
+
+    } catch (error) {
+
+        console.error(
+            "TSPORT LOAD PRODUCTS ERROR:",
+            error
+        );
+
+
+        container.innerHTML = `
+            <div class="loading">
+
+                ❌ Không thể tải dữ liệu sản phẩm.
+
+                <br><br>
+
+                Lỗi:
+                ${escapeHTML(error.message)}
+
+                <br><br>
+
+                Mở F12 → Console để kiểm tra.
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+function createFilters() {
+
+    const brandFilter =
+        document.getElementById(
+            "brandFilter"
+        );
+
+
+    const styleFilter =
+        document.getElementById(
+            "styleFilter"
+        );
+
+
+    brandFilter.innerHTML =
+        `<option value="">Tất cả hãng &amp; phụ kiện</option>`;
+
+
+    styleFilter.innerHTML =
+        `<option value="">Tất cả lối đánh</option>`;
+
+
+    const rawBrands =
+        [
+            ...new Set(
+                products
+                    .map(
+                        product =>
+                            String(product["Hãng"] || "").trim()
+                    )
+                    .filter(Boolean)
+            )
+        ];
+
+    const priorityOrder = ["Yonex", "Lining", "Victor"];
+    const sortedBrands = [
+        ...priorityOrder.filter(b => rawBrands.includes(b)),
+        ...rawBrands.filter(b => !priorityOrder.includes(b) && b !== "Khác"),
+        ...(rawBrands.includes("Khác") ? ["Khác"] : [])
+    ];
+
+
+    sortedBrands.forEach(
+        brand => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = brand;
+
+            option.textContent =
+                brand === "Khác"
+                    ? "🏸 Hãng khác"
+                    : `🏸 ${brand}`;
+
+            brandFilter.appendChild(
+                option
+            );
+
+        }
+    );
+
+    const hasShoes = products.some(p => p._accessoryType === "Giày");
+    const hasBags = products.some(p => p._accessoryType === "Balo");
+
+    if (hasShoes) {
+        const shoeOption = document.createElement("option");
+        shoeOption.value = "__cat_giay__";
+        shoeOption.textContent = "👟 Giày cầu lông";
+        brandFilter.appendChild(shoeOption);
+    }
+
+    if (hasBags) {
+        const bagOption = document.createElement("option");
+        bagOption.value = "__cat_balo__";
+        bagOption.textContent = "🎒 Balo / Túi vợt";
+        brandFilter.appendChild(bagOption);
+    }
+
+
+    const availableStyles = new Set();
+    products.forEach(product => {
+        const cats = product._styleCategories || [];
+        cats.forEach(cat => availableStyles.add(cat));
+    });
+
+    PLAYSTYLE_STANDARD_OPTIONS.forEach(
+        item => {
+
+            if (!availableStyles.has(item.value)) {
+                return;
+            }
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = item.value;
+
+            option.textContent = item.label;
+
+            styleFilter.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DISPLAY PRODUCTS & VIEWPORT SCROLL REVEAL
+===================================================== */
+
+let cardRevealObserver = null;
+let lastRevealScrollY = 0;
+let lastRevealScrollTime = 0;
+
+function observeProductCards(container) {
+
+    const cards =
+        Array.from(
+            container.querySelectorAll(
+                ".card.reveal-pending"
+            )
+        );
+
+
+    if (!cards.length) {
+        return;
+    }
+
+
+    if (!("IntersectionObserver" in window)) {
+
+        cards.forEach(card => {
+            card.classList.remove("reveal-pending");
+            card.classList.add("reveal-visible");
+        });
+
+        return;
+
+    }
+
+
+    if (cardRevealObserver) {
+        cardRevealObserver.disconnect();
+    }
+
+
+    lastRevealScrollY =
+        window.scrollY || window.pageYOffset || 0;
+    lastRevealScrollTime =
+        performance.now();
+
+
+    cardRevealObserver =
+        new IntersectionObserver(
+            entries => {
+
+                const visibleEntries =
+                    entries.filter(
+                        entry => entry.isIntersecting
+                    );
+
+
+                if (!visibleEntries.length) {
+                    return;
+                }
+
+
+                const now = performance.now();
+                const currentY =
+                    window.scrollY || window.pageYOffset || 0;
+                const scrollDelta =
+                    Math.abs(currentY - lastRevealScrollY);
+                const timeDelta =
+                    Math.max(1, now - lastRevealScrollTime);
+
+                /* Nếu khách cuộn nhanh (vận tốc cao hoặc nhiều card cùng lọt vào viewport), hiện gần như tức thì */
+                const isFastScroll =
+                    scrollDelta > 260 ||
+                    (scrollDelta / timeDelta) > 1.1 ||
+                    visibleEntries.length > 6;
+
+                lastRevealScrollY = currentY;
+                lastRevealScrollTime = now;
+
+
+                visibleEntries.forEach(
+                    (entry, batchIndex) => {
+
+                        const card =
+                            entry.target;
+
+                        const delayMs =
+                            isFastScroll
+                                ? 0
+                                : Math.min(
+                                    batchIndex * 28,
+                                    112
+                                );
+
+                        card.style.setProperty(
+                            "--reveal-delay",
+                            `${delayMs}ms`
+                        );
+
+                        if (isFastScroll) {
+                            card.classList.add(
+                                "reveal-fast"
+                            );
+                        }
+
+                        card.classList.remove(
+                            "reveal-pending"
+                        );
+
+                        card.classList.add(
+                            "reveal-visible"
+                        );
+
+                        cardRevealObserver.unobserve(
+                            card
+                        );
+
+                        setTimeout(() => {
+                            card.style.removeProperty(
+                                "--reveal-delay"
+                            );
+                            card.classList.remove(
+                                "reveal-fast"
+                            );
+                        }, delayMs + 300);
+
+                    }
+                );
+
+            },
+            {
+                root: null,
+                rootMargin: "0px 0px 140px 0px",
+                threshold: 0.02
+            }
+        );
+
+
+    cards.forEach(card => {
+        cardRevealObserver.observe(card);
+    });
+
+}
+
+
+function displayProducts(list) {
+
+    const container =
+        document.getElementById(
+            "products"
+        );
+
+
+    const count =
+        document.getElementById(
+            "count"
+        );
+
+
+    container.classList.remove("no-reanimate");
+
+    if (cardRevealObserver) {
+        cardRevealObserver.disconnect();
+    }
+
+    container.innerHTML = "";
+
+
+    const hasActiveFilter =
+        typeof isAnyFilterActive === "function" &&
+        isAnyFilterActive();
+
+    count.innerHTML = `
+        <span class="count-line">${list.length} sản phẩm</span>
+        ${
+            hasActiveFilter
+            ? `<button type="button" class="filter-reset-btn" onclick="resetAllFilters()">↺ Đặt lại lọc</button>`
+            : ""
+        }
+    `;
+
+
+    if (!list.length) {
+
+        if (products && products.length > 0 && hasActiveFilter) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-title">
+                        Không tìm thấy cây vợt phù hợp
+                    </div>
+                    <div class="empty-state-sub">
+                        Hãy thử từ khóa khác hoặc đặt lại bộ lọc để xem toàn bộ vợt đang sẵn tại shop.
+                    </div>
+                    <button
+                        type="button"
+                        class="empty-reset-btn"
+                        onclick="resetAllFilters()"
+                    >
+                        ↺ Xem tất cả vợt
+                    </button>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `
+                <div class="loading">
+                    Chưa có sản phẩm.
+                </div>
+            `;
+        }
+
+        return;
+
+    }
+
+
+    const fragment =
+        document.createDocumentFragment();
+    const nowTime =
+        Date.now();
+
+
+    list.forEach(
+        (product, index) => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card reveal-pending";
+
+
+            const image =
+                getImageUrl(
+                    product["Ảnh"]
+                );
+
+
+            let imageHTML = "";
+
+
+            if (image) {
+
+                imageHTML = `
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}"
+                        loading="${index < 4 ? "eager" : "lazy"}"
+                        decoding="async"
+                        onerror="this.style.display='none';"
+                    >
+                `;
+
+            } else {
+
+                imageHTML = `
+                    <div class="no-image">
+                        Không có ảnh
+                    </div>
+                `;
+
+            }
+
+
+            const postTime =
+                product._postTime ??
+                parseProductDate(
+                    product["Ngày đăng"]
+                );
+
+
+            const isRecent =
+                postTime > 0 &&
+                (nowTime - postTime) >= -86400000 &&
+                (nowTime - postTime) <= 7 * 86400000;
+
+
+            const newBadgeHTML =
+                isRecent
+                ?
+                `
+                    <div class="card-badge-new">
+                        Mới về
+                    </div>
+                `
+                :
+                "";
+
+
+            const codeHTML =
+                product["Mã"]
+                ?
+                `
+                    <div class="card-code">
+                        #${escapeHTML(
+                            product["Mã"]
+                        )}
+                    </div>
+                `
+                :
+                "";
+
+
+            const dateHTML =
+                product["Ngày đăng"]
+                ?
+                `
+                    <div class="post-date">
+                        Đăng:
+                        ${formatDisplayDate(
+                            product["Ngày đăng"]
+                        )}
+                    </div>
+                `
+                :
+                "";
+
+
+            card.innerHTML = `
+
+                <div class="image-box">
+                    ${newBadgeHTML}
+                    ${imageHTML}
+                    <div class="card-quick-view">
+                        Xem chi tiết →
+                    </div>
+                </div>
+
+                <div class="card-info">
+
+                    <div class="card-top-row">
+
+                        <div class="brand">
+                            ${escapeHTML(
+                                product["Hãng"] || ""
+                            )}
+                        </div>
+
+                        ${codeHTML}
+
+                    </div>
+
+                    <div class="name">
+                        ${escapeHTML(
+                            product["Tên vợt"] || ""
+                        )}
+                    </div>
+
+                    <div class="price">
+                        ${formatPrice(
+                            product["Giá"]
+                        )}
+                    </div>
+
+                    <div class="meta">
+
+                        <div class="meta-condition">${escapeHTML(
+                            product["Tình trạng vợt"] || ""
+                        )}${
+                            product["Tình trạng cước"]
+                            ?
+                            (product["Tình trạng vợt"] ? " · " : "") +
+                            escapeHTML(
+                                product["Tình trạng cước"]
+                            )
+                            :
+                            ""
+                        }</div>
+
+                        ${
+                            (product["Lối đánh"] || product._accessoryType)
+                            ?
+                            `
+                                <div class="meta-style">
+                                    ${escapeHTML(
+                                        getCompactStyleForCard(
+                                            product["Lối đánh"],
+                                            product["Tên vợt"]
+                                        )
+                                    )}
+                                </div>
+                            `
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                    ${dateHTML}
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                () => showDetail(product)
+            );
+
+
+            fragment.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    container.appendChild(fragment);
+
+    observeProductCards(container);
+
+}
+
+
+/* =====================================================
+   FILTER PRODUCTS
+===================================================== */
+
+function isAnyFilterActive() {
+    const searchEl = document.getElementById("search");
+    const brandEl = document.getElementById("brandFilter");
+    const styleEl = document.getElementById("styleFilter");
+    const sortEl = document.getElementById("sortFilter");
+    const priceEl = document.getElementById("priceFilter");
+
+    return Boolean(
+        (searchEl && searchEl.value.trim()) ||
+        (brandEl && brandEl.value) ||
+        (styleEl && styleEl.value) ||
+        (sortEl && sortEl.value) ||
+        (priceEl && priceEl.value)
+    );
+}
+
+function updateFilterUIState() {
+    const searchEl = document.getElementById("search");
+    const clearBtn = document.getElementById("searchClear");
+
+    if (clearBtn && searchEl) {
+        clearBtn.classList.toggle(
+            "is-visible",
+            searchEl.value.trim().length > 0
+        );
+    }
+
+    ["brandFilter", "styleFilter", "sortFilter", "priceFilter"].forEach(id => {
+        const selectEl = document.getElementById(id);
+        if (selectEl) {
+            selectEl.classList.toggle(
+                "is-active",
+                Boolean(selectEl.value)
+            );
+        }
+    });
+}
+
+function resetAllFilters() {
+    const searchEl = document.getElementById("search");
+    if (searchEl) searchEl.value = "";
+
+    ["brandFilter", "styleFilter", "sortFilter", "priceFilter"].forEach(id => {
+        const selectEl = document.getElementById(id);
+        if (selectEl) selectEl.value = "";
+    });
+
+    updateFilterUIState();
+    filterProducts();
+}
+
+function filterProducts() {
+
+    updateFilterUIState();
+
+    const search =
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const brand =
+        document.getElementById(
+            "brandFilter"
+        ).value;
+
+
+    const style =
+        document.getElementById(
+            "styleFilter"
+        ).value;
+
+
+    const sort =
+        document.getElementById(
+            "sortFilter"
+        ).value;
+
+
+    const priceFilter =
+        document.getElementById(
+            "priceFilter"
+        ).value;
+
+
+    const filtered =
+        products.filter(
+            product => {
+
+                const text =
+                    product._searchText ??
+                    Object.values(product)
+                        .join(" ")
+                        .toLowerCase();
+
+
+                const price =
+                    product._priceNum ??
+                    getPriceNumber(
+                        product["Giá"]
+                    );
+
+
+                const priceOK =
+
+                    !priceFilter
+
+                    ||
+
+                    (
+                        priceFilter === "under500" &&
+                        price > 0 &&
+                        price < 500
+                    )
+
+                    ||
+
+                    (
+                        priceFilter === "500to1000" &&
+                        price >= 500 &&
+                        price < 1000
+                    )
+
+                    ||
+
+                    (
+                        priceFilter === "1000to2000" &&
+                        price >= 1000 &&
+                        price < 2000
+                    )
+
+                    ||
+
+                    (
+                        priceFilter === "2000plus" &&
+                        price >= 2000
+                    );
+
+
+                const accessoryType =
+                    product._accessoryType ??
+                    detectProductAccessoryType(
+                        product["Lối đánh"],
+                        product["Tên vợt"]
+                    );
+
+                const brandOK =
+                    !brand ||
+                    (brand === "__cat_giay__" && accessoryType === "Giày") ||
+                    (brand === "__cat_balo__" && accessoryType === "Balo") ||
+                    (
+                        brand !== "__cat_giay__" &&
+                        brand !== "__cat_balo__" &&
+                        product["Hãng"] === brand &&
+                        (brand !== "Khác" || !accessoryType)
+                    );
+
+
+                const styleCategories =
+                    product._styleCategories ??
+                    getPlayStyleCategories(
+                        product["Lối đánh"],
+                        product["Tên vợt"]
+                    );
+
+                const styleOK =
+                    !style ||
+                    styleCategories.includes(style) ||
+                    product["Lối đánh"] === style;
+
+
+                return (
+                    (!search || text.includes(search)) &&
+                    brandOK &&
+                    styleOK &&
+                    priceOK
+                );
+
+            }
+        );
+
+
+    if (sort === "newest") {
+
+        filtered.sort(
+            (a, b) =>
+                (b._postTime ?? parseProductDate(b["Ngày đăng"])) -
+                (a._postTime ?? parseProductDate(a["Ngày đăng"]))
+        );
+
+    } else if (sort === "priceAsc") {
+
+        filtered.sort((a, b) => {
+            const pA = a._priceNum ?? getPriceNumber(a["Giá"]);
+            const pB = b._priceNum ?? getPriceNumber(b["Giá"]);
+            if (pA <= 0 && pB <= 0) return 0;
+            if (pA <= 0) return 1;
+            if (pB <= 0) return -1;
+            return pA - pB;
+        });
+
+    } else if (sort === "priceDesc") {
+
+        filtered.sort((a, b) => {
+            const pA = a._priceNum ?? getPriceNumber(a["Giá"]);
+            const pB = b._priceNum ?? getPriceNumber(b["Giá"]);
+            if (pA <= 0 && pB <= 0) return 0;
+            if (pA <= 0) return 1;
+            if (pB <= 0) return -1;
+            return pB - pA;
+        });
+
+    }
+
+
+    displayProducts(filtered);
+
+}
+
+
+/* =====================================================
    SEARCH EVENTS
 ===================================================== */
 
@@ -8077,6 +9075,37 @@ if (tsportLogoEl) {
         filterProducts();
     });
 }
+
+
+/* =====================================================
+   START
+===================================================== */
+
+console.log(
+    "TSPORT: JavaScript OK"
+);
+
+console.log(
+    "TSPORT: Google Sheet:",
+    SHEET_URL
+);
+
+console.log(
+    "TSPORT: R2 Worker:",
+    IMAGE_API
+);
+
+console.log(
+    "TSPORT: Zalo:",
+    "https://zalo.me/0395364443"
+);
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+loadProducts();
 
 
 /* =====================================================
@@ -8316,145 +9345,6 @@ if (tsportLogoEl) {
 
 
 /* =====================================================
-   SCROLL HINT
-===================================================== */
-
-let scrollHintRafPending = false;
-
-function updateDetailScrollHint() {
-
-    scrollHintRafPending = false;
-
-    if (!isDetailOpen) {
-        return;
-    }
-
-    const hint =
-        document.getElementById(
-            "detailScrollHint"
-        );
-
-
-    const imageBox =
-        document.querySelector(
-            ".detail-image-box"
-        );
-
-
-    if (
-        !hint ||
-        !imageBox
-    ) {
-
-        return;
-
-    }
-
-
-    const rect =
-        imageBox.getBoundingClientRect();
-
-
-    /*
-       Khi toàn bộ khung ảnh đã đi khỏi
-       màn hình phía trên thì ẩn mũi tên.
-    */
-
-    if (rect.bottom <= 0) {
-
-        if (!scrollHintHidden) {
-            hint.style.opacity = "0";
-            hint.style.display = "none";
-            scrollHintHidden = true;
-        }
-
-        return;
-
-    }
-
-
-    if (scrollHintHidden) {
-        hint.style.display = "flex";
-        scrollHintHidden = false;
-    }
-
-
-    /*
-       Khi gần rời màn hình thì mờ dần.
-    */
-
-    const fadeStart = 80;
-
-
-    if (rect.bottom < fadeStart) {
-
-        const opacity =
-            rect.bottom /
-            fadeStart;
-
-
-        hint.style.opacity =
-            Math.max(
-                0,
-                Math.min(1, opacity)
-            );
-
-    } else {
-
-        hint.style.opacity = "1";
-
-    }
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    () => {
-        if (!isDetailOpen || scrollHintRafPending) {
-            return;
-        }
-        scrollHintRafPending = true;
-        requestAnimationFrame(updateDetailScrollHint);
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* =====================================================
-   START
-===================================================== */
-
-console.log(
-    "TSPORT: JavaScript OK"
-);
-
-console.log(
-    "TSPORT: Google Sheet:",
-    SHEET_URL
-);
-
-console.log(
-    "TSPORT: R2 Worker:",
-    IMAGE_API
-);
-
-console.log(
-    "TSPORT: Zalo:",
-    "https://zalo.me/0395364443"
-);
-
-
-/* =====================================================
-   LOAD
-===================================================== */
-
-loadProducts();
-
-
-/* =====================================================
    QUẢN LÝ DỮ LIỆU ĐÁNH GIÁ KHÁCH HÀNG (TSPORT REVIEWS)
    - Dễ dàng thêm / sửa / xóa đánh giá tại mảng TSPORT_REVIEWS_DATA bên dưới.
    - Chỉ những đánh giá có `approved: true` mới hiển thị trên website.
@@ -8491,6 +9381,7 @@ const TSPORT_REVIEWS_DATA = [];
 ===================================================== */
 (function initTsportReviewSystem() {
     const widgetEl = document.getElementById("tsportReviewWidget");
+    const viewportEl = document.getElementById("tsrViewport");
     const slideA = document.getElementById("tsrSlideA");
     const slideB = document.getElementById("tsrSlideB");
     const avgScoreEl = document.getElementById("tsrAvgScore");
@@ -8501,11 +9392,30 @@ const TSPORT_REVIEWS_DATA = [];
     const mobileMinBtn = document.getElementById("tsrMobileMinBtn");
     const hideWidgetBtn = document.getElementById("tsrHideWidgetBtn");
 
+    const openAllBtn = document.getElementById("tsrOpenAllBtn");
+    const allModalBackdrop = document.getElementById("tsportAllReviewsModal");
+    const closeAllModalBtn = document.getElementById("tsrCloseAllModalBtn");
+    const allAvgScoreEl = document.getElementById("tsrAllAvgScore");
+    const allAvgStarsEl = document.getElementById("tsrAllAvgStars");
+    const allTotalCountEl = document.getElementById("tsrAllTotalCount");
+    const allRatingBarsEl = document.getElementById("tsrAllRatingBars");
+    const allFilterBarEl = document.getElementById("tsrAllFilterBar");
+    const allReviewsListEl = document.getElementById("tsrAllReviewsList");
+    const switchToWriteBtn = document.getElementById("tsrSwitchToWriteBtn");
+
     const openModalBtn = document.getElementById("tsrOpenModalBtn");
     const modalBackdrop = document.getElementById("tsportReviewModal");
     const closeModalBtn = document.getElementById("tsrCloseModalBtn");
     const reviewForm = document.getElementById("tsrReviewForm");
     const inputName = document.getElementById("tsrInputName");
+    const inputRacket = document.getElementById("tsrInputRacket");
+    const inputPhoneLast3 = document.getElementById("tsrInputPhoneLast3");
+    const inputImage = document.getElementById("tsrInputImage");
+    const imagePickLabel = document.getElementById("tsrImagePickLabel");
+    const imagePreviewBox = document.getElementById("tsrImagePreviewBox");
+    const imagePreviewThumb = document.getElementById("tsrImagePreviewThumb");
+    const imagePreviewStatus = document.getElementById("tsrImagePreviewStatus");
+    const imageRemoveBtn = document.getElementById("tsrImageRemoveBtn");
     const inputText = document.getElementById("tsrInputText");
     const starPicker = document.getElementById("tsrStarPicker");
     const starLabel = document.getElementById("tsrStarLabel");
@@ -8522,12 +9432,31 @@ const TSPORT_REVIEWS_DATA = [];
         5: "5 sao · Rất hài lòng"
     };
 
+    const DEFAULT_TEXT_BY_STAR = {
+        5: "Rất hài lòng với chất lượng vợt và dịch vụ tại TSPORT!",
+        4: "Hài lòng với sản phẩm và sự hỗ trợ nhiệt tình của TSPORT.",
+        3: "Sản phẩm ổn, đúng mô tả của shop.",
+        2: "Trải nghiệm dịch vụ tạm ổn.",
+        1: "Mong shop cải thiện thêm dịch vụ."
+    };
+
+    const AVATAR_GRADIENTS = [
+        "linear-gradient(135deg, #0ea5e9, #2563eb)",
+        "linear-gradient(135deg, #10b981, #059669)",
+        "linear-gradient(135deg, #f59e0b, #d97706)",
+        "linear-gradient(135deg, #8b5cf6, #6d28d9)",
+        "linear-gradient(135deg, #ec4899, #be185d)",
+        "linear-gradient(135deg, #06b6d4, #0284c7)"
+    ];
+
     const CACHE_KEY = "tsport_reviews_cache_v2";
+    const REVIEW_IMAGES_STORAGE_KEY = "tsport_review_images_v1";
     let hasLoadedCacheOrRemote = false;
+    let compressedProofDataUrl = "";
 
     // Only keep reviews where approved === true
     let approvedReviews = TSPORT_REVIEWS_DATA.filter(function (item) {
-        return item && item.approved === true && item.name && item.text;
+        return item && item.approved === true && item.name;
     });
 
     // 1. Đọc tức thì (0ms) từ bộ nhớ đệm localStorage để không bao giờ phải chờ mạng
@@ -8537,7 +9466,7 @@ const TSPORT_REVIEWS_DATA = [];
             const parsed = JSON.parse(cachedRaw);
             if (Array.isArray(parsed)) {
                 approvedReviews = parsed.filter(function (item) {
-                    return item && item.approved === true && item.name && item.text;
+                    return item && item.approved === true && item.name;
                 });
                 hasLoadedCacheOrRemote = true;
             }
@@ -8549,6 +9478,8 @@ const TSPORT_REVIEWS_DATA = [];
     let rotationTimer = null;
     let isHoveredOrPaused = false;
     let isModalOpen = false;
+    let isAllModalOpen = false;
+    let currentAllFilter = "all";
     let isTransitioning = false;
     let selectedRating = 5;
 
@@ -8564,6 +9495,208 @@ const TSPORT_REVIEWS_DATA = [];
     function renderStarsString(ratingNum) {
         const clamped = Math.max(1, Math.min(5, Math.round(Number(ratingNum) || 5)));
         return "⭐".repeat(clamped);
+    }
+
+    function getReviewTextSafe(review) {
+        const raw = String((review && review.text) || "").trim();
+        if (raw) return raw;
+        const star = Math.max(1, Math.min(5, Math.round(Number(review && review.rating) || 5)));
+        return DEFAULT_TEXT_BY_STAR[star] || DEFAULT_TEXT_BY_STAR[5];
+    }
+
+    // Tự động thu nhỏ & nén ảnh minh chứng ngay trên trình duyệt (< 42.000 ký tự để lưu vừa 1 ô Google Sheet)
+    function compressReviewImageFile(file) {
+        return new Promise(function (resolve, reject) {
+            if (!file || !file.type || !file.type.startsWith("image/")) {
+                reject(new Error("Vui lòng chọn tệp hình ảnh hợp lệ."));
+                return;
+            }
+            const reader = new FileReader();
+            reader.onerror = function () {
+                reject(new Error("Không thể đọc tệp ảnh."));
+            };
+            reader.onload = function (ev) {
+                const img = new Image();
+                img.onerror = function () {
+                    reject(new Error("Định dạng ảnh không hỗ trợ."));
+                };
+                img.onload = function () {
+                    const canvas = document.createElement("canvas");
+                    let maxDim = 500;
+                    let quality = 0.72;
+                    let dataUrl = "";
+
+                    for (let attempt = 0; attempt < 4; attempt++) {
+                        let w = img.naturalWidth || img.width || 400;
+                        let h = img.naturalHeight || img.height || 400;
+                        if (w > maxDim || h > maxDim) {
+                            if (w >= h) {
+                                h = Math.round((h * maxDim) / w);
+                                w = maxDim;
+                            } else {
+                                w = Math.round((w * maxDim) / h);
+                                h = maxDim;
+                            }
+                        }
+                        canvas.width = Math.max(1, w);
+                        canvas.height = Math.max(1, h);
+                        const ctx = canvas.getContext("2d");
+                        ctx.fillStyle = "#ffffff";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        dataUrl = canvas.toDataURL("image/jpeg", quality);
+                        // Giới hạn 1 ô Google Sheet là 50.000 ký tự -> giữ dưới 42.000 ký tự
+                        if (dataUrl.length <= 42000) {
+                            break;
+                        }
+                        maxDim = Math.round(maxDim * 0.78);
+                        quality = Math.max(0.48, quality - 0.1);
+                    }
+                    resolve(dataUrl);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function clearSelectedProofImage() {
+        compressedProofDataUrl = "";
+        if (inputImage) inputImage.value = "";
+        if (imagePreviewBox) imagePreviewBox.classList.remove("has-image");
+        if (imagePreviewThumb) imagePreviewThumb.src = "";
+        if (imagePickLabel) imagePickLabel.textContent = "Chọn ảnh vợt / chụp màn hình Zalo";
+    }
+
+    if (inputImage) {
+        inputImage.addEventListener("change", async function () {
+            const file = inputImage.files && inputImage.files[0];
+            if (!file) {
+                clearSelectedProofImage();
+                return;
+            }
+            if (imagePickLabel) imagePickLabel.textContent = "Đang xử lý ảnh...";
+            try {
+                const compressed = await compressReviewImageFile(file);
+                compressedProofDataUrl = compressed;
+                if (imagePreviewThumb) imagePreviewThumb.src = compressed;
+                if (imagePreviewStatus) {
+                    const kb = Math.max(1, Math.round((compressed.length * 0.75) / 1024));
+                    imagePreviewStatus.textContent = "✔ Đã đính kèm (" + kb + " KB)";
+                }
+                if (imagePreviewBox) imagePreviewBox.classList.add("has-image");
+                if (imagePickLabel) imagePickLabel.textContent = "Đổi ảnh minh chứng khác";
+            } catch (err) {
+                clearSelectedProofImage();
+                if (feedbackMsg) {
+                    feedbackMsg.className = "tsr-feedback-msg is-error";
+                    feedbackMsg.textContent = err && err.message ? err.message : "Không thể xử lý ảnh này.";
+                }
+            }
+        });
+    }
+
+    if (imageRemoveBtn) {
+        imageRemoveBtn.addEventListener("click", function () {
+            clearSelectedProofImage();
+        });
+    }
+
+    function resolveReviewProofImage(review) {
+        if (!review) return "";
+        const directImg = String(
+            review.image ||
+            review.proofImage ||
+            review.proof_image ||
+            review["Ảnh"] ||
+            review["ảnh"] ||
+            ""
+        ).trim();
+
+        const reviewKey =
+            (String(review.name || "").trim() + "|" + getReviewTextSafe(review)).toLowerCase();
+
+        if (directImg && (directImg.startsWith("data:image/") || directImg.startsWith("http") || directImg.startsWith("/"))) {
+            try {
+                const rawMap = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
+                const imgMap = rawMap ? JSON.parse(rawMap) : {};
+                if (imgMap[reviewKey] !== directImg) {
+                    imgMap[reviewKey] = directImg;
+                    localStorage.setItem(REVIEW_IMAGES_STORAGE_KEY, JSON.stringify(imgMap));
+                }
+            } catch (_) {}
+            return directImg;
+        }
+
+        try {
+            const rawMap = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
+            const imgMap = rawMap ? JSON.parse(rawMap) : {};
+            if (imgMap[reviewKey]) {
+                return imgMap[reviewKey];
+            }
+        } catch (_) {}
+
+        return "";
+    }
+
+    // Tách thông tin Tên khách + Cây vợt đã mua + SĐT ẩn số (nếu có trong cột name)
+    // Hỗ trợ định dạng: "Nguyễn Văn A [Vợt: Astrox 88D Pro | SĐT ***443]" hoặc "Tuấn Anh - 098***123"
+    function parseReviewerIdentity(rawNameStr, rawTextStr, reviewObj) {
+        let raw = String(rawNameStr || "").trim();
+        let displayName = raw;
+        let racketBought = "";
+        let maskedPhone = "";
+
+        const bracketMatch = raw.match(/^(.*?)\s*\[([^\]]+)\]\s*$/);
+        if (bracketMatch) {
+            displayName = bracketMatch[1].trim() || raw;
+            const metaInside = bracketMatch[2];
+            const parts = metaInside.split("|");
+            parts.forEach(function (part) {
+                const p = part.trim();
+                if (/^vợt\s*:/i.test(p)) {
+                    racketBought = p.replace(/^vợt\s*:\s*/i, "").trim();
+                } else if (/sđt/i.test(p) || /\*\*\*\d{2,4}/.test(p)) {
+                    maskedPhone = p.replace(/^sđt\s*:?\s*/i, "").trim();
+                } else if (!racketBought) {
+                    racketBought = p;
+                }
+            });
+        } else {
+            // Kiểm tra nếu admin ghi dạng "Minh Tuấn - 098***412" hoặc "Hoàng (Astrox 77 Pro)"
+            const phoneInline = raw.match(/(0\d{1,3}\*{2,5}\d{2,4}|\*{3}\d{3,4})/);
+            if (phoneInline) {
+                maskedPhone = phoneInline[1];
+                displayName = raw.replace(phoneInline[0], "").replace(/[\-\|–,\(\)]+\s*$/, "").trim() || raw;
+            }
+            const parenMatch = displayName.match(/^(.*?)\s*\(([^\)]{3,45})\)\s*$/);
+            if (parenMatch) {
+                displayName = parenMatch[1].trim();
+                racketBought = parenMatch[2].replace(/^vợt\s*:?\s*/i, "").trim();
+            }
+        }
+
+        // Nếu trong nội dung đánh giá có nhắc tới dòng vợt nổi tiếng mà chưa có tag vợt, tự động nhận diện nhẹ nhàng
+        if (!racketBought && rawTextStr) {
+            const textAutoMatch = String(rawTextStr).match(
+                /\b(astrox\s*\d+[a-z\s]*|nanoflare\s*\d+[a-z\s]*|arcsaber\s*\d+[a-z\s]*|axforce\s*\d+[a-z\s]*|halbertec\s*\d+[a-z\s]*|tectonic\s*\d+[a-z\s]*|calibar\s*\d+[a-z\s]*|bladex\s*\d+[a-z\s]*|thruster\s*[a-z0-9\s]*|auraspeed\s*\d+[a-z\s]*|jetspeed\s*\d+[a-z\s]*)/i
+            );
+            if (textAutoMatch) {
+                racketBought = textAutoMatch[1].trim().replace(/\s+/g, " ");
+            }
+        }
+
+        const proofImg = reviewObj ? resolveReviewProofImage(reviewObj) : "";
+        const cleanInitial = (displayName.replace(/[^a-zA-ZÀ-ỹ0-9]/g, "").charAt(0) || "K").toUpperCase();
+        return {
+            displayName: displayName || "Khách hàng TSPORT",
+            racketBought: racketBought,
+            maskedPhone: maskedPhone,
+            proofImage: proofImg,
+            initial: cleanInitial,
+            hasExtraProof: Boolean(racketBought || maskedPhone || proofImg)
+        };
     }
 
     function buildEmptyStateHtml() {
@@ -8639,7 +9772,7 @@ const TSPORT_REVIEWS_DATA = [];
             "";
 
         const reviewKey =
-            (String(review.name || "").trim() + "|" + String(review.text || "").trim()).toLowerCase();
+            (String(review.name || "").trim() + "|" + getReviewTextSafe(review)).toLowerCase();
 
         const explicitFormatted = formatReviewDateDisplay(explicitRaw);
         if (explicitFormatted) {
@@ -8662,7 +9795,7 @@ const TSPORT_REVIEWS_DATA = [];
                 for (let i = pendingList.length - 1; i >= 0; i--) {
                     const p = pendingList[i];
                     if (!p) continue;
-                    const pKey = (String(p.name || "").trim() + "|" + String(p.text || "").trim()).toLowerCase();
+                    const pKey = (String(p.name || "").trim() + "|" + getReviewTextSafe(p)).toLowerCase();
                     if (pKey === reviewKey && p.createdAt) {
                         const fromPending = formatReviewDateDisplay(p.createdAt);
                         if (fromPending) return fromPending;
@@ -8690,12 +9823,20 @@ const TSPORT_REVIEWS_DATA = [];
     function buildSlideInnerHtml(review) {
         if (!review) return buildEmptyStateHtml();
         const stars = renderStarsString(review.rating);
-        const safeText = escapeReviewHtml(review.text.trim());
-        const safeName = escapeReviewHtml(review.name.trim());
+        const textSafe = getReviewTextSafe(review);
+        const safeText = escapeReviewHtml(textSafe);
+        const identity = parseReviewerIdentity(review.name, textSafe, review);
+        const safeName = escapeReviewHtml(identity.displayName);
         const dateStr = resolveReviewDateDisplay(review);
         const dateHtml = dateStr
             ? '<span class="tsr-date">📅 ' + escapeReviewHtml(dateStr) + '</span>'
             : "";
+        let miniBadgeText = "✔ Đã mua";
+        if (identity.proofImage) {
+            miniBadgeText = "📷 Có ảnh";
+        } else if (identity.maskedPhone) {
+            miniBadgeText = "✔ SĐT " + escapeReviewHtml(identity.maskedPhone);
+        }
 
         return (
             '<div class="tsr-stars-row">' +
@@ -8703,7 +9844,10 @@ const TSPORT_REVIEWS_DATA = [];
                 dateHtml +
             '</div>' +
             '<div class="tsr-quote">“' + safeText + '”</div>' +
-            '<div class="tsr-author">— ' + safeName + '</div>'
+            '<div class="tsr-author-row">' +
+                '<div class="tsr-author">— ' + safeName + '</div>' +
+                '<span class="tsr-verified-mini" title="Khách hàng đã giao dịch tại TSPORT">' + miniBadgeText + '</span>' +
+            '</div>'
         );
     }
 
@@ -8725,9 +9869,239 @@ const TSPORT_REVIEWS_DATA = [];
         }
 
         if (avgScoreEl) avgScoreEl.textContent = avgText + "/5";
-        if (totalCountEl) totalCountEl.textContent = totalCount + " đánh giá";
+        if (totalCountEl) totalCountEl.textContent = totalCount + " đánh giá ▸";
         if (pillScoreEl) pillScoreEl.textContent = avgText + "/5";
         if (pillCountEl) pillCountEl.textContent = "(" + totalCount + ")";
+
+        if (isAllModalOpen) {
+            renderAllReviewsModalContent(currentAllFilter);
+        }
+    }
+
+    function renderAllReviewsModalContent(filterMode) {
+        currentAllFilter = filterMode || "all";
+
+        const total = approvedReviews.length;
+        const countsByStar = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        let sumRating = 0;
+        let verifiedDetailCount = 0;
+
+        // Đảo ngược để đánh giá mới nhất hiển thị lên đầu bảng Tất Cả Đánh Giá
+        const chronologicalList = approvedReviews.slice().reverse();
+
+        chronologicalList.forEach(function (r) {
+            const star = Math.max(1, Math.min(5, Math.round(Number(r.rating) || 5)));
+            countsByStar[star] = (countsByStar[star] || 0) + 1;
+            sumRating += star;
+            const idInfo = parseReviewerIdentity(r.name, getReviewTextSafe(r), r);
+            if (idInfo.hasExtraProof) {
+                verifiedDetailCount++;
+            }
+        });
+
+        const avgVal = total > 0 ? (sumRating / total).toFixed(1) : "5.0";
+        if (allAvgScoreEl) allAvgScoreEl.textContent = total > 0 ? avgVal + "/5" : "--/5";
+        if (allAvgStarsEl) allAvgStarsEl.textContent = renderStarsString(Math.round(Number(avgVal) || 5));
+        if (allTotalCountEl) allTotalCountEl.textContent = total + " đánh giá xác thực";
+
+        if (allRatingBarsEl) {
+            let barsHtml = "";
+            for (let s = 5; s >= 1; s--) {
+                const c = countsByStar[s] || 0;
+                const pct = total > 0 ? Math.round((c / total) * 100) : 0;
+                barsHtml +=
+                    '<div class="tsr-bar-row">' +
+                        '<span class="tsr-bar-label">' + s + ' ★</span>' +
+                        '<div class="tsr-bar-track">' +
+                            '<div class="tsr-bar-fill" style="width:' + pct + '%;"></div>' +
+                        '</div>' +
+                        '<span class="tsr-bar-num">' + c + '</span>' +
+                    '</div>';
+            }
+            allRatingBarsEl.innerHTML = barsHtml;
+        }
+
+        if (allFilterBarEl) {
+            const buttons = allFilterBarEl.querySelectorAll(".tsr-filter-pill");
+            buttons.forEach(function (btn) {
+                const f = btn.getAttribute("data-filter") || "all";
+                btn.classList.toggle("is-active", f === currentAllFilter);
+                if (f === "all") {
+                    btn.textContent = "Tất cả (" + total + ")";
+                } else if (f === "5") {
+                    btn.textContent = "5 Sao ⭐ (" + (countsByStar[5] || 0) + ")";
+                } else if (f === "4") {
+                    btn.textContent = "4 Sao ⭐ (" + (countsByStar[4] || 0) + ")";
+                } else if (f === "verified_detail") {
+                    btn.textContent = "📷 Có ảnh / SĐT / Vợt (" + verifiedDetailCount + ")";
+                }
+            });
+        }
+
+        if (!allReviewsListEl) return;
+
+        const filtered = chronologicalList.filter(function (item) {
+            const star = Math.max(1, Math.min(5, Math.round(Number(item.rating) || 5)));
+            if (currentAllFilter === "5") return star === 5;
+            if (currentAllFilter === "4") return star === 4;
+            if (currentAllFilter === "verified_detail") {
+                return parseReviewerIdentity(item.name, getReviewTextSafe(item), item).hasExtraProof;
+            }
+            return true;
+        });
+
+        if (filtered.length === 0) {
+            allReviewsListEl.innerHTML =
+                '<div style="text-align:center;color:#94a3b8;padding:34px 12px;font-size:13px;">' +
+                (total === 0
+                    ? 'Chưa có đánh giá nào được hiển thị. Hãy là khách hàng đầu tiên để lại đánh giá!'
+                    : 'Không có đánh giá nào trong bộ lọc này.') +
+                '</div>';
+            return;
+        }
+
+        let listHtml = "";
+        filtered.forEach(function (review, idx) {
+            const textSafe = getReviewTextSafe(review);
+            const idInfo = parseReviewerIdentity(review.name, textSafe, review);
+            const gradient = AVATAR_GRADIENTS[idx % AVATAR_GRADIENTS.length];
+            const stars = renderStarsString(review.rating);
+            const dateStr = resolveReviewDateDisplay(review);
+            const dateBadge = dateStr
+                ? '<span class="tsr-date">📅 ' + escapeReviewHtml(dateStr) + '</span>'
+                : "";
+
+            let subtagsHtml = "";
+            if (idInfo.racketBought || idInfo.maskedPhone) {
+                subtagsHtml += '<div class="tsr-user-subtags">';
+                if (idInfo.racketBought) {
+                    subtagsHtml +=
+                        '<span class="tsr-meta-tag">🏸 Vợt: ' +
+                        escapeReviewHtml(idInfo.racketBought) +
+                        '</span>';
+                }
+                if (idInfo.maskedPhone) {
+                    subtagsHtml +=
+                        '<span class="tsr-meta-tag">📱 Zalo: ' +
+                        escapeReviewHtml(idInfo.maskedPhone) +
+                        '</span>';
+                }
+                subtagsHtml += '</div>';
+            }
+
+            let proofHtml = "";
+            if (idInfo.proofImage) {
+                proofHtml =
+                    '<div class="tsr-card-proof-wrap" data-proof-src="' + escapeReviewHtml(idInfo.proofImage) + '" title="Nhấn để phóng to ảnh minh chứng">' +
+                        '<img class="tsr-card-proof-img" src="' + escapeReviewHtml(idInfo.proofImage) + '" alt="Ảnh minh chứng khách hàng" loading="lazy">' +
+                        '<span class="tsr-card-proof-label">📷 Ảnh minh chứng thực tế<br><span style="font-size:10px;color:#94a3b8;font-weight:600;">🔍 Nhấn để xem rõ nét</span></span>' +
+                    '</div>';
+            }
+
+            listHtml +=
+                '<div class="tsr-card-item">' +
+                    '<div class="tsr-card-top">' +
+                        '<div class="tsr-card-user">' +
+                            '<div class="tsr-avatar" style="background:' + gradient + ';">' +
+                                escapeReviewHtml(idInfo.initial) +
+                            '</div>' +
+                            '<div class="tsr-user-meta">' +
+                                '<div class="tsr-user-name-line">' +
+                                    '<span class="tsr-user-name">' + escapeReviewHtml(idInfo.displayName) + '</span>' +
+                                    '<span class="tsr-verified-badge">✔ Đã giao dịch tại TSPORT</span>' +
+                                '</div>' +
+                                subtagsHtml +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="tsr-card-right">' +
+                            '<span class="tsr-stars">' + stars + '</span>' +
+                            dateBadge +
+                        '</div>' +
+                    '</div>' +
+                    '<p class="tsr-card-text">“' + escapeReviewHtml(textSafe) + '”</p>' +
+                    proofHtml +
+                '</div>';
+        });
+
+        allReviewsListEl.innerHTML = listHtml;
+    }
+
+    if (allReviewsListEl) {
+        allReviewsListEl.addEventListener("click", function (e) {
+            const proofWrap = e.target.closest(".tsr-card-proof-wrap");
+            if (!proofWrap) return;
+            const src = proofWrap.getAttribute("data-proof-src");
+            if (!src) return;
+            if (typeof showModalImage === "function") {
+                currentGallery = [src];
+                currentImageIndex = 0;
+                showModalImage();
+            }
+        });
+    }
+
+    function openAllReviewsModal() {
+        if (!allModalBackdrop) return;
+        isAllModalOpen = true;
+        renderAllReviewsModalContent("all");
+        allModalBackdrop.classList.add("is-open");
+        allModalBackdrop.setAttribute("aria-hidden", "false");
+    }
+
+    function closeAllReviewsModal() {
+        if (!allModalBackdrop) return;
+        isAllModalOpen = false;
+        allModalBackdrop.classList.remove("is-open");
+        allModalBackdrop.setAttribute("aria-hidden", "true");
+    }
+
+    if (openAllBtn) {
+        openAllBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openAllReviewsModal();
+        });
+    }
+
+    if (totalCountEl) {
+        totalCountEl.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openAllReviewsModal();
+        });
+    }
+
+    if (viewportEl) {
+        viewportEl.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openAllReviewsModal();
+        });
+    }
+
+    if (closeAllModalBtn) {
+        closeAllModalBtn.addEventListener("click", closeAllReviewsModal);
+    }
+
+    if (allModalBackdrop) {
+        allModalBackdrop.addEventListener("click", function (e) {
+            if (e.target === allModalBackdrop) {
+                closeAllReviewsModal();
+            }
+        });
+    }
+
+    if (allFilterBarEl) {
+        allFilterBarEl.addEventListener("click", function (e) {
+            const pill = e.target.closest(".tsr-filter-pill");
+            if (!pill) return;
+            const filterVal = pill.getAttribute("data-filter") || "all";
+            renderAllReviewsModalContent(filterVal);
+        });
+    }
+
+    if (switchToWriteBtn) {
+        switchToWriteBtn.addEventListener("click", function () {
+            closeAllReviewsModal();
+            openReviewModal();
+        });
     }
 
     function stepNextReview() {
@@ -8770,7 +10144,7 @@ const TSPORT_REVIEWS_DATA = [];
         if (approvedReviews.length <= 1) return;
         const interval = Math.max(2800, Number(TSPORT_REVIEWS_CONFIG.rotationIntervalMs) || 4200);
         rotationTimer = setInterval(function () {
-            if (!isHoveredOrPaused && !isModalOpen && !document.hidden) {
+            if (!isHoveredOrPaused && !isModalOpen && !isAllModalOpen && !document.hidden) {
                 stepNextReview();
             }
         }, interval);
@@ -8858,9 +10232,9 @@ const TSPORT_REVIEWS_DATA = [];
         }
     }, { passive: true });
 
-    // Cách 4 (Dự phòng): Chạm đúp (double-click / double-tap) vào vùng nội dung đánh giá để ẩn nhanh
+    // Cách 4 (Dự phòng): Chạm đúp (double-click / double-tap) vào khung viền để ẩn nhanh
     widgetEl.addEventListener("dblclick", function (e) {
-        if (e.target.closest("#tsrOpenModalBtn")) return;
+        if (e.target.closest("#tsrOpenModalBtn") || e.target.closest("#tsrOpenAllBtn")) return;
         minimizeReviewWidget();
     });
 
@@ -8946,8 +10320,9 @@ const TSPORT_REVIEWS_DATA = [];
     }
 
     document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && isModalOpen) {
-            closeReviewModal();
+        if (e.key === "Escape") {
+            if (isModalOpen) closeReviewModal();
+            if (isAllModalOpen) closeAllReviewsModal();
         }
     });
 
@@ -8957,7 +10332,9 @@ const TSPORT_REVIEWS_DATA = [];
             e.preventDefault();
 
             const nameVal = (inputName ? inputName.value : "").trim();
-            const textVal = (inputText ? inputText.value : "").trim();
+            const racketVal = (inputRacket ? inputRacket.value : "").trim();
+            const phoneDigits = (inputPhoneLast3 ? inputPhoneLast3.value : "").replace(/\D+/g, "").slice(-4);
+            let textVal = (inputText ? inputText.value : "").trim();
 
             if (!nameVal) {
                 if (feedbackMsg) {
@@ -8968,20 +10345,29 @@ const TSPORT_REVIEWS_DATA = [];
                 return;
             }
 
-            if (!textVal || textVal.length < 4) {
-                if (feedbackMsg) {
-                    feedbackMsg.className = "tsr-feedback-msg is-error";
-                    feedbackMsg.textContent = "Vui lòng nhập nội dung đánh giá (tối thiểu 4 ký tự).";
-                }
-                if (inputText) inputText.focus();
-                return;
+            // Nội dung nhận xét là tùy chọn: nếu để trống, tự điền câu mặc định theo số sao
+            if (!textVal) {
+                textVal = DEFAULT_TEXT_BY_STAR[selectedRating] || DEFAULT_TEXT_BY_STAR[5];
             }
+
+            // Gộp thông tin Vợt đã mua & 3 số cuối SĐT vào trường name để lưu lên Google Sheet không cần thêm cột
+            const metaParts = [];
+            if (racketVal) {
+                metaParts.push("Vợt: " + racketVal);
+            }
+            if (phoneDigits) {
+                metaParts.push("SĐT ***" + phoneDigits);
+            }
+            const enrichedName = metaParts.length > 0
+                ? (nameVal + " [" + metaParts.join(" | ") + "]")
+                : nameVal;
 
             // Build standardized review object with approved: false for moderation
             const newReviewSubmission = {
-                name: nameVal,
+                name: enrichedName,
                 rating: selectedRating,
                 text: textVal,
+                image: compressedProofDataUrl || "",
                 approved: false,
                 createdAt: new Date().toISOString()
             };
@@ -8992,6 +10378,17 @@ const TSPORT_REVIEWS_DATA = [];
             }
 
             try {
+                // Lưu ảnh minh chứng dự phòng vào localStorage theo khóa (name|text)
+                if (compressedProofDataUrl) {
+                    try {
+                        const reviewKey = (enrichedName.trim() + "|" + textVal.trim()).toLowerCase();
+                        const rawMap = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
+                        const imgMap = rawMap ? JSON.parse(rawMap) : {};
+                        imgMap[reviewKey] = compressedProofDataUrl;
+                        localStorage.setItem(REVIEW_IMAGES_STORAGE_KEY, JSON.stringify(imgMap));
+                    } catch (_) {}
+                }
+
                 // Save backup copy to localStorage
                 try {
                     const queueRaw = localStorage.getItem("tsport_pending_reviews");
@@ -9020,6 +10417,7 @@ const TSPORT_REVIEWS_DATA = [];
                 }
 
                 reviewForm.reset();
+                clearSelectedProofImage();
                 setStarPickerValue(5, false);
 
                 setTimeout(function () {
@@ -9065,11 +10463,11 @@ const TSPORT_REVIEWS_DATA = [];
         } else {
             const existingKeys = new Set(
                 approvedReviews.map(function (r) {
-                    return (r.name + "|" + r.text).toLowerCase();
+                    return (r.name + "|" + getReviewTextSafe(r)).toLowerCase();
                 })
             );
             sheetApproved.forEach(function (item) {
-                const key = (item.name + "|" + item.text).toLowerCase();
+                const key = (item.name + "|" + getReviewTextSafe(item)).toLowerCase();
                 if (!existingKeys.has(key)) {
                     approvedReviews.push(item);
                     existingKeys.add(key);
@@ -9108,7 +10506,7 @@ const TSPORT_REVIEWS_DATA = [];
 
                     const sheetApproved = [];
 
-                    // Trường hợp parseCSV trả về mảng Object [{ name, rating, text, approved, created_at }]
+                    // Trường hợp parseCSV trả về mảng Object [{ name, rating, text, approved, created_at, image }]
                     if (!Array.isArray(rows[0]) && typeof rows[0] === "object" && rows[0] !== null) {
                         const headerKeys = Object.keys(rows[0]).map(function (k) {
                             return String(k || "").trim().toLowerCase();
@@ -9118,7 +10516,7 @@ const TSPORT_REVIEWS_DATA = [];
                                 return k === "name" || k === "tên" || k === "ten" || k === "khách hàng";
                             }) &&
                             headerKeys.some(function (k) {
-                                return k === "text" || k === "nội dung" || k === "noi dung" || k === "review";
+                                return k === "rating" || k === "sao" || k === "text" || k === "nội dung";
                             });
 
                         // Nếu Google Sheet trả nhầm bảng sản phẩm (Mã, Tên vợt...) thì bỏ qua, không xóa cache đánh giá
@@ -9135,6 +10533,7 @@ const TSPORT_REVIEWS_DATA = [];
                             let text = "";
                             let approvedRaw = "";
                             let createdAt = "";
+                            let image = "";
 
                             const keys = Object.keys(item);
                             for (let k = 0; k < keys.length; k++) {
@@ -9159,6 +10558,14 @@ const TSPORT_REVIEWS_DATA = [];
                                     lowerKey === "thời gian"
                                 ) {
                                     createdAt = val;
+                                } else if (
+                                    lowerKey === "image" ||
+                                    lowerKey === "ảnh" ||
+                                    lowerKey === "anh" ||
+                                    lowerKey === "proof_image" ||
+                                    lowerKey === "ảnh minh chứng"
+                                ) {
+                                    image = val;
                                 }
                             }
 
@@ -9168,11 +10575,13 @@ const TSPORT_REVIEWS_DATA = [];
                                 approvedRaw === "yes" ||
                                 approvedRaw === "x";
 
-                            if (isApproved && name && text) {
+                            const ratingNum = Math.max(1, Math.min(5, Number(ratingRaw) || 5));
+                            if (isApproved && name) {
                                 sheetApproved.push({
                                     name: name,
-                                    rating: Math.max(1, Math.min(5, Number(ratingRaw) || 5)),
-                                    text: text,
+                                    rating: ratingNum,
+                                    text: text || DEFAULT_TEXT_BY_STAR[ratingNum] || DEFAULT_TEXT_BY_STAR[5],
+                                    image: image,
                                     approved: true,
                                     createdAt: createdAt
                                 });
@@ -9197,9 +10606,29 @@ const TSPORT_REVIEWS_DATA = [];
                 .then(function (data) {
                     if (data && data.ok && Array.isArray(data.reviews)) {
                         appsScriptResolved = true;
-                        const valid = data.reviews.filter(function (item) {
-                            return item && item.approved === true && item.name && item.text;
+                        const existingImgByKey = {};
+                        approvedReviews.forEach(function (r) {
+                            if (r && r.name && r.image) {
+                                existingImgByKey[(r.name.trim() + "|" + getReviewTextSafe(r)).toLowerCase()] = r.image;
+                            }
                         });
+                        const valid = data.reviews
+                            .filter(function (item) {
+                                return item && item.approved === true && item.name;
+                            })
+                            .map(function (item) {
+                                const rNum = Math.max(1, Math.min(5, Number(item.rating) || 5));
+                                const tVal = String(item.text || "").trim() || DEFAULT_TEXT_BY_STAR[rNum] || DEFAULT_TEXT_BY_STAR[5];
+                                const key = (String(item.name || "").trim() + "|" + tVal).toLowerCase();
+                                return {
+                                    name: String(item.name || "").trim(),
+                                    rating: rNum,
+                                    text: tVal,
+                                    image: String(item.image || existingImgByKey[key] || "").trim(),
+                                    approved: true,
+                                    createdAt: item.createdAt || item.created_at || ""
+                                };
+                            });
                         applySheetApprovedReviews(valid);
                     }
                 })
@@ -9272,4 +10701,3 @@ const TSPORT_REVIEWS_DATA = [];
 
 </body>
 </html>
-
