@@ -1615,6 +1615,171 @@ select.is-active {
     color: #be123c;
 }
 
+.info-row.info-row-blue {
+    background: linear-gradient(180deg, #f8fcff 0%, #eff8ff 100%);
+    border-color: rgba(14, 165, 233, 0.24);
+    box-shadow:
+        0 4px 14px rgba(14, 165, 233, 0.06),
+        inset 0 1px 0 #ffffff;
+}
+
+.info-row.info-row-blue::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+
+.info-row.info-row-blue strong {
+    color: #0369a1;
+}
+
+/* =====================================================
+   TECH SPECS SECTION — THÔNG SỐ KỸ THUẬT (5 CHỈ SỐ CHUẨN)
+===================================================== */
+
+.detail-section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #0f172a;
+}
+
+.detail-section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #cbd5e1 0%, transparent 100%);
+}
+
+.tech-specs-section {
+    margin-top: 22px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #cbd5e1;
+    border-radius: 18px;
+    padding: 18px 18px 16px;
+    box-shadow:
+        0 6px 20px -6px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 #ffffff;
+    animation: detailItemReveal 360ms var(--ease-out) 150ms both;
+}
+
+.tech-specs-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+.tech-specs-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.65px;
+    color: #0f172a;
+}
+
+.tech-specs-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0284c7;
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    padding: 3px 9px;
+    border-radius: 999px;
+}
+
+.tech-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.tech-spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 13px;
+    padding: 12px 13px;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.tech-spec-item:hover {
+    transform: translateY(-1px);
+    border-color: rgba(14, 165, 233, 0.4);
+    box-shadow: 0 6px 14px -4px rgba(14, 165, 233, 0.1);
+}
+
+.tech-spec-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+.tech-spec-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(37, 99, 235, 0.08));
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.tech-spec-body {
+    min-width: 0;
+    flex: 1;
+}
+
+.tech-spec-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    color: #64748b;
+    margin-bottom: 3px;
+}
+
+.tech-spec-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.38;
+    word-break: break-word;
+}
+
+@media (max-width: 640px) {
+    .tech-specs-grid {
+        grid-template-columns: 1fr;
+    }
+    .tech-specs-section {
+        padding: 14px 12px;
+    }
+}
+
 
 /* =====================================================
    DETAIL GALLERY — GPU COMPOSITED HOVER & INDEX BADGE
@@ -3215,10 +3380,17 @@ select.is-active {
 }
 
 .tsr-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
     font-size: 10.5px;
-    font-weight: 600;
-    color: #94a3b8;
-    line-height: 1.1;
+    font-weight: 700;
+    color: #cbd5e1;
+    background: rgba(30, 41, 59, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    padding: 2px 6.5px;
+    border-radius: 6px;
+    line-height: 1.15;
     white-space: nowrap;
 }
 
@@ -4852,6 +5024,233 @@ async function loadProducts() {
 
 
 /* =====================================================
+   TECH SPECS PARSER & DISPLAY HELPERS (FBShop + VNB)
+===================================================== */
+
+function parseProductTechSpecs(rawStyle) {
+
+    const text = String(rawStyle || "").trim();
+
+    const result = {
+        isStructured: false,
+        stiffness: "",
+        balance: "",
+        tension: "",
+        playStyle: "",
+        level: "",
+        extra: []
+    };
+
+    if (!text || text === "-") {
+        return result;
+    }
+
+    // Check if the string contains structured fields separated by "|", newlines, or "–" bullets
+    const hasFieldLabels = /(độ cứng|điểm cân bằng|sức căng|mức căng|lối chơi|phong cách|trình độ)/i.test(text);
+
+    if (hasFieldLabels || text.includes("|")) {
+
+        const parts = text
+            .split(/\s*\|\s*|\r?\n|\s+–\s+|\s+-\s+(?=(?:Độ cứng|Điểm cân bằng|Sức căng|Mức căng|Lối chơi|Trình độ))/i)
+            .map(s => s.replace(/^[–\-•*]+\s*/, "").trim())
+            .filter(Boolean);
+
+        parts.forEach(part => {
+
+            const colonIdx = part.indexOf(":");
+
+            if (colonIdx !== -1) {
+
+                const key = part.slice(0, colonIdx).trim().toLowerCase();
+                const val = part.slice(colonIdx + 1).trim();
+
+                if (!val) return;
+
+                if (key.includes("độ cứng") || key.includes("thân vợt") || key.includes("đũa")) {
+                    result.stiffness = val;
+                    result.isStructured = true;
+                } else if (key.includes("cân bằng")) {
+                    result.balance = val;
+                    result.isStructured = true;
+                } else if (key.includes("sức căng") || key.includes("mức căng") || key.includes("lbs")) {
+                    result.tension = val;
+                    result.isStructured = true;
+                } else if (key.includes("lối chơi") || key.includes("phong cách") || key.includes("lối đánh")) {
+                    result.playStyle = val;
+                    result.isStructured = true;
+                } else if (key.includes("trình độ") || key.includes("đối tượng")) {
+                    result.level = val;
+                    result.isStructured = true;
+                } else {
+                    result.extra.push({ label: part.slice(0, colonIdx).trim(), value: val });
+                    result.isStructured = true;
+                }
+
+            } else {
+                result.extra.push({ label: "Thông tin thêm", value: part });
+            }
+
+        });
+
+        if (result.isStructured) {
+            return result;
+        }
+
+    }
+
+    // Fallback for legacy format e.g. "công thủ, đũa hơi cứng"
+    const commaParts = text.split(",").map(s => s.trim()).filter(Boolean);
+    if (commaParts.length >= 2) {
+        const duaPart = commaParts.find(p => /đũa|cứng|dẻo|trung bình/i.test(p));
+        const stylePart = commaParts.find(p => p !== duaPart);
+        if (duaPart && stylePart) {
+            const cleanDua = duaPart.replace(/^đũa\s+/i, "").trim();
+            result.stiffness = cleanDua.charAt(0).toUpperCase() + cleanDua.slice(1);
+            result.playStyle = stylePart.charAt(0).toUpperCase() + stylePart.slice(1);
+            return result;
+        }
+    }
+
+    result.playStyle = text;
+    return result;
+
+}
+
+
+function getPlayStyleFilterLabel(rawStyle) {
+
+    const specs = parseProductTechSpecs(rawStyle);
+
+    if (specs.playStyle) {
+        return specs.playStyle;
+    }
+
+    return String(rawStyle || "").trim();
+
+}
+
+
+function getCompactStyleForCard(rawStyle) {
+
+    const specs = parseProductTechSpecs(rawStyle);
+
+    if (!specs.isStructured) {
+        return String(rawStyle || "").trim();
+    }
+
+    const primaryStyle = specs.playStyle
+        ? specs.playStyle.split(",")[0].trim()
+        : "";
+
+    if (primaryStyle && specs.stiffness) {
+        return `${primaryStyle} · Đũa: ${specs.stiffness}`;
+    }
+
+    if (primaryStyle && specs.balance) {
+        return `${primaryStyle} · ${specs.balance}`;
+    }
+
+    return primaryStyle || specs.stiffness || specs.balance || String(rawStyle || "").trim();
+
+}
+
+
+function renderTechSpecsSectionHTML(rawStyle) {
+
+    const specs = parseProductTechSpecs(rawStyle);
+
+    const items = [];
+
+    if (specs.stiffness) {
+        items.push({
+            icon: "🎋",
+            label: "Độ cứng thân vợt",
+            value: specs.stiffness,
+            wide: false
+        });
+    }
+
+    if (specs.balance) {
+        items.push({
+            icon: "⚖️",
+            label: "Điểm cân bằng",
+            value: specs.balance,
+            wide: false
+        });
+    }
+
+    if (specs.tension) {
+        items.push({
+            icon: "🎯",
+            label: "Sức căng tối đa",
+            value: specs.tension,
+            wide: false
+        });
+    }
+
+    if (specs.level) {
+        items.push({
+            icon: "🏅",
+            label: "Trình độ chơi",
+            value: specs.level,
+            wide: false
+        });
+    }
+
+    if (specs.playStyle) {
+        items.push({
+            icon: "🏸",
+            label: "Lối chơi phù hợp",
+            value: specs.playStyle,
+            wide: items.length % 2 === 0 && items.length >= 2
+        });
+    }
+
+    specs.extra.forEach(ext => {
+        items.push({
+            icon: "✨",
+            label: ext.label,
+            value: ext.value,
+            wide: false
+        });
+    });
+
+    if (items.length === 0) {
+        return "";
+    }
+
+    const cardsHTML = items
+        .map(item => `
+            <div class="tech-spec-item${item.wide ? " tech-spec-wide" : ""}">
+                <div class="tech-spec-icon">${item.icon}</div>
+                <div class="tech-spec-body">
+                    <span class="tech-spec-label">${escapeHTML(item.label)}</span>
+                    <div class="tech-spec-value">${escapeHTML(item.value)}</div>
+                </div>
+            </div>
+        `)
+        .join("");
+
+    return `
+        <div class="tech-specs-section">
+            <div class="tech-specs-header">
+                <div class="tech-specs-title">
+                    ⚙️ Thông số kỹ thuật
+                </div>
+                <span class="tech-specs-badge">
+                    Chuẩn thông số hãng
+                </span>
+            </div>
+            <div class="tech-specs-grid">
+                ${cardsHTML}
+            </div>
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
    FILTERS
 ===================================================== */
 
@@ -4896,7 +5295,9 @@ function createFilters() {
                 products
                     .map(
                         product =>
-                            product["Lối đánh"]
+                            getPlayStyleFilterLabel(
+                                product["Lối đánh"]
+                            )
                     )
                     .filter(Boolean)
             )
@@ -5467,7 +5868,9 @@ function displayProducts(list) {
                             `
                                 <div class="meta-style">
                                     ${escapeHTML(
-                                        product["Lối đánh"]
+                                        getCompactStyleForCard(
+                                            product["Lối đánh"]
+                                        )
                                     )}
                                 </div>
                             `
@@ -6422,9 +6825,13 @@ async function showDetail(product) {
             </div>
 
 
+            <div class="detail-section-label">
+                📋 Thông tin tình trạng vợt
+            </div>
+
             <div class="info-grid">
 
-                <div class="info-row">
+                <div class="info-row info-row-blue">
 
                     <strong>
                         Mã vợt
@@ -6463,20 +6870,7 @@ async function showDetail(product) {
                 </div>
 
 
-                <div class="info-row">
-
-                    <strong>
-                        Lối đánh
-                    </strong>
-
-                    ${escapeHTML(
-                        product["Lối đánh"] || "-"
-                    )}
-
-                </div>
-
-
-                <div class="info-row">
+                <div class="info-row info-row-blue">
 
                     <strong>
                         Ghi chú
@@ -6489,6 +6883,10 @@ async function showDetail(product) {
                 </div>
 
             </div>
+
+            ${renderTechSpecsSectionHTML(
+                product["Lối đánh"]
+            )}
 
 
             <div
@@ -6950,7 +7348,8 @@ function filterProducts() {
 
                     (
                         !style ||
-                        product["Lối đánh"] === style
+                        product["Lối đánh"] === style ||
+                        getPlayStyleFilterLabel(product["Lối đánh"]) === style
                     )
 
                     &&
@@ -8182,6 +8581,19 @@ const TSPORT_REVIEWS_DATA = [];
         );
     }
 
+    const REVIEW_DATES_STORAGE_KEY = "tsport_review_dates_v1";
+
+    function getTodayDmyString() {
+        const now = new Date();
+        return (
+            String(now.getDate()).padStart(2, "0") +
+            "/" +
+            String(now.getMonth() + 1).padStart(2, "0") +
+            "/" +
+            now.getFullYear()
+        );
+    }
+
     function formatReviewDateDisplay(rawDate) {
         if (!rawDate) return "";
         const str = String(rawDate).trim();
@@ -8215,16 +8627,74 @@ const TSPORT_REVIEWS_DATA = [];
         return str.split(" ")[0];
     }
 
+    function resolveReviewDateDisplay(review) {
+        if (!review) return "";
+
+        const explicitRaw =
+            review.createdAt ||
+            review.created_at ||
+            review.date ||
+            review["Ngày"] ||
+            review["ngày"] ||
+            "";
+
+        const reviewKey =
+            (String(review.name || "").trim() + "|" + String(review.text || "").trim()).toLowerCase();
+
+        const explicitFormatted = formatReviewDateDisplay(explicitRaw);
+        if (explicitFormatted) {
+            try {
+                const mapRaw = localStorage.getItem(REVIEW_DATES_STORAGE_KEY);
+                const dateMap = mapRaw ? JSON.parse(mapRaw) : {};
+                if (dateMap[reviewKey] !== explicitFormatted) {
+                    dateMap[reviewKey] = explicitFormatted;
+                    localStorage.setItem(REVIEW_DATES_STORAGE_KEY, JSON.stringify(dateMap));
+                }
+            } catch (_) {}
+            return explicitFormatted;
+        }
+
+        // Kiểm tra xem đánh giá này có vừa được gửi từ trình duyệt hiện tại không
+        try {
+            const pendingRaw = localStorage.getItem("tsport_pending_reviews");
+            const pendingList = pendingRaw ? JSON.parse(pendingRaw) : [];
+            if (Array.isArray(pendingList)) {
+                for (let i = pendingList.length - 1; i >= 0; i--) {
+                    const p = pendingList[i];
+                    if (!p) continue;
+                    const pKey = (String(p.name || "").trim() + "|" + String(p.text || "").trim()).toLowerCase();
+                    if (pKey === reviewKey && p.createdAt) {
+                        const fromPending = formatReviewDateDisplay(p.createdAt);
+                        if (fromPending) return fromPending;
+                    }
+                }
+            }
+        } catch (_) {}
+
+        // Dự phòng: nếu dòng trên Google Sheet chưa điền cột E (created_at) hoặc Apps Script chưa cập nhật bản mới
+        try {
+            const mapRaw = localStorage.getItem(REVIEW_DATES_STORAGE_KEY);
+            const dateMap = mapRaw ? JSON.parse(mapRaw) : {};
+            if (dateMap[reviewKey]) {
+                return dateMap[reviewKey];
+            }
+            const fallbackDate = getTodayDmyString();
+            dateMap[reviewKey] = fallbackDate;
+            localStorage.setItem(REVIEW_DATES_STORAGE_KEY, JSON.stringify(dateMap));
+            return fallbackDate;
+        } catch (_) {
+            return getTodayDmyString();
+        }
+    }
+
     function buildSlideInnerHtml(review) {
         if (!review) return buildEmptyStateHtml();
         const stars = renderStarsString(review.rating);
         const safeText = escapeReviewHtml(review.text.trim());
         const safeName = escapeReviewHtml(review.name.trim());
-        const dateStr = formatReviewDateDisplay(
-            review.createdAt || review.created_at || review.date || ""
-        );
+        const dateStr = resolveReviewDateDisplay(review);
         const dateHtml = dateStr
-            ? '<span class="tsr-date">' + escapeReviewHtml(dateStr) + '</span>'
+            ? '<span class="tsr-date">📅 ' + escapeReviewHtml(dateStr) + '</span>'
             : "";
 
         return (
@@ -8640,6 +9110,22 @@ const TSPORT_REVIEWS_DATA = [];
 
                     // Trường hợp parseCSV trả về mảng Object [{ name, rating, text, approved, created_at }]
                     if (!Array.isArray(rows[0]) && typeof rows[0] === "object" && rows[0] !== null) {
+                        const headerKeys = Object.keys(rows[0]).map(function (k) {
+                            return String(k || "").trim().toLowerCase();
+                        });
+                        const isValidReviewTable =
+                            headerKeys.some(function (k) {
+                                return k === "name" || k === "tên" || k === "ten" || k === "khách hàng";
+                            }) &&
+                            headerKeys.some(function (k) {
+                                return k === "text" || k === "nội dung" || k === "noi dung" || k === "review";
+                            });
+
+                        // Nếu Google Sheet trả nhầm bảng sản phẩm (Mã, Tên vợt...) thì bỏ qua, không xóa cache đánh giá
+                        if (!isValidReviewTable) {
+                            return;
+                        }
+
                         for (let i = 0; i < rows.length; i++) {
                             const item = rows[i];
                             if (!item) continue;
