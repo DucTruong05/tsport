@@ -9,6 +9,9 @@
 <title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
 
 <!-- RESOURCE PRECONNECT & DNS PREFETCH FOR FASTER LOADING -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://docs.google.com" crossorigin>
 <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
 <link rel="preconnect" href="https://tsport-images.ductruong05.workers.dev" crossorigin>
@@ -28,6 +31,14 @@ function gtag() {
 
 gtag("js", new Date());
 gtag("config", "G-QLNGKQXHJ5");
+</script>
+
+<script>
+try {
+    if (localStorage.getItem("tsport_theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+    }
+} catch (e) {}
 </script>
 
 <style>
@@ -56,17 +67,18 @@ html {
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: #eef2f7;
-    color: #0f172a;
+    font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #dff5fb;
+    color: #0c2d48;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    line-height: 1.5;
 }
 
 
 /* =====================================================
-   HEADER — PREMIUM BADMINTON SHOWROOM (COMPACT & FOCUSED)
+   HEADER — OCEAN HORIZON BADMINTON SHOWROOM
 ===================================================== */
 
 @keyframes headerTitleReveal {
@@ -87,16 +99,16 @@ header {
 
     background:
         radial-gradient(
-            720px circle at 50% 35%,
-            rgba(15, 23, 42, 0.28) 0%,
-            rgba(7, 11, 22, 0.76) 100%
+            760px circle at 50% 18%,
+            rgba(224, 242, 254, 0.86) 0%,
+            rgba(186, 230, 253, 0.88) 54%,
+            rgba(165, 243, 252, 0.90) 100%
         ),
         linear-gradient(
-            135deg,
-            rgba(15, 23, 42, 0.72) 0%,
-            rgba(30, 58, 138, 0.44) 48%,
-            rgba(109, 40, 217, 0.34) 78%,
-            rgba(190, 18, 60, 0.36) 100%
+            180deg,
+            rgba(186, 230, 253, 0.92) 0%,
+            rgba(207, 238, 252, 0.93) 52%,
+            rgba(198, 241, 247, 0.95) 100%
         ),
         url("https://ik.imagekit.io/izpyg6scgq/n%E1%BB%81n.jpg");
 
@@ -104,8 +116,8 @@ header {
     background-position: center;
     background-repeat: no-repeat;
 
-    color: #ffffff;
-    padding: 20px 20px 18px;
+    color: #082036;
+    padding: 16px 20px 18px;
     text-align: center;
 
     display: flex;
@@ -113,25 +125,24 @@ header {
     align-items: center;
     justify-content: center;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1.5px solid rgba(2, 132, 199, 0.34);
     box-shadow:
-        0 8px 24px -8px rgba(15, 23, 42, 0.26),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        0 8px 24px -10px rgba(3, 105, 161, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 header::before {
     content: "";
     position: absolute;
-    width: 520px;
-    height: 150px;
+    width: 600px;
+    height: 160px;
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     background: radial-gradient(
         ellipse at center,
-        rgba(56, 189, 248, 0.20) 0%,
-        rgba(139, 92, 246, 0.12) 42%,
-        rgba(56, 189, 248, 0.03) 68%,
+        rgba(240, 249, 255, 0.62) 0%,
+        rgba(125, 211, 252, 0.28) 52%,
         transparent 82%
     );
     pointer-events: none;
@@ -144,14 +155,14 @@ header::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: min(560px, 84%);
-    height: 2px;
+    width: min(620px, 88%);
+    height: 2.5px;
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(56, 189, 248, 0.45) 26%,
-        rgba(255, 255, 255, 0.85) 50%,
-        rgba(167, 139, 250, 0.55) 74%,
+        rgba(2, 132, 199, 0.48) 24%,
+        rgba(3, 105, 161, 0.85) 50%,
+        rgba(13, 148, 136, 0.48) 76%,
         transparent 100%
     );
     pointer-events: none;
@@ -161,24 +172,24 @@ header::after {
     position: relative;
     display: inline-block;
 
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 900;
-    letter-spacing: 5.5px;
-    text-indent: 5.5px;
-    line-height: 1.06;
+    letter-spacing: 5px;
+    text-indent: 5px;
+    line-height: 1.08;
     text-transform: uppercase;
 
     background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #f8fafc 58%,
-        #cbd5e1 100%
+        135deg,
+        #041e3a 0%,
+        #075985 52%,
+        #0f766e 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.42));
+    filter: drop-shadow(0 2px 5px rgba(3, 105, 161, 0.18));
 
     animation: headerTitleReveal 320ms var(--ease-out) both;
 }
@@ -186,59 +197,99 @@ header::after {
 .logo::after {
     content: "";
     display: block;
-    width: 40px;
-    height: 2.5px;
-    margin: 6px auto 0;
+    width: 52px;
+    height: 3px;
+    margin: 5px auto 0;
     border-radius: 999px;
     background: linear-gradient(
         90deg,
-        #38bdf8 0%,
-        #818cf8 52%,
-        #fb7185 100%
+        #0369a1 0%,
+        #0284c7 50%,
+        #0d9488 100%
     );
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.38);
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.32);
 }
 
 .subtitle {
-    margin-top: 8px;
-    padding: 5px 14px;
+    margin-top: 9px;
+    padding: 6.5px 18px;
     border-radius: 999px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
 
-    background: rgba(15, 23, 42, 0.58);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: linear-gradient(
+        135deg,
+        rgba(245, 251, 255, 0.96) 0%,
+        rgba(228, 245, 254, 0.95) 100%
+    );
+    border: 1.5px solid rgba(2, 132, 199, 0.38);
 
-    color: #f8fafc;
-    font-size: 13.5px;
-    font-weight: 600;
-    letter-spacing: 0.55px;
-    line-height: 1.35;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    color: #071e34;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    line-height: 1.38;
 
     box-shadow:
-        0 4px 14px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        0 5px 16px -4px rgba(3, 105, 161, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
 
     animation: headerTitleReveal 340ms var(--ease-out) 40ms both;
 }
 
 .subtitle::before {
     content: "";
-    width: 6px;
-    height: 6px;
+    width: 7.5px;
+    height: 7.5px;
     border-radius: 50%;
-    background: #38bdf8;
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.85);
+    background: #0d9488;
+    box-shadow: 0 0 8px rgba(13, 148, 136, 0.72);
     flex-shrink: 0;
+}
+
+.subtitle-brand {
+    font-weight: 900;
+    color: #0369a1;
+    letter-spacing: 0.65px;
+}
+
+.subtitle-sep {
+    color: #475569;
+    font-weight: 800;
+}
+
+.subtitle-desc {
+    font-weight: 800;
+    color: #082036;
+}
+
+.subtitle-phone {
+    font-weight: 800;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1px solid rgba(3, 105, 161, 0.55);
+    padding: 2px 11px;
+    border-radius: 999px;
+    text-decoration: none;
+    letter-spacing: 0.45px;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.subtitle-phone:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+    border-color: #075985;
+    color: #ffffff;
+    transform: translateY(-1px);
 }
 
 
 /* =====================================================
-   MAIN STAGE — ZERO-BLUR GPU AMBIENT LIGHTING
+   MAIN STAGE — COMBO 2: CRYSTAL LAGOON DAY (CHẾ ĐỘ SÁNG)
 ===================================================== */
 
 .main-stage {
@@ -247,10 +298,33 @@ header::after {
     overflow: hidden;
     isolation: isolate;
 
-    background-color: #eef3f9;
+    background-color: #e2f6fc;
     background-image:
-        radial-gradient(ellipse 85% 420px at 50% 0%, rgba(255, 255, 255, 0.94) 0%, rgba(56, 189, 248, 0.04) 48%, transparent 82%),
-        linear-gradient(180deg, #ebf1f8 0%, #f3f7fc 32%, #eef3fa 72%, #e8eef7 100%);
+        radial-gradient(
+            ellipse 92% 460px at 50% -4%,
+            rgba(255, 255, 255, 0.92) 0%,
+            rgba(103, 232, 249, 0.24) 42%,
+            rgba(45, 212, 191, 0.11) 68%,
+            transparent 90%
+        ),
+        radial-gradient(
+            ellipse 70% 520px at 10% 35%,
+            rgba(153, 246, 228, 0.28) 0%,
+            transparent 72%
+        ),
+        radial-gradient(
+            ellipse 70% 520px at 90% 65%,
+            rgba(186, 230, 253, 0.32) 0%,
+            transparent 72%
+        ),
+        linear-gradient(
+            180deg,
+            #d8f3fa 0%,
+            #e8fbfd 28%,
+            #f0fdfa 58%,
+            #e0f4fc 85%,
+            #d5eef8 100%
+        );
 }
 
 .main-bg-decor {
@@ -261,6 +335,41 @@ header::after {
     overflow: hidden;
 }
 
+.bg-starfield {
+    display: none;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Sunlit water rays filtering from the surface */
+.bg-ocean-rays {
+    position: absolute;
+    top: -120px;
+    left: -10%;
+    right: -10%;
+    height: 680px;
+    background:
+        linear-gradient(
+            168deg,
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(165, 243, 252, 0.22) 22%,
+            transparent 54%
+        ),
+        repeating-linear-gradient(
+            112deg,
+            transparent 0px,
+            transparent 68px,
+            rgba(255, 255, 255, 0.36) 68px,
+            rgba(103, 232, 249, 0.16) 110px,
+            transparent 150px
+        );
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
+    pointer-events: none;
+}
+
 .bg-orb {
     position: absolute;
     border-radius: 50%;
@@ -268,48 +377,48 @@ header::after {
     transform: translate3d(0, 0, 0);
 }
 
-/* Multi-stop radial gradients produce soft orb glow without expensive GPU filter:blur() */
+/* Crystal Lagoon multi-stop radial orbs */
 .bg-orb-crimson {
-    width: 720px;
-    height: 720px;
+    width: 740px;
+    height: 740px;
     top: -180px;
-    right: -210px;
+    right: -200px;
     background: radial-gradient(
         circle,
-        rgba(124, 58, 237, 0.075) 0%,
-        rgba(59, 130, 246, 0.042) 34%,
-        rgba(59, 130, 246, 0.015) 56%,
-        transparent 74%
+        rgba(20, 184, 166, 0.16) 0%,
+        rgba(6, 182, 212, 0.09) 36%,
+        rgba(56, 189, 248, 0.03) 60%,
+        transparent 76%
     );
     animation: mainOrbDrift1 32s var(--ease-in-out) infinite alternate;
 }
 
 .bg-orb-cobalt {
-    width: 760px;
-    height: 760px;
-    top: 240px;
-    left: -260px;
+    width: 780px;
+    height: 780px;
+    top: 220px;
+    left: -250px;
     background: radial-gradient(
         circle,
-        rgba(6, 182, 212, 0.08) 0%,
-        rgba(37, 99, 235, 0.045) 35%,
-        rgba(37, 99, 235, 0.015) 58%,
-        transparent 74%
+        rgba(14, 165, 233, 0.16) 0%,
+        rgba(34, 211, 238, 0.09) 36%,
+        rgba(45, 212, 191, 0.03) 60%,
+        transparent 76%
     );
     animation: mainOrbDrift2 38s var(--ease-in-out) infinite alternate;
 }
 
 .bg-orb-bottom {
-    width: 680px;
-    height: 680px;
+    width: 700px;
+    height: 700px;
     bottom: -200px;
     right: 4%;
     background: radial-gradient(
         circle,
-        rgba(59, 130, 246, 0.065) 0%,
-        rgba(139, 92, 246, 0.032) 36%,
-        rgba(139, 92, 246, 0.01) 58%,
-        transparent 74%
+        rgba(6, 182, 212, 0.15) 0%,
+        rgba(45, 212, 191, 0.08) 38%,
+        rgba(14, 165, 233, 0.025) 60%,
+        transparent 76%
     );
     animation: mainOrbDrift1 36s var(--ease-in-out) infinite alternate-reverse;
 }
@@ -317,7 +426,8 @@ header::after {
 .bg-court-arc {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(148, 163, 184, 0.07);
+    border: 1.5px solid rgba(14, 165, 233, 0.12);
+    box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.35);
     pointer-events: none;
 }
 
@@ -337,20 +447,63 @@ header::after {
 
 .bg-light-streak {
     position: absolute;
-    top: 100px;
+    top: 85px;
     left: -10%;
     width: 120%;
-    height: 300px;
+    height: 310px;
     background: linear-gradient(
         180deg,
         transparent 0%,
-        rgba(255, 255, 255, 0.25) 25%,
-        rgba(255, 255, 255, 0.62) 50%,
-        rgba(255, 255, 255, 0.25) 75%,
+        rgba(255, 255, 255, 0.35) 25%,
+        rgba(255, 255, 255, 0.74) 50%,
+        rgba(224, 242, 254, 0.35) 75%,
         transparent 100%
     );
-    transform: rotate(-6deg);
+    transform: rotate(-5deg);
     pointer-events: none;
+}
+
+/* Subtle water bubbles / bioluminescent particles */
+.bg-ocean-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.ocean-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 35% 35%,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(165, 243, 252, 0.45) 55%,
+        rgba(34, 211, 238, 0.12) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.25);
+    animation: oceanBubbleFloat 22s var(--ease-in-out) infinite alternate;
+}
+
+.ocean-bubble.b1 { width: 14px; height: 14px; top: 14%; left: 6%; animation-duration: 18s; }
+.ocean-bubble.b2 { width: 9px; height: 9px; top: 34%; right: 5%; animation-duration: 24s; animation-delay: -5s; }
+.ocean-bubble.b3 { width: 18px; height: 18px; top: 58%; left: 3.5%; animation-duration: 28s; animation-delay: -9s; }
+.ocean-bubble.b4 { width: 11px; height: 11px; top: 74%; right: 7%; animation-duration: 21s; animation-delay: -3s; }
+.ocean-bubble.b5 { width: 8px; height: 8px; top: 22%; left: 88%; animation-duration: 25s; animation-delay: -11s; }
+.ocean-bubble.b6 { width: 13px; height: 13px; top: 86%; left: 12%; animation-duration: 26s; animation-delay: -7s; }
+
+@keyframes oceanBubbleFloat {
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.95);
+        opacity: 0.45;
+    }
+    50% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translate3d(8px, -28px, 0) scale(1.08);
+        opacity: 0.55;
+    }
 }
 
 @keyframes mainOrbDrift1 {
@@ -387,57 +540,72 @@ header::after {
 
 
 /* =====================================================
-   SEARCH — SUPPORTIVE FROSTED BAR
+   TOP CONTROL BAR — SEARCH & THEME TOGGLE ROW
 ===================================================== */
 
+.top-control-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 11px;
+    margin-bottom: 12px;
+}
+
 .search-box {
-    margin-bottom: 11px;
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
     position: relative;
 }
 
 .search {
     width: 100%;
-    padding: 13.5px 44px 13.5px 44px;
+    padding: 13px 44px 13px 46px;
 
-    border: 1px solid rgba(203, 213, 225, 0.92);
+    border: 1.5px solid rgba(14, 165, 233, 0.34);
     border-radius: 14px;
 
-    background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    background-color: rgba(255, 255, 255, 0.94);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: 15px center;
-    background-size: 17px 17px;
+    background-position: 16px center;
+    background-size: 18px 18px;
 
-    color: #0f172a;
+    color: #0c2d48;
     font-family: inherit;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: -0.05px;
+    line-height: 1.35;
     outline: none;
 
     box-shadow:
-        0 4px 14px -4px rgba(15, 23, 42, 0.045),
+        0 6px 18px -6px rgba(8, 47, 73, 0.08),
         inset 0 1px 0 #ffffff;
 
     transition:
         border-color var(--dur-fast) var(--ease-out),
+        background-color var(--dur-fast) var(--ease-out),
         box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .search::placeholder {
-    color: #94a3b8;
-    font-weight: 400;
+    color: #64748b;
+    font-weight: 500;
 }
 
 .search:hover {
-    border-color: #94a3b8;
+    border-color: rgba(2, 132, 199, 0.52);
+    background-color: #ffffff;
 }
 
 .search:focus {
-    border-color: rgba(37, 99, 235, 0.65);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    background-color: #ffffff;
+    border-color: #0284c7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
     box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.10),
-        0 8px 20px -6px rgba(15, 23, 42, 0.07);
+        0 0 0 3.5px rgba(14, 165, 233, 0.18),
+        0 8px 22px -6px rgba(8, 47, 73, 0.12);
 }
 
 .search-clear {
@@ -451,8 +619,8 @@ header::after {
     border-radius: 50%;
     border: none;
 
-    background: #e2e8f0;
-    color: #475569;
+    background: #e0f2fe;
+    color: #0369a1;
 
     font-size: 13px;
     font-weight: 800;
@@ -480,7 +648,7 @@ header::after {
 }
 
 .search-clear:hover {
-    background: #0f172a;
+    background: #0284c7;
     color: #ffffff;
 }
 
@@ -490,74 +658,131 @@ header::after {
 
 
 /* =====================================================
-   FILTER — CLEAN SUPPORTIVE PILLS
+   FILTER — 4 COLOR-HARMONIZED SUGGESTION PILLS (LIGHT MODE)
 ===================================================== */
 
 .filters {
     display: flex;
-    gap: 10px;
+    gap: 11px;
     flex-wrap: wrap;
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 }
 
 select {
-    flex: 1 1 calc(25% - 10px);
+    flex: 1 1 calc(25% - 11px);
     min-width: 170px;
 
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 
-    border: 1px solid rgba(203, 213, 225, 0.92);
-    background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 13px center;
-    background-size: 15px 15px;
+    border: 1.5px solid rgba(14, 165, 233, 0.34);
+    background-color: #f0f9ff;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%230369a1' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right 13px center, center;
+    background-size: 15px 15px, 100% 100%;
 
-    border-radius: 12px;
-    padding: 11px 36px 11px 14px;
+    border-radius: 13px;
+    padding: 11.5px 36px 11.5px 14px;
 
-    color: #1e293b;
+    color: #0c4a6e;
     font-family: inherit;
     font-size: 14px;
-    font-weight: 600;
-    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.05px;
+    line-height: 1.38;
     outline: none;
     cursor: pointer;
 
     box-shadow:
-        0 3px 10px -2px rgba(15, 23, 42, 0.035),
-        inset 0 1px 0 #ffffff;
+        0 4px 12px -3px rgba(8, 47, 73, 0.065),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
 
     transition:
+        transform var(--dur-fast) var(--ease-out),
         border-color var(--dur-fast) var(--ease-out),
         box-shadow var(--dur-fast) var(--ease-out),
-        background-color var(--dur-fast) var(--ease-out),
+        background-image var(--dur-fast) var(--ease-out),
         color var(--dur-fast) var(--ease-out);
 }
 
-select:hover {
-    border-color: #94a3b8;
+select option {
+    background-color: #ffffff;
+    color: #0f172a;
+    font-weight: 600;
 }
+
+/* 1. Hãng & Phụ kiện — Ocean Sky Blue */
+#brandFilter {
+    border-color: rgba(14, 165, 233, 0.42);
+    color: #075985;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #f8fdff 0%, #dff2fe 100%);
+}
+
+/* 2. Lối đánh — Lagoon Emerald / Mint */
+#styleFilter {
+    border-color: rgba(20, 184, 166, 0.44);
+    color: #115e59;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #f5fffe 0%, #ccfbf1 100%);
+}
+
+/* 3. Sắp xếp — Pearl Sapphire / Indigo */
+#sortFilter {
+    border-color: rgba(99, 102, 241, 0.38);
+    color: #3730a3;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #f8faff 0%, #e0e7ff 100%);
+}
+
+/* 4. Mức giá — Sunlit Coral Amber */
+#priceFilter {
+    border-color: rgba(245, 158, 11, 0.46);
+    color: #92400e;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #fffdf7 0%, #fef3c7 100%);
+}
+
+select:hover {
+    transform: translateY(-1px);
+    box-shadow:
+        0 6px 16px -4px rgba(8, 47, 73, 0.11),
+        inset 0 1px 0 #ffffff;
+}
+
+#brandFilter:hover { border-color: #0284c7; }
+#styleFilter:hover { border-color: #0d9488; }
+#sortFilter:hover  { border-color: #4f46e5; }
+#priceFilter:hover { border-color: #d97706; }
 
 select:focus {
-    border-color: rgba(37, 99, 235, 0.65);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.10),
-        0 4px 12px rgba(15, 23, 42, 0.045);
+        0 0 0 3px rgba(14, 165, 233, 0.18),
+        0 6px 16px rgba(8, 47, 73, 0.08);
 }
 
-select.is-active {
-    border-color: rgba(37, 99, 235, 0.58);
-    background-color: #eff6ff;
-    color: #1d4ed8;
-    font-weight: 700;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%231d4ed8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+select.is-active,
+#brandFilter.is-active,
+#styleFilter.is-active,
+#sortFilter.is-active,
+#priceFilter.is-active {
+    border-color: #0284c7;
+    color: #ffffff;
+    font-weight: 800;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
     box-shadow:
-        0 3px 10px -2px rgba(37, 99, 235, 0.10),
-        inset 0 1px 0 #ffffff;
+        0 6px 16px -3px rgba(2, 132, 199, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 
@@ -568,12 +793,12 @@ select.is-active {
 .count {
     position: relative;
     padding-left: 18px;
-    color: #475569;
-    font-size: 13.5px;
+    color: #0f4c75;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
     margin-bottom: 14px;
-    line-height: 1.4;
+    line-height: 1.42;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -586,43 +811,43 @@ select.is-active {
     left: 2px;
     top: 50%;
     transform: translateY(-50%);
-    width: 7px;
-    height: 7px;
+    width: 7.5px;
+    height: 7.5px;
     border-radius: 50%;
-    background: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #0d9488;
+    box-shadow: 0 0 0 3.5px rgba(20, 184, 166, 0.22);
 }
 
 .count-line {
-    font-weight: 700;
-    color: #334155;
+    font-weight: 800;
+    color: #0c4a6e;
 }
 
 .filter-reset-btn {
-    border: 1px solid rgba(37, 99, 235, 0.30);
-    background: #ffffff;
-    color: #1d4ed8;
+    border: 1.5px solid rgba(2, 132, 199, 0.35);
+    background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+    color: #0369a1;
     font-family: inherit;
     font-size: 12px;
-    font-weight: 700;
-    padding: 5px 12px;
+    font-weight: 800;
+    padding: 5.5px 13px;
     border-radius: 999px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.10);
     transition:
         transform var(--dur-fast) var(--ease-out),
-        background-color var(--dur-fast) var(--ease-out),
+        background var(--dur-fast) var(--ease-out),
         box-shadow var(--dur-fast) var(--ease-out);
     flex-shrink: 0;
 }
 
 .filter-reset-btn:hover {
-    background: #eff6ff;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.14);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.18);
 }
 
 .filter-reset-btn:active {
@@ -631,7 +856,7 @@ select.is-active {
 
 
 /* =====================================================
-   PRODUCTS — ELEVATED SHOWROOM STAGE (NEVER SINKS INTO BG)
+   PRODUCTS — ELEVATED CRYSTAL LAGOON STAGE
 ===================================================== */
 
 .products {
@@ -645,13 +870,13 @@ select.is-active {
     border-radius: 24px;
     background: linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.72) 0%,
-        rgba(255, 255, 255, 0.52) 100%
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(240, 253, 250, 0.64) 100%
     );
-    border: 1px solid rgba(255, 255, 255, 0.88);
+    border: 1.5px solid rgba(255, 255, 255, 0.92);
     box-shadow:
-        0 12px 36px -14px rgba(15, 23, 42, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        0 14px 40px -14px rgba(8, 47, 73, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.98);
 }
 
 
@@ -915,11 +1140,11 @@ select.is-active {
 }
 
 /* =====================================================
-   CARD INFO — FAST SCAN HIERARCHY (NAME → PRICE → INFO → DATE)
+   CARD INFO — BALANCED TYPOGRAPHY & FAST SCAN HIERARCHY
 ===================================================== */
 
 .card-info {
-    padding: 14px 16px 15px;
+    padding: 15px 16px 16px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -930,80 +1155,87 @@ select.is-active {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    margin-bottom: 5px;
+    gap: 8px;
+    margin-bottom: 6px;
 }
 
 .brand {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: #64748b;
+    letter-spacing: 0.65px;
+    color: #0284c7;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .card-code {
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 700;
-    color: #475569;
-    background: #f1f5f9;
-    border: 1px solid rgba(203, 213, 225, 0.7);
-    padding: 1.5px 6.5px;
-    border-radius: 5px;
-    letter-spacing: 0.3px;
+    color: #0f4c75;
+    background: #f0f9ff;
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    padding: 2px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.2px;
+    font-variant-numeric: tabular-nums;
     flex-shrink: 0;
 }
 
 .name {
-    font-size: 16.5px;
+    font-size: 16px;
     font-weight: 700;
     color: #0f172a;
-    line-height: 1.38;
+    line-height: 1.42;
+    letter-spacing: -0.1px;
 
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-height: 2.76em;
+    min-height: 2.84em;
     transition: color var(--dur-fast) var(--ease-out);
 }
 
 .card:hover .name {
-    color: #1d4ed8;
+    color: #0284c7;
 }
 
 .price {
     margin-top: 8px;
 
-    font-size: 20.5px;
-    font-weight: 900;
+    font-size: 19.5px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
     background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     line-height: 1.25;
 }
 
 .meta {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid rgba(226, 232, 240, 0.85);
+    border-top: 1px solid rgba(203, 213, 225, 0.75);
 
-    color: #475569;
-    font-size: 13px;
-    line-height: 1.45;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    color: #334155;
+    font-size: 13.5px;
+    line-height: 1.48;
 }
 
 .meta-condition {
     color: #334155;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.45;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.48;
 
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -1018,36 +1250,40 @@ select.is-active {
 .meta-style {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    margin-top: 7px;
-    padding: 3.5px 9.5px;
+    align-self: flex-start;
+    gap: 5.5px;
+    margin-top: 1px;
+    padding: 4px 10px;
 
-    background: #f8fafc;
-    color: #1e293b;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
+    background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+    color: #0f4c75;
+    border: 1px solid rgba(14, 165, 233, 0.30);
+    border-radius: 7px;
 
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.35;
+    letter-spacing: 0px;
 }
 
 .meta-style::before {
     content: "";
-    width: 5px;
-    height: 5px;
+    width: 5.5px;
+    height: 5.5px;
     border-radius: 50%;
-    background: #3b82f6;
+    background: #0d9488;
+    flex-shrink: 0;
 }
 
 .post-date {
     margin-top: auto;
     padding-top: 10px;
 
-    color: #94a3b8;
-    font-size: 11.5px;
-    font-weight: 500;
-    line-height: 1.3;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    line-height: 1.38;
 }
 
 
@@ -1089,16 +1325,16 @@ select.is-active {
 .detail {
     display: none;
 
-    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
-    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 252, 255, 0.94) 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
     border-radius: 22px;
     padding: 28px;
     position: relative;
     overflow: visible;
 
     box-shadow:
-        0 20px 50px -12px rgba(15, 23, 42, 0.09),
-        0 4px 16px rgba(15, 23, 42, 0.03),
+        0 20px 50px -12px rgba(8, 47, 73, 0.11),
+        0 4px 16px rgba(8, 47, 73, 0.04),
         inset 0 1px 0 #ffffff;
 
     animation: detailSurfaceFade 220ms var(--ease-out) both;
@@ -1112,7 +1348,7 @@ select.is-active {
     right: 0;
     height: 3.5px;
     border-radius: 22px 22px 0 0;
-    background: linear-gradient(90deg, #38bdf8 0%, #3b82f6 50%, #e11d48 100%);
+    background: linear-gradient(90deg, #2dd4bf 0%, #0284c7 50%, #e11d48 100%);
 }
 
 .detail-sticky-bar {
@@ -1129,7 +1365,7 @@ select.is-active {
 .back {
     pointer-events: auto;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.92) 100%);
+    background: linear-gradient(135deg, rgba(8, 47, 73, 0.92) 0%, rgba(15, 23, 42, 0.92) 100%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: #ffffff;
@@ -1148,8 +1384,8 @@ select.is-active {
     overflow: hidden;
 
     box-shadow:
-        0 8px 20px rgba(15, 23, 42, 0.22),
-        0 0 0 1px rgba(15, 23, 42, 0.08),
+        0 8px 20px rgba(8, 47, 73, 0.22),
+        0 0 0 1px rgba(8, 47, 73, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
     animation: detailItemReveal 280ms var(--ease-out) both;
@@ -1177,8 +1413,8 @@ select.is-active {
 .back:hover {
     transform: translate3d(0, -1px, 0);
     box-shadow:
-        0 9px 20px rgba(15, 23, 42, 0.22),
-        0 0 0 3px rgba(15, 23, 42, 0.06);
+        0 9px 20px rgba(8, 47, 73, 0.26),
+        0 0 0 3px rgba(14, 165, 233, 0.12);
 }
 
 .back:hover::after {
@@ -1203,8 +1439,8 @@ select.is-active {
     margin: auto;
 
     background:
-        radial-gradient(circle at 50% 45%, #ffffff 0%, #f8fafc 62%, #eef4fa 100%);
-    border: 1px solid rgba(203, 213, 225, 0.85);
+        radial-gradient(circle at 50% 45%, #ffffff 0%, #f4fbfd 62%, #e6f5fb 100%);
+    border: 1.5px solid rgba(14, 165, 233, 0.22);
     border-radius: 18px;
     padding: 18px;
 
@@ -1216,8 +1452,8 @@ select.is-active {
     position: relative;
 
     box-shadow:
-        inset 0 2px 12px rgba(15, 23, 42, 0.03),
-        0 14px 36px -10px rgba(15, 23, 42, 0.08);
+        inset 0 2px 12px rgba(8, 47, 73, 0.03),
+        0 14px 36px -10px rgba(8, 47, 73, 0.08);
 
     /* Step 1 of Detail Choreography: Image */
     animation: detailImageReveal 340ms var(--ease-out) 20ms both;
@@ -1231,9 +1467,9 @@ select.is-active {
     border-radius: 50%;
     background: radial-gradient(
         circle,
-        rgba(56, 189, 248, 0.11) 0%,
-        rgba(99, 102, 241, 0.055) 38%,
-        rgba(99, 102, 241, 0.015) 60%,
+        rgba(34, 211, 238, 0.14) 0%,
+        rgba(20, 184, 166, 0.06) 38%,
+        rgba(14, 165, 233, 0.02) 60%,
         transparent 76%
     );
     pointer-events: none;
@@ -1274,8 +1510,8 @@ select.is-active {
     gap: 3px;
 
     color: #ffffff;
-    background: rgba(15, 23, 42, 0.86);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(8, 47, 73, 0.88);
+    border: 1px solid rgba(165, 243, 252, 0.25);
 
     padding: 9px 13px;
     border-radius: 13px;
@@ -1288,8 +1524,8 @@ select.is-active {
     pointer-events: none;
     user-select: none;
 
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
-    opacity: 0.9;
+    box-shadow: 0 8px 20px rgba(8, 47, 73, 0.22);
+    opacity: 0.92;
     transition: opacity 220ms var(--ease-out);
 }
 
@@ -1324,21 +1560,21 @@ select.is-active {
 .detail-content {
     max-width: 820px;
 
-    margin: 30px auto 0;
+    margin: 28px auto 0;
 
     text-align: center;
 }
 
 .detail-brand {
     display: inline-block;
-    padding: 5px 14px;
+    padding: 5.5px 16px;
     border-radius: 999px;
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    border: 1px solid #cbd5e1;
-    color: #334155;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid rgba(14, 165, 233, 0.35);
+    color: #0369a1;
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: 1.4px;
+    letter-spacing: 1px;
     text-transform: uppercase;
 
     /* Step 2 of Detail Choreography: Brand & Title */
@@ -1346,11 +1582,11 @@ select.is-active {
 }
 
 .detail-name {
-    font-size: 32px;
-    font-weight: 900;
+    font-size: 28px;
+    font-weight: 800;
     color: #0f172a;
-    letter-spacing: -0.4px;
-    line-height: 1.25;
+    letter-spacing: -0.3px;
+    line-height: 1.32;
     margin-top: 12px;
 
     /* Step 2 of Detail Choreography: Brand & Title */
@@ -1363,32 +1599,33 @@ select.is-active {
     justify-content: center;
 
     margin: 14px 0 18px;
-    padding: 8px 24px;
+    padding: 8px 26px;
     border-radius: 14px;
 
     background: linear-gradient(
         135deg,
-        rgba(225, 29, 72, 0.09) 0%,
+        rgba(225, 29, 72, 0.10) 0%,
         rgba(225, 29, 72, 0.03) 100%
     );
-    border: 1px solid rgba(225, 29, 72, 0.22);
+    border: 1.5px solid rgba(225, 29, 72, 0.25);
 
-    font-size: 30px;
-    font-weight: 900;
+    font-size: 26px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
     color: #e11d48;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.35px;
     box-shadow:
         0 6px 20px -4px rgba(225, 29, 72, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
 
     /* Step 3 of Detail Choreography: Price */
     animation: detailItemReveal 340ms var(--ease-out) 105ms both;
 }
 
 .detail-date {
-    color: #64748b;
+    color: #475569;
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 600;
     margin-top: -6px;
     margin-bottom: 18px;
 
@@ -1421,22 +1658,22 @@ select.is-active {
     padding: 14px 28px;
     border-radius: 14px;
 
-    background: linear-gradient(135deg, #0068ff 0%, #0052cc 55%, #0088ff 100%);
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 52%, #0d9488 100%);
     color: #ffffff;
     text-decoration: none;
 
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 800;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.35px;
     text-transform: uppercase;
 
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     position: relative;
     overflow: hidden;
 
     box-shadow:
-        0 8px 22px -4px rgba(0, 104, 255, 0.36),
-        0 0 0 3px rgba(0, 104, 255, 0.10),
+        0 8px 22px -4px rgba(2, 132, 199, 0.38),
+        0 0 0 3px rgba(14, 165, 233, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.35);
 
     transition:
@@ -1462,8 +1699,8 @@ select.is-active {
 .detail-cta-btn:hover {
     transform: translate3d(0, -1.5px, 0);
     box-shadow:
-        0 12px 26px -4px rgba(0, 104, 255, 0.44),
-        0 0 0 4px rgba(0, 104, 255, 0.14),
+        0 12px 26px -4px rgba(2, 132, 199, 0.46),
+        0 0 0 4px rgba(14, 165, 233, 0.16),
         inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
@@ -1485,18 +1722,18 @@ select.is-active {
     padding: 13px 20px;
     border-radius: 14px;
 
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
-    border: 1px solid #cbd5e1;
-    color: #0f172a;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    border: 1.5px solid rgba(14, 165, 233, 0.32);
+    color: #0c4a6e;
 
     font-family: inherit;
     font-size: 14px;
     font-weight: 800;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.15px;
 
     cursor: pointer;
     box-shadow:
-        0 4px 12px rgba(15, 23, 42, 0.05),
+        0 4px 12px rgba(8, 47, 73, 0.06),
         inset 0 1px 0 #ffffff;
 
     transition:
@@ -1509,9 +1746,9 @@ select.is-active {
 
 .copy-code-btn:hover {
     transform: translate3d(0, -1.5px, 0);
-    border-color: #94a3b8;
+    border-color: #0284c7;
     background: #ffffff;
-    box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.09);
+    box-shadow: 0 8px 18px -4px rgba(8, 47, 73, 0.11);
 }
 
 .copy-code-btn:active {
@@ -1528,7 +1765,7 @@ select.is-active {
 
 
 /* =====================================================
-   INFO — SPEC CARDS WITH HIGHLIGHTED CONDITION
+   INFO — 4 COLOR-HARMONIZED SPEC CARDS (LIGHT MODE)
 ===================================================== */
 
 .info-grid {
@@ -1538,29 +1775,36 @@ select.is-active {
 
     gap: 13px;
 
-    margin-top: 20px;
+    margin-top: 16px;
 
     /* Step 4 of Detail Choreography: Info grid */
     animation: detailItemReveal 360ms var(--ease-out) 140ms both;
 }
 
 .info-row {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
+    background: linear-gradient(135deg, #f8fdff 0%, #e0f2fe 100%);
+    border: 1.5px solid rgba(14, 165, 233, 0.28);
+    border-radius: 15px;
 
-    padding: 16px 14px;
+    padding: 15px 16px;
 
-    font-size: 16.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    font-size: 15.5px;
     font-weight: 700;
+    line-height: 1.48;
     color: #0f172a;
     text-align: center;
     position: relative;
     overflow: hidden;
 
     box-shadow:
-        0 3px 10px rgba(15, 23, 42, 0.03),
-        inset 0 1px 0 #ffffff;
+        0 4px 12px rgba(8, 47, 73, 0.045),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
     transition:
         transform 220ms var(--ease-out),
@@ -1570,9 +1814,8 @@ select.is-active {
 
 .info-row:hover {
     transform: translate3d(0, -1.5px, 0);
-    border-color: #cbd5e1;
     box-shadow:
-        0 7px 18px -4px rgba(15, 23, 42, 0.06),
+        0 8px 20px -4px rgba(8, 47, 73, 0.09),
         inset 0 1px 0 #ffffff;
 }
 
@@ -1580,61 +1823,76 @@ select.is-active {
     grid-column: 1 / -1;
 }
 
-.info-row.info-row-highlight {
-    background: linear-gradient(180deg, #fffcfd 0%, #fff5f7 100%);
-    border-color: rgba(225, 29, 72, 0.22);
-    box-shadow:
-        0 4px 14px rgba(225, 29, 72, 0.06),
-        inset 0 1px 0 #ffffff;
-}
-
-.info-row.info-row-highlight::before {
+.info-row::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 2.5px;
-    background: linear-gradient(90deg, #e11d48, #fb7185);
+    height: 3px;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
 }
 
 .info-row strong {
     display: block;
 
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: #64748b;
+    letter-spacing: 0.65px;
+    color: #0369a1;
 
-    margin-bottom: 6px;
+    margin-bottom: 1px;
 }
 
-.info-row.info-row-highlight strong {
+/* Card 1: Mã vợt — Ocean Sky */
+.info-grid .info-row:nth-child(1) {
+    background: linear-gradient(135deg, #f5fbff 0%, #e0f2fe 100%);
+    border-color: rgba(14, 165, 233, 0.34);
+}
+.info-grid .info-row:nth-child(1)::before {
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+.info-grid .info-row:nth-child(1) strong {
+    color: #0369a1;
+}
+
+/* Card 2: Tình trạng cước — Lagoon Emerald Mint */
+.info-grid .info-row:nth-child(2) {
+    background: linear-gradient(135deg, #f4fffe 0%, #ccfbf1 100%);
+    border-color: rgba(20, 184, 166, 0.36);
+}
+.info-grid .info-row:nth-child(2)::before {
+    background: linear-gradient(90deg, #0d9488, #2dd4bf);
+}
+.info-grid .info-row:nth-child(2) strong {
+    color: #0f766e;
+}
+
+/* Card 3: Tình trạng vợt — Coral Rose Highlight */
+.info-grid .info-row:nth-child(3) {
+    background: linear-gradient(135deg, #fff8f9 0%, #ffe4e6 100%);
+    border-color: rgba(225, 29, 72, 0.30);
+}
+.info-grid .info-row:nth-child(3)::before {
+    background: linear-gradient(90deg, #e11d48, #fb7185);
+}
+.info-grid .info-row:nth-child(3) strong {
     color: #be123c;
 }
 
-.info-row.info-row-blue {
-    background: linear-gradient(180deg, #f8fcff 0%, #eff8ff 100%);
-    border-color: rgba(14, 165, 233, 0.24);
-    box-shadow:
-        0 4px 14px rgba(14, 165, 233, 0.06),
-        inset 0 1px 0 #ffffff;
+/* Card 4: Ghi chú — Warm Sunbeam Amber */
+.info-grid .info-row:nth-child(4) {
+    background: linear-gradient(135deg, #fffdf7 0%, #fef3c7 100%);
+    border-color: rgba(245, 158, 11, 0.36);
+}
+.info-grid .info-row:nth-child(4)::before {
+    background: linear-gradient(90deg, #d97706, #fbbf24);
+}
+.info-grid .info-row:nth-child(4) strong {
+    color: #b45309;
 }
 
-.info-row.info-row-blue::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2.5px;
-    background: linear-gradient(90deg, #0284c7, #38bdf8);
-}
-
-.info-row.info-row-blue strong {
-    color: #0369a1;
-}
 
 /* =====================================================
    TECH SPECS SECTION — THÔNG SỐ KỸ THUẬT (5 CHỈ SỐ CHUẨN)
@@ -1646,28 +1904,28 @@ select.is-active {
     gap: 8px;
     margin-top: 24px;
     margin-bottom: 12px;
-    font-size: 13.5px;
-    font-weight: 900;
+    font-size: 14px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.7px;
-    color: #0f172a;
+    letter-spacing: 0.6px;
+    color: #0c4a6e;
 }
 
 .detail-section-label::after {
     content: "";
     flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, #cbd5e1 0%, transparent 100%);
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.35) 0%, transparent 100%);
 }
 
 .tech-specs-section {
     margin-top: 22px;
-    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-    border: 1px solid #cbd5e1;
+    background: linear-gradient(180deg, #f4fbfd 0%, #e8f7fc 100%);
+    border: 1.5px solid rgba(14, 165, 233, 0.28);
     border-radius: 18px;
     padding: 18px 18px 16px;
     box-shadow:
-        0 6px 20px -6px rgba(15, 23, 42, 0.06),
+        0 6px 20px -6px rgba(8, 47, 73, 0.06),
         inset 0 1px 0 #ffffff;
     animation: detailItemReveal 360ms var(--ease-out) 150ms both;
 }
@@ -1679,7 +1937,7 @@ select.is-active {
     gap: 10px;
     margin-bottom: 14px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.20);
 }
 
 .tech-specs-title {
@@ -1687,45 +1945,45 @@ select.is-active {
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.65px;
-    color: #0f172a;
+    letter-spacing: 0.55px;
+    color: #0c4a6e;
 }
 
 .tech-specs-badge {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 700;
-    color: #0284c7;
-    background: rgba(14, 165, 233, 0.1);
-    border: 1px solid rgba(14, 165, 233, 0.25);
-    padding: 3px 9px;
+    color: #0369a1;
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    padding: 3.5px 10px;
     border-radius: 999px;
 }
 
 .tech-specs-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 11px;
 }
 
 .tech-spec-item {
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 13px;
-    padding: 12px 13px;
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    border-radius: 14px;
+    padding: 13px 14px;
     text-align: left;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
+    box-shadow: 0 3px 10px rgba(8, 47, 73, 0.035);
     transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .tech-spec-item:hover {
     transform: translateY(-1px);
-    border-color: rgba(14, 165, 233, 0.4);
-    box-shadow: 0 6px 14px -4px rgba(14, 165, 233, 0.1);
+    border-color: rgba(14, 165, 233, 0.48);
+    box-shadow: 0 6px 14px -4px rgba(14, 165, 233, 0.12);
 }
 
 .tech-spec-item:last-child:nth-child(odd) {
@@ -1734,15 +1992,15 @@ select.is-active {
 
 .tech-spec-icon {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(37, 99, 235, 0.08));
-    border: 1px solid rgba(14, 165, 233, 0.22);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.14), rgba(20, 184, 166, 0.10));
+    border: 1px solid rgba(14, 165, 233, 0.26);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1;
 }
 
@@ -1753,20 +2011,20 @@ select.is-active {
 
 .tech-spec-label {
     display: block;
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.45px;
-    color: #64748b;
+    color: #0369a1;
     margin-bottom: 3px;
 }
 
 .tech-spec-value {
     display: block;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 14.5px;
+    font-weight: 700;
     color: #0f172a;
-    line-height: 1.38;
+    line-height: 1.42;
     word-break: break-word;
 }
 
@@ -1798,8 +2056,8 @@ select.is-active {
 .detail-gallery-title {
     text-align: center;
 
-    font-size: 21px;
-    font-weight: 900;
+    font-size: 20px;
+    font-weight: 800;
     color: #0f172a;
     letter-spacing: -0.2px;
 
@@ -2684,26 +2942,26 @@ select.is-active {
 @media (max-width: 650px) {
 
     header {
-        padding: 15px 14px 14px;
+        padding: 14px 12px 14px;
     }
 
     .logo {
-        font-size: 25px;
+        font-size: 26px;
         letter-spacing: 3.8px;
         text-indent: 3.8px;
     }
 
     .logo::after {
-        width: 32px;
-        height: 2px;
+        width: 36px;
+        height: 2.5px;
         margin-top: 5px;
     }
 
     .subtitle {
         margin-top: 7px;
-        font-size: 12.5px;
-        letter-spacing: 0.4px;
-        padding: 4.5px 12px;
+        font-size: 13px;
+        letter-spacing: 0.2px;
+        padding: 5px 12px;
         gap: 6px;
     }
 
@@ -2742,19 +3000,24 @@ select.is-active {
         padding: 12px 10px 26px;
     }
 
+    .top-control-bar {
+        gap: 8px;
+        margin-bottom: 9px;
+    }
+
     .search-box {
-        margin-bottom: 8px;
+        margin-bottom: 0;
     }
 
     .search {
-        font-size: 16px;
-        padding: 12px 38px 12px 40px;
-        background-position: 13px center;
+        font-size: 15px;
+        padding: 11px 36px 11px 38px;
+        background-position: 12px center;
         border-radius: 12px;
     }
 
     .search-clear {
-        right: 10px;
+        right: 9px;
         width: 26px;
         height: 26px;
     }
@@ -2805,7 +3068,7 @@ select.is-active {
     .card-badge-new {
         top: 8px;
         left: 8px;
-        font-size: 9px;
+        font-size: 9.5px;
         padding: 3.5px 7px;
     }
 
@@ -2814,47 +3077,47 @@ select.is-active {
     }
 
     .card-top-row {
-        margin-bottom: 4px;
+        margin-bottom: 5px;
     }
 
     .brand {
-        font-size: 10.5px;
+        font-size: 11px;
     }
 
     .card-code {
-        font-size: 9.5px;
-        padding: 1px 5px;
+        font-size: 10.5px;
+        padding: 1.5px 6px;
     }
 
     .name {
         font-size: 15px;
-        line-height: 1.35;
-        min-height: 2.7em;
+        line-height: 1.38;
+        min-height: 2.76em;
     }
 
     .price {
-        font-size: 18px;
+        font-size: 17.5px;
         margin-top: 6px;
     }
 
     .meta {
         margin-top: 7px;
         padding-top: 7px;
-        font-size: 12.5px;
+        font-size: 12.8px;
     }
 
     .meta-condition {
-        font-size: 12.5px;
+        font-size: 12.8px;
     }
 
     .meta-style {
-        font-size: 11px;
-        padding: 3px 8px;
-        margin-top: 5px;
+        font-size: 11.5px;
+        padding: 3.5px 8.5px;
+        margin-top: 4px;
     }
 
     .post-date {
-        font-size: 11px;
+        font-size: 11.5px;
         padding-top: 8px;
     }
 
@@ -2889,11 +3152,12 @@ select.is-active {
     }
 
     .detail-name {
-        font-size: 24px;
+        font-size: 22px;
+        line-height: 1.34;
     }
 
     .detail-price {
-        font-size: 24px;
+        font-size: 22px;
         padding: 7px 18px;
         margin: 12px 0 14px;
     }
@@ -2925,7 +3189,7 @@ select.is-active {
 
     .info-row {
         padding: 13px 12px;
-        font-size: 15.5px;
+        font-size: 14.5px;
     }
 
     .detail-gallery {
@@ -2934,7 +3198,7 @@ select.is-active {
     }
 
     .detail-gallery-title {
-        font-size: 19px;
+        font-size: 18px;
         margin-bottom: 14px;
     }
 
@@ -2950,7 +3214,7 @@ select.is-active {
     .detail-gallery-item::after {
         opacity: 1;
         transform: translateY(0);
-        font-size: 10.5px;
+        font-size: 11px;
         padding: 3.5px 9px;
     }
 
@@ -3022,7 +3286,7 @@ select.is-active {
     }
 
     .trust-footer-text {
-        font-size: 12px;
+        font-size: 12.5px;
         line-height: 1.55;
     }
 
@@ -3076,8 +3340,8 @@ select.is-active {
     }
 
     .subtitle {
-        font-size: 12px;
-        padding: 4px 10px;
+        font-size: 12.2px;
+        padding: 4.5px 10px;
     }
 
     .products {
@@ -3197,6 +3461,887 @@ select.is-active {
         transform: none !important;
     }
 
+}
+
+
+/* =====================================================
+   THEME TOGGLE BUTTON & DARK MODE (html[data-theme="dark"])
+===================================================== */
+
+.theme-toggle-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 0 15px;
+    min-height: 46px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(14, 165, 233, 0.36);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #0c4a6e;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.15px;
+    line-height: 1;
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px -6px rgba(8, 47, 73, 0.12),
+        inset 0 1px 0 #ffffff;
+
+    transition:
+        transform var(--dur-fast) var(--ease-out),
+        background-color var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out);
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-1.5px);
+    background: #ffffff;
+    border-color: #0284c7;
+    color: #0369a1;
+    box-shadow:
+        0 8px 20px -4px rgba(2, 132, 199, 0.26),
+        0 0 0 3px rgba(56, 189, 248, 0.16);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.96);
+}
+
+.theme-toggle-icon {
+    font-size: 15px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.theme-toggle-text {
+    white-space: nowrap;
+}
+
+.theme-toggle-switch {
+    width: 28px;
+    height: 16px;
+    border-radius: 999px;
+    background: rgba(14, 165, 233, 0.22);
+    border: 1px solid rgba(2, 132, 199, 0.35);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 1.5px;
+    flex-shrink: 0;
+    transition: background-color 0.22s ease, border-color 0.22s ease;
+}
+
+.theme-toggle-knob {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #0284c7;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transform: translateX(0);
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.22s ease;
+}
+
+html[data-theme="dark"] .theme-toggle-switch {
+    background: rgba(56, 189, 248, 0.28);
+    border-color: rgba(250, 204, 21, 0.55);
+}
+
+html[data-theme="dark"] .theme-toggle-knob {
+    background: #facc15;
+    box-shadow: 0 0 8px rgba(250, 204, 21, 0.85);
+    transform: translateX(12px);
+}
+
+@media (max-width: 650px) {
+    .theme-toggle-btn {
+        padding: 0 11px;
+        min-height: 42px;
+        border-radius: 12px;
+        font-size: 12px;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 400px) {
+    .theme-toggle-btn {
+        padding: 0 9px;
+        min-height: 40px;
+        font-size: 11.5px;
+        gap: 5px;
+    }
+}
+
+/* =====================================================
+   DARK MODE — STARRY NIGHT SKY & ELEVATED RACKET SHOWROOM
+===================================================== */
+
+@keyframes starTwinkleSlow {
+    0%, 100% {
+        opacity: 0.28;
+    }
+    50% {
+        opacity: 0.92;
+    }
+}
+
+html[data-theme="dark"] body {
+    background: #050a14;
+    color: #f1f5f9;
+}
+
+html[data-theme="dark"] header {
+    background:
+        radial-gradient(
+            780px circle at 50% 25%,
+            rgba(14, 165, 233, 0.18) 0%,
+            rgba(6, 12, 26, 0.92) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(5, 11, 23, 0.94) 0%,
+            rgba(9, 20, 38, 0.92) 60%,
+            rgba(7, 16, 32, 0.95) 100%
+        ),
+        url("https://ik.imagekit.io/izpyg6scgq/n%E1%BB%81n.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #f8fafc;
+    border-bottom-color: rgba(56, 189, 248, 0.26);
+    box-shadow:
+        0 10px 30px -8px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(125, 211, 252, 0.14);
+}
+
+html[data-theme="dark"] header::before {
+    background: radial-gradient(
+        ellipse at center,
+        rgba(56, 189, 248, 0.18) 0%,
+        rgba(45, 212, 191, 0.08) 48%,
+        transparent 80%
+    );
+}
+
+html[data-theme="dark"] header::after {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(56, 189, 248, 0.45) 24%,
+        rgba(186, 230, 253, 0.9) 50%,
+        rgba(45, 212, 191, 0.45) 76%,
+        transparent 100%
+    );
+}
+
+html[data-theme="dark"] .logo {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #e0f2fe 58%,
+        #7dd3fc 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 12px rgba(14, 165, 233, 0.38));
+}
+
+html[data-theme="dark"] .logo::after {
+    background: linear-gradient(
+        90deg,
+        #2dd4bf 0%,
+        #38bdf8 50%,
+        #60a5fa 100%
+    );
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
+}
+
+html[data-theme="dark"] .subtitle {
+    background: rgba(15, 28, 50, 0.88);
+    border-color: rgba(125, 211, 252, 0.32);
+    color: #f1f5f9;
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+html[data-theme="dark"] .subtitle::before {
+    background: #2dd4bf;
+    box-shadow: 0 0 9px rgba(45, 212, 191, 0.9);
+}
+
+html[data-theme="dark"] .subtitle-brand {
+    color: #7dd3fc;
+}
+
+html[data-theme="dark"] .subtitle-sep {
+    color: #64748b;
+}
+
+html[data-theme="dark"] .subtitle-desc {
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .subtitle-phone {
+    color: #fef08a;
+    background: rgba(250, 204, 21, 0.14);
+    border-color: rgba(250, 204, 21, 0.38);
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .subtitle-phone:hover {
+    background: #facc15;
+    border-color: #facc15;
+    color: #050a14;
+}
+
+html[data-theme="dark"] .theme-toggle-btn {
+    background: rgba(15, 28, 52, 0.92);
+    border-color: rgba(250, 204, 21, 0.52);
+    color: #fef08a;
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.55),
+        0 0 14px rgba(250, 204, 21, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .theme-toggle-btn:hover {
+    background: rgba(23, 41, 74, 0.98);
+    border-color: #facc15;
+    color: #ffffff;
+}
+
+/* 4.1. Night Sky Background & Subtle Twinkling Stars */
+html[data-theme="dark"] .main-stage {
+    background-color: #050a14;
+    background-image:
+        radial-gradient(
+            ellipse 90% 460px at 50% -6%,
+            rgba(14, 165, 233, 0.16) 0%,
+            rgba(30, 58, 138, 0.11) 42%,
+            transparent 82%
+        ),
+        radial-gradient(
+            ellipse 65% 520px at 10% 35%,
+            rgba(15, 118, 110, 0.09) 0%,
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 65% 520px at 90% 68%,
+            rgba(29, 78, 216, 0.10) 0%,
+            transparent 70%
+        ),
+        linear-gradient(
+            180deg,
+            #060d1b 0%,
+            #081225 32%,
+            #071020 68%,
+            #040912 100%
+        );
+}
+
+html[data-theme="dark"] .bg-starfield {
+    display: block;
+}
+
+html[data-theme="dark"] .stars-layer {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat;
+    pointer-events: none;
+}
+
+/* Layer 1: Static crisp distant stars (moderate density, varying brightness) */
+html[data-theme="dark"] .stars-sm {
+    background-size: 340px 340px;
+    background-image:
+        radial-gradient(1px 1px at 28px 42px, rgba(255, 255, 255, 0.72), transparent),
+        radial-gradient(1.2px 1.2px at 96px 118px, rgba(186, 230, 253, 0.62), transparent),
+        radial-gradient(1px 1px at 174px 36px, rgba(255, 255, 255, 0.50), transparent),
+        radial-gradient(1.4px 1.4px at 248px 88px, rgba(224, 242, 254, 0.68), transparent),
+        radial-gradient(1px 1px at 312px 164px, rgba(255, 255, 255, 0.48), transparent),
+        radial-gradient(1.2px 1.2px at 62px 226px, rgba(125, 211, 252, 0.56), transparent),
+        radial-gradient(1px 1px at 146px 284px, rgba(255, 255, 255, 0.64), transparent),
+        radial-gradient(1.3px 1.3px at 228px 242px, rgba(186, 230, 253, 0.52), transparent),
+        radial-gradient(1px 1px at 294px 308px, rgba(255, 255, 255, 0.58), transparent);
+    opacity: 0.78;
+}
+
+/* Layer 2: Medium night stars */
+html[data-theme="dark"] .stars-md {
+    background-size: 460px 460px;
+    background-image:
+        radial-gradient(1.6px 1.6px at 64px 78px, rgba(255, 255, 255, 0.82), transparent),
+        radial-gradient(1.8px 1.8px at 212px 154px, rgba(165, 243, 252, 0.75), transparent),
+        radial-gradient(1.5px 1.5px at 368px 62px, rgba(255, 255, 255, 0.70), transparent),
+        radial-gradient(1.7px 1.7px at 128px 342px, rgba(186, 230, 253, 0.76), transparent),
+        radial-gradient(1.5px 1.5px at 318px 288px, rgba(255, 255, 255, 0.68), transparent),
+        radial-gradient(1.8px 1.8px at 416px 396px, rgba(125, 211, 252, 0.72), transparent);
+    opacity: 0.72;
+}
+
+/* Layer 3: Gentle, slow-twinkling accent stars */
+html[data-theme="dark"] .stars-twinkle {
+    background-size: 520px 520px;
+    background-image:
+        radial-gradient(2px 2px at 110px 95px, #ffffff, rgba(56, 189, 248, 0.4) 55%, transparent),
+        radial-gradient(2.2px 2.2px at 340px 180px, #e0f2fe, rgba(45, 212, 191, 0.4) 55%, transparent),
+        radial-gradient(1.8px 1.8px at 450px 85px, #ffffff, transparent),
+        radial-gradient(2px 2px at 185px 390px, #bae6fd, rgba(56, 189, 248, 0.35) 55%, transparent),
+        radial-gradient(2.2px 2.2px at 410px 430px, #fef08a, rgba(250, 204, 21, 0.28) 55%, transparent);
+    animation: starTwinkleSlow 7.5s var(--ease-in-out) infinite alternate;
+    will-change: opacity;
+}
+
+html[data-theme="dark"] .bg-ocean-rays {
+    background:
+        linear-gradient(
+            168deg,
+            rgba(56, 189, 248, 0.08) 0%,
+            rgba(45, 212, 191, 0.04) 26%,
+            transparent 54%
+        );
+}
+
+html[data-theme="dark"] .bg-orb-crimson {
+    background: radial-gradient(
+        circle,
+        rgba(14, 165, 233, 0.11) 0%,
+        rgba(2, 132, 199, 0.05) 40%,
+        transparent 74%
+    );
+}
+
+html[data-theme="dark"] .bg-orb-cobalt {
+    background: radial-gradient(
+        circle,
+        rgba(20, 184, 166, 0.09) 0%,
+        rgba(14, 165, 233, 0.04) 40%,
+        transparent 74%
+    );
+}
+
+html[data-theme="dark"] .bg-orb-bottom {
+    background: radial-gradient(
+        circle,
+        rgba(37, 99, 235, 0.10) 0%,
+        rgba(14, 165, 233, 0.04) 40%,
+        transparent 74%
+    );
+}
+
+html[data-theme="dark"] .bg-light-streak {
+    opacity: 0.25;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(56, 189, 248, 0.04) 50%,
+        transparent 100%
+    );
+}
+
+html[data-theme="dark"] .bg-court-arc {
+    border-color: rgba(56, 189, 248, 0.06);
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .ocean-bubble {
+    width: 4px !important;
+    height: 4px !important;
+    background: #e0f2fe;
+    border: none;
+    box-shadow: 0 0 8px rgba(125, 211, 252, 0.8);
+    opacity: 0.55;
+}
+
+/* Search & 4 Color-Harmonized Filter Pills in Dark Mode */
+html[data-theme="dark"] .search {
+    background-color: rgba(15, 28, 50, 0.92);
+    border-color: rgba(125, 211, 252, 0.34);
+    color: #f8fafc;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    box-shadow:
+        0 8px 24px -6px rgba(0, 0, 0, 0.68),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .search::placeholder {
+    color: #94a3b8;
+    opacity: 0.9;
+}
+
+html[data-theme="dark"] .search:hover {
+    border-color: rgba(56, 189, 248, 0.58);
+    background-color: rgba(20, 36, 64, 0.96);
+}
+
+html[data-theme="dark"] .search:focus {
+    background-color: rgba(22, 40, 70, 0.98);
+    border-color: #38bdf8;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    box-shadow:
+        0 0 0 3.5px rgba(56, 189, 248, 0.22),
+        0 10px 26px -6px rgba(0, 0, 0, 0.78);
+}
+
+html[data-theme="dark"] .search-clear {
+    background: rgba(56, 189, 248, 0.24);
+    color: #f0f9ff;
+}
+
+html[data-theme="dark"] .search-clear:hover {
+    background: #38bdf8;
+    color: #050a14;
+}
+
+html[data-theme="dark"] select {
+    background-color: #13233d;
+    border-color: rgba(125, 211, 252, 0.34);
+    color: #f1f5f9;
+    box-shadow:
+        0 6px 16px -4px rgba(0, 0, 0, 0.58),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] select option {
+    background-color: #0f1d33;
+    color: #f8fafc;
+}
+
+/* Dark Mode 1. Hãng & Phụ kiện — Deep Sky Cyan */
+html[data-theme="dark"] #brandFilter {
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #e0f2fe;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba(14, 116, 144, 0.52) 0%, rgba(19, 35, 61, 0.95) 100%);
+}
+
+/* Dark Mode 2. Lối đánh — Deep Emerald Teal */
+html[data-theme="dark"] #styleFilter {
+    border-color: rgba(45, 212, 191, 0.45);
+    color: #ccfbf1;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%232dd4bf' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba(15, 118, 110, 0.52) 0%, rgba(19, 35, 61, 0.95) 100%);
+}
+
+/* Dark Mode 3. Sắp xếp — Deep Starlight Indigo */
+html[data-theme="dark"] #sortFilter {
+    border-color: rgba(129, 140, 248, 0.45);
+    color: #e0e7ff;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba(67, 56, 202, 0.48) 0%, rgba(19, 35, 61, 0.95) 100%);
+}
+
+/* Dark Mode 4. Mức giá — Deep Golden Star */
+html[data-theme="dark"] #priceFilter {
+    border-color: rgba(251, 191, 36, 0.45);
+    color: #fef3c7;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba(146, 64, 14, 0.48) 0%, rgba(19, 35, 61, 0.95) 100%);
+}
+
+html[data-theme="dark"] #brandFilter:hover { border-color: #38bdf8; }
+html[data-theme="dark"] #styleFilter:hover { border-color: #2dd4bf; }
+html[data-theme="dark"] #sortFilter:hover  { border-color: #818cf8; }
+html[data-theme="dark"] #priceFilter:hover { border-color: #fbbf24; }
+
+html[data-theme="dark"] select.is-active,
+html[data-theme="dark"] #brandFilter.is-active,
+html[data-theme="dark"] #styleFilter.is-active,
+html[data-theme="dark"] #sortFilter.is-active,
+html[data-theme="dark"] #priceFilter.is-active {
+    border-color: #38bdf8;
+    color: #040b16;
+    font-weight: 800;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23040b16' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%);
+    box-shadow:
+        0 6px 18px -2px rgba(56, 189, 248, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* Count & Reset Button in Dark Mode */
+html[data-theme="dark"] .count,
+html[data-theme="dark"] .count-line {
+    color: #e0f2fe;
+}
+
+html[data-theme="dark"] .count::before {
+    background: #2dd4bf;
+    box-shadow: 0 0 0 3.5px rgba(45, 212, 191, 0.24);
+}
+
+html[data-theme="dark"] .filter-reset-btn {
+    background: linear-gradient(135deg, rgba(14, 116, 144, 0.65) 0%, rgba(19, 35, 61, 0.95) 100%);
+    border-color: rgba(56, 189, 248, 0.48);
+    color: #bae6fd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme="dark"] .filter-reset-btn:hover {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.85) 0%, rgba(14, 116, 144, 0.95) 100%);
+    color: #ffffff;
+}
+
+/* =====================================================
+   4.2. ELEVATED, DISTINCT PRODUCT CARDS IN DARK MODE
+===================================================== */
+
+html[data-theme="dark"] .products {
+    background: rgba(8, 16, 32, 0.56);
+    border: 1px solid rgba(125, 211, 252, 0.14);
+    box-shadow:
+        0 20px 48px -16px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .card {
+    background: linear-gradient(180deg, #1b2c48 0%, #15233b 100%);
+    border: 1.5px solid rgba(125, 211, 252, 0.30);
+    box-shadow:
+        0 14px 32px -6px rgba(0, 0, 0, 0.78),
+        0 4px 12px rgba(0, 0, 0, 0.55),
+        0 0 18px -5px rgba(56, 189, 248, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme="dark"] .card::before {
+    background: linear-gradient(90deg, #38bdf8, #2dd4bf, #60a5fa);
+    opacity: 0.45;
+}
+
+html[data-theme="dark"] .card:hover {
+    background: linear-gradient(180deg, #213556 0%, #192a46 100%);
+    border-color: rgba(56, 189, 248, 0.72);
+    box-shadow:
+        0 22px 42px -8px rgba(0, 0, 0, 0.88),
+        0 0 24px -2px rgba(56, 189, 248, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+html[data-theme="dark"] .image-box {
+    background: radial-gradient(
+        circle at 50% 45%,
+        #2b4268 0%,
+        #1e304e 62%,
+        #16243c 100%
+    );
+    border-bottom: 1px solid rgba(125, 211, 252, 0.22);
+    box-shadow: inset 0 -10px 20px -12px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="dark"] .no-image {
+    background: rgba(30, 48, 78, 0.9);
+    border-color: rgba(125, 211, 252, 0.35);
+    color: #bae6fd;
+}
+
+html[data-theme="dark"] .card-info {
+    background: linear-gradient(180deg, #192944 0%, #142138 100%);
+}
+
+html[data-theme="dark"] .brand {
+    color: #38bdf8;
+}
+
+html[data-theme="dark"] .card-code {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(125, 211, 252, 0.38);
+    color: #e0f2fe;
+}
+
+html[data-theme="dark"] .name {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .card:hover .name {
+    color: #7dd3fc;
+}
+
+html[data-theme="dark"] .price {
+    background: linear-gradient(135deg, #ff6b81 0%, #fb7185 55%, #fda4af 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(244, 63, 94, 0.32));
+}
+
+html[data-theme="dark"] .meta {
+    border-top-color: rgba(125, 211, 252, 0.20);
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .meta-condition {
+    color: #f1f5f9;
+}
+
+html[data-theme="dark"] .meta-style {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.28) 0%, rgba(14, 116, 144, 0.32) 100%);
+    border-color: rgba(45, 212, 191, 0.45);
+    color: #ccfbf1;
+}
+
+html[data-theme="dark"] .meta-style::before {
+    background: #2dd4bf;
+    box-shadow: 0 0 6px rgba(45, 212, 191, 0.85);
+}
+
+html[data-theme="dark"] .post-date {
+    color: #94a3b8;
+    opacity: 0.9;
+}
+
+/* Detail View in Dark Mode */
+html[data-theme="dark"] .detail {
+    background: linear-gradient(180deg, rgba(21, 35, 59, 0.97) 0%, rgba(14, 25, 44, 0.98) 100%);
+    border-color: rgba(125, 211, 252, 0.28);
+    box-shadow:
+        0 20px 50px -12px rgba(0, 0, 0, 0.85),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+html[data-theme="dark"] .detail-image-box {
+    background: radial-gradient(circle at 50% 45%, #283e62 0%, #1b2b46 65%, #132036 100%);
+    border-color: rgba(125, 211, 252, 0.30);
+    box-shadow:
+        inset 0 2px 12px rgba(0, 0, 0, 0.45),
+        0 14px 36px -10px rgba(0, 0, 0, 0.72);
+}
+
+html[data-theme="dark"] .detail-brand {
+    background: linear-gradient(135deg, rgba(14, 116, 144, 0.65) 0%, rgba(19, 35, 61, 0.92) 100%);
+    border-color: rgba(56, 189, 248, 0.42);
+    color: #bae6fd;
+}
+
+html[data-theme="dark"] .detail-name {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .detail-price {
+    background: linear-gradient(
+        135deg,
+        rgba(244, 63, 94, 0.24) 0%,
+        rgba(225, 29, 72, 0.12) 100%
+    );
+    border-color: rgba(251, 113, 133, 0.44);
+    color: #fda4af;
+    box-shadow:
+        0 6px 20px -4px rgba(225, 29, 72, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+html[data-theme="dark"] .detail-date {
+    color: #cbd5e1;
+}
+
+html[data-theme="dark"] .copy-code-btn,
+html[data-theme="dark"] .detail-bottom-back {
+    background: linear-gradient(180deg, #1e3252 0%, #15243c 100%);
+    border-color: rgba(125, 211, 252, 0.34);
+    color: #f0f9ff;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.52),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+html[data-theme="dark"] .copy-code-btn:hover,
+html[data-theme="dark"] .detail-bottom-back:hover {
+    border-color: #38bdf8;
+    background: #253d63;
+}
+
+html[data-theme="dark"] .copy-code-btn.is-copied {
+    background: linear-gradient(135deg, rgba(6, 95, 70, 0.78) 0%, rgba(4, 120, 87, 0.62) 100%);
+    border-color: rgba(52, 211, 153, 0.58);
+    color: #6ee7b7;
+}
+
+/* 4 Info Cards in Dark Mode — Distinct Deep Ocean Glows */
+html[data-theme="dark"] .info-row {
+    background: linear-gradient(135deg, rgba(14, 116, 144, 0.42) 0%, rgba(19, 33, 56, 0.92) 100%);
+    border-color: rgba(125, 211, 252, 0.30);
+    color: #f8fafc;
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .info-grid .info-row:nth-child(1) {
+    background: linear-gradient(135deg, rgba(14, 116, 144, 0.48) 0%, rgba(21, 35, 59, 0.92) 100%);
+    border-color: rgba(56, 189, 248, 0.40);
+}
+html[data-theme="dark"] .info-grid .info-row:nth-child(1) strong {
+    color: #7dd3fc;
+}
+
+html[data-theme="dark"] .info-grid .info-row:nth-child(2) {
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.48) 0%, rgba(21, 35, 59, 0.92) 100%);
+    border-color: rgba(45, 212, 191, 0.40);
+}
+html[data-theme="dark"] .info-grid .info-row:nth-child(2) strong {
+    color: #5eead4;
+}
+
+html[data-theme="dark"] .info-grid .info-row:nth-child(3) {
+    background: linear-gradient(135deg, rgba(159, 18, 57, 0.44) 0%, rgba(21, 35, 59, 0.92) 100%);
+    border-color: rgba(251, 113, 133, 0.40);
+}
+html[data-theme="dark"] .info-grid .info-row:nth-child(3) strong {
+    color: #fda4af;
+}
+
+html[data-theme="dark"] .info-grid .info-row:nth-child(4) {
+    background: linear-gradient(135deg, rgba(146, 64, 14, 0.44) 0%, rgba(21, 35, 59, 0.92) 100%);
+    border-color: rgba(251, 191, 36, 0.40);
+}
+html[data-theme="dark"] .info-grid .info-row:nth-child(4) strong {
+    color: #fcd34d;
+}
+
+html[data-theme="dark"] .detail-section-label,
+html[data-theme="dark"] .tech-specs-title,
+html[data-theme="dark"] .detail-gallery-title {
+    color: #f0f9ff;
+}
+
+html[data-theme="dark"] .detail-section-label::after {
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.40) 0%, transparent 100%);
+}
+
+html[data-theme="dark"] .tech-specs-section {
+    background: linear-gradient(180deg, rgba(23, 39, 66, 0.92) 0%, rgba(16, 28, 48, 0.95) 100%);
+    border-color: rgba(125, 211, 252, 0.28);
+    box-shadow:
+        0 6px 20px -6px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .tech-specs-header {
+    border-bottom-color: rgba(125, 211, 252, 0.22);
+}
+
+html[data-theme="dark"] .tech-specs-badge {
+    color: #67e8f9;
+    background: rgba(6, 182, 212, 0.20);
+    border-color: rgba(34, 211, 238, 0.40);
+}
+
+html[data-theme="dark"] .tech-spec-item {
+    background: linear-gradient(135deg, rgba(28, 46, 76, 0.9) 0%, rgba(20, 34, 58, 0.95) 100%);
+    border-color: rgba(125, 211, 252, 0.26);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .tech-spec-item:hover {
+    border-color: rgba(56, 189, 248, 0.55);
+}
+
+html[data-theme="dark"] .tech-spec-icon {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(20, 184, 166, 0.18));
+    border-color: rgba(56, 189, 248, 0.38);
+}
+
+html[data-theme="dark"] .tech-spec-label {
+    color: #93c5fd;
+}
+
+html[data-theme="dark"] .tech-spec-value {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .detail-gallery {
+    border-top-color: rgba(125, 211, 252, 0.22);
+}
+
+html[data-theme="dark"] .gallery-count-badge {
+    color: #fda4af;
+    background: rgba(225, 29, 72, 0.22);
+    border-color: rgba(251, 113, 133, 0.38);
+}
+
+html[data-theme="dark"] .detail-gallery-item {
+    background: radial-gradient(circle at 50% 50%, #283e62 0%, #15233b 100%);
+    border-color: rgba(125, 211, 252, 0.28);
+    box-shadow:
+        0 6px 16px -2px rgba(0, 0, 0, 0.58),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .detail-bottom-actions {
+    border-top-color: rgba(125, 211, 252, 0.22);
+}
+
+/* Loading, Skeleton, Empty State & Footer in Dark Mode */
+html[data-theme="dark"] .loading,
+html[data-theme="dark"] .empty-state,
+html[data-theme="dark"] .trust-footer {
+    background: linear-gradient(180deg, rgba(23, 39, 66, 0.92) 0%, rgba(16, 28, 48, 0.94) 100%);
+    border-color: rgba(125, 211, 252, 0.28);
+    color: #e0f2fe;
+    box-shadow:
+        0 8px 24px -6px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .empty-state-title {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .empty-state-sub,
+html[data-theme="dark"] .empty-state-desc {
+    color: #bae6fd;
+}
+
+html[data-theme="dark"] .trust-footer-text {
+    color: #e0f2fe;
+}
+
+html[data-theme="dark"] .trust-footer-text a {
+    color: #2dd4bf;
+}
+
+html[data-theme="dark"] .skeleton-card {
+    background: #182842;
+    border-color: rgba(125, 211, 252, 0.22);
+}
+
+html[data-theme="dark"] .skeleton-img {
+    background: #223759;
+    border-bottom-color: rgba(125, 211, 252, 0.18);
+}
+
+html[data-theme="dark"] .skeleton-line {
+    background: #2c4670;
+}
+
+@media (hover: none) {
+    html[data-theme="dark"] .card:hover {
+        background: linear-gradient(180deg, #1b2c48 0%, #15233b 100%);
+        border-color: rgba(125, 211, 252, 0.30);
+        box-shadow:
+            0 12px 28px -6px rgba(0, 0, 0, 0.75),
+            0 4px 10px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+    html[data-theme="dark"] .card:hover .name {
+        color: #ffffff;
+    }
 }
 
 
@@ -3898,91 +5043,210 @@ select.is-active {
 /* Proof Image Picker & Preview inside Write Review Form */
 .tsr-image-upload-wrap {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.tsr-image-input-hidden {
+    display: none !important;
 }
 
 .tsr-image-pick-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    gap: 7px;
     background: rgba(30, 41, 59, 0.72);
-    border: 1px dashed rgba(56, 189, 248, 0.45);
+    border: 1.5px dashed rgba(56, 189, 248, 0.48);
     color: #bae6fd;
-    border-radius: 11px;
-    padding: 8px 12px;
-    font-size: 12px;
+    border-radius: 12px;
+    padding: 9px 14px;
+    font-size: 12.5px;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.16s ease;
 }
 
 .tsr-image-pick-btn:hover {
     background: rgba(14, 165, 233, 0.18);
-    border-color: rgba(56, 189, 248, 0.75);
+    border-color: rgba(56, 189, 248, 0.85);
     color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.tsr-image-pick-icon {
+    font-size: 15px;
+    line-height: 1;
 }
 
 .tsr-image-preview-box {
     display: none;
     align-items: center;
-    gap: 8px;
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(16, 185, 129, 0.36);
-    border-radius: 10px;
-    padding: 4px 8px 4px 4px;
+    justify-content: space-between;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    border-radius: 12px;
+    padding: 6px 10px 6px 6px;
 }
 
 .tsr-image-preview-box.has-image {
-    display: inline-flex;
+    display: flex;
 }
 
 .tsr-image-preview-thumb {
-    width: 38px;
-    height: 38px;
-    border-radius: 7px;
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    flex-shrink: 0;
+    cursor: zoom-in;
+}
+
+.tsr-image-preview-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+}
+
+.tsr-image-preview-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #e2e8f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tsr-image-preview-status {
     font-size: 11px;
     font-weight: 700;
-    color: #34d399;
+    color: #fbbf24;
 }
 
 .tsr-image-remove-btn {
     appearance: none;
-    border: none;
-    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    background: rgba(239, 68, 68, 0.18);
     color: #fca5a5;
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    font-size: 12px;
+    height: 26px;
+    padding: 0 9px;
+    border-radius: 7px;
+    font-size: 11px;
     font-weight: 800;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.16s ease, color 0.16s ease;
 }
 
 .tsr-image-remove-btn:hover {
-    background: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.42);
     color: #ffffff;
+}
+
+/* Approved Feedback Photo Strip inside All Reviews Modal */
+.tsr-fb-gallery-box {
+    background: rgba(15, 23, 42, 0.62);
+    border: 1px solid rgba(56, 189, 248, 0.26);
+    border-radius: 14px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
+
+.tsr-fb-gallery-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.tsr-fb-gallery-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #7dd3fc;
+    letter-spacing: 0.2px;
+}
+
+.tsr-fb-gallery-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.tsr-fb-gallery-strip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+}
+
+.tsr-fb-gallery-strip::-webkit-scrollbar {
+    height: 5px;
+}
+
+.tsr-fb-gallery-strip::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.45);
+    border-radius: 999px;
+}
+
+.tsr-fb-gallery-item {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(56, 189, 248, 0.35);
+    background: #0f172a;
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tsr-fb-gallery-item:hover {
+    transform: translateY(-2px) scale(1.03);
+    border-color: #38bdf8;
+    box-shadow: 0 6px 14px rgba(14, 165, 233, 0.35);
+}
+
+.tsr-fb-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tsr-fb-gallery-zoom-badge {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    background: rgba(2, 6, 23, 0.78);
+    color: #f8fafc;
+    font-size: 9.5px;
+    line-height: 1;
+    padding: 2.5px 4px;
+    border-radius: 5px;
+    pointer-events: none;
 }
 
 /* =====================================================
    ALL REVIEWS MODAL (BẢNG TẤT CẢ ĐÁNH GIÁ & XÁC THỰC UY TÍN)
 ===================================================== */
 .tsr-all-dialog {
-    max-width: 560px;
+    max-width: 580px;
     max-height: 86vh;
     display: flex;
     flex-direction: column;
-    padding: 20px 20px 18px;
+    padding: 20px 22px 18px;
 }
 
 .tsr-trust-banner {
@@ -3993,11 +5257,11 @@ select.is-active {
     border: 1px solid rgba(16, 185, 129, 0.34);
     border-radius: 12px;
     padding: 9px 12px;
-    margin-bottom: 14px;
-    font-size: 12px;
+    margin-bottom: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     color: #a7f3d0;
-    line-height: 1.4;
+    line-height: 1.45;
 }
 
 .tsr-trust-banner-icon {
@@ -4007,7 +5271,7 @@ select.is-active {
 
 .tsr-summary-box {
     display: grid;
-    grid-template-columns: 132px 1fr;
+    grid-template-columns: 136px 1fr;
     gap: 14px;
     align-items: center;
     background: rgba(30, 41, 59, 0.55);
@@ -4036,13 +5300,13 @@ select.is-active {
 }
 
 .tsr-summary-stars {
-    font-size: 12px;
+    font-size: 12.5px;
     margin: 4px 0 3px;
     letter-spacing: 1px;
 }
 
 .tsr-summary-count {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 600;
     color: #94a3b8;
 }
@@ -4057,13 +5321,13 @@ select.is-active {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 700;
     color: #cbd5e1;
 }
 
 .tsr-bar-label {
-    width: 28px;
+    width: 30px;
     flex-shrink: 0;
     color: #fde047;
 }
@@ -4085,7 +5349,7 @@ select.is-active {
 }
 
 .tsr-bar-num {
-    width: 24px;
+    width: 26px;
     text-align: right;
     color: #94a3b8;
     font-weight: 600;
@@ -4106,8 +5370,8 @@ select.is-active {
     background: rgba(30, 41, 59, 0.6);
     color: #cbd5e1;
     border-radius: 999px;
-    padding: 5px 11px;
-    font-size: 11.5px;
+    padding: 5.5px 12px;
+    font-size: 12px;
     font-weight: 700;
     cursor: pointer;
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
@@ -4129,7 +5393,7 @@ select.is-active {
 .tsr-all-list {
     flex: 1;
     min-height: 180px;
-    max-height: 340px;
+    max-height: 360px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -4153,16 +5417,16 @@ select.is-active {
 }
 
 .tsr-card-item {
-    background: rgba(30, 41, 59, 0.52);
+    background: rgba(30, 41, 59, 0.54);
     border: 1px solid rgba(148, 163, 184, 0.18);
     border-radius: 14px;
-    padding: 12px 14px;
+    padding: 13px 15px;
     transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .tsr-card-item:hover {
-    background: rgba(30, 41, 59, 0.75);
-    border-color: rgba(56, 189, 248, 0.32);
+    background: rgba(30, 41, 59, 0.78);
+    border-color: rgba(56, 189, 248, 0.34);
 }
 
 .tsr-card-top {
@@ -4170,23 +5434,23 @@ select.is-active {
     align-items: flex-start;
     justify-content: space-between;
     gap: 8px;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 }
 
 .tsr-card-user {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 10px;
     min-width: 0;
 }
 
 .tsr-avatar {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: linear-gradient(135deg, #0ea5e9, #2563eb);
     color: #ffffff;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -4198,7 +5462,7 @@ select.is-active {
 .tsr-user-meta {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
     min-width: 0;
 }
 
@@ -4210,7 +5474,7 @@ select.is-active {
 }
 
 .tsr-user-name {
-    font-size: 13px;
+    font-size: 13.8px;
     font-weight: 800;
     color: #f8fafc;
 }
@@ -4219,12 +5483,12 @@ select.is-active {
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 700;
     color: #34d399;
     background: rgba(16, 185, 129, 0.14);
     border: 1px solid rgba(16, 185, 129, 0.32);
-    padding: 1.5px 7px;
+    padding: 2px 7.5px;
     border-radius: 999px;
 }
 
@@ -4240,12 +5504,12 @@ select.is-active {
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    font-size: 10.8px;
+    font-size: 11.2px;
     font-weight: 600;
     color: #bae6fd;
     background: rgba(14, 165, 233, 0.12);
     border: 1px solid rgba(56, 189, 248, 0.24);
-    padding: 1.5px 7px;
+    padding: 2px 7.5px;
     border-radius: 6px;
 }
 
@@ -4258,46 +5522,46 @@ select.is-active {
 }
 
 .tsr-card-text {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 13.5px;
+    line-height: 1.52;
     color: #e2e8f0;
     margin: 0;
     word-break: break-word;
 }
 
 .tsr-card-proof-wrap {
-    margin-top: 9px;
+    margin-top: 10px;
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    border-radius: 10px;
-    padding: 5px 10px 5px 5px;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.68);
+    border: 1px solid rgba(56, 189, 248, 0.32);
+    border-radius: 11px;
+    padding: 6px 12px 6px 6px;
     cursor: pointer;
     transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
 .tsr-card-proof-wrap:hover {
-    background: rgba(14, 165, 233, 0.16);
-    border-color: rgba(56, 189, 248, 0.65);
+    background: rgba(14, 165, 233, 0.18);
+    border-color: rgba(56, 189, 248, 0.72);
     transform: translateY(-1px);
 }
 
 .tsr-card-proof-img {
-    width: 52px;
-    height: 52px;
-    border-radius: 7px;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     flex-shrink: 0;
 }
 
 .tsr-card-proof-label {
-    font-size: 11.2px;
+    font-size: 12px;
     font-weight: 700;
     color: #7dd3fc;
-    line-height: 1.35;
+    line-height: 1.4;
 }
 
 .tsr-all-footer {
@@ -4310,7 +5574,7 @@ select.is-active {
 }
 
 .tsr-all-footer-zalo {
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 700;
     color: #38bdf8;
     text-decoration: none;
@@ -4330,8 +5594,8 @@ select.is-active {
     background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
     color: #ffffff;
     border-radius: 10px;
-    padding: 8px 14px;
-    font-size: 12.2px;
+    padding: 8.5px 15px;
+    font-size: 12.5px;
     font-weight: 800;
     cursor: pointer;
     display: inline-flex;
@@ -4626,8 +5890,12 @@ select.is-active {
         TSPORT
     </div>
 
-    <div class="subtitle">
-        Vợt Cầu Lông Lướt - 0395364443
+    <div class="subtitle" aria-label="TSPORT – Vợt cầu lông lướt – 0395364443">
+        <span class="subtitle-brand">TSPORT</span>
+        <span class="subtitle-sep" aria-hidden="true">–</span>
+        <span class="subtitle-desc">Vợt cầu lông lướt</span>
+        <span class="subtitle-sep" aria-hidden="true">–</span>
+        <a href="https://zalo.me/0395364443" target="_blank" rel="noopener noreferrer" class="subtitle-phone" title="Nhắn Zalo 0395364443">0395364443</a>
     </div>
 
 </header>
@@ -4640,34 +5908,67 @@ select.is-active {
 <div class="main-stage">
 
     <div class="main-bg-decor" aria-hidden="true">
+        <div class="bg-starfield">
+            <div class="stars-layer stars-sm"></div>
+            <div class="stars-layer stars-md"></div>
+            <div class="stars-layer stars-twinkle"></div>
+        </div>
+        <div class="bg-ocean-rays"></div>
         <div class="bg-orb bg-orb-crimson"></div>
         <div class="bg-orb bg-orb-cobalt"></div>
         <div class="bg-orb bg-orb-bottom"></div>
         <div class="bg-court-arc bg-court-arc-left"></div>
         <div class="bg-court-arc bg-court-arc-right"></div>
         <div class="bg-light-streak"></div>
+        <div class="bg-ocean-bubbles">
+            <span class="ocean-bubble b1"></span>
+            <span class="ocean-bubble b2"></span>
+            <span class="ocean-bubble b3"></span>
+            <span class="ocean-bubble b4"></span>
+            <span class="ocean-bubble b5"></span>
+            <span class="ocean-bubble b6"></span>
+        </div>
     </div>
 
 <div class="container">
 
 
-    <!-- SEARCH -->
+    <!-- SEARCH & THEME CONTROL BAR -->
 
-    <div class="search-box">
+    <div class="top-control-bar">
 
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="Tìm tên vợt, mã vợt, hãng..."
-        >
+        <div class="search-box">
+
+            <input
+                id="search"
+                class="search"
+                type="text"
+                placeholder="Tìm tên vợt, mã vợt, hãng..."
+            >
+
+            <button
+                id="searchClear"
+                class="search-clear"
+                type="button"
+                aria-label="Xóa tìm kiếm"
+            >✕</button>
+
+        </div>
 
         <button
-            id="searchClear"
-            class="search-clear"
+            id="themeToggleBtn"
+            class="theme-toggle-btn"
             type="button"
-            aria-label="Xóa tìm kiếm"
-        >✕</button>
+            onclick="toggleTheme()"
+            aria-label="Chuyển đổi chế độ Sáng / Tối"
+            title="Chuyển đổi giao diện Sáng / Tối"
+        >
+            <span id="themeToggleIcon" class="theme-toggle-icon" aria-hidden="true">☀️</span>
+            <span id="themeToggleText" class="theme-toggle-text">Chế độ Sáng</span>
+            <span class="theme-toggle-switch" aria-hidden="true">
+                <span class="theme-toggle-knob"></span>
+            </span>
+        </button>
 
     </div>
 
@@ -5081,8 +6382,32 @@ select.is-active {
                 ></textarea>
             </div>
 
+            <div class="tsr-field">
+                <label class="tsr-label" for="tsrInputImage">Ảnh feedback thực tế </label>
+                <div class="tsr-image-upload-wrap">
+                    <input
+                        id="tsrInputImage"
+                        class="tsr-image-input-hidden"
+                        type="file"
+                        accept="image/*"
+                    >
+                    <label for="tsrInputImage" class="tsr-image-pick-btn">
+                        <span class="tsr-image-pick-icon">📷</span>
+                        <span>Đính kèm ảnh vợt / feedback giao dịch</span>
+                    </label>
+                    <div id="tsrImagePreviewBox" class="tsr-image-preview-box">
+                        <img id="tsrImagePreviewThumb" class="tsr-image-preview-thumb" src="" alt="Xem trước ảnh feedback">
+                        <div class="tsr-image-preview-meta">
+                            <span class="tsr-image-preview-name">Ảnh feedback đính kèm</span>
+                            <span id="tsrImagePreviewStatus" class="tsr-image-preview-status">⏳ Sẽ gửi chờ chủ shop duyệt</span>
+                        </div>
+                        <button type="button" id="tsrImageRemoveBtn" class="tsr-image-remove-btn" title="Xóa ảnh đính kèm">✕ Xóa</button>
+                    </div>
+                </div>
+            </div>
+
             <button type="submit" id="tsrSubmitBtn" class="tsr-submit-btn">
-                GỬI ĐÁNH GIÁ
+                GỬI ĐÁNH GIÁ &amp; FEEDBACK
             </button>
 
             <div id="tsrFeedbackMsg" class="tsr-feedback-msg" role="status"></div>
@@ -5120,7 +6445,7 @@ select.is-active {
 
         <div class="tsr-trust-banner">
             <span class="tsr-trust-banner-icon">🛡️</span>
-            <span>100% đánh giá từ khách hàng giao dịch thật qua Zalo · Kiểm duyệt minh bạch bởi TSPORT</span>
+            <span>100% đánh giá từ khách hàng giao dịch thật qua Zalo · Ảnh khách gửi được kiểm duyệt trước khi hiển thị công khai</span>
         </div>
 
         <div class="tsr-summary-box">
@@ -5132,11 +6457,20 @@ select.is-active {
             <div id="tsrAllRatingBars" class="tsr-summary-bars"></div>
         </div>
 
+        <div id="tsrFeedbackGalleryBox" class="tsr-fb-gallery-box" hidden>
+            <div class="tsr-fb-gallery-head">
+                <span class="tsr-fb-gallery-title">📸 Ảnh Feedback Khách Hàng Đã Duyệt</span>
+                <span id="tsrFeedbackGalleryCount" class="tsr-fb-gallery-count">0 ảnh · Nhấn để phóng to</span>
+            </div>
+            <div id="tsrFeedbackGalleryStrip" class="tsr-fb-gallery-strip"></div>
+        </div>
+
         <div id="tsrAllFilterBar" class="tsr-filter-bar">
             <button type="button" class="tsr-filter-pill is-active" data-filter="all">Tất cả</button>
             <button type="button" class="tsr-filter-pill" data-filter="5">5 Sao ⭐</button>
             <button type="button" class="tsr-filter-pill" data-filter="4">4 Sao ⭐</button>
-            <button type="button" class="tsr-filter-pill" data-filter="verified_detail">📷 Có ảnh / SĐT / Vợt</button>
+            <button type="button" class="tsr-filter-pill" data-filter="with_photo">📸 Có ảnh Feedback</button>
+            <button type="button" class="tsr-filter-pill" data-filter="verified_detail">✔ Có SĐT / Vợt</button>
         </div>
 
         <div id="tsrAllReviewsList" class="tsr-all-list"></div>
@@ -6057,6 +7391,58 @@ function formatDisplayDate(value) {
         date.getFullYear()
     );
 
+}
+
+
+/* =====================================================
+   THEME TOGGLE (LIGHT DEFAULT / DARK MODE)
+===================================================== */
+
+function updateThemeToggleUI() {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const iconEl = document.getElementById("themeToggleIcon");
+    const textEl = document.getElementById("themeToggleText");
+    const btnEl = document.getElementById("themeToggleBtn");
+
+    if (iconEl) {
+        iconEl.textContent = isDark ? "🌙" : "☀️";
+    }
+    if (textEl) {
+        textEl.textContent = isDark ? "Chế độ Tối" : "Chế độ Sáng";
+    }
+    if (btnEl) {
+        btnEl.setAttribute("aria-pressed", isDark ? "true" : "false");
+        btnEl.setAttribute(
+            "title",
+            isDark
+                ? "Đang ở Chế độ Tối — Nhấn để chuyển sang Chế độ Sáng"
+                : "Đang ở Chế độ Sáng — Nhấn để chuyển sang Chế độ Tối"
+        );
+    }
+}
+
+function toggleTheme() {
+    const rootEl = document.documentElement;
+    const isCurrentlyDark = rootEl.getAttribute("data-theme") === "dark";
+    const nextTheme = isCurrentlyDark ? "light" : "dark";
+
+    if (nextTheme === "dark") {
+        rootEl.setAttribute("data-theme", "dark");
+    } else {
+        rootEl.removeAttribute("data-theme");
+    }
+
+    try {
+        localStorage.setItem("tsport_theme", nextTheme);
+    } catch (e) {}
+
+    updateThemeToggleUI();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", updateThemeToggleUI);
+} else {
+    updateThemeToggleUI();
 }
 
 
@@ -9413,6 +10799,9 @@ const TSPORT_REVIEWS_DATA = [];
     const allFilterBarEl = document.getElementById("tsrAllFilterBar");
     const allReviewsListEl = document.getElementById("tsrAllReviewsList");
     const switchToWriteBtn = document.getElementById("tsrSwitchToWriteBtn");
+    const fbGalleryBox = document.getElementById("tsrFeedbackGalleryBox");
+    const fbGalleryCount = document.getElementById("tsrFeedbackGalleryCount");
+    const fbGalleryStrip = document.getElementById("tsrFeedbackGalleryStrip");
 
     const openModalBtn = document.getElementById("tsrOpenModalBtn");
     const modalBackdrop = document.getElementById("tsportReviewModal");
@@ -9422,6 +10811,11 @@ const TSPORT_REVIEWS_DATA = [];
     const inputRacket = document.getElementById("tsrInputRacket");
     const inputPhoneLast3 = document.getElementById("tsrInputPhoneLast3");
     const inputText = document.getElementById("tsrInputText");
+    const inputImage = document.getElementById("tsrInputImage");
+    const imagePreviewBox = document.getElementById("tsrImagePreviewBox");
+    const imagePreviewThumb = document.getElementById("tsrImagePreviewThumb");
+    const imagePreviewStatus = document.getElementById("tsrImagePreviewStatus");
+    const imageRemoveBtn = document.getElementById("tsrImageRemoveBtn");
     const starPicker = document.getElementById("tsrStarPicker");
     const starLabel = document.getElementById("tsrStarLabel");
     const submitBtn = document.getElementById("tsrSubmitBtn");
@@ -9454,10 +10848,18 @@ const TSPORT_REVIEWS_DATA = [];
         "linear-gradient(135deg, #06b6d4, #0284c7)"
     ];
 
-    const CACHE_KEY = "tsport_reviews_cache_v3";
+    const CACHE_KEY = "tsport_reviews_cache_v4";
+    const REVIEW_IMAGES_STORAGE_KEY = "tsport_review_proof_images_v1";
     let hasLoadedCacheOrRemote = false;
     let sheetReviewsState = [];
+    let sheetAllStatusMap = {}; // Maps normalized review signature -> "approved" | "pending" | "rejected"
     let r2FeedbackState = [];
+    let customerR2ImageMap = {
+        byCode: {},
+        byKey: {},
+        byRawName: {}
+    };
+    let pendingCompressedImageDataUrl = "";
 
     // Only keep reviews where approved === true
     let approvedReviews = TSPORT_REVIEWS_DATA.filter(function (item) {
@@ -9503,10 +10905,26 @@ const TSPORT_REVIEWS_DATA = [];
     }
 
     function getReviewTextSafe(review) {
-        const raw = String((review && review.text) || "").trim();
+        const raw = String((review && review.text) || "")
+            .replace(/\s*\[IMG:[^\]]+\]\s*/gi, "")
+            .trim();
         if (raw) return raw;
         const star = Math.max(1, Math.min(5, Math.round(Number(review && review.rating) || 5)));
         return DEFAULT_TEXT_BY_STAR[star] || DEFAULT_TEXT_BY_STAR[5];
+    }
+
+    function extractFeedbackCodeFromReview(review) {
+        if (!review) return "";
+        const explicit = String(review.id || review.feedbackCode || "").trim();
+        if (/^FB-[A-Za-z0-9\-_]+$/i.test(explicit)) {
+            return explicit.toUpperCase();
+        }
+        const rawName = String(review.name || "");
+        const codeMatch = rawName.match(/(?:mã|ma|id)\s*:\s*(FB-[A-Za-z0-9\-_]+)|\b(FB-\d{4,12})\b/i);
+        if (codeMatch) {
+            return String(codeMatch[1] || codeMatch[2] || "").trim().toUpperCase();
+        }
+        return "";
     }
 
     function resolveReviewProofImage(review) {
@@ -9520,6 +10938,70 @@ const TSPORT_REVIEWS_DATA = [];
             ""
         ).trim();
 
+        if (!directImg && review.text) {
+            const inlineImgMatch = String(review.text).match(/\[IMG:([^\]]+)\]/i);
+            if (inlineImgMatch && inlineImgMatch[1]) {
+                directImg = inlineImgMatch[1].trim();
+            }
+        }
+
+        // Đối chiếu với kho ảnh khách hàng trên Cloudflare R2 (TSPORT/CUSTOMER_FEEDBACK/)
+        if (!directImg) {
+            const fbCode = extractFeedbackCodeFromReview(review);
+            if (fbCode && customerR2ImageMap.byCode[fbCode.toLowerCase()]) {
+                directImg = customerR2ImageMap.byCode[fbCode.toLowerCase()];
+            }
+        }
+
+        if (!directImg && review.name) {
+            const matchKey = normalizeReviewMatchKey(review.name, getReviewTextSafe(review));
+            const rawNameKey = String(review.name || "").trim().toLowerCase();
+            if (customerR2ImageMap.byKey[matchKey]) {
+                directImg = customerR2ImageMap.byKey[matchKey];
+            } else if (customerR2ImageMap.byRawName[rawNameKey]) {
+                directImg = customerR2ImageMap.byRawName[rawNameKey];
+            }
+        }
+
+        // Đối chiếu dự phòng trong localStorage của thiết bị nếu ảnh vừa gửi/duyệt
+        if (!directImg) {
+            const fbCode = extractFeedbackCodeFromReview(review).toLowerCase();
+            const matchKey = normalizeReviewMatchKey(review.name, getReviewTextSafe(review));
+            const rawNameKey = (String(review.name || "").trim() + "|" + getReviewTextSafe(review)).toLowerCase();
+            try {
+                const pendingRaw = localStorage.getItem("tsport_pending_reviews");
+                const pendingList = pendingRaw ? JSON.parse(pendingRaw) : [];
+                if (Array.isArray(pendingList)) {
+                    for (let i = pendingList.length - 1; i >= 0; i--) {
+                        const p = pendingList[i];
+                        if (!p) continue;
+                        const pImg = String(p.r2SyncedUrl || p.image || p.localDataUrl || "").trim();
+                        if (!pImg) continue;
+                        const pCode = extractFeedbackCodeFromReview(p).toLowerCase();
+                        const pMatchKey = normalizeReviewMatchKey(p.name, getReviewTextSafe(p));
+                        if ((fbCode && pCode === fbCode) || pMatchKey === matchKey) {
+                            directImg = pImg;
+                            break;
+                        }
+                    }
+                }
+            } catch (_) {}
+
+            if (!directImg) {
+                try {
+                    const mapRaw = localStorage.getItem(REVIEW_IMAGES_STORAGE_KEY);
+                    const imgMap = mapRaw ? JSON.parse(mapRaw) : {};
+                    if (fbCode && imgMap["code:" + fbCode]) {
+                        directImg = imgMap["code:" + fbCode];
+                    } else if (imgMap[rawNameKey]) {
+                        directImg = imgMap[rawNameKey];
+                    } else if (imgMap[matchKey]) {
+                        directImg = imgMap[matchKey];
+                    }
+                } catch (_) {}
+            }
+        }
+
         if (directImg && typeof getImageUrl === "function" && !directImg.startsWith("data:image/")) {
             directImg = getImageUrl(directImg);
         }
@@ -9531,13 +11013,25 @@ const TSPORT_REVIEWS_DATA = [];
         return "";
     }
 
-    // Tách thông tin Tên khách + Cây vợt đã mua + SĐT ẩn số (nếu có trong cột name)
-    // Hỗ trợ định dạng: "Nguyễn Văn A [Vợt: Astrox 88D Pro | SĐT ***443]" hoặc "Tuấn Anh - 098***123"
+    function openProofImageLightbox(targetSrc, customGalleryList) {
+        if (!targetSrc || typeof showModalImage !== "function") return;
+        const gallery = Array.isArray(customGalleryList) && customGalleryList.length > 0
+            ? customGalleryList
+            : [targetSrc];
+        const foundIdx = gallery.indexOf(targetSrc);
+        currentGallery = gallery;
+        currentImageIndex = foundIdx >= 0 ? foundIdx : 0;
+        showModalImage();
+    }
+
+    // Tách thông tin Tên khách + Cây vợt đã mua + SĐT ẩn số + Mã Feedback (nếu có trong cột name)
+    // Hỗ trợ định dạng: "Nguyễn Văn A [Vợt: Astrox 88D Pro | SĐT ***443 | Mã: FB-123456]"
     function parseReviewerIdentity(rawNameStr, rawTextStr, reviewObj) {
         let raw = String(rawNameStr || "").trim();
         let displayName = raw;
         let racketBought = "";
         let maskedPhone = "";
+        let feedbackCode = extractFeedbackCodeFromReview(reviewObj || { name: raw });
 
         const bracketMatch = raw.match(/^(.*?)\s*\[([^\]]+)\]\s*$/);
         if (bracketMatch) {
@@ -9546,7 +11040,9 @@ const TSPORT_REVIEWS_DATA = [];
             const parts = metaInside.split("|");
             parts.forEach(function (part) {
                 const p = part.trim();
-                if (/^vợt\s*:/i.test(p)) {
+                if (/^(mã|ma|id|fb)\s*:/i.test(p) || /^FB-\d+/i.test(p)) {
+                    feedbackCode = p.replace(/^(mã|ma|id)\s*:\s*/i, "").trim().toUpperCase();
+                } else if (/^vợt\s*:/i.test(p)) {
                     racketBought = p.replace(/^vợt\s*:\s*/i, "").trim();
                 } else if (/sđt/i.test(p) || /\*\*\*\d{2,4}/.test(p)) {
                     maskedPhone = p.replace(/^sđt\s*:?\s*/i, "").trim();
@@ -9555,7 +11051,6 @@ const TSPORT_REVIEWS_DATA = [];
                 }
             });
         } else {
-            // Kiểm tra nếu admin ghi dạng "Minh Tuấn - 098***412" hoặc "Hoàng (Astrox 77 Pro)"
             const phoneInline = raw.match(/(0\d{1,3}\*{2,5}\d{2,4}|\*{3}\d{3,4})/);
             if (phoneInline) {
                 maskedPhone = phoneInline[1];
@@ -9568,7 +11063,6 @@ const TSPORT_REVIEWS_DATA = [];
             }
         }
 
-        // Nếu trong nội dung đánh giá có nhắc tới dòng vợt nổi tiếng mà chưa có tag vợt, tự động nhận diện nhẹ nhàng
         if (!racketBought && rawTextStr) {
             const textAutoMatch = String(rawTextStr).match(
                 /\b(astrox\s*\d+[a-z\s]*|nanoflare\s*\d+[a-z\s]*|arcsaber\s*\d+[a-z\s]*|axforce\s*\d+[a-z\s]*|halbertec\s*\d+[a-z\s]*|tectonic\s*\d+[a-z\s]*|calibar\s*\d+[a-z\s]*|bladex\s*\d+[a-z\s]*|thruster\s*[a-z0-9\s]*|auraspeed\s*\d+[a-z\s]*|jetspeed\s*\d+[a-z\s]*)/i
@@ -9584,6 +11078,7 @@ const TSPORT_REVIEWS_DATA = [];
             displayName: displayName || "Khách hàng TSPORT",
             racketBought: racketBought,
             maskedPhone: maskedPhone,
+            feedbackCode: feedbackCode,
             proofImage: proofImg,
             initial: cleanInitial,
             hasExtraProof: Boolean(racketBought || maskedPhone || proofImg)
@@ -9623,7 +11118,6 @@ const TSPORT_REVIEWS_DATA = [];
         const str = String(rawDate).trim();
         if (!str) return "";
 
-        // Định dạng dd/MM/yyyy HH:mm:ss hoặc dd/MM/yyyy
         const dmyMatch = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
         if (dmyMatch) {
             return (
@@ -9635,7 +11129,6 @@ const TSPORT_REVIEWS_DATA = [];
             );
         }
 
-        // Định dạng ISO yyyy-MM-dd...
         const parsed = Date.parse(str);
         if (!isNaN(parsed)) {
             const d = new Date(parsed);
@@ -9649,6 +11142,15 @@ const TSPORT_REVIEWS_DATA = [];
         }
 
         return str.split(" ")[0];
+    }
+
+    function normalizeReviewMatchKey(nameStr, textStr) {
+        const cleanName = String(nameStr || "")
+            .replace(/\s*\[[^\]]*\]\s*$/, "")
+            .trim()
+            .toLowerCase();
+        const cleanText = String(textStr || "").trim().toLowerCase();
+        return cleanName + "|" + cleanText;
     }
 
     function resolveReviewDateDisplay(review) {
@@ -9678,7 +11180,6 @@ const TSPORT_REVIEWS_DATA = [];
             return explicitFormatted;
         }
 
-        // Kiểm tra xem đánh giá này có vừa được gửi từ trình duyệt hiện tại không
         try {
             const pendingRaw = localStorage.getItem("tsport_pending_reviews");
             const pendingList = pendingRaw ? JSON.parse(pendingRaw) : [];
@@ -9695,7 +11196,6 @@ const TSPORT_REVIEWS_DATA = [];
             }
         } catch (_) {}
 
-        // Dự phòng: nếu dòng trên Google Sheet chưa điền cột E (created_at) hoặc Apps Script chưa cập nhật bản mới
         try {
             const mapRaw = localStorage.getItem(REVIEW_DATES_STORAGE_KEY);
             const dateMap = mapRaw ? JSON.parse(mapRaw) : {};
@@ -9778,6 +11278,23 @@ const TSPORT_REVIEWS_DATA = [];
         }
     }
 
+    function getAllApprovedFeedbackPhotos() {
+        const photos = [];
+        const seen = new Set();
+        const chronologicalList = approvedReviews.slice().reverse();
+        chronologicalList.forEach(function (r) {
+            const img = resolveReviewProofImage(r);
+            if (img && !seen.has(img)) {
+                seen.add(img);
+                photos.push({
+                    src: img,
+                    review: r
+                });
+            }
+        });
+        return photos;
+    }
+
     function renderAllReviewsModalContent(filterMode) {
         currentAllFilter = filterMode || "all";
 
@@ -9785,6 +11302,7 @@ const TSPORT_REVIEWS_DATA = [];
         const countsByStar = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
         let sumRating = 0;
         let verifiedDetailCount = 0;
+        let withPhotoCount = 0;
 
         // Đảo ngược để đánh giá mới nhất hiển thị lên đầu bảng Tất Cả Đánh Giá
         const chronologicalList = approvedReviews.slice().reverse();
@@ -9794,6 +11312,9 @@ const TSPORT_REVIEWS_DATA = [];
             countsByStar[star] = (countsByStar[star] || 0) + 1;
             sumRating += star;
             const idInfo = parseReviewerIdentity(r.name, getReviewTextSafe(r), r);
+            if (idInfo.proofImage) {
+                withPhotoCount++;
+            }
             if (idInfo.hasExtraProof) {
                 verifiedDetailCount++;
             }
@@ -9821,6 +11342,30 @@ const TSPORT_REVIEWS_DATA = [];
             allRatingBarsEl.innerHTML = barsHtml;
         }
 
+        // Render dải ảnh Feedback thực tế đã duyệt (gọn gàng, nhấn vào xem ảnh lớn)
+        const approvedPhotos = getAllApprovedFeedbackPhotos();
+        if (fbGalleryBox && fbGalleryStrip) {
+            if (approvedPhotos.length > 0) {
+                fbGalleryBox.hidden = false;
+                if (fbGalleryCount) {
+                    fbGalleryCount.textContent = approvedPhotos.length + " ảnh · Nhấn để xem lớn";
+                }
+                let stripHtml = "";
+                approvedPhotos.forEach(function (item) {
+                    const idInfo = parseReviewerIdentity(item.review.name, getReviewTextSafe(item.review), item.review);
+                    stripHtml +=
+                        '<div class="tsr-fb-gallery-item" data-proof-src="' + escapeReviewHtml(item.src) + '" title="Feedback từ ' + escapeReviewHtml(idInfo.displayName) + ' — Nhấn để xem ảnh lớn">' +
+                            '<img src="' + escapeReviewHtml(item.src) + '" alt="Ảnh feedback ' + escapeReviewHtml(idInfo.displayName) + '" loading="lazy">' +
+                            '<span class="tsr-fb-gallery-zoom-badge">🔍</span>' +
+                        '</div>';
+                });
+                fbGalleryStrip.innerHTML = stripHtml;
+            } else {
+                fbGalleryBox.hidden = true;
+                fbGalleryStrip.innerHTML = "";
+            }
+        }
+
         if (allFilterBarEl) {
             const buttons = allFilterBarEl.querySelectorAll(".tsr-filter-pill");
             buttons.forEach(function (btn) {
@@ -9832,8 +11377,10 @@ const TSPORT_REVIEWS_DATA = [];
                     btn.textContent = "5 Sao ⭐ (" + (countsByStar[5] || 0) + ")";
                 } else if (f === "4") {
                     btn.textContent = "4 Sao ⭐ (" + (countsByStar[4] || 0) + ")";
+                } else if (f === "with_photo") {
+                    btn.textContent = "📸 Có ảnh (" + withPhotoCount + ")";
                 } else if (f === "verified_detail") {
-                    btn.textContent = "📷 Có ảnh / SĐT / Vợt (" + verifiedDetailCount + ")";
+                    btn.textContent = "✔ Có SĐT / Vợt (" + verifiedDetailCount + ")";
                 }
             });
         }
@@ -9844,6 +11391,9 @@ const TSPORT_REVIEWS_DATA = [];
             const star = Math.max(1, Math.min(5, Math.round(Number(item.rating) || 5)));
             if (currentAllFilter === "5") return star === 5;
             if (currentAllFilter === "4") return star === 4;
+            if (currentAllFilter === "with_photo") {
+                return Boolean(resolveReviewProofImage(item));
+            }
             if (currentAllFilter === "verified_detail") {
                 return parseReviewerIdentity(item.name, getReviewTextSafe(item), item).hasExtraProof;
             }
@@ -9892,9 +11442,9 @@ const TSPORT_REVIEWS_DATA = [];
             let proofHtml = "";
             if (idInfo.proofImage) {
                 proofHtml =
-                    '<div class="tsr-card-proof-wrap" data-proof-src="' + escapeReviewHtml(idInfo.proofImage) + '" title="Nhấn để phóng to ảnh minh chứng">' +
-                        '<img class="tsr-card-proof-img" src="' + escapeReviewHtml(idInfo.proofImage) + '" alt="Ảnh minh chứng khách hàng" loading="lazy">' +
-                        '<span class="tsr-card-proof-label">📷 Ảnh minh chứng thực tế<br><span style="font-size:10px;color:#94a3b8;font-weight:600;">🔍 Nhấn để xem rõ nét</span></span>' +
+                    '<div class="tsr-card-proof-wrap" data-proof-src="' + escapeReviewHtml(idInfo.proofImage) + '" title="Nhấn để phóng to ảnh feedback">' +
+                        '<img class="tsr-card-proof-img" src="' + escapeReviewHtml(idInfo.proofImage) + '" alt="Ảnh feedback khách hàng" loading="lazy">' +
+                        '<span class="tsr-card-proof-label">📷 Ảnh feedback thực tế<br><span style="font-size:10px;color:#94a3b8;font-weight:600;">🔍 Nhấn để xem ảnh lớn</span></span>' +
                     '</div>';
             }
 
@@ -9932,11 +11482,19 @@ const TSPORT_REVIEWS_DATA = [];
             if (!proofWrap) return;
             const src = proofWrap.getAttribute("data-proof-src");
             if (!src) return;
-            if (typeof showModalImage === "function") {
-                currentGallery = [src];
-                currentImageIndex = 0;
-                showModalImage();
-            }
+            const allUrls = getAllApprovedFeedbackPhotos().map(function (p) { return p.src; });
+            openProofImageLightbox(src, allUrls);
+        });
+    }
+
+    if (fbGalleryStrip) {
+        fbGalleryStrip.addEventListener("click", function (e) {
+            const itemEl = e.target.closest(".tsr-fb-gallery-item");
+            if (!itemEl) return;
+            const src = itemEl.getAttribute("data-proof-src");
+            if (!src) return;
+            const allUrls = getAllApprovedFeedbackPhotos().map(function (p) { return p.src; });
+            openProofImageLightbox(src, allUrls);
         });
     }
 
@@ -9975,10 +11533,9 @@ const TSPORT_REVIEWS_DATA = [];
             const thumbEl = e.target.closest(".tsr-slide-proof-thumb");
             if (thumbEl) {
                 const src = thumbEl.getAttribute("data-proof-src");
-                if (src && typeof showModalImage === "function") {
-                    currentGallery = [src];
-                    currentImageIndex = 0;
-                    showModalImage();
+                if (src) {
+                    const allUrls = getAllApprovedFeedbackPhotos().map(function (p) { return p.src; });
+                    openProofImageLightbox(src, allUrls);
                     return;
                 }
             }
@@ -10231,12 +11788,192 @@ const TSPORT_REVIEWS_DATA = [];
 
     document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
+            const imgModal = document.getElementById("imageModal");
+            if (imgModal && (imgModal.classList.contains("is-open") || imgModal.style.display === "flex")) {
+                return; // Let lightbox close first and return to review modal
+            }
             if (isModalOpen) closeReviewModal();
             if (isAllModalOpen) closeAllReviewsModal();
         }
     });
 
-    // Submit Review -> Send to Google Sheet (approved: false) for Admin Moderation
+    // Nén ảnh feedback khách hàng phía trình duyệt (< 32,000 ký tự) để lưu nhẹ, nhanh, ổn định
+    function compressImageFileToDataUrl(file) {
+        return new Promise(function (resolve, reject) {
+            if (!file || !file.type || !file.type.startsWith("image/")) {
+                reject(new Error("Vui lòng chọn đúng định dạng file ảnh."));
+                return;
+            }
+            const reader = new FileReader();
+            reader.onerror = function () {
+                reject(new Error("Không thể đọc file ảnh."));
+            };
+            reader.onload = function (ev) {
+                const img = new Image();
+                img.onerror = function () {
+                    reject(new Error("Ảnh không hợp lệ."));
+                };
+                img.onload = function () {
+                    const maxDim = 720;
+                    let w = img.naturalWidth || img.width || 600;
+                    let h = img.naturalHeight || img.height || 600;
+                    if (w > maxDim || h > maxDim) {
+                        if (w >= h) {
+                            h = Math.round((h * maxDim) / w);
+                            w = maxDim;
+                        } else {
+                            w = Math.round((w * maxDim) / h);
+                            h = maxDim;
+                        }
+                    }
+                    const canvas = document.createElement("canvas");
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext("2d");
+                    ctx.fillStyle = "#ffffff";
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    let quality = 0.76;
+                    let dataUrl = canvas.toDataURL("image/jpeg", quality);
+                    while (dataUrl.length > 36000 && quality > 0.38) {
+                        quality -= 0.1;
+                        dataUrl = canvas.toDataURL("image/jpeg", quality);
+                    }
+                    if (dataUrl.length > 42000) {
+                        const smallerCanvas = document.createElement("canvas");
+                        smallerCanvas.width = Math.round(w * 0.75);
+                        smallerCanvas.height = Math.round(h * 0.75);
+                        const sCtx = smallerCanvas.getContext("2d");
+                        sCtx.fillStyle = "#ffffff";
+                        sCtx.fillRect(0, 0, smallerCanvas.width, smallerCanvas.height);
+                        sCtx.drawImage(canvas, 0, 0, smallerCanvas.width, smallerCanvas.height);
+                        dataUrl = smallerCanvas.toDataURL("image/jpeg", 0.58);
+                    }
+                    resolve(dataUrl);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function encodeBase64UrlUtf8(str) {
+        try {
+            const bytes = new TextEncoder().encode(String(str || ""));
+            let binary = "";
+            for (let i = 0; i < bytes.length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+        } catch (_) {
+            return "";
+        }
+    }
+
+    // Tải ảnh feedback của khách hàng lên kho lưu trữ Cloudflare R2 (thư mục riêng TSPORT/CUSTOMER_FEEDBACK/)
+    // Ảnh trong thư mục này KHÔNG tự động hiển thị công khai, chỉ hiển thị khi dòng đánh giá tương ứng trên Google Sheet có approved === true
+    async function uploadCustomerProofImageToR2(dataUrl, feedbackCode, enrichedName, textVal, ratingVal) {
+        if (!dataUrl || !String(dataUrl).startsWith("data:image/")) return "";
+        try {
+            const baseApi = (typeof IMAGE_API === "string" && IMAGE_API.trim())
+                ? IMAGE_API.trim()
+                : "https://tsport-image-api.ntr9766.workers.dev/";
+            const sep = baseApi.indexOf("?") === -1 ? "?" : "&";
+            const uploadUrl = baseApi + sep + "upload_customer_feedback=1";
+
+            const metaJson = JSON.stringify({
+                n: String(enrichedName || "").trim(),
+                t: String(textVal || "").trim(),
+                r: Number(ratingVal) || 5
+            });
+            const metaB64 = encodeBase64UrlUtf8(metaJson);
+            const safeCode = String(feedbackCode || ("FB-" + String(Date.now()).slice(-6))).trim();
+
+            const res = await fetch(uploadUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    code: safeCode,
+                    meta: metaB64,
+                    image: dataUrl
+                })
+            });
+            if (!res.ok) return "";
+            const data = await res.json();
+            if (data && data.success && data.r2Url) {
+                return String(data.r2Url).trim();
+            }
+        } catch (_) {}
+        return "";
+    }
+
+    function clearSelectedProofImage() {
+        pendingCompressedImageDataUrl = "";
+        if (inputImage) {
+            inputImage.value = "";
+        }
+        if (imagePreviewBox) {
+            imagePreviewBox.classList.remove("has-image");
+        }
+        if (imagePreviewThumb) {
+            imagePreviewThumb.src = "";
+        }
+        if (imagePreviewStatus) {
+            imagePreviewStatus.textContent = "⏳ Sẽ gửi chờ chủ shop duyệt";
+        }
+    }
+
+    if (inputImage) {
+        inputImage.addEventListener("change", async function () {
+            const file = inputImage.files && inputImage.files[0];
+            if (!file) {
+                clearSelectedProofImage();
+                return;
+            }
+            if (imagePreviewBox) {
+                imagePreviewBox.classList.add("has-image");
+            }
+            if (imagePreviewStatus) {
+                imagePreviewStatus.textContent = "⏳ Đang tối ưu ảnh...";
+            }
+            try {
+                const compressed = await compressImageFileToDataUrl(file);
+                pendingCompressedImageDataUrl = compressed;
+                if (imagePreviewThumb) {
+                    imagePreviewThumb.src = compressed;
+                }
+                if (imagePreviewStatus) {
+                    imagePreviewStatus.textContent = "✔ Đã đính kèm · Chờ chủ shop duyệt trước khi công khai";
+                }
+            } catch (err) {
+                clearSelectedProofImage();
+                if (feedbackMsg) {
+                    feedbackMsg.className = "tsr-feedback-msg is-error";
+                    feedbackMsg.textContent = "Không thể xử lý ảnh này, vui lòng thử ảnh khác.";
+                }
+            }
+        });
+    }
+
+    if (imageRemoveBtn) {
+        imageRemoveBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            clearSelectedProofImage();
+        });
+    }
+
+    if (imagePreviewThumb) {
+        imagePreviewThumb.addEventListener("click", function () {
+            if (pendingCompressedImageDataUrl) {
+                openProofImageLightbox(pendingCompressedImageDataUrl, [pendingCompressedImageDataUrl]);
+            }
+        });
+    }
+
+    // Submit Review -> Upload ảnh lên R2 (TSPORT/CUSTOMER_FEEDBACK/) & Gửi đánh giá lên Google Sheet (approved: false / Chờ duyệt)
     if (reviewForm) {
         reviewForm.addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -10260,7 +11997,10 @@ const TSPORT_REVIEWS_DATA = [];
                 textVal = DEFAULT_TEXT_BY_STAR[selectedRating] || DEFAULT_TEXT_BY_STAR[5];
             }
 
-            // Gộp thông tin Vợt đã mua & 3 số cuối SĐT vào trường name để lưu lên Google Sheet không cần thêm cột
+            // Sinh mã feedback tự động (VD: FB-849201) để quản lý và đối chiếu ảnh + trạng thái duyệt
+            const feedbackCode = "FB-" + String(Date.now()).slice(-6);
+
+            // Gộp thông tin Vợt đã mua, số cuối SĐT & Mã Feedback vào trường name để lưu lên Google Sheet đồng bộ
             const metaParts = [];
             if (racketVal) {
                 metaParts.push("Vợt: " + racketVal);
@@ -10268,26 +12008,51 @@ const TSPORT_REVIEWS_DATA = [];
             if (phoneDigits) {
                 metaParts.push("SĐT ***" + phoneDigits);
             }
-            const enrichedName = metaParts.length > 0
-                ? (nameVal + " [" + metaParts.join(" | ") + "]")
-                : nameVal;
+            metaParts.push("Mã: " + feedbackCode);
 
-            // Build standardized review object with approved: false for moderation
-            const newReviewSubmission = {
-                name: enrichedName,
-                rating: selectedRating,
-                text: textVal,
-                approved: false,
-                createdAt: new Date().toISOString()
-            };
+            const enrichedName = nameVal + " [" + metaParts.join(" | ") + "]";
+            const hadAttachedImage = Boolean(pendingCompressedImageDataUrl);
 
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.textContent = "ĐANG GỬI...";
+                submitBtn.textContent = hadAttachedImage ? "ĐANG TẢI ẢNH & GỬI..." : "ĐANG GỬI...";
             }
 
             try {
-                // Save backup copy to localStorage
+                // Bước 1: Nếu khách có đính kèm ảnh, tải ảnh lên kho lưu trữ R2 (TSPORT/CUSTOMER_FEEDBACK/) để lấy URL ảnh bền vững
+                let uploadedR2Url = "";
+                if (pendingCompressedImageDataUrl) {
+                    uploadedR2Url = await uploadCustomerProofImageToR2(
+                        pendingCompressedImageDataUrl,
+                        feedbackCode,
+                        enrichedName,
+                        textVal,
+                        selectedRating
+                    );
+                }
+
+                const finalImageRef = uploadedR2Url || pendingCompressedImageDataUrl || "";
+
+                if (finalImageRef) {
+                    customerR2ImageMap["code|" + feedbackCode.toLowerCase()] = finalImageRef;
+                    customerR2ImageMap[normalizeReviewMatchKey(enrichedName, textVal)] = finalImageRef;
+                    customerR2ImageMap["name|" + enrichedName.toLowerCase()] = finalImageRef;
+                }
+
+                // Bắt buộc approved: false (Chờ duyệt) đối với mọi đánh giá & ảnh do khách hàng gửi
+                const newReviewSubmission = {
+                    id: feedbackCode,
+                    feedbackCode: feedbackCode,
+                    name: enrichedName,
+                    rating: selectedRating,
+                    text: textVal,
+                    image: finalImageRef,
+                    approved: false,
+                    status: "pending",
+                    createdAt: new Date().toISOString()
+                };
+
+                // Lưu bản ghi dự phòng trên trình duyệt để đồng bộ ảnh trong mọi trường hợp
                 try {
                     const queueRaw = localStorage.getItem("tsport_pending_reviews");
                     const queue = queueRaw ? JSON.parse(queueRaw) : [];
@@ -10295,7 +12060,7 @@ const TSPORT_REVIEWS_DATA = [];
                     localStorage.setItem("tsport_pending_reviews", JSON.stringify(queue));
                 } catch (_) {}
 
-                // Send directly to Google Sheet via Google Apps Script Webhook URL
+                // Bước 2: Gửi trực tiếp lên Google Sheet (tab Reviews) qua Google Apps Script Webhook URL
                 const webhookUrl = (TSPORT_REVIEWS_CONFIG.appsScriptWebhookUrl || "").trim();
                 if (webhookUrl) {
                     await fetch(webhookUrl, {
@@ -10310,16 +12075,18 @@ const TSPORT_REVIEWS_DATA = [];
 
                 if (feedbackMsg) {
                     feedbackMsg.className = "tsr-feedback-msg is-success";
-                    feedbackMsg.textContent =
-                        "Cảm ơn bạn đã đánh giá TSPORT! Đánh giá đã được ghi nhận và sẽ hiển thị sau khi kiểm duyệt.";
+                    feedbackMsg.textContent = hadAttachedImage
+                        ? "Cảm ơn bạn! Đánh giá và ảnh feedback (" + feedbackCode + ") đã chuyển sang trạng thái CHỜ DUYỆT và sẽ hiển thị công khai sau khi TSPORT xác nhận."
+                        : "Cảm ơn bạn đã đánh giá TSPORT! Đánh giá (" + feedbackCode + ") đang CHỜ DUYỆT và sẽ hiển thị công khai sau khi kiểm duyệt.";
                 }
 
                 reviewForm.reset();
+                clearSelectedProofImage();
                 setStarPickerValue(5, false);
 
                 setTimeout(function () {
                     if (isModalOpen) closeReviewModal();
-                }, 2000);
+                }, 2400);
             } catch (err) {
                 if (feedbackMsg) {
                     feedbackMsg.className = "tsr-feedback-msg is-error";
@@ -10328,7 +12095,7 @@ const TSPORT_REVIEWS_DATA = [];
             } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;
-                    submitBtn.textContent = "GỬI ĐÁNH GIÁ";
+                    submitBtn.textContent = "GỬI ĐÁNH GIÁ & FEEDBACK";
                 }
             }
         });
@@ -10394,40 +12161,96 @@ const TSPORT_REVIEWS_DATA = [];
             }
         }
 
+        // Cơ chế đăng của chủ shop (qua TOOLUPLOAD.py -> R2 TSPORT/FEEDBACK/): Tự động duyệt 100% và hiển thị ngay
         return {
             name: customerName,
             rating: rating,
             text: feedbackText,
             image: imgUrl,
             approved: true,
+            status: "approved",
             createdAt: createdAt || getTodayDmyString(),
             isR2Feedback: true,
             sortKey: fileName
         };
     }
 
+    // Đăng ký ảnh của khách hàng từ thư mục R2 (TSPORT/CUSTOMER_FEEDBACK/) vào bảng ánh xạ customerR2ImageMap
+    // TUYỆT ĐỐI KHÔNG tự động duyệt: ảnh trong bảng này chỉ được hiển thị nếu đánh giá tương ứng trên Google Sheet có approved === true
+    function registerCustomerR2ImageItem(fileObj) {
+        if (!fileObj) return;
+        const fileName = String(fileObj.fileName || fileObj.name || "").trim();
+        const imgUrl = String(
+            fileObj.r2Url ||
+            fileObj.url ||
+            (typeof getImageUrl === "function" ? getImageUrl(fileObj.key || fileObj.filePath || "") : "")
+        ).trim();
+        if (!fileName || !imgUrl) return;
+
+        const codeMatch = fileName.match(/(FB-\d{4,12})/i);
+        if (codeMatch && codeMatch[1]) {
+            customerR2ImageMap["code|" + codeMatch[1].toUpperCase().toLowerCase()] = imgUrl;
+        }
+
+        const metaMatch = fileName.match(/__META_([A-Za-z0-9\-_]+)/);
+        if (metaMatch && metaMatch[1]) {
+            const decodedJson = decodeBase64UrlUtf8(metaMatch[1]);
+            if (decodedJson) {
+                try {
+                    const metaObj = JSON.parse(decodedJson);
+                    if (metaObj && typeof metaObj === "object") {
+                        const nStr = String(metaObj.n || "").trim();
+                        const tStr = String(metaObj.t || "").trim();
+                        if (nStr) {
+                            customerR2ImageMap["name|" + nStr.toLowerCase()] = imgUrl;
+                            if (tStr) {
+                                customerR2ImageMap[normalizeReviewMatchKey(nStr, tStr)] = imgUrl;
+                            }
+                            const embeddedCode = extractFeedbackCodeFromReview({ name: nStr, text: tStr });
+                            if (embeddedCode) {
+                                customerR2ImageMap["code|" + embeddedCode.toLowerCase()] = imgUrl;
+                            }
+                        }
+                    }
+                } catch (_) {}
+            }
+        }
+    }
+
     function rebuildCombinedApprovedReviews() {
         hasLoadedCacheOrRemote = true;
 
-        // Kết hợp đánh giá chữ từ Google Sheet + Ảnh Feedback Zalo từ Cloudflare R2 (TSPORT/FEEDBACK/)
+        // Chỉ hiển thị công khai các đánh giá/ảnh đã được duyệt (approved === true)
+        // Kết hợp:
+        // 1. Ảnh Feedback Zalo chủ shop đăng từ Cloudflare R2 (TSPORT/FEEDBACK/) -> tự động duyệt
+        // 2. Đánh giá khách hàng từ Google Sheet có approved === true -> gắn kèm ảnh minh chứng từ R2 (TSPORT/CUSTOMER_FEEDBACK/) hoặc Sheet
         const combined = [];
         const seenKeys = new Set();
 
-        sheetReviewsState.forEach(function (item) {
-            if (!item || !item.name) return;
-            const k = (String(item.name).trim() + "|" + getReviewTextSafe(item) + "|" + String(item.image || "")).toLowerCase();
+        r2FeedbackState.forEach(function (item) {
+            if (!item || !item.image || item.approved !== true) return;
+            const k = "r2img|" + String(item.image).toLowerCase();
             if (!seenKeys.has(k)) {
                 seenKeys.add(k);
                 combined.push(item);
             }
         });
 
-        r2FeedbackState.forEach(function (item) {
-            if (!item || !item.image) return;
-            const k = "r2img|" + String(item.image).toLowerCase();
+        sheetReviewsState.forEach(function (item) {
+            if (!item || !item.name || item.approved !== true) return;
+            const k = (String(item.name).trim() + "|" + getReviewTextSafe(item)).toLowerCase();
             if (!seenKeys.has(k)) {
                 seenKeys.add(k);
-                combined.push(item);
+                const resolvedImg = resolveReviewProofImage(item);
+                combined.push({
+                    name: item.name,
+                    rating: item.rating,
+                    text: item.text,
+                    image: resolvedImg || item.image || "",
+                    approved: true,
+                    status: "approved",
+                    createdAt: item.createdAt || ""
+                });
             }
         });
 
@@ -10441,10 +12264,10 @@ const TSPORT_REVIEWS_DATA = [];
         approvedReviews = combined;
 
         if (oldSignature !== newSignature || approvedReviews.length === 0) {
-            // Ưu tiên hiển thị ảnh Feedback Zalo mới nhất lên slide đầu tiên của ô Feedback trên web
+            // Ưu tiên hiển thị đánh giá có ảnh Feedback mới nhất lên slide đầu tiên của ô Feedback trên web
             let startIdx = Math.max(0, approvedReviews.length - 1);
             for (let i = approvedReviews.length - 1; i >= 0; i--) {
-                if (approvedReviews[i] && approvedReviews[i].image) {
+                if (approvedReviews[i] && resolveReviewProofImage(approvedReviews[i])) {
                     startIdx = i;
                     break;
                 }
@@ -10454,17 +12277,98 @@ const TSPORT_REVIEWS_DATA = [];
             if (currentEl && !isTransitioning) {
                 currentEl.innerHTML = buildSlideInnerHtml(approvedReviews[currentIndex] || null);
             }
+            if (isAllModalOpen) {
+                renderAllReviewsModalContent();
+            }
         }
 
         updateHeaderStats();
         startRotation();
     }
 
-    function applySheetApprovedReviews(sheetApproved) {
-        if (!Array.isArray(sheetApproved)) return false;
-        sheetReviewsState = sheetApproved;
+    // Gộp dữ liệu từ CSV và Apps Script để không bao giờ bị mất trường image hoặc trạng thái duyệt
+    function mergeAndApplySheetApprovedReviews(incomingApproved) {
+        if (!Array.isArray(incomingApproved)) return false;
+
+        const existingByKey = {};
+        sheetReviewsState.forEach(function (item) {
+            if (!item || !item.name) return;
+            const key = (String(item.name).trim() + "|" + getReviewTextSafe(item)).toLowerCase();
+            existingByKey[key] = item;
+        });
+
+        const merged = incomingApproved.map(function (item) {
+            const key = (String(item.name).trim() + "|" + getReviewTextSafe(item)).toLowerCase();
+            const prev = existingByKey[key];
+            const resolvedImg = resolveReviewProofImage(item) || (prev ? resolveReviewProofImage(prev) : "");
+            if (prev) {
+                return {
+                    name: item.name,
+                    rating: item.rating,
+                    text: item.text,
+                    image: resolvedImg || item.image || prev.image || "",
+                    approved: true,
+                    status: "approved",
+                    createdAt: item.createdAt || prev.createdAt || ""
+                };
+            }
+            return {
+                name: item.name,
+                rating: item.rating,
+                text: item.text,
+                image: resolvedImg || item.image || "",
+                approved: true,
+                status: "approved",
+                createdAt: item.createdAt || ""
+            };
+        });
+
+        sheetReviewsState = merged;
         rebuildCombinedApprovedReviews();
         return true;
+    }
+
+    function classifyModerationStatus(rawVal) {
+        if (rawVal === true) return "approved";
+        if (rawVal === false) return "pending";
+        const s = String(rawVal ?? "").trim().toLowerCase();
+        if (
+            s === "true" ||
+            s === "1" ||
+            s === "yes" ||
+            s === "x" ||
+            s === "approved" ||
+            s === "da_duyet" ||
+            s === "đã duyệt" ||
+            s === "duyet" ||
+            s === "duyệt"
+        ) {
+            return "approved";
+        }
+        if (
+            s === "rejected" ||
+            s === "tu_choi" ||
+            s === "từ chối" ||
+            s === "khong_duyet" ||
+            s === "không duyệt" ||
+            s === "xoa" ||
+            s === "xóa" ||
+            s === "-1" ||
+            s === "no"
+        ) {
+            return "rejected";
+        }
+        return "pending";
+    }
+
+    function recordRowModerationStatus(nameStr, textStr, statusType) {
+        if (!nameStr) return;
+        const matchKey = normalizeReviewMatchKey(nameStr, textStr);
+        sheetAllStatusMap[matchKey] = statusType;
+        const idInfo = parseReviewerIdentity(nameStr, textStr, null);
+        if (idInfo.feedbackCode) {
+            sheetAllStatusMap["code|" + idInfo.feedbackCode.toLowerCase()] = statusType;
+        }
     }
 
     function syncFeedbackImagesFromR2() {
@@ -10487,7 +12391,6 @@ const TSPORT_REVIEWS_DATA = [];
                         parsedItems.push(item);
                     }
                 });
-                // Sắp xếp theo tên file tăng dần để ảnh mới nhất nằm cuối mảng (hiển thị đầu tiên khi reverse ở bảng Tất cả)
                 parsedItems.sort(function (a, b) {
                     return String(a.sortKey || "").localeCompare(String(b.sortKey || ""));
                 });
@@ -10497,21 +12400,81 @@ const TSPORT_REVIEWS_DATA = [];
             .catch(function () {});
     }
 
+    function syncCustomerFeedbackImagesFromR2() {
+        const baseApi = (typeof IMAGE_API === "string" && IMAGE_API.trim())
+            ? IMAGE_API.trim()
+            : "https://tsport-image-api.ntr9766.workers.dev/";
+        const sep = baseApi.indexOf("?") === -1 ? "?" : "&";
+        const url = baseApi + sep + "folder=" + encodeURIComponent("TSPORT/CUSTOMER_FEEDBACK/") + "&_t=" + Date.now();
+
+        fetch(url, { cache: "no-store" })
+            .then(function (res) {
+                return res.ok ? res.json() : null;
+            })
+            .then(function (data) {
+                if (!data || !Array.isArray(data.images)) return;
+                data.images.forEach(function (fileObj) {
+                    registerCustomerR2ImageItem(fileObj);
+                });
+                rebuildCombinedApprovedReviews();
+            })
+            .catch(function () {});
+    }
+
+    // Tự động đồng bộ các ảnh khách đã gửi trước đó còn lưu dưới dạng data:image trong localStorage lên R2
+    async function syncPendingLocalImagesToR2() {
+        try {
+            const raw = localStorage.getItem("tsport_pending_reviews");
+            if (!raw) return;
+            const list = JSON.parse(raw);
+            if (!Array.isArray(list) || list.length === 0) return;
+
+            let updated = false;
+            for (let i = 0; i < list.length; i++) {
+                const item = list[i];
+                if (!item || !item.image) continue;
+                const imgStr = String(item.image).trim();
+                if (imgStr.startsWith("data:image/")) {
+                    const fbCode = extractFeedbackCodeFromReview(item) || ("FB-" + String(Date.now()).slice(-6));
+                    const r2Url = await uploadCustomerProofImageToR2(
+                        imgStr,
+                        fbCode,
+                        item.name || "",
+                        item.text || "",
+                        item.rating || 5
+                    );
+                    if (r2Url) {
+                        item.image = r2Url;
+                        customerR2ImageMap["code|" + fbCode.toLowerCase()] = r2Url;
+                        if (item.name) {
+                            customerR2ImageMap["name|" + String(item.name).trim().toLowerCase()] = r2Url;
+                            customerR2ImageMap[normalizeReviewMatchKey(item.name, item.text || "")] = r2Url;
+                        }
+                        updated = true;
+                    }
+                }
+            }
+            if (updated) {
+                localStorage.setItem("tsport_pending_reviews", JSON.stringify(list));
+                rebuildCombinedApprovedReviews();
+            }
+        } catch (_) {}
+    }
+
     function syncApprovedReviewsFromSheet() {
         if (!TSPORT_REVIEWS_CONFIG.enableGoogleSheetSync) {
             return;
         }
 
-        let appsScriptResolved = false;
-
         // Luồng 1 (Siêu tốc ~200ms): Đọc trực tiếp Google Sheet CSV của tab "Reviews"
         if (TSPORT_REVIEWS_CONFIG.googleSheetReviewCsvUrl) {
-            fetch(TSPORT_REVIEWS_CONFIG.googleSheetReviewCsvUrl)
+            const csvUrl = TSPORT_REVIEWS_CONFIG.googleSheetReviewCsvUrl + "&_t=" + Date.now();
+            fetch(csvUrl, { cache: "no-store" })
                 .then(function (res) {
                     return res.ok ? res.text() : "";
                 })
                 .then(function (csvText) {
-                    if (appsScriptResolved || !csvText || typeof parseCSV !== "function") return;
+                    if (!csvText || typeof parseCSV !== "function") return;
                     const rawRows = parseCSV(csvText);
                     if (!rawRows || !Array.isArray(rawRows) || rawRows.length === 0) return;
 
@@ -10527,9 +12490,8 @@ const TSPORT_REVIEWS_DATA = [];
                             if (!Array.isArray(rowArr)) continue;
                             const obj = {};
                             for (let cIdx = 0; cIdx < headers.length; cIdx++) {
-                                if (headers[cIdx]) {
-                                    obj[headers[cIdx]] = rowArr[cIdx] ?? "";
-                                }
+                                const headerKey = headers[cIdx] || ("col_" + cIdx);
+                                obj[headerKey] = rowArr[cIdx] ?? "";
                             }
                             rows.push(obj);
                         }
@@ -10578,8 +12540,8 @@ const TSPORT_REVIEWS_DATA = [];
                                     ratingRaw = val;
                                 } else if (lowerKey === "text" || lowerKey === "nội dung" || lowerKey === "noi dung" || lowerKey === "review") {
                                     text = val;
-                                } else if (lowerKey === "approved" || lowerKey === "duyệt" || lowerKey === "duyet") {
-                                    approvedRaw = val.toLowerCase();
+                                } else if (lowerKey === "approved" || lowerKey === "duyệt" || lowerKey === "duyet" || lowerKey === "trạng thái") {
+                                    approvedRaw = val;
                                 } else if (
                                     lowerKey === "created_at" ||
                                     lowerKey === "createdat" ||
@@ -10594,33 +12556,36 @@ const TSPORT_REVIEWS_DATA = [];
                                     lowerKey === "ảnh" ||
                                     lowerKey === "anh" ||
                                     lowerKey === "proof_image" ||
-                                    lowerKey === "ảnh minh chứng"
+                                    lowerKey === "ảnh minh chứng" ||
+                                    lowerKey === "col_5"
                                 ) {
-                                    image = val;
+                                    if (val) image = val;
                                 }
                             }
 
-                            const isApproved =
-                                approvedRaw === "true" ||
-                                approvedRaw === "1" ||
-                                approvedRaw === "yes" ||
-                                approvedRaw === "x";
-
                             const ratingNum = Math.max(1, Math.min(5, Number(ratingRaw) || 5));
-                            if (isApproved && name) {
+                            const finalText = text || DEFAULT_TEXT_BY_STAR[ratingNum] || DEFAULT_TEXT_BY_STAR[5];
+                            const statusType = classifyModerationStatus(approvedRaw);
+
+                            if (name) {
+                                recordRowModerationStatus(name, finalText, statusType);
+                            }
+
+                            // Chỉ những đánh giá có trạng thái "approved" mới được hiển thị công khai
+                            if (statusType === "approved" && name) {
                                 sheetApproved.push({
                                     name: name,
                                     rating: ratingNum,
-                                    text: text || DEFAULT_TEXT_BY_STAR[ratingNum] || DEFAULT_TEXT_BY_STAR[5],
+                                    text: finalText,
                                     image: image,
                                     approved: true,
+                                    status: "approved",
                                     createdAt: createdAt
                                 });
                             }
                         }
 
-                        applySheetApprovedReviews(sheetApproved);
-                        return;
+                        mergeAndApplySheetApprovedReviews(sheetApproved);
                     }
                 })
                 .catch(function () {});
@@ -10636,24 +12601,29 @@ const TSPORT_REVIEWS_DATA = [];
                 })
                 .then(function (data) {
                     if (data && data.ok && Array.isArray(data.reviews)) {
-                        appsScriptResolved = true;
-                        const valid = data.reviews
-                            .filter(function (item) {
-                                return item && item.approved === true && item.name;
-                            })
-                            .map(function (item) {
-                                const rNum = Math.max(1, Math.min(5, Number(item.rating) || 5));
-                                const tVal = String(item.text || "").trim() || DEFAULT_TEXT_BY_STAR[rNum] || DEFAULT_TEXT_BY_STAR[5];
-                                return {
-                                    name: String(item.name || "").trim(),
+                        const valid = [];
+                        data.reviews.forEach(function (item) {
+                            if (!item || !item.name) return;
+                            const rNum = Math.max(1, Math.min(5, Number(item.rating) || 5));
+                            const tVal = String(item.text || "").trim() || DEFAULT_TEXT_BY_STAR[rNum] || DEFAULT_TEXT_BY_STAR[5];
+                            const nameStr = String(item.name || "").trim();
+                            const statusType = classifyModerationStatus(item.status !== undefined ? item.status : item.approved);
+
+                            recordRowModerationStatus(nameStr, tVal, statusType);
+
+                            if (statusType === "approved") {
+                                valid.push({
+                                    name: nameStr,
                                     rating: rNum,
                                     text: tVal,
                                     image: String(item.image || "").trim(),
                                     approved: true,
+                                    status: "approved",
                                     createdAt: item.createdAt || item.created_at || ""
-                                };
-                            });
-                        applySheetApprovedReviews(valid);
+                                });
+                            }
+                        });
+                        mergeAndApplySheetApprovedReviews(valid);
                     }
                 })
                 .catch(function () {});
@@ -10661,7 +12631,9 @@ const TSPORT_REVIEWS_DATA = [];
     }
 
     syncFeedbackImagesFromR2();
+    syncCustomerFeedbackImagesFromR2();
     syncApprovedReviewsFromSheet();
+    syncPendingLocalImagesToR2();
 })();
 
 
