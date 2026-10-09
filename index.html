@@ -3199,12 +3199,27 @@ select.is-active {
     pointer-events: none;
 }
 
+.tsr-stars-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
 .tsr-stars {
     font-size: 11.5px;
     letter-spacing: 1.5px;
-    margin-bottom: 4px;
     line-height: 1.1;
     color: #facc15;
+}
+
+.tsr-date {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
 .tsr-quote {
@@ -4291,7 +4306,7 @@ select.is-active {
         </h2>
 
         <div class="tsw-tagline">
-          SHOP • NHẬN • THU • MUA • TRAO ĐỔI VỢT
+          SHOP  NHẬN  THU • MUA • TRAO ĐỔI VỢT
         </div>
 
         <p class="tsw-desc">
@@ -8167,13 +8182,56 @@ const TSPORT_REVIEWS_DATA = [];
         );
     }
 
+    function formatReviewDateDisplay(rawDate) {
+        if (!rawDate) return "";
+        const str = String(rawDate).trim();
+        if (!str) return "";
+
+        // Định dạng dd/MM/yyyy HH:mm:ss hoặc dd/MM/yyyy
+        const dmyMatch = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+        if (dmyMatch) {
+            return (
+                String(dmyMatch[1]).padStart(2, "0") +
+                "/" +
+                String(dmyMatch[2]).padStart(2, "0") +
+                "/" +
+                dmyMatch[3]
+            );
+        }
+
+        // Định dạng ISO yyyy-MM-dd...
+        const parsed = Date.parse(str);
+        if (!isNaN(parsed)) {
+            const d = new Date(parsed);
+            return (
+                String(d.getDate()).padStart(2, "0") +
+                "/" +
+                String(d.getMonth() + 1).padStart(2, "0") +
+                "/" +
+                d.getFullYear()
+            );
+        }
+
+        return str.split(" ")[0];
+    }
+
     function buildSlideInnerHtml(review) {
         if (!review) return buildEmptyStateHtml();
         const stars = renderStarsString(review.rating);
         const safeText = escapeReviewHtml(review.text.trim());
         const safeName = escapeReviewHtml(review.name.trim());
+        const dateStr = formatReviewDateDisplay(
+            review.createdAt || review.created_at || review.date || ""
+        );
+        const dateHtml = dateStr
+            ? '<span class="tsr-date">' + escapeReviewHtml(dateStr) + '</span>'
+            : "";
+
         return (
-            '<div class="tsr-stars" aria-label="' + (review.rating || 5) + ' sao">' + stars + '</div>' +
+            '<div class="tsr-stars-row">' +
+                '<span class="tsr-stars" aria-label="' + (review.rating || 5) + ' sao">' + stars + '</span>' +
+                dateHtml +
+            '</div>' +
             '<div class="tsr-quote">“' + safeText + '”</div>' +
             '<div class="tsr-author">— ' + safeName + '</div>'
         );
@@ -8570,52 +8628,73 @@ const TSPORT_REVIEWS_DATA = [];
                 .then(function (csvText) {
                     if (appsScriptResolved || !csvText || typeof parseCSV !== "function") return;
                     const rows = parseCSV(csvText);
-                    if (!rows || rows.length < 1) return;
+                    if (!rows || !Array.isArray(rows)) return;
 
-                    const header = rows[0].map(function (col) {
-                        return String(col || "").trim().toLowerCase();
-                    });
-                    const nameIdx = header.findIndex(function (h) {
-                        return h === "name" || h === "tên" || h === "ten" || h === "khách hàng";
-                    });
-                    const ratingIdx = header.findIndex(function (h) {
-                        return h === "rating" || h === "sao" || h === "điểm";
-                    });
-                    const textIdx = header.findIndex(function (h) {
-                        return h === "text" || h === "nội dung" || h === "noi dung" || h === "review";
-                    });
-                    const approvedIdx = header.findIndex(function (h) {
-                        return h === "approved" || h === "duyệt" || h === "duyet";
-                    });
+                    // Nếu bảng Reviews trống (0 dòng dữ liệu), cập nhật ngay mảng rỗng
+                    if (rows.length === 0) {
+                        applySheetApprovedReviews([]);
+                        return;
+                    }
 
-                    if (nameIdx !== -1 && textIdx !== -1 && approvedIdx !== -1) {
-                        const sheetApproved = [];
-                        for (let i = 1; i < rows.length; i++) {
-                            const row = rows[i];
-                            if (!row || !row.length) continue;
-                            const rawApproved = String(row[approvedIdx] || "").trim().toLowerCase();
+                    const sheetApproved = [];
+
+                    // Trường hợp parseCSV trả về mảng Object [{ name, rating, text, approved, created_at }]
+                    if (!Array.isArray(rows[0]) && typeof rows[0] === "object" && rows[0] !== null) {
+                        for (let i = 0; i < rows.length; i++) {
+                            const item = rows[i];
+                            if (!item) continue;
+
+                            let name = "";
+                            let ratingRaw = "5";
+                            let text = "";
+                            let approvedRaw = "";
+                            let createdAt = "";
+
+                            const keys = Object.keys(item);
+                            for (let k = 0; k < keys.length; k++) {
+                                const rawKey = keys[k];
+                                const lowerKey = String(rawKey || "").trim().toLowerCase();
+                                const val = String(item[rawKey] ?? "").trim();
+
+                                if (lowerKey === "name" || lowerKey === "tên" || lowerKey === "ten" || lowerKey === "khách hàng") {
+                                    name = val;
+                                } else if (lowerKey === "rating" || lowerKey === "sao" || lowerKey === "điểm") {
+                                    ratingRaw = val;
+                                } else if (lowerKey === "text" || lowerKey === "nội dung" || lowerKey === "noi dung" || lowerKey === "review") {
+                                    text = val;
+                                } else if (lowerKey === "approved" || lowerKey === "duyệt" || lowerKey === "duyet") {
+                                    approvedRaw = val.toLowerCase();
+                                } else if (
+                                    lowerKey === "created_at" ||
+                                    lowerKey === "createdat" ||
+                                    lowerKey === "date" ||
+                                    lowerKey === "ngày" ||
+                                    lowerKey === "ngay" ||
+                                    lowerKey === "thời gian"
+                                ) {
+                                    createdAt = val;
+                                }
+                            }
+
                             const isApproved =
-                                rawApproved === "true" ||
-                                rawApproved === "1" ||
-                                rawApproved === "yes" ||
-                                rawApproved === "x";
-                            const name = String(row[nameIdx] || "").trim();
-                            const text = String(row[textIdx] || "").trim();
-                            const rating =
-                                ratingIdx !== -1
-                                    ? Math.max(1, Math.min(5, Number(row[ratingIdx]) || 5))
-                                    : 5;
+                                approvedRaw === "true" ||
+                                approvedRaw === "1" ||
+                                approvedRaw === "yes" ||
+                                approvedRaw === "x";
 
                             if (isApproved && name && text) {
                                 sheetApproved.push({
                                     name: name,
-                                    rating: rating,
+                                    rating: Math.max(1, Math.min(5, Number(ratingRaw) || 5)),
                                     text: text,
-                                    approved: true
+                                    approved: true,
+                                    createdAt: createdAt
                                 });
                             }
                         }
+
                         applySheetApprovedReviews(sheetApproved);
+                        return;
                     }
                 })
                 .catch(function () {});
