@@ -3123,29 +3123,37 @@ select.is-active {
 }
 
 .tsr-mobile-minimize {
-    display: none;
+    display: inline-flex;
+    flex-shrink: 0;
     appearance: none;
-    border: 1px solid rgba(248, 113, 113, 0.32);
-    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(248, 113, 113, 0.42);
+    background: rgba(30, 41, 59, 0.9);
     color: #fca5a5;
-    width: 24px;
-    height: 24px;
-    border-radius: 7px;
-    font-size: 12.5px;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 800;
     line-height: 1;
     cursor: pointer;
     align-items: center;
     justify-content: center;
     padding: 0;
+    touch-action: manipulation;
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 
 .tsr-mobile-minimize:hover,
 .tsr-mobile-minimize:active {
-    background: rgba(239, 68, 68, 0.25);
-    border-color: rgba(248, 113, 113, 0.6);
+    background: rgba(239, 68, 68, 0.28);
+    border-color: rgba(248, 113, 113, 0.65);
     color: #ffffff;
+}
+
+.tsr-widget.is-mobile-minimized {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(-20px, -50%, 0) scale(0.92);
 }
 
 /* Smooth Vertical Sliding Review Viewport */
@@ -3222,23 +3230,34 @@ select.is-active {
     text-overflow: ellipsis;
 }
 
+/* Bottom Actions Row: Write Review + Backup Hide Button */
+.tsr-bottom-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
 /* Write Review Button inside Widget */
 .tsr-write-btn {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     appearance: none;
     border: 1px solid rgba(56, 189, 248, 0.28);
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(37, 99, 235, 0.14));
     color: #e0f2fe;
     border-radius: 10px;
-    padding: 7px 10px;
-    font-size: 11.5px;
+    padding: 7px 8px;
+    font-size: 11.2px;
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
+    white-space: nowrap;
+    touch-action: manipulation;
     transition:
         background 0.22s ease,
         border-color 0.22s ease,
@@ -3258,7 +3277,38 @@ select.is-active {
     transform: translateY(0);
 }
 
-/* Mobile Compact Pill Launcher (shown when closed on mobile so it never blocks scrolling/content) */
+/* Secondary Hide Button (fallback in case top-right X is missed or lags) */
+.tsr-hide-btn {
+    flex-shrink: 0;
+    appearance: none;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(30, 41, 59, 0.78);
+    color: #cbd5e1;
+    border-radius: 10px;
+    padding: 7px 9px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+    touch-action: manipulation;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.tsr-hide-btn:hover,
+.tsr-hide-btn:active {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: rgba(248, 113, 113, 0.5);
+    color: #fca5a5;
+}
+
+/* Compact Pill Launcher (shown when widget is minimized) */
 .tsr-mobile-pill {
     display: none;
     position: fixed;
@@ -3282,6 +3332,10 @@ select.is-active {
     align-items: center;
     gap: 5px;
     touch-action: manipulation;
+}
+
+.tsr-mobile-pill.is-visible {
+    display: inline-flex;
 }
 
 .tsr-mobile-pill .tsr-pill-score {
@@ -4105,14 +4159,25 @@ select.is-active {
         <div id="tsrSlideB" class="tsr-slide is-prep-bottom"></div>
     </div>
 
-    <button
-        type="button"
-        id="tsrOpenModalBtn"
-        class="tsr-write-btn"
-    >
-        <span>✍️</span>
-        <span>VIẾT ĐÁNH GIÁ</span>
-    </button>
+    <div class="tsr-bottom-actions">
+        <button
+            type="button"
+            id="tsrOpenModalBtn"
+            class="tsr-write-btn"
+        >
+            <span>✍️</span>
+            <span>VIẾT ĐÁNH GIÁ</span>
+        </button>
+        <button
+            type="button"
+            id="tsrHideWidgetBtn"
+            class="tsr-hide-btn"
+            title="Ẩn bảng đánh giá"
+            aria-label="Ẩn bảng đánh giá"
+        >
+            Ẩn
+        </button>
+    </div>
 </aside>
 
 <button
@@ -7586,6 +7651,19 @@ if (searchClearBtn) {
     );
 }
 
+const tsportLogoEl = document.querySelector(".logo");
+if (tsportLogoEl) {
+    tsportLogoEl.style.cursor = "pointer";
+    tsportLogoEl.title = "Sắp xếp theo thứ tự mới nhất";
+    tsportLogoEl.addEventListener("click", () => {
+        const sortEl = document.getElementById("sortFilter");
+        if (sortEl) {
+            sortEl.value = "newest";
+        }
+        filterProducts();
+    });
+}
+
 
 /* =====================================================
    ZALO DRAG
@@ -8007,6 +8085,7 @@ const TSPORT_REVIEWS_DATA = [];
     const pillScoreEl = document.getElementById("tsrPillScore");
     const pillCountEl = document.getElementById("tsrPillCount");
     const mobileMinBtn = document.getElementById("tsrMobileMinBtn");
+    const hideWidgetBtn = document.getElementById("tsrHideWidgetBtn");
 
     const openModalBtn = document.getElementById("tsrOpenModalBtn");
     const modalBackdrop = document.getElementById("tsportReviewModal");
@@ -8202,17 +8281,64 @@ const TSPORT_REVIEWS_DATA = [];
         isHoveredOrPaused = false;
     });
 
-    // Mobile close / reopen button on review widget
-    if (mobileMinBtn && pillEl) {
+    function minimizeReviewWidget() {
+        widgetEl.classList.add("is-mobile-minimized");
+        if (pillEl) {
+            pillEl.classList.add("is-visible");
+        }
+    }
+
+    function restoreReviewWidget() {
+        if (pillEl) {
+            pillEl.classList.remove("is-visible");
+        }
+        widgetEl.classList.remove("is-mobile-minimized");
+    }
+
+    // Cách 1: Nút ✕ góc phải trên
+    if (mobileMinBtn) {
         mobileMinBtn.addEventListener("click", function (e) {
             e.stopPropagation();
-            widgetEl.classList.add("is-mobile-minimized");
-            pillEl.classList.add("is-visible");
+            minimizeReviewWidget();
         });
+    }
 
+    // Cách 2 (Dự phòng): Nút chữ "Ẩn" ở đáy khung cạnh nút Viết đánh giá
+    if (hideWidgetBtn) {
+        hideWidgetBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            minimizeReviewWidget();
+        });
+    }
+
+    // Cách 3 (Dự phòng trên cảm ứng): Gạt nhẹ ô đánh giá sang trái (Swipe Left) để đóng
+    let widgetTouchStartX = 0;
+    let widgetTouchStartY = 0;
+    widgetEl.addEventListener("touchstart", function (e) {
+        if (e.touches && e.touches.length === 1) {
+            widgetTouchStartX = e.touches[0].clientX;
+            widgetTouchStartY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    widgetEl.addEventListener("touchend", function (e) {
+        if (!e.changedTouches || !e.changedTouches.length) return;
+        const dx = e.changedTouches[0].clientX - widgetTouchStartX;
+        const dy = e.changedTouches[0].clientY - widgetTouchStartY;
+        if (dx < -28 && Math.abs(dx) > Math.abs(dy)) {
+            minimizeReviewWidget();
+        }
+    }, { passive: true });
+
+    // Cách 4 (Dự phòng): Chạm đúp (double-click / double-tap) vào vùng nội dung đánh giá để ẩn nhanh
+    widgetEl.addEventListener("dblclick", function (e) {
+        if (e.target.closest("#tsrOpenModalBtn")) return;
+        minimizeReviewWidget();
+    });
+
+    if (pillEl) {
         pillEl.addEventListener("click", function () {
-            pillEl.classList.remove("is-visible");
-            widgetEl.classList.remove("is-mobile-minimized");
+            restoreReviewWidget();
         });
     }
 
