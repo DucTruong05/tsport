@@ -5,6 +5,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
 
 <!-- RESOURCE PRECONNECT & DNS PREFETCH FOR FASTER LOADING -->
@@ -7215,11 +7216,11 @@ function formatPrice(price) {
         return escapeHTML(price);
     }
 
+    // Quy về đơn vị k (ví dụ 2000 -> 2000k, hoặc nếu nhập 2000000 -> 2000k)
+    const kValue =
+        number >= 100000 ? Math.round(number / 1000) : number;
 
-    return (
-        number.toLocaleString("vi-VN") +
-        " ₫"
-    );
+    return `${kValue}k`;
 
 }
 
