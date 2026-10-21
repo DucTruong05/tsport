@@ -5,6 +5,11 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TSPORT Vợt">
+<meta name="theme-color" content="#0d1117">
 
 <title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
 
@@ -2930,6 +2935,118 @@ select.is-active,
     opacity: 1;
 }
 
+/* =====================================================
+   TIKTOK FLOAT
+===================================================== */
+
+@keyframes tiktokGentleIdle {
+    0%, 76%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    88% {
+        transform: translate3d(0, -2.5px, 0);
+    }
+}
+
+#tiktokFloat {
+    position: fixed !important;
+
+    right: 22px !important;
+    bottom: 98px !important;
+
+    left: auto !important;
+    top: auto !important;
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #181818 0%, #000000 100%);
+
+    color: white;
+
+    text-decoration: none;
+
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    outline: none;
+
+    box-shadow:
+        0 10px 24px -4px rgba(0, 0, 0, 0.42),
+        0 4px 10px rgba(15, 23, 42, 0.12),
+        0 0 0 3px rgba(254, 44, 85, 0.22);
+
+    z-index: 2147483647 !important;
+
+    cursor: pointer;
+
+    animation: tiktokGentleIdle 6s var(--ease-in-out) infinite 0.5s;
+
+    transition:
+        transform 200ms var(--ease-out),
+        box-shadow 200ms var(--ease-out);
+}
+
+#tiktokFloat::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 44, 85, 0.22) 0%, rgba(37, 244, 238, 0.14) 55%, transparent 72%);
+    border: 1px solid rgba(254, 44, 85, 0.25);
+    z-index: -1;
+    pointer-events: none;
+    animation: zaloSoftHalo 4.5s var(--ease-in-out) infinite 1s;
+}
+
+#tiktokFloat:hover {
+    animation-play-state: paused;
+    transform: translate3d(0, -2px, 0) scale(1.04);
+
+    box-shadow:
+        0 14px 28px -4px rgba(0, 0, 0, 0.52),
+        0 6px 14px rgba(15, 23, 42, 0.18),
+        0 0 0 5px rgba(254, 44, 85, 0.32);
+}
+
+#tiktokFloat:active {
+    transform: translate3d(0, 0, 0) scale(0.96);
+    transition-duration: 120ms;
+}
+
+#tiktokFloat .tiktok-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+#tiktokFloat .tiktok-icon-wrap svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+#tiktokFloat .tiktok-contact {
+    font-size: 9.5px;
+    font-weight: 700;
+    margin-top: 3px;
+    padding: 1.5px 6px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    line-height: 1.1;
+    opacity: 1;
+}
+
 
 /* =====================================================
    MOBILE — LARGE RACKET IMAGES, FAST SCROLL, REDUCED BG INTENSITY
@@ -3335,6 +3452,24 @@ select.is-active,
     }
 
     #zaloFloat .zalo-contact {
+        font-size: 8.5px;
+        padding: 1.5px 5px;
+    }
+
+    #tiktokFloat {
+        width: 60px;
+        height: 60px;
+
+        right: 16px !important;
+        bottom: 88px !important;
+    }
+
+    #tiktokFloat .tiktok-icon-wrap svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    #tiktokFloat .tiktok-contact {
         font-size: 8.5px;
         padding: 1.5px 5px;
     }
@@ -5844,7 +5979,7 @@ html[data-theme="dark"] .skeleton-line {
             <div class="stars-layer stars-sm"></div>
             <div class="stars-layer stars-md"></div>
             <div class="stars-layer stars-twinkle"></div>
-        </div>
+    </div>
         <div class="bg-ocean-rays"></div>
         <div class="bg-orb bg-orb-crimson"></div>
         <div class="bg-orb bg-orb-cobalt"></div>
@@ -5859,7 +5994,7 @@ html[data-theme="dark"] .skeleton-line {
             <span class="ocean-bubble b4"></span>
             <span class="ocean-bubble b5"></span>
             <span class="ocean-bubble b6"></span>
-        </div>
+    </div>
     </div>
 
 <div class="container">
@@ -5884,7 +6019,6 @@ html[data-theme="dark"] .skeleton-line {
             type="button"
             aria-label="Xóa tìm kiếm"
         >✕</button>
-
     </div>
 
 
@@ -5954,7 +6088,6 @@ html[data-theme="dark"] .skeleton-line {
             </option>
 
         </select>
-
     </div>
 
 
@@ -5978,7 +6111,6 @@ html[data-theme="dark"] .skeleton-line {
                 <span class="theme-toggle-knob"></span>
             </span>
         </button>
-
     </div>
 
 
@@ -5991,8 +6123,8 @@ html[data-theme="dark"] .skeleton-line {
                 <div class="skeleton-line lg"></div>
                 <div class="skeleton-line price"></div>
                 <div class="skeleton-line md"></div>
-            </div>
-        </div>
+    </div>
+    </div>
         <div class="skeleton-card" aria-hidden="true">
             <div class="skeleton-img"></div>
             <div class="skeleton-body">
@@ -6000,8 +6132,8 @@ html[data-theme="dark"] .skeleton-line {
                 <div class="skeleton-line lg"></div>
                 <div class="skeleton-line price"></div>
                 <div class="skeleton-line md"></div>
-            </div>
-        </div>
+    </div>
+    </div>
         <div class="skeleton-card" aria-hidden="true">
             <div class="skeleton-img"></div>
             <div class="skeleton-body">
@@ -6009,8 +6141,8 @@ html[data-theme="dark"] .skeleton-line {
                 <div class="skeleton-line lg"></div>
                 <div class="skeleton-line price"></div>
                 <div class="skeleton-line md"></div>
-            </div>
-        </div>
+    </div>
+    </div>
         <div class="skeleton-card" aria-hidden="true">
             <div class="skeleton-img"></div>
             <div class="skeleton-body">
@@ -6018,9 +6150,8 @@ html[data-theme="dark"] .skeleton-line {
                 <div class="skeleton-line lg"></div>
                 <div class="skeleton-line price"></div>
                 <div class="skeleton-line md"></div>
-            </div>
-        </div>
-
+    </div>
+    </div>
     </div>
 
 
@@ -6031,7 +6162,7 @@ html[data-theme="dark"] .skeleton-line {
     <div class="trust-footer">
         <div class="trust-footer-text">
             Chính hãng - đúng như mô tả 100% · Ảnh chụp thật từng vết xước · Kiểm kỹ khung &amp; gen · <a href="https://zalo.me/0395364443" target="_blank" rel="noopener noreferrer">Zalo 0395364443</a>
-        </div>
+    </div>
     </div>
 
 </div>
@@ -6040,6 +6171,29 @@ html[data-theme="dark"] .skeleton-line {
 
 <div id="copyToast" role="status" aria-live="polite"></div>
 
+
+<!-- =====================================================
+     TIKTOK FLOAT
+===================================================== -->
+
+<a
+    id="tiktokFloat"
+    href="https://www.tiktok.com/@tsport2.vt.chnh.hn"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="TikTok TSPORT"
+    title="Kênh TikTok TSPORT"
+>
+    <div class="tiktok-icon-wrap">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor">
+            <title>TikTok</title>
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.5.18-1.92 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
+    </div>
+    <div class="tiktok-contact">
+        TikTok
+    </div>
+</a>
 
 <!-- =====================================================
      ZALO
@@ -6074,7 +6228,7 @@ html[data-theme="dark"] .skeleton-line {
 
         <div id="modalClose" class="modal-close">
             ×
-        </div>
+    </div>
 
 
         <button
@@ -6122,7 +6276,7 @@ html[data-theme="dark"] .skeleton-line {
                 class="zoom-level"
             >
                 100%
-            </div>
+    </div>
 
 
             <button
@@ -6143,14 +6297,12 @@ html[data-theme="dark"] .skeleton-line {
             >
                 ↺
             </button>
-
-        </div>
+    </div>
 
 
         <div id="modalCounter" class="modal-counter">
             1 / 1
-        </div>
-
+    </div>
     </div>
 
 </div>
@@ -6180,7 +6332,7 @@ html[data-theme="dark"] .skeleton-line {
             >
                 ✕
             </button>
-        </div>
+    </div>
     </div>
 
     <div id="tsrViewport" class="tsr-viewport" aria-live="polite" title="Nhấn để xem tất cả đánh giá khách hàng">
@@ -6253,7 +6405,7 @@ html[data-theme="dark"] .skeleton-line {
             >
                 ✕
             </button>
-        </div>
+    </div>
 
         <form id="tsrReviewForm" novalidate>
             <div class="tsr-field">
@@ -6267,7 +6419,7 @@ html[data-theme="dark"] .skeleton-line {
                     required
                     autocomplete="name"
                 >
-            </div>
+    </div>
 
             <div class="tsr-field">
                 <label class="tsr-label">Số sao đánh giá <span style="color:#f87171;">*</span> (Bắt buộc)</label>
@@ -6278,10 +6430,10 @@ html[data-theme="dark"] .skeleton-line {
                         <button type="button" class="tsr-star-btn is-selected" data-rating="3" aria-label="3 sao">★</button>
                         <button type="button" class="tsr-star-btn is-selected" data-rating="4" aria-label="4 sao">★</button>
                         <button type="button" class="tsr-star-btn is-selected" data-rating="5" aria-label="5 sao">★</button>
-                    </div>
+    </div>
                     <span id="tsrStarLabel" class="tsr-star-label">5 sao · Rất hài lòng</span>
-                </div>
-            </div>
+    </div>
+    </div>
 
             <div class="tsr-field-row">
                 <div>
@@ -6293,7 +6445,7 @@ html[data-theme="dark"] .skeleton-line {
                         maxlength="50"
                         placeholder="VD: Astrox 88D Pro"
                     >
-                </div>
+    </div>
                 <div>
                     <label class="tsr-label" for="tsrInputPhoneLast3">3 số cuối SĐT (tùy chọn)</label>
                     <input
@@ -6304,8 +6456,8 @@ html[data-theme="dark"] .skeleton-line {
                         maxlength="4"
                         placeholder="VD: 443"
                     >
-                </div>
-            </div>
+    </div>
+    </div>
 
             <div class="tsr-field">
                 <label class="tsr-label" for="tsrInputText">Nội dung nhận xét (tùy chọn)</label>
@@ -6316,7 +6468,7 @@ html[data-theme="dark"] .skeleton-line {
                     maxlength="260"
                     placeholder="Chia sẻ thêm cảm nhận của bạn (nếu để trống sẽ tự điền theo mức sao)..."
                 ></textarea>
-            </div>
+    </div>
 
             <div class="tsr-field">
                 <label class="tsr-label" for="tsrInputImage">Ảnh feedback thực tế </label>
@@ -6336,11 +6488,11 @@ html[data-theme="dark"] .skeleton-line {
                         <div class="tsr-image-preview-meta">
                             <span class="tsr-image-preview-name">Ảnh feedback đính kèm</span>
                             <span id="tsrImagePreviewStatus" class="tsr-image-preview-status">⏳ Sẽ gửi chờ chủ shop duyệt</span>
-                        </div>
+    </div>
                         <button type="button" id="tsrImageRemoveBtn" class="tsr-image-remove-btn" title="Xóa ảnh đính kèm">✕ Xóa</button>
-                    </div>
-                </div>
-            </div>
+    </div>
+    </div>
+    </div>
 
             <button type="submit" id="tsrSubmitBtn" class="tsr-submit-btn">
                 GỬI ĐÁNH GIÁ &amp; FEEDBACK
@@ -6376,8 +6528,8 @@ html[data-theme="dark"] .skeleton-line {
                     <span id="tsrAllTotalCount" class="tsr-compact-count">0 đánh giá xác thực</span>
                     <span class="tsr-compact-dot">•</span>
                     <span class="tsr-compact-trust">🛡️ Giao dịch thật qua Zalo</span>
-                </div>
-            </div>
+    </div>
+    </div>
             <button
                 type="button"
                 id="tsrCloseAllModalBtn"
@@ -6387,7 +6539,7 @@ html[data-theme="dark"] .skeleton-line {
             >
                 ✕
             </button>
-        </div>
+    </div>
 
         <div id="tsrAllFilterBar" class="tsr-filter-bar">
             <button type="button" class="tsr-filter-pill is-active" data-filter="all">Tất cả</button>
@@ -6395,7 +6547,7 @@ html[data-theme="dark"] .skeleton-line {
             <button type="button" class="tsr-filter-pill" data-filter="4">4 Sao ⭐</button>
             <button type="button" class="tsr-filter-pill" data-filter="with_photo">📸 Có ảnh Feedback</button>
             <button type="button" class="tsr-filter-pill" data-filter="verified_detail">✔ Có SĐT / Vợt</button>
-        </div>
+    </div>
 
         <div id="tsrAllReviewsList" class="tsr-all-list"></div>
 
@@ -6403,9 +6555,9 @@ html[data-theme="dark"] .skeleton-line {
             <div class="tsr-fb-gallery-head">
                 <span class="tsr-fb-gallery-title">📸 Ảnh Feedback Thực Tế</span>
                 <span id="tsrFeedbackGalleryCount" class="tsr-fb-gallery-count">0 ảnh · Nhấn để phóng to</span>
-            </div>
+    </div>
             <div id="tsrFeedbackGalleryStrip" class="tsr-fb-gallery-strip"></div>
-        </div>
+    </div>
 
         <div class="tsr-all-footer">
             <a
@@ -6420,7 +6572,7 @@ html[data-theme="dark"] .skeleton-line {
                 <span>✍️</span>
                 <span>Viết đánh giá của bạn</span>
             </button>
-        </div>
+    </div>
     </div>
 </div>
 
@@ -6452,7 +6604,7 @@ html[data-theme="dark"] .skeleton-line {
 
         <div class="tsw-tagline">
           SHOP  NHẬN  THU • MUA • TRAO ĐỔI VỢT
-        </div>
+    </div>
 
         <p class="tsw-desc">
             Cần bán vợt hoặc đang tìm vợt?
@@ -6481,7 +6633,7 @@ html[data-theme="dark"] .skeleton-line {
             >
                 ĐÃ HIỂU
             </button>
-        </div>
+    </div>
     </div>
 </div>
 
