@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -85,24 +85,24 @@ try {
 
 
 html {
-
     scroll-behavior: auto;
-
+    overflow-x: hidden;
+    max-width: 100vw;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
-
-
 body {
-
     margin: 0;
-
     font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-
     background: #dff5fb;
-
     color: #0c2d48;
-
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 
     -moz-osx-font-smoothing: grayscale;
 
@@ -1070,7 +1070,7 @@ header::after {
 
     color: #0c2d48;
     font-family: inherit;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.05px;
     line-height: 48px;
@@ -6235,7 +6235,7 @@ select.is-active,
 
         line-height: 44px;
 
-        font-size: 14.5px;
+        font-size: 16px;
 
         padding: 0 40px 0 42px;
 
@@ -6279,7 +6279,7 @@ select.is-active,
 
         padding: 10.5px 28px 10.5px 11px;
 
-        font-size: 13.5px;
+        font-size: 16px;
 
         border-radius: 10px;
 
@@ -10439,6 +10439,14 @@ html[data-theme="dark"] .skeleton-line {
     }
 }
 
+
+@media (max-width: 768px) {
+    .tsr-input,
+    .tsr-textarea {
+        font-size: 16px !important;
+    }
+}
+
 </style>
 
 </head>
@@ -12066,6 +12074,283 @@ function normalizeSearchText(str) {
 }
 
 /**
+ * Chuẩn hóa mã sản phẩm chính xác (Requirement 4.10.A):
+ * Bỏ dấu, chuyển chữ hoa, loại bỏ khoảng trắng thừa, dấu gạch nối, dấu câu
+ * Ví dụ: " k-109 " -> "K109", "yn 020" -> "YN020"
+ */
+function normalizeProductCode(code) {
+    if (!code) return "";
+    const norm = removeVietnameseTones(code).toUpperCase();
+    return norm.replace(/[\s\-_/\\.]+/g, "");
+}
+
+/**
+ * Tách từ khóa và tiểu từ định danh model (hỗ trợ phân rã chữ - số):
+ * Ví dụ: "ax88d" -> ["ax88d", "ax", "88d", "88", "d"]
+ *        "hbt2000" -> ["hbt2000", "hbt", "2000"]
+ */
+function tokenizeModelText(text) {
+    if (!text) return [];
+    const clean = normalizeSearchText(text);
+    if (!clean) return [];
+    const tokens = new Set();
+    const words = clean.split(/\s+/).filter(Boolean);
+    for (let i = 0; i < words.length; i++) {
+        const w = words[i];
+        tokens.add(w);
+        // Tách ranh giới chữ-số và số-chữ
+        const splitAlphaNum = w
+            .replace(/([a-z]+)(\d+)/g, "$1 $2")
+            .replace(/(\d+)([a-z]+)/g, "$1 $2");
+        const parts = splitAlphaNum.split(/\s+/).filter(Boolean);
+        for (let j = 0; j < parts.length; j++) {
+            tokens.add(parts[j]);
+        }
+        const compact = w.replace(/[\s\-_/\\.]+/g, "");
+        if (compact) tokens.add(compact);
+    }
+    return Array.from(tokens);
+}
+
+/**
+ * Danh sách dòng vợt chính thức chuẩn hóa (TSPORT RACKET CATALOG KNOWLEDGE)
+ * Kết nối Hãng, Dòng vợt, Bí danh (viết tắt / tiếng lóng), và Model tiêu biểu.
+ */
+const TSPORT_RACKET_LINES = [
+    {
+        id: "halbertec",
+        canonical: "Halbertec",
+        brand: "Lining",
+        aliases: ["halbertec", "habartec", "hbt", "ha", "hal"],
+        models: ["1000", "2000", "3000", "5000", "7000", "8000", "9000", "motor"]
+    },
+    {
+        id: "axforce",
+        canonical: "Axforce",
+        brand: "Lining",
+        aliases: ["axforce", "ax force", "axf", "ax", "af"],
+        models: ["cannon", "cannon pro", "cannon xc", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+    },
+    {
+        id: "tectonic",
+        canonical: "Tectonic",
+        brand: "Lining",
+        aliases: ["tectonic", "tec", "tt"],
+        models: ["1", "2", "3", "6", "7", "7c", "7d", "7i", "9", "001c", "300c"]
+    },
+    {
+        id: "bladex",
+        canonical: "BladeX",
+        brand: "Lining",
+        aliases: ["bladex", "blade x", "bld", "blx", "bx"],
+        models: ["200", "500", "700", "800", "900", "spiral"]
+    },
+    {
+        id: "calibar",
+        canonical: "3D Calibar",
+        brand: "Lining",
+        aliases: ["calibar", "3d calibar", "cls"],
+        models: ["80tf", "900", "600", "300"]
+    },
+    {
+        id: "windstorm",
+        canonical: "Windstorm",
+        brand: "Lining",
+        aliases: ["windstorm", "ws"],
+        models: ["72", "74", "78", "79", "79s", "79h"]
+    },
+    {
+        id: "astrox",
+        canonical: "Astrox",
+        brand: "Yonex",
+        aliases: ["astrox", "as", "ast"],
+        models: ["88d", "88s", "88", "99", "77", "100zz", "100zx", "100tour", "100game", "100", "7", "2", "00"]
+    },
+    {
+        id: "nanoflare",
+        canonical: "Nanoflare",
+        brand: "Yonex",
+        aliases: ["nanoflare", "nano flare", "nf", "nano"],
+        models: ["700", "800", "1000z", "1000", "70", "001"]
+    },
+    {
+        id: "arcsaber",
+        canonical: "Arcsaber",
+        brand: "Yonex",
+        aliases: ["arcsaber", "arc saber", "arc"],
+        models: ["11", "7", "10", "1", "fd"]
+    },
+    {
+        id: "duora",
+        canonical: "Duora",
+        brand: "Yonex",
+        aliases: ["duora", "duo", "dz"],
+        models: ["10", "7", "6", "8xp", "z strike"]
+    },
+    {
+        id: "voltric",
+        canonical: "Voltric",
+        brand: "Yonex",
+        aliases: ["voltric", "vt"],
+        models: ["zf2", "z force", "80", "70"]
+    },
+    {
+        id: "thruster",
+        canonical: "Thruster",
+        brand: "Victor",
+        aliases: ["thruster", "tk"],
+        models: ["ryuga", "ryuga 2", "ryuga ii", "ryuga td", "f", "k220h", "hmr", "hmr pro", "9990"]
+    },
+    {
+        id: "auraspeed",
+        canonical: "Auraspeed",
+        brand: "Victor",
+        aliases: ["auraspeed", "aura speed", "ars", "arsp", "asp"],
+        models: ["90k", "100x", "8000", "hs", "hs plus", "70k"]
+    },
+    {
+        id: "drivex",
+        canonical: "DriveX",
+        brand: "Victor",
+        aliases: ["drivex", "drive x", "dx"],
+        models: ["9x", "8k", "7k", "6k", "10", "9990"]
+    },
+    {
+        id: "bravesword",
+        canonical: "Brave Sword",
+        brand: "Victor",
+        aliases: ["bravesword", "brave sword", "bs"],
+        models: ["12", "11", "10", "7777x"]
+    }
+];
+
+/**
+ * Nhận diện sản phẩm thuộc dòng vợt nào dựa trên Hãng và Tên vợt
+ */
+function identifyProductLine(brand, name) {
+    const normBrand = removeVietnameseTones(brand);
+    const normName = removeVietnameseTones(name);
+    const tokens = new Set(tokenizeModelText(normName));
+
+    for (let i = 0; i < TSPORT_RACKET_LINES.length; i++) {
+        const line = TSPORT_RACKET_LINES[i];
+        const lineBrand = line.brand.toLowerCase();
+        if (normBrand && normBrand !== "khac" && normBrand !== lineBrand) {
+            continue;
+        }
+
+        // Kiểm tra alias trong tokens
+        for (let j = 0; j < line.aliases.length; j++) {
+            const alias = line.aliases[j];
+            if (tokens.has(alias)) {
+                return line;
+            }
+        }
+
+        // Nếu hãng khớp, kiểm tra các model đặc trưng trong tên
+        if (normBrand === lineBrand) {
+            if (line.id === "astrox" && (tokens.has("88d") || tokens.has("88s") || tokens.has("99") || tokens.has("77") || tokens.has("100zz") || tokens.has("100zx") || tokens.has("100tour"))) {
+                return line;
+            }
+            if (line.id === "nanoflare" && (tokens.has("700") || tokens.has("800") || tokens.has("1000z") || tokens.has("1000") || tokens.has("700game"))) {
+                return line;
+            }
+            if (line.id === "auraspeed" && (tokens.has("90k") || tokens.has("100x") || tokens.has("arsp") || (tokens.has("90") && normName.includes("mtl")))) {
+                return line;
+            }
+            if (line.id === "thruster" && (tokens.has("ryuga") || tokens.has("tk"))) {
+                return line;
+            }
+            if (line.id === "halbertec" && (tokens.has("hbt") || tokens.has("halbertec") || tokens.has("habartec"))) {
+                return line;
+            }
+            if (line.id === "axforce" && (tokens.has("cannon") || tokens.has("axforce"))) {
+                return line;
+            }
+        }
+    }
+    return null;
+}
+
+/**
+ * Lấy danh sách các dòng vợt khớp với tiền tố/bí danh (ví dụ "ha" -> [halbertec], "ax" -> [astrox, axforce])
+ */
+function getLinesForPrefix(prefix) {
+    if (!prefix) return [];
+    const pfxNorm = removeVietnameseTones(prefix).toLowerCase().trim();
+    if (!pfxNorm) return [];
+    const matchingLines = [];
+    for (let i = 0; i < TSPORT_RACKET_LINES.length; i++) {
+        const line = TSPORT_RACKET_LINES[i];
+        const hasHit = line.aliases.some(a => a === pfxNorm || (pfxNorm.length >= 2 && a.startsWith(pfxNorm)));
+        if (hasHit) {
+            matchingLines.push(line);
+        }
+    }
+    return matchingLines;
+}
+
+/**
+ * Phân tích từ khóa ghép dòng + model (ví dụ ax88d, nf700, tkryuga, hbt2000, ha 2000)
+ */
+function decomposeCompoundQuery(queryStr) {
+    const clean = normalizeSearchText(queryStr);
+    if (!clean) return null;
+    const tokens = clean.split(/\s+/).filter(Boolean);
+
+    // Dạng 2 từ phân tách: "ha 2000", "ax cannon", "axf cannon"
+    if (tokens.length === 2) {
+        const pfx = tokens[0];
+        const rem = tokens[1];
+        let lines = getLinesForPrefix(pfx);
+        if (pfx === "ax" && ["88d", "88s", "88", "99", "77", "100zz"].some(m => rem.startsWith(m))) {
+            const astroxLine = TSPORT_RACKET_LINES.find(l => l.id === "astrox");
+            if (astroxLine) lines = [astroxLine];
+        }
+        if (lines.length > 0) {
+            return {
+                lines: lines,
+                prefix: pfx,
+                remainder: rem,
+                remNorm: removeVietnameseTones(rem).replace(/\s+/g, ""),
+                remTokens: tokenizeModelText(rem)
+            };
+        }
+        return null;
+    }
+
+    // Dạng 1 từ viết liền: "ax88d", "nf700", "ars90k", "tkryuga", "hbt2000"
+    if (tokens.length === 1) {
+        const w = tokens[0];
+        const knownPrefixes = [
+            "halbertec", "habartec", "axforce", "nanoflare", "auraspeed", "thruster",
+            "hbt", "axf", "ars", "arsp", "tk", "nf", "arc", "as", "ax", "ha", "hal", "tt", "bx", "dx", "bs"
+        ];
+        for (let i = 0; i < knownPrefixes.length; i++) {
+            const pfx = knownPrefixes[i];
+            if (w.startsWith(pfx) && w.length > pfx.length) {
+                const rem = w.slice(pfx.length);
+                let lines = getLinesForPrefix(pfx);
+                if (pfx === "ax" && ["88d", "88s", "88", "99", "77", "100zz"].some(m => rem.startsWith(m))) {
+                    const astroxLine = TSPORT_RACKET_LINES.find(l => l.id === "astrox");
+                    if (astroxLine) lines = [astroxLine];
+                }
+                if (lines.length > 0) {
+                    return {
+                        lines: lines,
+                        prefix: pfx,
+                        remainder: rem,
+                        remNorm: removeVietnameseTones(rem).replace(/\s+/g, ""),
+                        remTokens: tokenizeModelText(rem)
+                    };
+                }
+            }
+        }
+    }
+    return null;
+}
+
+/**
  * Sinh biến thể mã vợt định dạng tương đương: HBT-2000 <-> HBT 2000 <-> HBT2000
  * Xử lý an toàn không nhập nhằng các model khác nhau.
  */
@@ -12106,19 +12391,19 @@ function generateCodeVariants(rawCode) {
  * Danh sách bí danh dòng vợt đã được xác thực trong giới cầu lông
  */
 const VERIFIED_RACKET_ALIASES = {
-    "astrox": ["ax", "astrox"],
+    "astrox": ["as", "ast", "astrox"],
     "nanoflare": ["nf", "nanoflare"],
     "arcsaber": ["arc", "arcsaber"],
     "duora": ["duo", "duora"],
     "voltric": ["vt", "voltric"],
-    "halbertec": ["hbt", "halbertec"],
-    "axforce": ["axf", "axforce"],
+    "halbertec": ["hbt", "ha", "hal", "halbertec", "habartec"],
+    "axforce": ["ax", "af", "axf", "axforce"],
     "tectonic": ["tt", "tectonic"],
     "bladex": ["bx", "bladex"],
     "calibar": ["calibar", "3d calibar"],
     "aeronaut": ["an", "aeronaut"],
     "turbocharging": ["tc", "turbocharging"],
-    "auraspeed": ["ars", "auraspeed"],
+    "auraspeed": ["ars", "arsp", "auraspeed"],
     "thruster": ["tk", "thruster"],
     "drivex": ["dx", "drivex"],
     "ryuga": ["ryuga"]
@@ -14251,6 +14536,49 @@ function getSkeletonCardsHTML(cardCount = 6) {
     return html;
 }
 
+function buildProductSearchIndex(product) {
+    if (!product) return null;
+    const rawName = String(product["Tên vợt"] || "").trim();
+    const rawCode = String(product["Mã"] || "").trim();
+    const rawBrand = String(product["Hãng"] || "").trim();
+    const normName = removeVietnameseTones(rawName);
+    const normCode = typeof normalizeProductCode === "function" ? normalizeProductCode(rawCode) : removeVietnameseTones(rawCode).toUpperCase().replace(/[\s\-_/\\.]+/g, "");
+    const normBrand = removeVietnameseTones(rawBrand);
+    const compactName = normName.replace(/[\s\-_/\\.]+/g, "");
+
+    const line = typeof identifyProductLine === "function" ? identifyProductLine(rawBrand, rawName) : null;
+    const tokens = new Set();
+    const nameTokens = typeof tokenizeModelText === "function" ? tokenizeModelText(rawName) : normName.split(/\s+/).filter(Boolean);
+    nameTokens.forEach(t => tokens.add(t));
+    const brandTokens = typeof tokenizeModelText === "function" ? tokenizeModelText(rawBrand) : normBrand.split(/\s+/).filter(Boolean);
+    brandTokens.forEach(t => tokens.add(t));
+    if (line && Array.isArray(line.aliases)) {
+        line.aliases.forEach(a => tokens.add(a));
+    }
+
+    const codeVariants = typeof generateCodeVariants === "function" ? generateCodeVariants(rawCode) : [rawCode];
+    const fullNormText = normalizeSearchText(rawBrand + " " + rawName + " " + rawCode);
+
+    product._searchIndex = {
+        rawName: rawName,
+        rawCode: rawCode,
+        rawBrand: rawBrand,
+        rawPrice: product["Giá"] || "",
+        formattedPrice: formatPrice(product["Giá"]),
+        normName: normName,
+        normCode: normCode,
+        normBrand: normBrand,
+        compactName: compactName,
+        line: line,
+        tokens: tokens,
+        codeVariants: codeVariants,
+        nameTokens: nameTokens,
+        allTokens: Array.from(tokens),
+        fullNormText: fullNormText
+    };
+    return product._searchIndex;
+}
+
 async function loadProducts() {
 
     const container =
@@ -14336,31 +14664,7 @@ async function loadProducts() {
                 );
 
             // In-Memory Search Index (Chuẩn hóa sẵn 1 lần duy nhất để tìm kiếm siêu tốc)
-            const rawName = String(product["Tên vợt"] || "").trim();
-            const rawCode = String(product["Mã"] || "").trim();
-            const rawBrand = String(product["Hãng"] || "").trim();
-            const normName = removeVietnameseTones(rawName);
-            const normCode = removeVietnameseTones(rawCode);
-            const normBrand = removeVietnameseTones(rawBrand);
-            const codeVariants = generateCodeVariants(rawCode);
-            const nameTokens = normName.split(/\s+/).filter(Boolean);
-            const allTokens = (normBrand + " " + normName + " " + normCode).split(/\s+/).filter(Boolean);
-            const fullNormText = normalizeSearchText(rawBrand + " " + rawName + " " + rawCode);
-
-            product._searchIndex = {
-                rawName: rawName,
-                rawCode: rawCode,
-                rawBrand: rawBrand,
-                rawPrice: product["Giá"] || "",
-                formattedPrice: formatPrice(product["Giá"]),
-                normName: normName,
-                normCode: normCode,
-                normBrand: normBrand,
-                codeVariants: codeVariants,
-                nameTokens: nameTokens,
-                allTokens: allTokens,
-                fullNormText: fullNormText
-            };
+            buildProductSearchIndex(product);
         });
 
 
@@ -15043,86 +15347,220 @@ function resetAllFilters() {
  * Thuật toán xếp hạng đa tầng nghiêm ngặt (Tiers 1 -> 6 + Tie-breaker theo xu hướng)
  * Đảm bảo độ chính xác của từ khóa luôn ưu tiên tuyệt đối hơn độ phổ biến.
  */
+/**
+ * Tính điểm liên quan trực tiếp (Relevance Scoring) để xếp hạng sản phẩm trong cùng 1 Tier
+ * Ưu tiên: Tên sản phẩm bắt đầu bằng từ khóa -> Tên chứa từ khóa -> Tên chứa tiểu từ model -> Khớp bí danh gián tiếp
+ */
+function computeRelevanceScore(idx, cleanQ, compactQ, decomp) {
+    let score = 0;
+    const pName = idx.normName;
+    const nameTokens = idx.nameTokens || [];
+
+    // 1. Tên sản phẩm bắt đầu bằng từ khóa tìm kiếm (ƯU TIÊN CỰC CAO)
+    // Ví dụ: query "ax" -> "ax 100 gen2", "ax 20 3u", "ax40" (+1000 điểm)
+    if (pName.startsWith(cleanQ) || idx.compactName.startsWith(compactQ)) {
+        score += 1000;
+    }
+
+    // 2. Chứa từ khóa chính xác trong tên thực tế (không phải chỉ do alias nội bộ)
+    if (nameTokens.includes(cleanQ) || nameTokens.includes(compactQ)) {
+        score += 500;
+    }
+
+    // 3. Khớp tiền tố token thực tế trong tên
+    if (nameTokens.some(t => t.startsWith(cleanQ))) {
+        score += 300;
+    }
+
+    // 4. Nếu là từ khóa ghép (ví dụ ax10 hoặc ax 10):
+    // Kiểm tra xem tên có chứa cả tiền tố và hậu tố không
+    if (decomp) {
+        const rem = decomp.remainder;
+        const remNorm = decomp.remNorm;
+        if (idx.compactName.includes(decomp.prefix + remNorm)) {
+            score += 800;
+        } else if (idx.compactName.startsWith(decomp.prefix) && idx.compactName.includes(remNorm)) {
+            score += 600;
+        } else if (nameTokens.some(t => t.startsWith(remNorm))) {
+            score += 200;
+        }
+    }
+
+    // 5. Chứa chuỗi con trong tên
+    if (cleanQ.length >= 2 && pName.includes(cleanQ)) {
+        score += 150;
+    }
+
+    return score;
+}
+
 function rankAndFilterProducts(rawQuery, candidates) {
     if (!Array.isArray(candidates)) candidates = products;
     const cleanQuery = String(rawQuery || "").trim();
     if (!cleanQuery) return candidates.map(p => ({ product: p, tier: 0 }));
 
+    // 1. Chế độ A: Khớp chính xác 100% mã sản phẩm (Requirement 4.10.A)
+    const normCodeQ = typeof normalizeProductCode === "function" ? normalizeProductCode(cleanQuery) : cleanQuery.replace(/[\s\-_/\\.]+/g, "").toUpperCase();
+    if (normCodeQ) {
+        const exactCodeMatches = [];
+        for (let i = 0; i < candidates.length; i++) {
+            const p = candidates[i];
+            const idx = p._searchIndex || buildProductSearchIndex(p);
+            if (idx && idx.normCode === normCodeQ) {
+                exactCodeMatches.push({ product: p, tier: 1 });
+            }
+        }
+        if (exactCodeMatches.length > 0) {
+            // CÔ LẬP TUYỆT ĐỐI: Chỉ hiển thị sản phẩm có mã trùng khớp chính xác!
+            return exactCodeMatches;
+        }
+    }
+
+    // 2. Chế độ tiền tố mã sản phẩm (Requirement 4.10.A)
+    // Nếu truy vấn có định dạng tiền tố mã như K10, YN0, LN1, VT0
+    if (/^(K|YN|LN|VT)\d+$/i.test(normCodeQ)) {
+        const prefixMatches = [];
+        for (let i = 0; i < candidates.length; i++) {
+            const p = candidates[i];
+            const idx = p._searchIndex || buildProductSearchIndex(p);
+            if (idx && idx.normCode && idx.normCode.startsWith(normCodeQ)) {
+                prefixMatches.push({ product: p, tier: 1 });
+            }
+        }
+        return prefixMatches;
+    }
+
+    // 3. Chế độ B: Tìm theo keyword, bí danh, model, từ khóa ghép (Requirement 4.10.B)
     const normQuery = removeVietnameseTones(cleanQuery);
+    const cleanQ = normalizeSearchText(cleanQuery);
     const compactQuery = normQuery.replace(/[\s\-_/\\.]+/g, "");
-    const queryTokens = normQuery.split(/\s+/).filter(Boolean);
-    const queryLen = normQuery.length;
+    const queryTokens = cleanQ.split(/\s+/).filter(Boolean);
+    const queryLen = cleanQ.length;
     const isShortAlphaNum = /^[a-z0-9]{1,3}$/i.test(compactQuery);
+
+    const decomp = typeof decomposeCompoundQuery === "function" ? decomposeCompoundQuery(cleanQ) : null;
+    const linesForQ = typeof getLinesForPrefix === "function" ? getLinesForPrefix(cleanQ) : [];
+    const targetLineIds = linesForQ.map(l => l.id);
 
     const matches = [];
 
     for (let i = 0; i < candidates.length; i++) {
         const p = candidates[i];
-        const idx = p._searchIndex;
+        const idx = p._searchIndex || buildProductSearchIndex(p);
         if (!idx) continue;
 
         let tier = 999;
+        const pName = idx.normName;
+        const pLine = idx.line;
+        const pTokens = idx.tokens;
 
-        // Tier 1: Khớp chính xác 100% mã sản phẩm (hoặc biến thể mã định dạng an toàn)
-        if (
-            idx.normCode === normQuery ||
-            idx.codeVariants.includes(normQuery) ||
-            (compactQuery && idx.codeVariants.includes(compactQuery))
-        ) {
+        // Tier 1: Khớp chính xác 100% tên vợt
+        if (pName === cleanQ || idx.compactName === compactQuery) {
             tier = 1;
         }
-        // Tier 2: Khớp chính xác 100% tên vợt hoặc model
-        else if (idx.normName === normQuery) {
-            tier = 2;
+        // Tier 2: Khớp từ khóa ghép (Compound match: ax88d -> Astrox + 88d, ha 2000 -> Halbertec + 2000)
+        else if (decomp) {
+            const decompLineIds = decomp.lines.map(l => l.id);
+            let lineMatched = pLine && decompLineIds.includes(pLine.id);
+            if (!lineMatched) {
+                lineMatched = decomp.lines.some(l => l.aliases.some(a => pName.startsWith(a)));
+            }
+
+            if (lineMatched) {
+                const remNorm = decomp.remNorm;
+                let remHit = false;
+                if (remNorm && idx.compactName.includes(remNorm)) {
+                    remHit = true;
+                } else if (decomp.remTokens && decomp.remTokens.length > 0) {
+                    remHit = decomp.remTokens.every(rt => {
+                        if (rt.length === 1) return pTokens.has(rt);
+                        return pTokens.has(rt) || Array.from(pTokens).some(t => t.startsWith(rt));
+                    });
+                }
+                // Hỗ trợ đặc biệt Victor ARS 90K: tên trong catalog là "Victor arsp 90 mtl"
+                if (!remHit && pLine && pLine.id === "auraspeed" && decomp.remainder.includes("90") && pTokens.has("90")) {
+                    remHit = true;
+                }
+                if (remHit) {
+                    tier = 2;
+                }
+            }
         }
-        // Tier 3: Khớp tiền tố (Prefix) mã vợt hoặc tên vợt
-        else if (
-            idx.normCode.startsWith(normQuery) ||
-            idx.normName.startsWith(normQuery) ||
-            idx.codeVariants.some(v => v.startsWith(normQuery) || (compactQuery && v.replace(/[\s\-_/\\.]+/g, "").startsWith(compactQuery)))
-        ) {
-            tier = 3;
+
+        // Tier 3: Khớp bí danh dòng vợt (Line Alias: ha, hal, hbt, halbertec, astrox, nanoflare, cannon)
+        if (tier > 2 && targetLineIds.length > 0) {
+            if (pLine && targetLineIds.includes(pLine.id)) {
+                tier = 3;
+            }
         }
-        // Tier 4: Khớp toàn bộ các từ khóa (Token match) trong tên, hãng, model
-        else if (
-            queryTokens.length > 0 &&
-            queryTokens.every(t => idx.allTokens.some(token => token.includes(t)) || idx.fullNormText.includes(t))
-        ) {
-            tier = 4;
+
+        // Tier 4: Khớp toàn bộ các từ khóa (Multi-token match: ax force cannon, ax af cannon, cannon pro)
+        if (tier > 3 && queryTokens.length > 0) {
+            let allMatch = true;
+            for (let j = 0; j < queryTokens.length; j++) {
+                const qt = queryTokens[j];
+                const tokenHit = (
+                    pTokens.has(qt) ||
+                    (qt.length >= 2 && Array.from(pTokens).some(t => t.startsWith(qt))) ||
+                    (idx.normBrand !== "khac" && (idx.normBrand === qt || idx.normBrand.startsWith(qt))) ||
+                    (pLine && pLine.aliases.some(a => a === qt || (qt.length >= 2 && a.startsWith(qt))))
+                );
+                if (!tokenHit) {
+                    allMatch = false;
+                    break;
+                }
+            }
+            if (allMatch) {
+                tier = 4;
+            }
         }
-        // Tier 5: Khớp bí danh dòng vợt đã xác minh
-        else if (
-            typeof VERIFIED_RACKET_ALIASES !== "undefined" &&
-            Object.keys(VERIFIED_RACKET_ALIASES).some(key => {
-                const aliases = VERIFIED_RACKET_ALIASES[key];
-                const queryMatchesAlias = aliases.some(a => a === normQuery || a === compactQuery);
-                const productHasLine = idx.normName.includes(key) || idx.normBrand.includes(key) || aliases.some(a => idx.normName.includes(a));
-                return queryMatchesAlias && productHasLine;
-            })
-        ) {
+
+        // Tier 5: Khớp chuỗi con trong tên vợt (Substring match cho từ khóa >= 3 ký tự)
+        if (tier > 4 && cleanQ.length >= 3 && pName.includes(cleanQ)) {
             tier = 5;
         }
-        // Tier 6: Khớp gần đúng (Fuzzy match) xử lý lỗi gõ nhẹ
-        else if (queryLen >= 4 && !isShortAlphaNum) {
+
+        // Tier 6: Khớp gần đúng xử lý lỗi gõ nhẹ (Fuzzy matching Levenshtein + Damerau transposition)
+        if (tier > 5 && queryLen >= 4 && !isShortAlphaNum) {
             const maxDist = queryLen >= 8 ? 2 : 1;
-            const hasFuzzy = idx.allTokens.some(t => {
+            const hasFuzzy = Array.from(pTokens).some(t => {
                 if (t.length < 3 || /^\d+$/.test(t)) return false;
-                return getLevenshteinDistance(normQuery, t) <= maxDist;
+                return getLevenshteinDistance(cleanQ, t) <= maxDist;
             });
             if (hasFuzzy) {
                 tier = 6;
             }
         }
 
+        // STRICT MODEL SUFFIX GUARD: ax88d TUYỆT ĐỐI KHÔNG khớp 88s (và ngược lại)
+        if (cleanQ.includes("88d") || (decomp && decomp.remainder.includes("88d"))) {
+            if (pTokens.has("88s") && !pTokens.has("88d")) {
+                tier = 999;
+            }
+        }
+        if (cleanQ.includes("88s") || (decomp && decomp.remainder.includes("88s"))) {
+            if (pTokens.has("88d") && !pTokens.has("88s")) {
+                tier = 999;
+            }
+        }
+
         if (tier <= 6) {
-            matches.push({ product: p, tier: tier });
+            const score = computeRelevanceScore(idx, cleanQ, compactQuery, decomp);
+            matches.push({ product: p, tier: tier, score: score });
         }
     }
 
-    // Sắp xếp: Tier ưu tiên cao đứng trước! Trong cùng 1 Tier, dùng điểm quan tâm làm tie-breaker.
+    // Sắp xếp phân tầng đa tiêu chí:
+    // 1. Tier ưu tiên cao hơn đứng trước (Tier 1 > Tier 2 > Tier 3...)
+    // 2. Trong cùng 1 Tier: Sản phẩm có tên thực tế khớp từ khóa (score cao hơn) đứng trước
+    // 3. Điểm quan tâm khách hàng (Interest Score) làm tiêu chí tiếp theo
     matches.sort((a, b) => {
         if (a.tier !== b.tier) {
             return a.tier - b.tier;
+        }
+        const scoreDiff = (b.score || 0) - (a.score || 0);
+        if (scoreDiff !== 0) {
+            return scoreDiff;
         }
         if (typeof SearchAnalytics !== "undefined") {
             const scoreA = SearchAnalytics.getProductInterestScore(a.product["Mã"] || a.product["Tên vợt"]);
