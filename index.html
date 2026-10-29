@@ -12,6 +12,7 @@
 <meta name="theme-color" content="#0d1117">
 
 <title>TSPORT - Vợt Cầu Lông Lướt | Zalo: 0395364443</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏸</text></svg>">
 
 <!-- RESOURCE PRECONNECT & DNS PREFETCH FOR FASTER LOADING -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1302,83 +1303,44 @@ header::after {
 
 
 select {
-
-    flex: 1 1 calc(25% - 11px);
-
-    min-width: 170px;
-
-
+    flex: 1 1 calc(25% - 10px);
+    min-width: 145px;
 
     appearance: none;
-
     -webkit-appearance: none;
-
     -moz-appearance: none;
 
-
-
     border: 1.5px solid rgba(14, 165, 233, 0.34);
-
     background-color: #f0f9ff;
-
     background-image:
-
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%230369a1' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
-
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%230369a1' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
         linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
-
     background-repeat: no-repeat, no-repeat;
+    background-position: right 10px center, center;
+    background-size: 13px 13px, 100% 100%;
 
-    background-position: right 13px center, center;
-
-    background-size: 15px 15px, 100% 100%;
-
-
-
-    border-radius: 13px;
-
-    padding: 11.5px 36px 11.5px 14px;
-
-
+    border-radius: 11px;
+    padding: 8.5px 30px 8.5px 12px;
 
     color: #0c4a6e;
-
     font-family: inherit;
-
-    font-size: 14px;
-
+    font-size: 13px;
     font-weight: 700;
-
     letter-spacing: -0.05px;
-
-    line-height: 1.38;
-
+    line-height: 1.35;
     outline: none;
-
     cursor: pointer;
 
-
-
     box-shadow:
-
-        0 4px 12px -3px rgba(8, 47, 73, 0.065),
-
+        0 3px 10px -2px rgba(8, 47, 73, 0.06),
         inset 0 1px 0 rgba(255, 255, 255, 0.92);
 
-
-
     transition:
-
-        transform var(--dur-fast) var(--ease-out),
-
-        border-color var(--dur-fast) var(--ease-out),
-
-        box-shadow var(--dur-fast) var(--ease-out),
-
-        background-image var(--dur-fast) var(--ease-out),
-
-        color var(--dur-fast) var(--ease-out);
-
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease,
+        color 180ms ease;
 }
 
 
@@ -1504,33 +1466,20 @@ select:focus {
 
 
 select.is-active,
-
 #brandFilter.is-active,
-
 #styleFilter.is-active,
-
 #sortFilter.is-active,
-
 #priceFilter.is-active {
-
-    border-color: #0284c7;
-
+    border-color: #0369a1;
     color: #ffffff;
-
     font-weight: 800;
-
+    background-color: #0f172a;
     background-image:
-
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
-
-        linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
-
+        linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     box-shadow:
-
-        0 6px 16px -3px rgba(2, 132, 199, 0.32),
-
-        inset 0 1px 0 rgba(255, 255, 255, 0.28);
-
+        0 4px 14px -2px rgba(15, 23, 42, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 
@@ -2273,7 +2222,7 @@ select.is-active,
 
 .card-info {
 
-    padding: 11px 13px 11px;
+    padding: 10px 12px 12px;
 
     display: flex;
 
@@ -2415,6 +2364,45 @@ select.is-active,
 
     line-height: 1.2;
 
+}
+
+.price-with-discount {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+}
+
+.price-sale {
+    font-size: 19px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: #e11d48;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.price-old {
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: line-through;
+    color: #94a3b8;
+    letter-spacing: -0.1px;
+}
+
+.badge-discount {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.5px 5.5px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    background: #ffe4e6;
+    color: #e11d48;
+    line-height: 1.2;
+    border: 1px solid rgba(225, 29, 72, 0.2);
 }
 
 
@@ -3127,34 +3115,109 @@ select.is-active,
 
 
 
-.detail-brand {
-
-    display: inline-block;
-
-    padding: 5.5px 16px;
-
-    border-radius: 999px;
-
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-
-    border: 1px solid rgba(14, 165, 233, 0.35);
-
-    color: #0369a1;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-
-
-
-    /* Step 2 of Detail Choreography: Brand & Title */
-
+/* DÒNG 1: Hãng bên trái + Tên vợt nổi bật (Highlight) ở giữa */
+.detail-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin: 10px 0 10px;
+    padding: 0 4px;
+    box-sizing: border-box;
     animation: detailItemReveal 340ms var(--ease-out) 60ms both;
+}
 
+.detail-brand {
+    position: absolute;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid rgba(14, 165, 233, 0.35);
+    color: #0369a1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.detail-name {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto !important;
+    padding: 5px 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.10) 0%, rgba(13, 148, 136, 0.08) 100%);
+    border: 1.5px solid rgba(14, 165, 233, 0.32);
+    box-shadow: 0 4px 14px -3px rgba(8, 47, 73, 0.08);
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: #0284c7 !important;
+    letter-spacing: -0.2px;
+    text-align: center;
+    max-width: 68%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* DÒNG 2: Giá vợt căn giữa, nổi bật */
+.detail-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
+    animation: detailItemReveal 340ms var(--ease-out) 90ms both;
+}
+
+.detail-price {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 20px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.12) 0%, rgba(225, 29, 72, 0.04) 100%) !important;
+    border: 1.5px solid rgba(225, 29, 72, 0.36) !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: #e11d48 !important;
+    letter-spacing: -0.4px;
+    box-shadow: 0 4px 16px -2px rgba(225, 29, 72, 0.16) !important;
+}
+
+.detail-price-discounted {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px !important;
+}
+
+.detail-price-sale {
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: #e11d48 !important;
+}
+
+.detail-price-old {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #94a3b8 !important;
+    text-decoration: line-through;
+}
+
+.detail-badge-discount {
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    padding: 2.5px 7px !important;
+    border-radius: 6px !important;
+    background: #ffe4e6 !important;
+    color: #e11d48 !important;
+    border: 1px solid rgba(225, 29, 72, 0.25) !important;
 }
 
 
@@ -3239,6 +3302,93 @@ select.is-active,
 
 }
 
+.detail-price-discounted {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.detail-price-sale {
+    font-size: 27px;
+    font-weight: 800;
+    color: #e11d48;
+    letter-spacing: -0.4px;
+}
+
+.detail-price-old {
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+.detail-badge-discount {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    background: #ffe4e6;
+    color: #e11d48;
+    border: 1px solid rgba(225, 29, 72, 0.25);
+}
+
+/* Dark mode adjustments */
+html[data-theme="dark"] .price-sale {
+    color: #ff6b81;
+}
+
+html[data-theme="dark"] .price-old {
+    color: #64748b;
+}
+
+html[data-theme="dark"] .badge-discount {
+    background: rgba(244, 63, 94, 0.18);
+    color: #fda4af;
+    border-color: rgba(251, 113, 133, 0.35);
+}
+
+html[data-theme="dark"] .detail-price-sale {
+    color: #fda4af;
+}
+
+html[data-theme="dark"] .detail-name {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(19, 31, 52, 0.95) 100%);
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #38bdf8 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .detail-brand {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(19, 31, 52, 0.95) 100%);
+    border-color: rgba(56, 189, 248, 0.35);
+    color: #7dd3fc;
+}
+
+html[data-theme="dark"] .detail-name {
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .detail-price {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.22) 0%, rgba(225, 29, 72, 0.12) 100%) !important;
+    border-color: rgba(251, 113, 133, 0.42) !important;
+    color: #fda4af !important;
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.22) !important;
+}
+
+html[data-theme="dark"] .detail-price-old {
+    color: #64748b;
+}
+
+html[data-theme="dark"] .detail-badge-discount {
+    background: rgba(244, 63, 94, 0.22);
+    color: #fda4af;
+    border-color: rgba(251, 113, 133, 0.4);
+}
+
 
 
 .detail-date {
@@ -3272,25 +3422,60 @@ select.is-active,
 
 
 .detail-cta-wrap {
-
-    margin: 6px auto 26px;
-
+    margin: 6px auto 16px;
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-
-
-    /* Step 5 of Detail Choreography: CTA */
-
+    gap: 8px;
+    width: 100%;
+    flex-wrap: nowrap;
     animation: detailItemReveal 360ms var(--ease-out) 175ms both;
+}
 
+.detail-cta-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 52%, #0d9488 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.1px;
+    text-transform: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: 0 6px 18px -4px rgba(2, 132, 199, 0.35);
+    box-sizing: border-box;
+}
+
+.copy-code-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 11px;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    border: 1.5px solid rgba(14, 165, 233, 0.32);
+    color: #0c4a6e;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(8, 47, 73, 0.05);
+    box-sizing: border-box;
 }
 
 
@@ -4053,18 +4238,55 @@ select.is-active,
 
 
 
-@media (max-width: 640px) {
+@media (max-width: 650px) {
 
+    /* Thông số kỹ thuật trên Mobile: 2 cột x 3 dòng, ô thứ 6 để trống tự nhiên */
     .tech-specs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+    }
 
-        grid-template-columns: 1fr;
-
+    /* Bỏ giãn toàn hàng của phần tử lẻ để giữ chuẩn lưới 2 cột */
+    .tech-spec-item:last-child:nth-child(odd) {
+        grid-column: auto !important;
     }
 
     .tech-specs-section {
+        padding: 12px 10px !important;
+        margin-top: 14px !important;
+        border-radius: 14px !important;
+    }
 
-        padding: 14px 12px;
+    .tech-spec-item {
+        padding: 9px 8px !important;
+        gap: 7px !important;
+        border-radius: 10px !important;
+        align-items: flex-start !important;
+        box-sizing: border-box !important;
+        min-height: 64px !important;
+    }
 
+    .tech-spec-icon {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+        margin-top: 2px !important;
+    }
+
+    .tech-spec-label {
+        font-size: 10px !important;
+        letter-spacing: 0.3px !important;
+        margin-bottom: 2px !important;
+        line-height: 1.25 !important;
+    }
+
+    .tech-spec-value {
+        font-size: 12.5px !important;
+        line-height: 1.32 !important;
+        font-weight: 700 !important;
+        word-break: break-word !important;
+        overflow-wrap: anywhere !important;
     }
 
 }
@@ -6272,21 +6494,14 @@ select.is-active,
 
 
     select {
-
         flex: 1 1 calc(50% - 4px);
-
         min-width: calc(50% - 4px);
-
-        padding: 10.5px 28px 10.5px 11px;
-
-        font-size: 16px;
-
-        border-radius: 10px;
-
-        background-position: right 10px center;
-
-        background-size: 14px 14px;
-
+        padding: 8px 24px 8px 10px;
+        font-size: 13px;
+        border-radius: 9px;
+        background-position: right 8px center;
+        background-size: 12px 12px;
+        line-height: 1.3;
     }
 
 
@@ -6383,7 +6598,7 @@ select.is-active,
 
     .card-info {
 
-        padding: 9px 10px 10px;
+        padding: 8px 10px 10px;
 
     }
 
@@ -6570,61 +6785,209 @@ select.is-active,
 
 
     .detail-cta-wrap {
-
-        margin: 4px auto 20px;
-
-        flex-direction: column;
-
-        gap: 9px;
-
+        margin: 4px auto 14px;
+        flex-direction: row !important;
+        gap: 6px !important;
+        width: 100%;
     }
 
-
-
+    /* Nút Zalo chiếm toàn bộ không gian còn lại, không bị tràn chữ */
     .detail-cta-btn {
-
-        width: 100%;
-
-        padding: 13.5px 18px;
-
-        font-size: 14px;
-
-        border-radius: 12px;
-
+        flex: 1 1 auto !important;
+        width: auto !important;
+        height: 40px !important;
+        padding: 0 8px !important;
+        font-size: 12px !important;
+        border-radius: 9px !important;
     }
 
-
-
+    /* Nút Copy mã thu gọn lại vừa vặn nội dung */
     .copy-code-btn {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        height: 40px !important;
+        padding: 0 9px !important;
+        font-size: 12px !important;
+        border-radius: 9px !important;
+    }
 
-        width: 100%;
+    .detail-title-row {
+        margin: 6px 0 8px !important;
+    }
 
-        padding: 12px 16px;
+    .detail-brand {
+        padding: 3px 7px !important;
+        font-size: 10px !important;
+    }
 
-        font-size: 13.5px;
+    .detail-name {
+        font-size: 16px !important;
+        padding: 4px 12px !important;
+        max-width: 62% !important;
+    }
 
-        border-radius: 12px;
+    .detail-price-row {
+        margin-bottom: 12px !important;
+    }
 
+    .detail-price {
+        font-size: 20px !important;
+        padding: 5px 15px !important;
+    }
+
+    .detail-price-sale {
+        font-size: 20px !important;
+    }
+
+    .detail-date {
+        font-size: 12px !important;
+        color: #64748b;
+        margin-top: 0 !important;
+        margin-bottom: 12px !important;
+        text-align: center;
     }
 
 
 
+    /* Hộp thông tin vợt: Lưới 2 hàng x 2 cột gần vuông, tối ưu mobile (320-430px) */
     .info-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 10px;
-
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 14px;
+        padding: 9px;
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(14, 165, 233, 0.22);
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(8, 47, 73, 0.05);
     }
-
-
 
     .info-row {
+        padding: 10px 8px;
+        min-height: 84px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.35;
+        gap: 4px;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        box-sizing: border-box;
+    }
 
-        padding: 13px 12px;
+    .info-row strong {
+        font-size: 10.5px;
+        letter-spacing: 0.35px;
+        margin-bottom: 2px;
+    }
 
-        font-size: 14.5px;
+    .info-val-code {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
 
+    /* Hiển thị giá sale nổi bật trên Mobile */
+    .price-with-discount {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 5px 6px;
+        margin-top: 4px;
+    }
+
+    .price-sale {
+        font-size: 19px !important;
+        font-weight: 900 !important;
+        color: #e11d48 !important;
+        line-height: 1.1;
+    }
+
+    .price-old {
+        font-size: 12.5px !important;
+        color: #94a3b8 !important;
+        text-decoration: line-through;
+        font-weight: 600;
+    }
+
+    .badge-discount {
+        font-size: 10px !important;
+        font-weight: 800 !important;
+        padding: 2px 5.5px !important;
+        border-radius: 5px !important;
+        background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%) !important;
+        color: #e11d48 !important;
+        border: 1px solid rgba(225, 29, 72, 0.25) !important;
+    }
+
+    /* Cụm ảnh thực tế xếp chồng kiểu Album trên Mobile */
+    .detail-gallery-grid {
+        position: relative;
+        display: block !important;
+        width: 100%;
+        max-width: 320px;
+        height: 240px;
+        margin: 14px auto 8px;
+        perspective: 900px;
+    }
+
+    .detail-gallery-item {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.18), 0 3px 8px rgba(0,0,0,0.06);
+        transition: transform 260ms ease, box-shadow 260ms ease;
+        overflow: hidden;
+        background: #f1f5f9;
+        cursor: pointer;
+    }
+
+    /* Ảnh chính ở trên cùng (index 0) */
+    .detail-gallery-item:nth-child(1) {
+        z-index: 3;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* Ảnh thứ 2 xếp lệch nhẹ phía sau */
+    .detail-gallery-item:nth-child(2) {
+        z-index: 2;
+        transform: translate3d(8px, 9px, -12px) rotate(2.2deg) scale(0.97);
+        opacity: 0.94;
+        filter: brightness(0.96);
+    }
+
+    /* Ảnh thứ 3 xếp lệch nhẹ thêm một lớp */
+    .detail-gallery-item:nth-child(3) {
+        z-index: 1;
+        transform: translate3d(16px, 18px, -24px) rotate(4.4deg) scale(0.93);
+        opacity: 0.86;
+        filter: brightness(0.92);
+    }
+
+    /* Các ảnh thứ 4 trở đi ẩn để không làm nặng DOM, khi bấm vào xem Lightbox vẫn xem đủ 100% */
+    .detail-gallery-item:nth-child(n+4) {
+        display: none !important;
+    }
+
+    /* Nếu chỉ có 1 ảnh thì không tạo hiệu ứng chồng */
+    .detail-gallery-grid:has(.detail-gallery-item:only-child) .detail-gallery-item {
+        transform: none !important;
+    }
+
+    .gallery-item-index {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(15, 23, 42, 0.78);
+        backdrop-filter: blur(6px);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 9px;
+        border-radius: 20px;
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
 
 
@@ -8161,33 +8524,20 @@ html[data-theme="dark"] #priceFilter:hover { border-color: #fbbf24; }
 
 
 html[data-theme="dark"] select.is-active,
-
 html[data-theme="dark"] #brandFilter.is-active,
-
 html[data-theme="dark"] #styleFilter.is-active,
-
 html[data-theme="dark"] #sortFilter.is-active,
-
 html[data-theme="dark"] #priceFilter.is-active {
-
     border-color: #38bdf8;
-
     color: #ffffff;
-
     font-weight: 800;
-
+    background-color: #334155;
     background-image:
-
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),
-
-        linear-gradient(135deg, rgba(14, 165, 233, 0.32) 0%, rgba(20, 184, 166, 0.22) 100%);
-
+        linear-gradient(135deg, #334155 0%, #1e293b 100%);
     box-shadow:
-
-        0 0 0 2px rgba(56, 189, 248, 0.20),
-
-        0 6px 16px -4px rgba(0, 0, 0, 0.55);
-
+        0 0 0 2px rgba(56, 189, 248, 0.35),
+        0 6px 18px -3px rgba(0, 0, 0, 0.65);
 }
 
 
@@ -10565,6 +10915,10 @@ html[data-theme="dark"] .skeleton-line {
                 Sắp xếp: Mặc định
             </option>
 
+            <option value="discount">
+                🔥 Vợt đang giảm giá
+            </option>
+
             <option value="newest">
                 🆕 Mới đăng nhất
             </option>
@@ -11889,6 +12243,130 @@ function formatPrice(price) {
 
     return `${kValue}k`;
 
+}
+
+
+/* =====================================================
+   DISCOUNT / SALE PARSER & RENDER HELPERS
+===================================================== */
+
+/**
+ * Trích xuất thông tin giảm giá từ cột Giá và Ghi chú.
+ * Không làm thay đổi hay cắt xén dữ liệu gốc.
+ *
+ * @param {string|number} rawPrice Cột "Giá" trên Google Sheet (ví dụ "2800" hoặc "2800k")
+ * @param {string} rawNote Cột "Ghi chú" trên Google Sheet (ví dụ "Vợt đẹp, sale 2000k")
+ * @returns {object|null} { originalPriceK, salePriceK, discountAmountK, discountPercent } hoặc null nếu không có sale hợp lệ
+ */
+function parseProductDiscount(rawPrice, rawNote) {
+    if (!rawPrice || !rawNote) return null;
+
+    const origNum = getPriceNumber(rawPrice);
+    if (!origNum || origNum <= 0) return null;
+    const originalPriceK = origNum >= 100000 ? Math.round(origNum / 1000) : origNum;
+
+    const note = String(rawNote);
+
+    // Hỗ trợ dạng triệu lẻ: 2tr2, 2tr4, 2tr5, 1tr8...
+    const patternMilSplit = /(?:sale|xả|xa|giảm|giam|thanh\s*lý|thanh\s*ly|\btl\b|fix|pass|còn|con)(?:\s*(?:còn|con|nhanh|gấp|gap|thu\s*vốn|lỗ|kịch\s*sàn|sốc|soc|đến|xuống|chỉ)?[:\s\-=~–—]*)\s*([0-9]+)\s*(?:tr|triệu|trieu|m)\s*([0-9]+)?/gi;
+    let match = patternMilSplit.exec(note);
+    if (match) {
+        const trPart = parseInt(match[1], 10);
+        let subPart = match[2] ? parseInt(match[2], 10) : 0;
+        if (subPart > 0 && subPart < 10) {
+            subPart = subPart * 100;
+        } else if (subPart >= 10 && subPart < 100) {
+            subPart = subPart * 10;
+        }
+        const valK = trPart * 1000 + subPart;
+        if (valK > 0 && valK < originalPriceK) {
+            const discountAmountK = originalPriceK - valK;
+            const discountPercent = Math.round((discountAmountK / originalPriceK) * 100);
+            if (discountPercent >= 1 && discountPercent <= 95) {
+                return {
+                    originalPriceK,
+                    salePriceK: valK,
+                    discountAmountK,
+                    discountPercent
+                };
+            }
+        }
+    }
+
+    // Hỗ trợ dạng chuẩn: 2000k, 1.500k, 2500, 2.2tr...
+    const patternStd = /(?:sale|xả|xa|giảm|giam|thanh\s*lý|thanh\s*ly|\btl\b|fix|pass|còn|con)(?:\s*(?:còn|con|nhanh|gấp|gap|thu\s*vốn|lỗ|kịch\s*sàn|sốc|soc|đến|xuống|chỉ)?[:\s\-=~–—]*)\s*([0-9]+(?:[.,][0-9]+)?)\s*(k|tr|triệu|trieu|m|đ|d|vnd)?/gi;
+    while ((match = patternStd.exec(note)) !== null) {
+        const numPart = match[1].replace(/,/g, ".");
+        const unit = (match[2] || "").toLowerCase();
+        let saleValK = 0;
+
+        if (unit === "tr" || unit === "triệu" || unit === "trieu" || unit === "m") {
+            const valInMil = parseFloat(numPart);
+            if (!isNaN(valInMil) && valInMil > 0) {
+                saleValK = Math.round(valInMil * 1000);
+            }
+        } else {
+            const cleanedNum = parseFloat(numPart.replace(/\./g, ""));
+            if (!isNaN(cleanedNum) && cleanedNum > 0) {
+                saleValK = cleanedNum >= 100000 ? Math.round(cleanedNum / 1000) : cleanedNum;
+            }
+        }
+
+        if (saleValK > 0 && saleValK < originalPriceK) {
+            const discountAmountK = originalPriceK - saleValK;
+            const discountPercent = Math.round((discountAmountK / originalPriceK) * 100);
+            if (discountPercent >= 1 && discountPercent <= 95) {
+                return {
+                    originalPriceK,
+                    salePriceK: saleValK,
+                    discountAmountK,
+                    discountPercent
+                };
+            }
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Render HTML hiển thị giá cho thẻ sản phẩm (Card)
+ */
+function renderPriceHTML(product) {
+    if (!product) return "";
+    const discount = product._discount;
+
+    if (!discount) {
+        return `<div class="price">${formatPrice(product["Giá"])}</div>`;
+    }
+
+    return `
+        <div class="price price-with-discount">
+            <span class="price-sale">${discount.salePriceK}k</span>
+            <span class="price-old">${discount.originalPriceK}k</span>
+            <span class="badge-discount">-${discount.discountPercent}%</span>
+        </div>
+    `;
+}
+
+/**
+ * Render HTML hiển thị giá cho Modal chi tiết sản phẩm
+ */
+function renderDetailPriceHTML(product) {
+    if (!product) return "";
+    const discount = product._discount;
+
+    if (!discount) {
+        return `<div class="detail-price">${formatPrice(product["Giá"])}</div>`;
+    }
+
+    return `
+        <div class="detail-price detail-price-discounted">
+            <span class="detail-price-sale">${discount.salePriceK}k</span>
+            <span class="detail-price-old">${discount.originalPriceK}k</span>
+            <span class="detail-badge-discount">🔥 Giảm ${discount.discountPercent}%</span>
+        </div>
+    `;
 }
 
 
@@ -13857,11 +14335,11 @@ function copyRacketCode(rawCode, btnEl) {
         showCopyToast(`✓ Đã copy mã vợt: #${code}`);
         if (btnEl) {
             btnEl.classList.add("is-copied");
-            btnEl.textContent = `✓ Đã copy mã: #${code}`;
+            btnEl.textContent = `✓ Đã copy`;
             setTimeout(() => {
                 if (btnEl && btnEl.isConnected) {
                     btnEl.classList.remove("is-copied");
-                    btnEl.textContent = `📋 Copy mã vợt`;
+                    btnEl.textContent = `📋 Copy mã`;
                 }
             }, 2200);
         }
@@ -14012,8 +14490,9 @@ async function showDetail(product) {
                 type="button"
                 id="detailCopyCodeBtn"
                 class="copy-code-btn"
+                title="Copy mã vợt"
             >
-                📋 Copy mã vợt
+                📋 Copy mã
             </button>
         `
         :
@@ -14064,28 +14543,23 @@ async function showDetail(product) {
 
         <div class="detail-content">
 
-            <div class="detail-brand">
-                ${escapeHTML(
-                    product["Hãng"] || ""
-                )}
+            <div class="detail-title-row">
+                <div class="detail-brand">
+                    ${escapeHTML(
+                        product["Hãng"] || ""
+                    )}
+                </div>
+
+                <div class="detail-name" title="${escapeHTML(product["Tên vợt"] || "")}">
+                    ${escapeHTML(
+                        product["Tên vợt"] || ""
+                    )}
+                </div>
             </div>
 
-
-            <div class="detail-name">
-                ${escapeHTML(
-                    product["Tên vợt"] || ""
-                )}
+            <div class="detail-price-row">
+                ${renderDetailPriceHTML(product)}
             </div>
-
-
-            <div class="detail-price">
-                ${formatPrice(
-                    product["Giá"]
-                )}
-            </div>
-
-
-            ${dateHTML}
 
 
             <div class="detail-cta-wrap">
@@ -14100,6 +14574,8 @@ async function showDetail(product) {
                 ${copyCodeBtnHTML}
             </div>
 
+            ${dateHTML}
+
 
             <div class="detail-section-label">
                 📋 Thông tin tình trạng vợt
@@ -14107,33 +14583,20 @@ async function showDetail(product) {
 
             <div class="info-grid">
 
-                <div class="info-row info-row-blue">
+                <div class="info-row info-row-blue info-row-code">
 
                     <strong>
                         Mã vợt
                     </strong>
 
-                    ${escapeHTML(
+                    <span class="info-val-code">${escapeHTML(
                         product["Mã"] || "-"
-                    )}
+                    )}</span>
 
                 </div>
 
 
-                <div class="info-row info-row-highlight">
-
-                    <strong>
-                        Tình trạng cước
-                    </strong>
-
-                    ${escapeHTML(
-                        product["Tình trạng cước"] || "-"
-                    )}
-
-                </div>
-
-
-                <div class="info-row info-row-highlight">
+                <div class="info-row info-row-highlight info-row-condition">
 
                     <strong>
                         Tình trạng vợt
@@ -14146,7 +14609,20 @@ async function showDetail(product) {
                 </div>
 
 
-                <div class="info-row info-row-blue">
+                <div class="info-row info-row-highlight info-row-string">
+
+                    <strong>
+                        Tình trạng cước
+                    </strong>
+
+                    ${escapeHTML(
+                        product["Tình trạng cước"] || "-"
+                    )}
+
+                </div>
+
+
+                <div class="info-row info-row-blue info-row-note">
 
                     <strong>
                         Ghi chú
@@ -14662,6 +15138,15 @@ async function loadProducts() {
                     product["Lối đánh"],
                     product["Tên vợt"]
                 );
+
+            // Nhận diện thông tin giảm giá / sale từ Giá và Ghi chú
+            product._discount = parseProductDiscount(
+                product["Giá"],
+                product["Ghi chú"]
+            );
+            product._effectivePriceNum = product._discount
+                ? product._discount.salePriceK
+                : product._priceNum;
 
             // In-Memory Search Index (Chuẩn hóa sẵn 1 lần duy nhất để tìm kiếm siêu tốc)
             buildProductSearchIndex(product);
@@ -15218,11 +15703,7 @@ function displayProducts(list) {
                         )}
                     </div>
 
-                    <div class="price">
-                        ${formatPrice(
-                            product["Giá"]
-                        )}
-                    </div>
+                    ${renderPriceHTML(product)}
 
                     <div class="meta">
 
@@ -15717,8 +16198,8 @@ function filterProducts() {
 
     const filtered = candidateList.filter(product => {
         const price =
-            product._priceNum ??
-            getPriceNumber(product["Giá"]);
+            product._effectivePriceNum ??
+            (product._discount ? product._discount.salePriceK : (product._priceNum ?? getPriceNumber(product["Giá"])));
 
         const priceOK =
             !priceFilter ||
@@ -15761,7 +16242,30 @@ function filterProducts() {
     });
 
 
-    if (sort === "newest") {
+    if (sort === "discount") {
+
+        filtered.sort((a, b) => {
+            const hasDiscA = Boolean(a._discount);
+            const hasDiscB = Boolean(b._discount);
+
+            // Vợt đang giảm giá luôn ưu tiên hiển thị trước
+            if (hasDiscA && !hasDiscB) return -1;
+            if (!hasDiscA && hasDiscB) return 1;
+
+            if (hasDiscA && hasDiscB) {
+                // Ưu tiên tỷ lệ % giảm cao hơn lên trước
+                const diffPercent = b._discount.discountPercent - a._discount.discountPercent;
+                if (diffPercent !== 0) return diffPercent;
+                // Nếu cùng %, ưu tiên mức giảm tuyệt đối cao hơn
+                return b._discount.discountAmountK - a._discount.discountAmountK;
+            }
+
+            // Các vợt không giảm giá giữ nguyên thứ tự hoặc xếp theo mới nhất
+            return (b._postTime ?? parseProductDate(b["Ngày đăng"])) -
+                   (a._postTime ?? parseProductDate(a["Ngày đăng"]));
+        });
+
+    } else if (sort === "newest") {
 
         filtered.sort(
             (a, b) =>
@@ -15772,8 +16276,8 @@ function filterProducts() {
     } else if (sort === "priceAsc") {
 
         filtered.sort((a, b) => {
-            const pA = a._priceNum ?? getPriceNumber(a["Giá"]);
-            const pB = b._priceNum ?? getPriceNumber(b["Giá"]);
+            const pA = a._effectivePriceNum ?? (a._discount ? a._discount.salePriceK : (a._priceNum ?? getPriceNumber(a["Giá"])));
+            const pB = b._effectivePriceNum ?? (b._discount ? b._discount.salePriceK : (b._priceNum ?? getPriceNumber(b["Giá"])));
             if (pA <= 0 && pB <= 0) return 0;
             if (pA <= 0) return 1;
             if (pB <= 0) return -1;
@@ -15783,8 +16287,8 @@ function filterProducts() {
     } else if (sort === "priceDesc") {
 
         filtered.sort((a, b) => {
-            const pA = a._priceNum ?? getPriceNumber(a["Giá"]);
-            const pB = b._priceNum ?? getPriceNumber(b["Giá"]);
+            const pA = a._effectivePriceNum ?? (a._discount ? a._discount.salePriceK : (a._priceNum ?? getPriceNumber(a["Giá"])));
+            const pB = b._effectivePriceNum ?? (b._discount ? b._discount.salePriceK : (b._priceNum ?? getPriceNumber(b["Giá"])));
             if (pA <= 0 && pB <= 0) return 0;
             if (pA <= 0) return 1;
             if (pB <= 0) return -1;
